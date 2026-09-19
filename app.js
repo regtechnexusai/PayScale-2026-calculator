@@ -1,6 +1,7 @@
 /*
  * PayScale 2026 Calculator
- * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division.
+ * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
+ * S.R.O. No. 347-Law/2026.
  *
  * The scale steps below are transcribed from the user-provided Gazette PDF.
  * Keep this data block separate and easy to update if an official correction
@@ -34,11 +35,13 @@ const bnDigits = '০১২৩৪৫৬৭৮৯';
 const enDigits = '0123456789';
 const toBn = (value) => String(value).replace(/[0-9]/g, (digit) => bnDigits[digit]);
 const parseMoney = (value) => {
-  const normalized = String(value || '')
+  const raw = String(value ?? '').trim();
+  if (!raw) return NaN;
+  const normalized = raw
     .replace(/[০-৯]/g, (digit) => enDigits[bnDigits.indexOf(digit)])
     .replace(/[৳,\s]/g, '');
   const number = Number(normalized);
-  return Number.isFinite(number) ? Math.round(number) : NaN;
+  return Number.isInteger(number) ? number : NaN;
 };
 const money = (value) => '৳ ' + Math.max(0, Math.round(value)).toLocaleString('en-IN').replace(/[0-9]/g, (digit) => bnDigits[digit]);
 const numberBn = (value) => Math.max(0, Math.round(value)).toLocaleString('en-IN').replace(/[0-9]/g, (digit) => bnDigits[digit]);
@@ -197,10 +200,10 @@ function calculate(showErrors = false) {
   setText('phase2-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত মূল বেতন');
   setText('phase2-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase2Increment));
   setText('phase3-title', isFixed ? 'স্থির নির্ধারিত বেতন' : '১ জুলাই ২০২৭ থেকে');
-  setText('phase3-description', isFixed ? 'গেজেটের fixed-pay treatment; percentage transition প্রযোজ্য নয়' : 'পূর্ণ পুনঃনির্ধারিত মূল বেতন; প্রযোজ্য বার্ষিক increment আলাদাভাবে যোগ হবে');
+  setText('phase3-description', isFixed ? 'গেজেটের নির্ধারিত বেতন-পদ্ধতি; পর্যায়ভিত্তিক শতাংশ প্রযোজ্য নয়' : 'পূর্ণ পুনঃনির্ধারিত মূল বেতন; প্রযোজ্য বার্ষিক বেতনবৃদ্ধি আলাদাভাবে যোগ হবে');
   setText('phase3-monthly', money(phase3Pay));
   setText('phase3-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'পূর্ণ মূল বেতন');
-  setText('phase3-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'annual increment আলাদাভাবে প্রযোজ্য হতে পারে');
+  setText('phase3-increment', isFixed ? 'অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বার্ষিক বেতনবৃদ্ধি আলাদাভাবে প্রযোজ্য হতে পারে');
   setText('arrears-note', 'গেজেট অনুযায়ী ১ জুলাই ২০২৬ থেকে আদেশ জারির তারিখ পর্যন্ত বেতন বকেয়া হিসাবে প্রাপ্য হতে পারে; এই ক্যালকুলেটর বকেয়ার পরিমাণ নির্ণয় করে না।');
   setText('old-min-label', isFixed ? 'পুরোনো স্কেলের ধাপ' : 'পুরোনো স্কেলের প্রারম্ভিক ধাপ');
   setText('difference-label', isFixed ? 'স্থির বেতন − বর্তমান মূল বেতন' : 'বর্তমান বেতন − প্রারম্ভিক ধাপ');
@@ -258,7 +261,7 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     '১ জানুয়ারি–৩০ জুন ২০২৭: ' + money(result.phase2Pay),
     '১ জুলাই ২০২৭ থেকে: ' + money(result.phase3Pay),
     'Prepared by RegTech Nexus AI',
-    'সূত্র: Bangladesh Gazette, Extra, 17 September 2026 · Order No. 347-Law/2026',
+    'সূত্র: Bangladesh Gazette, Extra, 17 September 2026 · S.R.O. No. 347-Law/2026',
     'Demo output only. Final decisions remain with the authorised accounts office.',
   ].join('\n');
   try {
