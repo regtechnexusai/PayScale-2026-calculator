@@ -11,9 +11,12 @@ The calculation engine follows the uploaded Bangladesh Gazette, Extra, dated 17 
 3. Add that difference to the opening step of the corresponding 2026 scale.
 4. If the result is not an exact 2026 scale step, use the next higher step.
 5. From 1 July to 31 December 2026, add 40% of the total difference for Grades 1-9 and 50% for Grades 10-20.
-6. From 1 January 2027, the full refixed basic pay is used.
+6. From 1 January to 30 June 2027, add 70% of the total difference for Grades 1-9 and 75% for Grades 10-20.
+7. From 1 July 2027, the full refixed basic pay applies, with the applicable annual increment handled under the Gazette.
+8. Arrears from 1 July 2026 to the Gazette/order issue date may be payable; this app does not quantify arrears.
+9. Fixed-pay treatment is shown separately for Grade 1 (৳156,000), Cabinet Secretary/Principal Secretary-level posts (৳172,000) and Senior Secretary-level posts (৳164,000). The interim percentages do not apply to these fixed-pay cases.
 
-The app deliberately does not calculate house-rent, medical or other allowances, tax, deductions, pension, arrears, promotion, higher-grade entitlement, selection grade, personal pay, leave or final office pay fixation.
+The app deliberately does not calculate house-rent, medical or other allowances, tax, deductions, pension, arrears, promotion, higher-grade entitlement, selection grade, personal pay, leave, annual-increment amount, or final office pay fixation. If the entered basic pay is not a listed 2015-scale step, the app shows a warning and asks the user to verify the official pay-fixation record.
 
 ## Run locally
 
@@ -39,3 +42,7 @@ The old-scale range and the new-scale steps are kept at the top of `app.js` insi
 ## Source note
 
 Primary source used for this implementation: user-provided `Pay Scale 2026.pdf`, Bangladesh Gazette, Extra, 17 September 2026, Finance Division, Implementation Division-1. The pay-fixation rules are stated in the Gazette's corresponding-scale and pay-determination provisions.
+
+## Prepared by
+
+Prepared by **RegTech Nexus AI** — regulatory intelligence, compliance analysis and professional decision support. This is an independent educational calculator and is not an official Government or Finance Division pay-fixation portal.

@@ -8,15 +8,15 @@
  */
 
 const SCALES = {
-  1:  { old: [78000], new: [156000], rate: 40 },
-  2:  { old: [66000, 68480, 73050, 73220, 76490], new: [132000, 135700, 139400, 143200, 147200, 151200, 153000], rate: 40 },
+  1:  { old: [78000], new: [156000], rate: 40, fixed: true },
+  2:  { old: [66000, 68480, 71050, 73720, 76490], new: [132000, 135700, 139400, 143200, 147200, 151200, 155000], rate: 40 },
   3:  { old: [56500, 58760, 61120, 63570, 66120, 68790, 71530, 74400], new: [113000, 117000, 121100, 125300, 129700, 134000, 139000, 143800, 148800], rate: 40 },
-  4:  { old: [50000, 52000, 54080, 56250, 58500, 60840, 63280, 65820, 68460, 71200], new: [100000, 103500, 107200, 110900, 114800, 118800, 123000, 127000, 131700, 136000, 142400], rate: 40 },
-  5:  { old: [43000, 44580, 46170, 47810, 49600, 51430, 53360, 55280, 57200, 59220, 61200, 63160, 65000, 66840, 68580, 69850], new: [86000, 89300, 93100, 96800, 100700, 104700, 108900, 113200, 117700, 122500, 127400, 132400, 139700], rate: 40 },
+  4:  { old: [50000, 52000, 54080, 56250, 58500, 60840, 63280, 65820, 68460, 71200], new: [100000, 103500, 107200, 110900, 114800, 118800, 123000, 127300, 131700, 136300, 142400], rate: 40 },
+  5:  { old: [43000, 44580, 46170, 47810, 49600, 51430, 53360, 55280, 57200, 59220, 61200, 63160, 65000, 66840, 68580, 69850], new: [86000, 89500, 93100, 96800, 100700, 104700, 108900, 113200, 117700, 122500, 127400, 132400, 139700], rate: 40 },
   6:  { old: [35500, 37280, 39150, 41110, 43170, 45330, 47600, 49980, 52480, 55110, 57870, 60790, 63810, 67010], new: [71000, 74600, 78300, 82200, 86400, 90700, 95200, 100000, 104900, 110200, 115700, 121500, 127600, 134000], rate: 40 },
   7:  { old: [29000, 30450, 31980, 33580, 35260, 37030, 38890, 40840, 42890, 45040, 47300, 49670, 52160, 54750, 57470, 60270, 63410], new: [58000, 60900, 64000, 67200, 70500, 74100, 77800, 81700, 85700, 90000, 94500, 99200, 104200, 109400, 114900, 120600, 126800], rate: 40 },
   8:  { old: [23000, 24150, 25360, 26630, 27970, 29370, 30840, 32390, 34010, 35710, 37500, 39380, 41350, 43420, 45590, 47870, 50270, 52790, 55470], new: [46000, 48300, 50800, 53300, 56000, 58800, 61700, 64800, 68000, 71400, 75000, 78700, 82700, 86800, 91100, 95700, 100500, 105500, 110800], rate: 40 },
-  9:  { old: [22000, 23100, 24260, 25480, 26760, 28100, 29510, 30990, 32540, 34170, 35880, 37680, 39570, 41550, 43630, 45820, 48110, 50510, 53060], new: [44000, 46200, 48600, 51000, 53500, 56200, 59000, 62000, 65100, 68300, 71900, 75000, 79100, 83000, 87200, 91500, 96100, 100900, 105700], rate: 40 },
+  9:  { old: [22000, 23100, 24260, 25480, 26760, 28100, 29510, 30990, 32540, 34170, 35880, 37680, 39570, 41550, 43630, 45820, 48110, 50510, 53060], new: [44000, 46200, 48600, 51000, 53500, 56200, 59000, 62000, 65100, 68300, 71900, 75300, 79100, 83000, 87200, 91500, 96100, 100900, 105700], rate: 40 },
   10: { old: [16000, 16800, 17640, 18530, 19460, 20440, 21470, 22550, 23680, 24870, 26110, 27390, 28710, 30080, 31510, 33000, 34560, 36190, 37800, 38640], new: [32000, 33600, 35300, 37100, 38900, 40900, 42900, 45100, 47300, 49700, 52200, 54800, 57500, 60400, 63400, 66600, 69900, 73400, 77300], rate: 50 },
   11: { old: [12500, 13130, 13790, 14480, 15210, 15980, 16780, 17620, 18490, 19410, 20380, 21390, 22460, 23580, 24760, 26000, 27300, 28670, 30230], new: [25000, 26300, 27600, 29000, 30400, 32000, 33600, 35200, 37000, 38800, 40800, 42800, 44900, 47200, 49500, 52000, 54600, 57300, 60500], rate: 50 },
   12: { old: [11300, 11870, 12470, 13100, 13760, 14450, 15180, 15940, 16740, 17580, 18460, 19380, 20350, 21370, 22440, 23560, 24740, 26000, 27300], new: [24300, 25600, 26800, 28200, 29600, 31100, 32600, 34200, 36000, 37900, 39600, 41600, 43900, 45900, 48200, 50600, 53100, 55900, 58700], rate: 50 },
@@ -43,12 +43,22 @@ const parseMoney = (value) => {
 const money = (value) => '৳ ' + Math.max(0, Math.round(value)).toLocaleString('en-IN').replace(/[0-9]/g, (digit) => bnDigits[digit]);
 const numberBn = (value) => Math.max(0, Math.round(value)).toLocaleString('en-IN').replace(/[0-9]/g, (digit) => bnDigits[digit]);
 
+const payTypeSelect = document.querySelector('#pay-type');
+const fixedPostSelect = document.querySelector('#fixed-post');
+const fixedFields = document.querySelector('#fixed-fields');
+const gradeFieldGroup = document.querySelector('#grade-field-group');
 const gradeSelect = document.querySelector('#grade');
 const currentBasic = document.querySelector('#current-basic');
 const form = document.querySelector('#calculator-form');
 const tableBody = document.querySelector('#scale-table-body');
 const validation = document.querySelector('#validation-message');
 const toast = document.querySelector('#toast');
+
+const fixedPosts = {
+  156000: 'গ্রেড ১ · নির্ধারিত বেতন',
+  172000: 'মন্ত্রিপরিষদ সচিব/প্রধানমন্ত্রীর মুখ্য সচিব ও সমমর্যাদা',
+  164000: 'সিনিয়র সচিব ও সমমর্যাদা',
+};
 
 Object.keys(SCALES).forEach((grade) => {
   const option = document.createElement('option');
@@ -62,11 +72,21 @@ function scaleRange(steps) {
   return steps.length === 1 ? money(steps[0]) + ' (নির্ধারিত)' : money(steps[0]) + ' – ' + money(steps[steps.length - 1]);
 }
 
+function phaseRates(grade) {
+  return grade <= 9 ? { phase1: 40, phase2: 70 } : { phase1: 50, phase2: 75 };
+}
+
+function gradeRateLabel(grade, scale) {
+  if (scale.fixed) return 'নির্ধারিত';
+  const rates = phaseRates(grade);
+  return toBn(rates.phase1) + '% → ' + toBn(rates.phase2) + '%';
+}
+
 function renderScaleTable(full) {
   tableBody.innerHTML = Object.entries(SCALES).map(([grade, scale]) => {
     const oldValue = scaleRange(scale.old);
     const newValue = full ? scale.new.map(money).join(' · ') : scaleRange(scale.new);
-    return '<tr><td>গ্রেড ' + toBn(grade) + '</td><td>' + oldValue + '</td><td>' + newValue + '</td><td>' + toBn(scale.rate) + '%</td></tr>';
+    return '<tr><td>গ্রেড ' + toBn(grade) + '</td><td>' + oldValue + '</td><td>' + newValue + '</td><td>' + gradeRateLabel(Number(grade), scale) + '</td></tr>';
   }).join('');
 }
 
@@ -76,56 +96,97 @@ function nearestNewStep(candidate, steps) {
 
 function setText(id, value) { document.getElementById(id).textContent = value; }
 
+function setValidation(message, warning = false) {
+  validation.textContent = message;
+  validation.classList.toggle('warning', warning);
+  validation.hidden = false;
+}
+
+function clearValidation() {
+  validation.textContent = '';
+  validation.classList.remove('warning');
+  validation.hidden = true;
+}
+
 function calculate() {
   const grade = Number(gradeSelect.value);
   const scale = SCALES[grade];
   const current = parseMoney(currentBasic.value);
+  const fixedMode = payTypeSelect.value === 'fixed';
   const oldMinimum = scale.old[0];
   const oldMaximum = scale.old[scale.old.length - 1];
-
-  document.querySelector('#grade-chip').textContent = 'গ্রেড ' + toBn(grade);
-  document.querySelector('#interim-rate').textContent = toBn(scale.rate) + '%';
-  document.querySelector('#interim-rate-inline').textContent = toBn(scale.rate) + '%';
+  let isFixed = fixedMode || Boolean(scale.fixed);
+  let fixedTarget = fixedMode ? Number(fixedPostSelect.value) : scale.new[0];
+  let difference;
+  let candidate = null;
+  let applied;
+  let stepIndex = null;
 
   if (!Number.isFinite(current) || current <= 0) {
-    validation.textContent = 'অনুগ্রহ করে বর্তমান মূল বেতন লিখুন।';
-    validation.hidden = false;
+    setValidation('অনুগ্রহ করে বর্তমান মূল বেতন লিখুন।');
     return;
   }
-  if (current < oldMinimum || current > oldMaximum) {
-    validation.textContent = 'গ্রেড ' + toBn(grade) + '-এর বর্তমান স্কেল ' + money(oldMinimum) + ' থেকে ' + money(oldMaximum) + ' পর্যন্ত। অনুগ্রহ করে এই সীমার মধ্যে মূল বেতন লিখুন।';
-    validation.hidden = false;
-    return;
-  }
+  clearValidation();
 
-  validation.hidden = true;
-  const difference = current - oldMinimum;
-  const candidate = scale.new[0] + difference;
-  const applied = nearestNewStep(candidate, scale.new);
-  if (!applied) {
-    validation.textContent = 'এই ইনপুটের জন্য নতুন স্কেলের সর্বোচ্চ ধাপ অতিক্রম করছে। সংশ্লিষ্ট হিসাবরক্ষণ অফিসে pay fixation যাচাই করুন।';
-    validation.hidden = false;
-    return;
+  if (isFixed) {
+    if (current > fixedTarget) {
+      setValidation('বর্তমান মূল বেতন ' + money(current) + ' নির্ধারিত বেতন ' + money(fixedTarget) + '-এর চেয়ে বেশি। অফিসিয়াল pay fixation যাচাই করুন।');
+      return;
+    }
+    difference = fixedTarget - current;
+    applied = fixedTarget;
+  } else {
+    if (current < oldMinimum || current > oldMaximum) {
+      setValidation('গ্রেড ' + toBn(grade) + '-এর বর্তমান স্কেল ' + money(oldMinimum) + ' থেকে ' + money(oldMaximum) + ' পর্যন্ত। অনুগ্রহ করে এই সীমার মধ্যে মূল বেতন লিখুন।');
+      return;
+    }
+    if (!scale.old.includes(current)) {
+      setValidation('সতর্কতা: ' + money(current) + ' গ্রেড ' + toBn(grade) + '-এর ২০১৫ সালের তালিকাভুক্ত ধাপ নয়। এটি ব্যক্তিগত/সংরক্ষিত বেতন বা অন্য কোনো pay-fixation কারণে হতে পারে—চূড়ান্ত হিসাব অফিসিয়াল নথির সঙ্গে মিলিয়ে নিন।', true);
+    }
+    difference = current - oldMinimum;
+    candidate = scale.new[0] + difference;
+    applied = nearestNewStep(candidate, scale.new);
+    if (!applied) {
+      setValidation('এই ইনপুটের জন্য নতুন স্কেলের সর্বোচ্চ ধাপ অতিক্রম করছে। সংশ্লিষ্ট হিসাবরক্ষণ অফিসে pay fixation যাচাই করুন.');
+      return;
+    }
+    stepIndex = scale.new.indexOf(applied) + 1;
   }
 
   const totalIncrease = applied - current;
-  const interimIncrease = Math.round(totalIncrease * scale.rate / 100);
-  const interimMonthly = current + interimIncrease;
+  const rates = isFixed ? { phase1: null, phase2: null } : phaseRates(grade);
+  const phase1Pay = isFixed ? applied : current + Math.round(totalIncrease * rates.phase1 / 100);
+  const phase2Pay = isFixed ? applied : current + Math.round(totalIncrease * rates.phase2 / 100);
+  const phase3Pay = applied;
   const percent = current ? (totalIncrease / current) * 100 : 0;
-  const stepIndex = scale.new.indexOf(applied) + 1;
 
+  setText('grade-chip', fixedMode ? 'স্থির বেতন' : ('গ্রেড ' + toBn(grade) + (isFixed ? ' · নির্ধারিত' : '')));
+  setText('result-hero-label', isFixed ? 'স্থির নির্ধারিত মূল বেতন · ১ জুলাই ২০২৬ থেকে' : 'পূর্ণ নতুন মূল বেতন · ১ জুলাই ২০২৭ থেকে');
+  setText('interim-rate', isFixed ? 'প্রযোজ্য নয়' : toBn(rates.phase1) + '% → ' + toBn(rates.phase2) + '% → ১০০%');
   setText('new-basic', money(applied));
-  setText('full-monthly', money(applied));
   setText('total-increase', money(totalIncrease));
   setText('increase-percent', toBn(percent.toFixed(1)) + '% · বর্তমান মূল বেতনের উপর');
-  setText('interim-monthly', money(interimIncrease));
-  setText('old-min', money(oldMinimum));
+  setText('phase1-title', isFixed ? '১ জুলাই ২০২৬ থেকে' : '১ জুলাই – ৩১ ডিসেম্বর ২০২৬');
+  setText('phase1-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে পার্থক্যের ' + toBn(rates.phase1) + '% যোগ হবে');
+  setText('phase1-monthly', money(phase1Pay));
+  setText('phase2-title', isFixed ? '১ জানুয়ারি ২০২৭ থেকে' : '১ জানুয়ারি – ৩০ জুন ২০২৭');
+  setText('phase2-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে পার্থক্যের ' + toBn(rates.phase2) + '% যোগ হবে');
+  setText('phase2-monthly', money(phase2Pay));
+  setText('phase3-title', isFixed ? 'স্থির নির্ধারিত বেতন' : '১ জুলাই ২০২৭ থেকে');
+  setText('phase3-description', isFixed ? 'গেজেটের fixed-pay treatment; percentage transition প্রযোজ্য নয়' : 'পূর্ণ পুনঃনির্ধারিত মূল বেতন; প্রযোজ্য বার্ষিক increment আলাদাভাবে যোগ হবে');
+  setText('phase3-monthly', money(phase3Pay));
+  setText('arrears-note', 'গেজেট অনুযায়ী ১ জুলাই ২০২৬ থেকে আদেশ জারির তারিখ পর্যন্ত বেতন বকেয়া হিসাবে প্রাপ্য হতে পারে; এই ক্যালকুলেটর বকেয়ার পরিমাণ নির্ণয় করে না।');
+  setText('old-min-label', isFixed ? 'পুরোনো স্কেলের ধাপ' : 'পুরোনো স্কেলের প্রারম্ভিক ধাপ');
+  setText('difference-label', isFixed ? 'স্থির বেতন − বর্তমান মূল বেতন' : 'বর্তমান বেতন − প্রারম্ভিক ধাপ');
+  setText('candidate-label', isFixed ? 'স্থির বেতন পদ' : 'নতুন প্রারম্ভিক ধাপ + পার্থক্য');
+  setText('applied-step-label', isFixed ? 'প্রযোজ্য নির্ধারিত বেতন' : 'প্রযোজ্য নতুন ধাপ');
+  setText('old-min', isFixed ? 'প্রযোজ্য নয়' : money(oldMinimum));
   setText('difference', money(difference));
-  setText('candidate', money(candidate));
-  setText('applied-step', money(applied) + ' · ধাপ ' + toBn(stepIndex));
-  setText('new-step-label', 'নতুন স্কেলের ধাপ ' + toBn(stepIndex));
+  setText('candidate', isFixed ? fixedPosts[fixedTarget] : money(candidate));
+  setText('applied-step', isFixed ? money(applied) + ' · নির্ধারিত' : money(applied) + ' · ধাপ ' + toBn(stepIndex));
+  setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : 'নতুন স্কেলের ধাপ ' + toBn(stepIndex));
 
-  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, totalIncrease, interimIncrease, interimMonthly, rate: scale.rate };
+  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
 }
 
 form.addEventListener('submit', (event) => { event.preventDefault(); calculate(); });
@@ -135,6 +196,16 @@ gradeSelect.addEventListener('change', () => {
   if (!Number.isFinite(current) || !previous || current === previous.current) currentBasic.value = numberBn(SCALES[gradeSelect.value].old[0]);
   calculate();
 });
+payTypeSelect.addEventListener('change', () => {
+  const current = parseMoney(currentBasic.value);
+  if (payTypeSelect.value === 'grade' && (!Number.isFinite(current) || current > SCALES[gradeSelect.value].old[SCALES[gradeSelect.value].old.length - 1])) {
+    currentBasic.value = numberBn(SCALES[gradeSelect.value].old[0]);
+  }
+  fixedFields.hidden = payTypeSelect.value !== 'fixed';
+  gradeFieldGroup.hidden = payTypeSelect.value === 'fixed';
+  calculate();
+});
+fixedPostSelect.addEventListener('change', calculate);
 currentBasic.addEventListener('input', calculate);
 currentBasic.addEventListener('blur', () => {
   const parsed = parseMoney(currentBasic.value);
@@ -153,11 +224,14 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
   if (!result) return;
   const text = [
     'PayScale 2026 Calculator',
-    'গ্রেড: ' + result.grade,
+    result.fixed ? 'ধরন: স্থির বেতন' : 'গ্রেড: ' + result.grade,
     'বর্তমান মূল বেতন: ' + money(result.current),
     'নতুন পূর্ণ মূল বেতন: ' + money(result.applied),
     'মোট বৃদ্ধি: ' + money(result.totalIncrease),
-    'অন্তর্বর্তী ' + result.rate + '% বৃদ্ধি: ' + money(result.interimIncrease) + ' / মাস',
+    '১ জুলাই–৩১ ডিসেম্বর ২০২৬: ' + money(result.phase1Pay),
+    '১ জানুয়ারি–৩০ জুন ২০২৭: ' + money(result.phase2Pay),
+    '১ জুলাই ২০২৭ থেকে: ' + money(result.phase3Pay),
+    'Prepared by RegTech Nexus AI',
     'সূত্র: Bangladesh Gazette, Extra, 17 September 2026',
   ].join('\n');
   try {
@@ -171,4 +245,6 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
 });
 
 renderScaleTable(false);
+fixedFields.hidden = true;
+gradeFieldGroup.hidden = false;
 calculate();

@@ -45,12 +45,37 @@
           </div>
 
           <form id="calculator-form" novalidate>
-            <label class="field-label" for="grade">আপনার বর্তমান গ্রেড</label>
+            <label class="field-label" for="pay-type">হিসাবের ধরন</label>
             <div class="select-wrap">
-              <select id="grade" name="grade" aria-describedby="grade-help"></select>
+              <select id="pay-type" name="pay-type" aria-describedby="pay-type-help">
+                <option value="grade">গ্রেডভিত্তিক বেতন</option>
+                <option value="fixed">স্থির বেতন / বিশেষ পদ</option>
+              </select>
               <span class="select-chevron" aria-hidden="true">⌄</span>
             </div>
-            <p class="field-help" id="grade-help">৩০ জুন ২০২৬ তারিখে যে গ্রেডে মূল বেতন পাচ্ছেন, সেটি নির্বাচন করুন।</p>
+            <p class="field-help" id="pay-type-help">গেজেটের গ্রেডভিত্তিক বা নির্ধারিত fixed-pay treatment নির্বাচন করুন।</p>
+
+            <div id="grade-field-group">
+              <label class="field-label" for="grade">আপনার বর্তমান গ্রেড</label>
+              <div class="select-wrap">
+                <select id="grade" name="grade" aria-describedby="grade-help"></select>
+                <span class="select-chevron" aria-hidden="true">⌄</span>
+              </div>
+              <p class="field-help" id="grade-help">৩০ জুন ২০২৬ তারিখে যে গ্রেডে মূল বেতন পাচ্ছেন, সেটি নির্বাচন করুন।</p>
+            </div>
+
+            <div id="fixed-fields" hidden>
+              <label class="field-label" for="fixed-post">নির্ধারিত বেতন পদ</label>
+              <div class="select-wrap">
+                <select id="fixed-post" name="fixed-post">
+                  <option value="156000">গ্রেড ১ · ৳ ১,৫৬,০০০</option>
+                  <option value="172000">মন্ত্রিপরিষদ সচিব/প্রধানমন্ত্রীর মুখ্য সচিব · ৳ ১,৭২,০০০</option>
+                  <option value="164000">সিনিয়র সচিব · ৳ ১,৬৪,০০০</option>
+                </select>
+                <span class="select-chevron" aria-hidden="true">⌄</span>
+              </div>
+              <p class="field-help">এই পদগুলোর ক্ষেত্রে ৪০/৫০/৭০/৭৫ শতাংশ interim transition প্রযোজ্য নয়—চূড়ান্ত pay fixation অফিসিয়াল নথি অনুযায়ী যাচাই করুন।</p>
+            </div>
 
             <label class="field-label" for="current-basic">৩০ জুন ২০২৬-এর বর্তমান মূল বেতন</label>
             <div class="money-input">
@@ -83,8 +108,8 @@
           <div id="validation-message" class="validation-message" role="alert" hidden></div>
 
           <div class="result-hero">
-            <div class="result-label">পূর্ণ নতুন মূল বেতন · ১ জানুয়ারি ২০২৭ থেকে</div>
-            <div class="result-value" id="new-basic">৳ ৭৫,০০০</div>
+            <div class="result-label" id="result-hero-label">পূর্ণ নতুন মূল বেতন · ১ জুলাই ২০২৭ থেকে</div>
+            <div class="result-value" id="new-basic">৳ ৬২,০০০</div>
             <div class="result-meta"><span id="new-grade-label">জাতীয় বেতনস্কেল ২০২৬</span><span class="meta-separator">·</span><span id="new-step-label">নতুন স্কেলের ধাপ</span></div>
           </div>
 
@@ -93,15 +118,15 @@
               <span class="metric-icon blue" aria-hidden="true">↗</span>
               <div>
                 <span class="metric-label">মোট মূল বেতন বৃদ্ধি</span>
-                <strong id="total-increase">৳ ৩৭,১০০</strong>
+                <strong id="total-increase">৳ ২৪,১০০</strong>
                 <small id="increase-percent">বর্তমান মূল বেতনের উপর</small>
               </div>
             </article>
             <article class="metric-card">
               <span class="metric-icon violet" aria-hidden="true">%</span>
               <div>
-                <span class="metric-label">অন্তর্বর্তী হার</span>
-                <strong id="interim-rate">৪০%</strong>
+                <span class="metric-label">পর্যায়ভিত্তিক হার</span>
+                <strong id="interim-rate">৪০% → ৭০% → ১০০%</strong>
                 <small>গ্রেডভিত্তিক Gazette rule</small>
               </div>
             </article>
@@ -118,28 +143,38 @@
             <div class="timeline-row">
               <div class="timeline-marker active">১</div>
               <div class="timeline-content">
-                <strong>১ জুলাই – ৩১ ডিসেম্বর ২০২৬</strong>
-                <span>বর্তমান মূল বেতনের সঙ্গে পার্থক্যের <b id="interim-rate-inline">৪০%</b> যোগ হবে</span>
+                <strong id="phase1-title">১ জুলাই – ৩১ ডিসেম্বর ২০২৬</strong>
+                <span id="phase1-description">বর্তমান মূল বেতনের সঙ্গে পার্থক্যের <b id="phase1-rate-inline">৪০%</b> যোগ হবে</span>
               </div>
-              <div class="timeline-amount" id="interim-monthly">৳ ১৪,৮৪০</div>
+              <div class="timeline-amount" id="phase1-monthly">৳ ৪৭,৫৪০</div>
             </div>
             <div class="timeline-connector"></div>
             <div class="timeline-row">
               <div class="timeline-marker">২</div>
               <div class="timeline-content">
-                <strong>১ জানুয়ারি ২০২৭ থেকে</strong>
-                <span>নতুন স্কেলের পূর্ণ মূল বেতন প্রযোজ্য</span>
+                <strong id="phase2-title">১ জানুয়ারি – ৩০ জুন ২০২৭</strong>
+                <span id="phase2-description">বর্তমান মূল বেতনের সঙ্গে পার্থক্যের <b id="phase2-rate-inline">৭০%</b> যোগ হবে</span>
               </div>
-              <div class="timeline-amount emphasis" id="full-monthly">৳ ৭৫,০০০</div>
+              <div class="timeline-amount" id="phase2-monthly">৳ ৫৪,৭৭০</div>
             </div>
+            <div class="timeline-connector"></div>
+            <div class="timeline-row">
+              <div class="timeline-marker">৩</div>
+              <div class="timeline-content">
+                <strong id="phase3-title">১ জুলাই ২০২৭ থেকে</strong>
+                <span id="phase3-description">পূর্ণ পুনঃনির্ধারিত মূল বেতন; প্রযোজ্য বার্ষিক increment আলাদাভাবে যোগ হবে</span>
+              </div>
+              <div class="timeline-amount emphasis" id="phase3-monthly">৳ ৬২,০০০</div>
+            </div>
+            <p class="arrears-note" id="arrears-note">গেজেট অনুযায়ী ১ জুলাই ২০২৬ থেকে আদেশ জারির তারিখ পর্যন্ত বেতন বকেয়া হিসাবে প্রাপ্য হতে পারে; এই ক্যালকুলেটর বকেয়ার পরিমাণ নির্ণয় করে না।</p>
           </div>
 
           <div class="math-card">
             <div class="math-heading"><span>হিসাবের ধাপ</span><button type="button" id="copy-result" class="copy-button">ফলাফল কপি করুন</button></div>
-            <div class="math-line"><span>পুরোনো স্কেলের প্রারম্ভিক ধাপ</span><strong id="old-min">৳ ২২,০০০</strong></div>
-            <div class="math-line"><span>বর্তমান বেতন − প্রারম্ভিক ধাপ</span><strong id="difference">৳ ১৫,৯০০</strong></div>
-            <div class="math-line"><span>নতুন প্রারম্ভিক ধাপ + পার্থক্য</span><strong id="candidate">৳ ৫৯,৯০০</strong></div>
-            <div class="math-line final"><span>প্রযোজ্য নতুন ধাপ</span><strong id="applied-step">৳ ৭৫,০০০</strong></div>
+            <div class="math-line"><span id="old-min-label">পুরোনো স্কেলের প্রারম্ভিক ধাপ</span><strong id="old-min">৳ ২২,০০০</strong></div>
+            <div class="math-line"><span id="difference-label">বর্তমান বেতন − প্রারম্ভিক ধাপ</span><strong id="difference">৳ ১৫,৯০০</strong></div>
+            <div class="math-line"><span id="candidate-label">নতুন প্রারম্ভিক ধাপ + পার্থক্য</span><strong id="candidate">৳ ৫৯,৯০০</strong></div>
+            <div class="math-line final"><span id="applied-step-label">প্রযোজ্য নতুন ধাপ</span><strong id="applied-step">৳ ৬২,০০০ · ধাপ ৮</strong></div>
           </div>
         </section>
       </section>
@@ -155,7 +190,7 @@
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>গ্রেড</th><th>জাতীয় বেতনস্কেল ২০১৫</th><th>জাতীয় বেতনস্কেল ২০২৬</th><th>অন্তর্বর্তী হার</th></tr>
+              <tr><th>গ্রেড</th><th>জাতীয় বেতনস্কেল ২০১৫</th><th>জাতীয় বেতনস্কেল ২০২৬</th><th>পর্যায় ১ / ২ হার</th></tr>
             </thead>
             <tbody id="scale-table-body"></tbody>
           </table>
@@ -182,13 +217,14 @@
         <span class="disclaimer-icon" aria-hidden="true">!</span>
         <div>
           <strong>গুরুত্বপূর্ণ সতর্কতা</strong>
-          <p>এটি মূল বেতন পুনঃনির্ধারণের একটি সহায়ক ক্যালকুলেটর। পদোন্নতি, উচ্চতর গ্রেড, সিলেকশন গ্রেড, ব্যক্তিগত বেতন, সংরক্ষিত বেতন, ছুটি, অবসর, পেনশন, কর, কর্তন, ভাতা বা অফিসিয়াল pay fixation-এর বিকল্প নয়। চূড়ান্ত হিসাব সংশ্লিষ্ট হিসাবরক্ষণ অফিস/প্রতিষ্ঠানের অনুমোদিত নথির সঙ্গে মিলিয়ে নিন।</p>
+          <p>এটি মূল বেতন পুনঃনির্ধারণের একটি সহায়ক ক্যালকুলেটর। পদোন্নতি, উচ্চতর গ্রেড, সিলেকশন গ্রেড, ব্যক্তিগত বেতন, সংরক্ষিত বেতন, ছুটি, অবসর, পেনশন, কর, কর্তন, ভাতা বা অফিসিয়াল pay fixation-এর বিকল্প নয়। Fixed-pay পদে interim শতাংশ প্রযোজ্য নয়। চূড়ান্ত হিসাব সংশ্লিষ্ট হিসাবরক্ষণ অফিস/প্রতিষ্ঠানের অনুমোদিত নথির সঙ্গে মিলিয়ে নিন।</p>
         </div>
       </section>
 
       <footer class="footer">
         <span>PayScale 2026 Calculator</span>
         <span>Source: Bangladesh Gazette, Extra, 17 September 2026 · Finance Division</span>
+        <span>Prepared by RegTech Nexus AI · Regulatory intelligence, compliance analysis &amp; professional decision support</span>
       </footer>
     </main>
 
