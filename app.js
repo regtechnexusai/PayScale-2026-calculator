@@ -53,6 +53,8 @@ const form = document.querySelector('#calculator-form');
 const tableBody = document.querySelector('#scale-table-body');
 const validation = document.querySelector('#validation-message');
 const toast = document.querySelector('#toast');
+const emptyResult = document.querySelector('#empty-result');
+const resultBlocks = [...document.querySelectorAll('.result-block')];
 
 const fixedPosts = {
   156000: 'গ্রেড ১ · নির্ধারিত বেতন',
@@ -108,7 +110,12 @@ function clearValidation() {
   validation.hidden = true;
 }
 
-function calculate() {
+function showResultState(hasResult) {
+  emptyResult.hidden = hasResult;
+  resultBlocks.forEach((block) => { block.hidden = !hasResult; });
+}
+
+function calculate(showErrors = false) {
   const grade = Number(gradeSelect.value);
   const scale = SCALES[grade];
   const current = parseMoney(currentBasic.value);
@@ -123,13 +130,18 @@ function calculate() {
   let stepIndex = null;
 
   if (!Number.isFinite(current) || current <= 0) {
-    setValidation('অনুগ্রহ করে বর্তমান মূল বেতন লিখুন।');
+    window.lastCalculation = null;
+    showResultState(false);
+    if (showErrors) setValidation('অনুগ্রহ করে বর্তমান মূল বেতন লিখুন।');
+    else clearValidation();
     return;
   }
   clearValidation();
 
   if (isFixed) {
     if (current > fixedTarget) {
+      window.lastCalculation = null;
+      showResultState(false);
       setValidation('বর্তমান মূল বেতন ' + money(current) + ' নির্ধারিত বেতন ' + money(fixedTarget) + '-এর চেয়ে বেশি। অফিসিয়াল pay fixation যাচাই করুন।');
       return;
     }
@@ -137,6 +149,8 @@ function calculate() {
     applied = fixedTarget;
   } else {
     if (current < oldMinimum || current > oldMaximum) {
+      window.lastCalculation = null;
+      showResultState(false);
       setValidation('গ্রেড ' + toBn(grade) + '-এর বর্তমান স্কেল ' + money(oldMinimum) + ' থেকে ' + money(oldMaximum) + ' পর্যন্ত। অনুগ্রহ করে এই সীমার মধ্যে মূল বেতন লিখুন।');
       return;
     }
@@ -147,6 +161,8 @@ function calculate() {
     candidate = scale.new[0] + difference;
     applied = nearestNewStep(candidate, scale.new);
     if (!applied) {
+      window.lastCalculation = null;
+      showResultState(false);
       setValidation('এই ইনপুটের জন্য নতুন স্কেলের সর্বোচ্চ ধাপ অতিক্রম করছে। সংশ্লিষ্ট হিসাবরক্ষণ অফিসে pay fixation যাচাই করুন.');
       return;
     }
@@ -157,8 +173,12 @@ function calculate() {
   const rates = isFixed ? { phase1: null, phase2: null } : phaseRates(grade);
   const phase1Pay = isFixed ? applied : current + Math.round(totalIncrease * rates.phase1 / 100);
   const phase2Pay = isFixed ? applied : current + Math.round(totalIncrease * rates.phase2 / 100);
+  const phase1Increment = isFixed ? null : phase1Pay - current;
+  const phase2Increment = isFixed ? null : phase2Pay - current;
   const phase3Pay = applied;
   const percent = current ? (totalIncrease / current) * 100 : 0;
+
+  showResultState(true);
 
   setText('grade-chip', fixedMode ? 'স্থির বেতন' : ('গ্রেড ' + toBn(grade) + (isFixed ? ' · নির্ধারিত' : '')));
   setText('result-hero-label', isFixed ? 'স্থির নির্ধারিত মূল বেতন · ১ জুলাই ২০২৬ থেকে' : 'পূর্ণ নতুন মূল বেতন · ১ জুলাই ২০২৭ থেকে');
@@ -169,12 +189,18 @@ function calculate() {
   setText('phase1-title', isFixed ? '১ জুলাই ২০২৬ থেকে' : '১ জুলাই – ৩১ ডিসেম্বর ২০২৬');
   setText('phase1-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে পার্থক্যের ' + toBn(rates.phase1) + '% যোগ হবে');
   setText('phase1-monthly', money(phase1Pay));
+  setText('phase1-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত মূল বেতন');
+  setText('phase1-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase1Increment));
   setText('phase2-title', isFixed ? '১ জানুয়ারি ২০২৭ থেকে' : '১ জানুয়ারি – ৩০ জুন ২০২৭');
   setText('phase2-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে পার্থক্যের ' + toBn(rates.phase2) + '% যোগ হবে');
   setText('phase2-monthly', money(phase2Pay));
+  setText('phase2-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত মূল বেতন');
+  setText('phase2-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase2Increment));
   setText('phase3-title', isFixed ? 'স্থির নির্ধারিত বেতন' : '১ জুলাই ২০২৭ থেকে');
   setText('phase3-description', isFixed ? 'গেজেটের fixed-pay treatment; percentage transition প্রযোজ্য নয়' : 'পূর্ণ পুনঃনির্ধারিত মূল বেতন; প্রযোজ্য বার্ষিক increment আলাদাভাবে যোগ হবে');
   setText('phase3-monthly', money(phase3Pay));
+  setText('phase3-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'পূর্ণ মূল বেতন');
+  setText('phase3-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'annual increment আলাদাভাবে প্রযোজ্য হতে পারে');
   setText('arrears-note', 'গেজেট অনুযায়ী ১ জুলাই ২০২৬ থেকে আদেশ জারির তারিখ পর্যন্ত বেতন বকেয়া হিসাবে প্রাপ্য হতে পারে; এই ক্যালকুলেটর বকেয়ার পরিমাণ নির্ণয় করে না।');
   setText('old-min-label', isFixed ? 'পুরোনো স্কেলের ধাপ' : 'পুরোনো স্কেলের প্রারম্ভিক ধাপ');
   setText('difference-label', isFixed ? 'স্থির বেতন − বর্তমান মূল বেতন' : 'বর্তমান বেতন − প্রারম্ভিক ধাপ');
@@ -186,10 +212,10 @@ function calculate() {
   setText('applied-step', isFixed ? money(applied) + ' · নির্ধারিত' : money(applied) + ' · ধাপ ' + toBn(stepIndex));
   setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : 'নতুন স্কেলের ধাপ ' + toBn(stepIndex));
 
-  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
+  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
 }
 
-form.addEventListener('submit', (event) => { event.preventDefault(); calculate(); });
+form.addEventListener('submit', (event) => { event.preventDefault(); calculate(true); });
 gradeSelect.addEventListener('change', () => {
   const current = parseMoney(currentBasic.value);
   const previous = window.lastCalculation;
@@ -205,7 +231,7 @@ payTypeSelect.addEventListener('change', () => {
   gradeFieldGroup.hidden = payTypeSelect.value === 'fixed';
   calculate();
 });
-fixedPostSelect.addEventListener('change', calculate);
+fixedPostSelect.addEventListener('change', () => calculate());
 currentBasic.addEventListener('input', calculate);
 currentBasic.addEventListener('blur', () => {
   const parsed = parseMoney(currentBasic.value);
@@ -232,7 +258,8 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     '১ জানুয়ারি–৩০ জুন ২০২৭: ' + money(result.phase2Pay),
     '১ জুলাই ২০২৭ থেকে: ' + money(result.phase3Pay),
     'Prepared by RegTech Nexus AI',
-    'সূত্র: Bangladesh Gazette, Extra, 17 September 2026',
+    'সূত্র: Bangladesh Gazette, Extra, 17 September 2026 · Order No. 347-Law/2026',
+    'Demo output only. Final decisions remain with the authorised accounts office.',
   ].join('\n');
   try {
     await navigator.clipboard.writeText(text);
@@ -247,4 +274,5 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
 renderScaleTable(false);
 fixedFields.hidden = true;
 gradeFieldGroup.hidden = false;
-calculate();
+showResultState(false);
+calculate(false);
