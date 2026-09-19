@@ -110,7 +110,7 @@ select option { color: #102348; background: #f5f8ff; }
 .rule-note p { margin: 0; color: var(--muted); font-size: 11px; }
 .rule-note strong { color: var(--muted-strong); }
 
-.results { min-width: 0; scroll-margin-top: 14px; outline: none; }
+.results { min-width: 0; scroll-margin-top: 24px; outline: none; }
 .results-heading { margin: 5px 0 18px; }
 .output-note { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
 .grade-chip, .timeline-tag { padding: 6px 10px; border: 1px solid rgba(106, 213, 255, .27); border-radius: 8px; color: var(--cyan); background: rgba(53, 159, 232, .1); font-size: 12px; font-weight: 600; }
@@ -138,6 +138,7 @@ select option { color: #102348; background: #f5f8ff; }
 .timeline-head, .math-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
 .timeline-head { padding-bottom: 15px; border-bottom: 1px solid var(--line); }
 .timeline-head h3 { margin: 0; }
+.timeline-note { margin: 4px 0 0; color: var(--muted); font-size: 10px; line-height: 1.4; }
 .timeline-row { display: grid; grid-template-columns: 26px 1fr auto; gap: 11px; align-items: center; padding: 17px 0 11px; }
 .timeline-marker { display: grid; place-items: center; width: 26px; height: 26px; border: 1px solid rgba(157, 178, 221, .32); border-radius: 50%; color: var(--muted-strong); font-family: 'Manrope'; font-size: 11px; }
 .timeline-marker.active { border-color: rgba(106, 213, 255, .65); color: var(--cyan); background: rgba(53, 159, 232, .12); }

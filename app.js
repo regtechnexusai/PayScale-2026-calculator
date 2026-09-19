@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026.
+ * S.R.O. No. 347-Law/2026. Version 1.8.
  *
  * The scale steps below are transcribed from the user-provided Gazette PDF.
  * Keep this data block separate and easy to update if an official correction
@@ -69,13 +69,13 @@ const ALLOWANCE_PROFILES = {
     label: 'সাধারণ সরকারি চাকরি',
     sro: 'S.R.O. No. 347-Law/2026',
     automatic: true,
-    note: 'এই preview-তে S.R.O. No. 347-Law/2026-এর নিশ্চিত সাধারণ ভাতা-হার ব্যবহার করা হচ্ছে।'
+    note: 'সাধারণ সরকারি চাকরির জন্য S.R.O. No. 347-Law/2026-এর নির্বাচিত ভাতা-হার ব্যবহার করা হচ্ছে। S.R.O. 349 সাধারণ সরকারি চাকরির জন্য নয়।'
   },
   bank: {
     label: 'ব্যাংক, বিমা ও আর্থিক প্রতিষ্ঠান',
     sro: 'S.R.O. No. 349-Law/2026',
     automatic: true,
-    note: 'এই preview-তে S.R.O. No. 349-Law/2026-এর সাধারণ allowance clauses ব্যবহার করা হচ্ছে; প্রতিষ্ঠানের নিজস্ব service rule থাকলে সেটিই চূড়ান্ত।'
+    note: 'ব্যাংক, বিমা ও আর্থিক প্রতিষ্ঠানের জন্য S.R.O. No. 349-Law/2026-এর নির্বাচিত allowance clauses ব্যবহার করা হচ্ছে; প্রতিষ্ঠানের নিজস্ব service rule থাকলে সেটিই চূড়ান্ত।'
   },
   public: {
     label: 'Public Bodies/রাষ্ট্রায়ত্ত প্রতিষ্ঠান',
@@ -279,7 +279,7 @@ function renderGrossSalary() {
   setText('gross-phase1-meta', 'মূল বেতন + নির্বাচিত ভাতা');
   setText('gross-phase2-meta', 'মূল বেতন + নির্বাচিত ভাতা');
   setText('gross-phase3-meta', 'মূল বেতন + নির্বাচিত ভাতা');
-  setText('gross-footnote', 'বাড়িভাড়া ' + toBn(houseRentRate(grade, station)) + '% হারে ধরা হয়েছে; সরকারি বাসস্থান থাকলে তা বাদ। চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল ও শর্তসাপেক্ষ ভাতার checkbox-গুলি আপনার বাস্তব অবস্থা অনুযায়ী ঠিক করুন।');
+  setText('gross-footnote', 'এটি official pay fixation নয়—review-support estimate। বাড়িভাড়া ' + toBn(houseRentRate(grade, station)) + '% হারে ধরা হয়েছে; সরকারি বাসস্থান থাকলে তা বাদ। চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল ও শর্তসাপেক্ষ ভাতার checkbox-গুলি আপনার বাস্তব অবস্থা অনুযায়ী ঠিক করুন।');
 }
 
 function calculate(showErrors = false) {
@@ -350,18 +350,19 @@ function calculate(showErrors = false) {
   setText('grade-chip', fixedMode ? 'স্থির বেতন' : ('গ্রেড ' + toBn(grade) + (isFixed ? ' · নির্ধারিত' : '')));
   setText('result-hero-label', isFixed ? 'স্থির নির্ধারিত মূল বেতন · ১ জুলাই ২০২৬ থেকে' : 'পূর্ণ নতুন মূল বেতন · ১ জুলাই ২০২৭ থেকে');
   setText('interim-rate', isFixed ? 'প্রযোজ্য নয়' : toBn(rates.phase1) + '% → ' + toBn(rates.phase2) + '% → ১০০%');
+  setText('timeline-note', isFixed ? 'এটি নির্ধারিত স্থির বেতন; interim শতাংশ প্রযোজ্য নয়।' : 'প্রতিটি amount হলো বর্তমান মূল বেতনসহ ফলিত payable basic; নিচে interim increase আলাদা দেখানো হয়েছে।');
   setText('new-basic', money(applied));
   setText('total-increase', money(totalIncrease));
   setText('increase-percent', toBn(percent.toFixed(1)) + '% · বর্তমান মূল বেতনের উপর');
   setText('phase1-title', isFixed ? '১ জুলাই ২০২৬ থেকে' : '১ জুলাই – ৩১ ডিসেম্বর ২০২৬');
-  setText('phase1-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে পার্থক্যের ' + toBn(rates.phase1) + '% যোগ হবে');
+  setText('phase1-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে মোট পার্থক্যের ' + toBn(rates.phase1) + '% যোগ হবে');
   setText('phase1-monthly', money(phase1Pay));
-  setText('phase1-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত মূল বেতন');
+  setText('phase1-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'প্রাপ্য মূল বেতন');
   setText('phase1-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase1Increment));
   setText('phase2-title', isFixed ? '১ জানুয়ারি ২০২৭ থেকে' : '১ জানুয়ারি – ৩০ জুন ২০২৭');
-  setText('phase2-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে পার্থক্যের ' + toBn(rates.phase2) + '% যোগ হবে');
+  setText('phase2-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে মোট পার্থক্যের ' + toBn(rates.phase2) + '% পর্যন্ত যোগ হবে');
   setText('phase2-monthly', money(phase2Pay));
-  setText('phase2-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত মূল বেতন');
+  setText('phase2-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'প্রাপ্য মূল বেতন');
   setText('phase2-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase2Increment));
   setText('phase3-title', isFixed ? 'স্থির নির্ধারিত বেতন' : '১ জুলাই ২০২৭ থেকে');
   setText('phase3-description', isFixed ? 'গেজেটের নির্ধারিত বেতন-পদ্ধতি; পর্যায়ভিত্তিক শতাংশ প্রযোজ্য নয়' : 'পূর্ণ পুনঃনির্ধারিত মূল বেতন; প্রযোজ্য বার্ষিক বেতনবৃদ্ধি আলাদাভাবে যোগ হবে');

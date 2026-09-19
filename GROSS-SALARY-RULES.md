@@ -5,7 +5,7 @@ This file documents the allowance rules used by the optional Step 03 module. The
 ## Automatically transcribed profiles
 
 - **S.R.O. No. 347-Law/2026** — general government service order.
-- **S.R.O. No. 349-Law/2026** — bank, insurance and financial institution order, including the definition that lists Bangladesh Bank among the banks.
+- **S.R.O. No. 349-Law/2026** — bank, insurance and financial institution order, including the definition that lists Bangladesh Bank among the banks. It must not be used as the default for ordinary government service.
 
 The module does not silently apply the general allowance schedule to S.R.O. 348, 350 or 351. Those orders are selectable so the user can see the scope, but their institution/unit-specific allowance schedules must be transcribed and verified separately before automatic gross calculation is enabled.
 
@@ -37,13 +37,15 @@ The listed-city option covers the named city corporations and the Savar/Cox’s 
 
 - Hill allowance: 20% of phase basic pay, capped at Tk 5,000 for district headquarters/sadar upazila and Tk 5,500 for other upazilas.
 - Haor/island-char allowance: 20% of phase basic pay, capped at Tk 5,000.
-- Training-institution allowance: 10% of phase basic pay for eligible Grade 9 and above employees on deputation for training.
+- Training-institution allowance: 10% of phase basic pay for eligible Grades 1–9 employees on deputation for training.
 - Special-needs child allowance: Tk 3,000 per eligible child, maximum two children.
 - Other authorised monthly allowance: manual input only. It must not duplicate an allowance already selected.
 
 ## What “Gross Salary” means here
 
 `Gross Salary = phase basic pay + selected allowances`.
+
+The displayed amount is a conditional review-support estimate, not a universal entitlement. House rent depends on grade, duty station and government accommodation; medical and education assistance depend on eligibility; tiffin and travel are grade- and condition-specific. For example, a Grade 3 employee in Dhaka has a 40% house-rent rate under the general schedule, not a blanket 40–50% rate.
 
 It excludes income tax, provident fund, pension, loan recovery, other deductions, arrears, festival allowance/bonus and any post/unit-specific special allowance not selected by the user. The result is a review-support estimate, not an official pay-fixation statement.
 
