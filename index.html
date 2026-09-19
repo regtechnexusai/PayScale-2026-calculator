@@ -1,337 +1,668 @@
 <!doctype html>
-<html lang="bn">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b1630" />
-    <meta name="description" content="PayScale 2026 by RegTech Nexus AI — বাংলাদেশ জাতীয় বেতনস্কেল ২০২৬ অনুযায়ী মূল বেতন পুনঃনির্ধারণের explainable, rule-based review-support calculator।" />
-    <meta name="robots" content="index,follow" />
-    <title>PayScale 2026 | RegTech Nexus AI</title>
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TradeGuard by RegTech Nexus AI — an explainable, rule-based trade-finance and TBML review workspace."
+    />
+    <link rel="canonical" href="https://regtechnexusai.github.io/tradeguard/" />
+    <meta property="og:title" content="TradeGuard | RegTech Nexus AI" />
+    <meta property="og:description" content="Explainable, rule-based trade-finance and TBML review support with human review required." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://regtechnexusai.github.io/tradeguard/" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; worker-src 'self' blob:; form-action 'self' mailto:;" />
+    <title>TradeGuard | RegTech Nexus AI</title>
+    <link rel="stylesheet" href="./style.css?v=27" />
   </head>
   <body>
-    <div class="orb orb-one" aria-hidden="true"></div>
-    <div class="orb orb-two" aria-hidden="true"></div>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
 
-    <main class="shell">
-      <header class="hero">
-        <div class="brand-logo-frame">
-          <img class="brand-logo" src="regtech-nexus-ai-logo-wide.png" alt="RegTech Nexus AI — Audit &amp; Regulatory Intelligence" />
-        </div>
+    <header class="site-header site-header-home">
+      <a class="brand brand-image" href="#top" aria-label="TradeGuard home">
+        <img
+          class="brand-logo"
+          src="./regtech-nexus-ai-logo.png"
+          alt="RegTech Nexus AI — TradeGuard"
+        />
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="nav-cta" href="#pilot">Request pilot</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell home-hero">
         <div class="hero-copy">
-          <p class="eyebrow">PRODUCT PREVIEW BY REGTECH NEXUS AI</p>
-          <h1>আপনার বেতন কতটা বাড়বে?</h1>
-          <p class="hero-subtitle">PayScale 2026 হলো জাতীয় বেতনস্কেল ২০২৬ অনুযায়ী বর্তমান মূল বেতন থেকে নতুন মূল বেতন, অন্তর্বর্তী বৃদ্ধি ও পূর্ণ পার্থক্য বোঝার একটি explainable, rule-based review-support calculator।</p>
-          <div class="hero-proof" aria-label="Tool principles">
-            <span>Rule-based</span>
-            <span>Explainable</span>
-            <span>Review-ready</span>
-            <span>Human-led</span>
+          <div class="eyebrow"><span class="pulse-dot"></span> TradeGuard review workspaces</div>
+          <h1>Trade finance review with a clearer risk signal.</h1>
+          <p class="hero-lead">
+            TradeGuard is an explainable, rule-based international review workspace that helps authorised
+            reviewers identify potential TBML red flags across price, parties, routes and documents—before a transaction becomes a difficult case.
+          </p>
+          <p class="international-note"><strong>International configuration:</strong> The public build uses a configured tariff reference. Country-specific HS-code/tariff datasets and custom-domain deployment can be added for institutional pilots.</p>
+          <div class="hero-actions workspace-entry-actions">
+            <a class="button button-primary" href="#risk-check">TBML Check <span class="button-icon" aria-hidden="true">→</span></a>
+            <a class="button button-quiet" href="./proactive-monitoring.html">Transaction Monitoring <span class="button-icon" aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-proof">
+            <span>Explainable flags</span>
+            <span>Human review</span>
+            <span>Configurable by country</span>
           </div>
         </div>
-        <div class="effective-badge">
-          <span>কার্যকর</span>
-          <strong>১ জুলাই ২০২৬</strong>
-        </div>
-      </header>
 
-      <section class="about-tool glass-card" aria-labelledby="about-tool-title">
-        <div class="about-tool-heading">
-          <p class="eyebrow">ABOUT THIS CALCULATOR</p>
-          <h2 id="about-tool-title">PayScale 2026 Calculator কী করে?</h2>
-          <p>বাংলাদেশ সরকারের কর্মচারীদের জন্য তৈরি এই single-purpose web tool-টি ১৭ সেপ্টেম্বর ২০২৬ তারিখে Finance Division প্রকাশিত official notification/gazette-এর ভিত্তিতে ২০১৫ সালের জাতীয় বেতনস্কেল থেকে ২০২৬ সালের কাঠামোয় সম্ভাব্য basic-pay transition বোঝাতে সহায়তা করে।</p>
-        </div>
-        <div class="about-tool-grid">
-          <article>
-            <span>01</span>
-            <strong>Live salary calculation</strong>
-            <p>বর্তমান basic pay, grade এবং fixed-pay option অনুযায়ী সম্ভাব্য নতুন basic pay ও মোট পার্থক্য হিসাব করে।</p>
-          </article>
-          <article>
-            <span>02</span>
-            <strong>Phased implementation timeline</strong>
-            <p>জুলাই–ডিসেম্বর ২০২৬, জানুয়ারি–জুন ২০২৭ এবং ১ জুলাই ২০২৭ থেকে পূর্ণ implementation আলাদা করে দেখায়।</p>
-          </article>
-          <article>
-            <span>03</span>
-            <strong>Gazette rule compliance</strong>
-            <p>পুরোনো ও নতুন স্কেলের starting step-এর পার্থক্য ব্যবহার করে; exact tier না মিললে পরবর্তী উচ্চতর ধাপ নেয়।</p>
-          </article>
-          <article>
-            <span>04</span>
-            <strong>Reference tables</strong>
-            <p>২০১৫ ও ২০২৬ সালের grade-wise scale এবং phase-1/phase-2 rate এক জায়গায় দেখায়।</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="unofficial-banner" role="note">
-        <span class="unofficial-badge">UNOFFICIAL TOOL</span>
-        <p>এটি সরকারি ওয়েবসাইট বা Finance Division-এর অফিসিয়াল pay-fixation portal নয়। ফলাফল কেবল প্রাথমিক review support; authorised হিসাবরক্ষণ কর্মকর্তার যাচাই আবশ্যক।</p>
-      </section>
-
-      <section class="notice glass-card">
-        <div class="notice-icon" aria-hidden="true">i</div>
-        <div>
-          <strong>হিসাবের ভিত্তি</strong>
-          <p>৩০ জুন ২০২৬ তারিখে প্রাপ্য মূল বেতন, সংশ্লিষ্ট পুরোনো স্কেলের প্রারম্ভিক ধাপ এবং নতুন স্কেলের ধাপের ভিত্তিতে হিসাব করা হচ্ছে।</p>
-        </div>
-      </section>
-
-      <section class="provenance-card glass-card" aria-label="Source and verification information">
-        <div class="provenance-main">
-          <p class="eyebrow">SOURCE &amp; GOVERNANCE</p>
-          <h2>কোন নথির ভিত্তিতে হিসাব হচ্ছে?</h2>
-          <p>Primary source: <strong>Bangladesh Gazette, Extra, 17 September 2026</strong> · Finance Division · Implementation Division-1 · Order No. <strong>347-Law/2026</strong>.</p>
-          <div class="provenance-links">
-            <a href="pay-scale-2026-gazette.pdf" target="_blank" rel="noopener">Gazette PDF দেখুন</a>
-            <span>শেষ যাচাই: ১৯ সেপ্টেম্বর ২০২৬</span>
-            <span>Version 1.3</span>
-          </div>
-        </div>
-        <div class="update-note">
-          <strong>সংশোধনী নজরে রাখুন</strong>
-          <p>পরবর্তী corrigendum, clarification বা implementation order প্রকাশিত হলে অফিসিয়াল নথিই অগ্রাধিকার পাবে এবং এই tool আপডেট করতে হবে।</p>
-        </div>
-      </section>
-
-      <section class="workspace-grid">
-        <section class="calculator glass-card" aria-labelledby="calculator-title">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">STEP 01 · INPUT</p>
-              <h2 id="calculator-title">আপনার তথ্য দিন</h2>
+        <div class="hero-visual" aria-label="TradeGuard risk intelligence preview">
+          <div class="visual-orbit orbit-large"></div>
+          <div class="visual-orbit orbit-small"></div>
+          <div class="visual-card visual-card-main">
+            <div class="visual-card-top">
+              <span class="mini-label">ILLUSTRATIVE PREVIEW</span>
+              <span class="status-pill status-high">HIGH</span>
             </div>
-            <span class="status-dot"><i></i> লাইভ ক্যালকুলেশন</span>
+            <div class="visual-score">55<span>/100</span></div>
+            <p>Enhanced review recommended</p>
+            <div class="signal-line"><span style="width: 55%"></span></div>
+            <div class="visual-meta"><span>Price deviation</span><strong>+25</strong></div>
+            <div class="visual-meta"><span>Document mismatch</span><strong>+15</strong></div>
+            <div class="visual-meta"><span>Related party</span><strong>+15</strong></div>
           </div>
+          <div class="visual-card visual-card-float">
+            <span class="mini-label">REVIEW PRINCIPLE</span>
+            <strong>Human review required</strong>
+            <span class="float-check">✓ Rule reasons shown</span>
+          </div>
+        </div>
+      </section>
 
-          <form id="calculator-form" novalidate>
-            <label class="field-label" for="pay-type">হিসাবের ধরন</label>
-            <div class="select-wrap">
-              <select id="pay-type" name="pay-type" aria-describedby="pay-type-help">
-                <option value="grade">গ্রেডভিত্তিক বেতন</option>
-                <option value="fixed">স্থির বেতন / বিশেষ পদ</option>
-              </select>
-              <span class="select-chevron" aria-hidden="true">⌄</span>
-            </div>
-            <p class="field-help" id="pay-type-help">গেজেটের গ্রেডভিত্তিক বা নির্ধারিত fixed-pay treatment নির্বাচন করুন।</p>
+      <section class="trust-strip section-shell" aria-label="Product principles">
+        <div><span class="trust-icon">01</span><strong>Rule-based</strong><small>Transparent indicative logic</small></div>
+        <div><span class="trust-icon">02</span><strong>Explainable</strong><small>Every flag has a reason</small></div>
+        <div><span class="trust-icon">03</span><strong>Human-led</strong><small>Reviewer judgement remains central</small></div>
+      </section>
 
-            <div id="grade-field-group">
-              <label class="field-label" for="grade">আপনার বর্তমান গ্রেড</label>
-              <div class="select-wrap">
-                <select id="grade" name="grade" aria-describedby="grade-help"></select>
-                <span class="select-chevron" aria-hidden="true">⌄</span>
+      <section id="monitoring-modes" class="section-shell section-block monitoring-modes-section">
+        <div class="section-heading compact-heading">
+          <div>
+            <div class="eyebrow">Choose your workspace</div>
+            <h2>Two monitoring paths. One human-led review model.</h2>
+          </div>
+          <p>Open the focused TBML review or the broader transaction-monitoring workspace.</p>
+        </div>
+        <div class="monitoring-icon-grid" aria-label="TradeGuard monitoring workspaces">
+          <a class="monitoring-card monitoring-card-primary" href="./index.html#risk-check">
+            <span class="monitoring-icon monitoring-icon-tbml" aria-hidden="true">
+              <svg viewBox="0 0 48 48" role="img"><path d="M24 4 40 10v11c0 10.5-6.7 19.3-16 23C14.7 40.3 8 31.5 8 21V10l16-6Z"/><path d="m15 24 5.5 5.5L33 17"/></svg>
+            </span>
+            <span class="monitoring-card-copy"><span class="panel-kicker">TRADE-BASED RISK</span><strong>TBML Check</strong><small>Review unusual value, goods, parties, routes and documents.</small></span>
+            <span class="monitoring-arrow button-icon" aria-hidden="true">→</span>
+          </a>
+          <a class="monitoring-card monitoring-card-secondary" href="./proactive-monitoring.html">
+            <span class="monitoring-icon monitoring-icon-transaction" aria-hidden="true">
+              <svg viewBox="0 0 48 48" role="img"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="8"/><path d="M24 4v7M24 37v7M4 24h7M37 24h7M35.3 12.7l-5 5M17.7 30.3l-5 5"/></svg>
+            </span>
+            <span class="monitoring-card-copy"><span class="panel-kicker">EARLY SIGNALS</span><strong>Transaction Monitoring</strong><small>Surface emerging patterns before they become difficult cases.</small></span>
+            <span class="monitoring-arrow button-icon" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="coverage-card human-review-card">
+          <span class="monitoring-icon monitoring-icon-review" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img"><circle cx="24" cy="15" r="7"/><path d="M11 39c1.8-8.2 6.1-12 13-12s11.2 3.8 13 12"/><path d="M39 8v9M39 21h.01"/></svg>
+          </span>
+          <span class="monitoring-card-copy"><strong>Human review</strong><small>Required before escalation</small></span>
+        </div>
+      </section>
+
+      <section id="risk-check" class="section-shell section-block">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Sample transaction review</div>
+            <h2>Run a TradeGuard risk check</h2>
+          </div>
+          <p>Use fictional or anonymised information only. This public demo has no case database and does not intentionally retain submitted transaction documents. <a href="./privacy.html">Read the privacy and demo limitations.</a></p>
+        </div>
+
+        <div class="workspace-grid">
+          <form id="riskForm" class="panel form-panel" novalidate>
+            <div class="panel-heading">
+              <div>
+                <span class="panel-kicker">STEP 01</span>
+                <h3>Transaction inputs</h3>
+                <p class="form-intro">Start with the core case context. The remaining fields are optional and improve the quality of the indicative assessment.</p>
               </div>
-              <p class="field-help" id="grade-help">৩০ জুন ২০২৬ তারিখে যে গ্রেডে মূল বেতন পাচ্ছেন, সেটি নির্বাচন করুন।</p>
+              <div class="panel-actions">
+                <button id="resetButton" class="text-button" type="button">Start new case</button>
+                <button id="sampleButton" class="text-button" type="button">Load sample case</button>
+              </div>
             </div>
 
-            <div id="fixed-fields" hidden>
-              <label class="field-label" for="fixed-post">নির্ধারিত বেতন পদ</label>
-              <div class="select-wrap">
-                <select id="fixed-post" name="fixed-post">
-                  <option value="156000">গ্রেড ১ · ৳ ১,৫৬,০০০</option>
-                  <option value="172000">মন্ত্রিপরিষদ সচিব/প্রধানমন্ত্রীর মুখ্য সচিব · ৳ ১,৭২,০০০</option>
-                  <option value="164000">সিনিয়র সচিব · ৳ ১,৬৪,০০০</option>
+            <div class="form-grid">
+              <div class="field">
+                <label for="hsCode"><span>HS Code <em>(required to start assessment)</em></span></label>
+                <input id="hsCode" name="hsCode" type="text" inputmode="numeric" maxlength="10" pattern="[0-9]{6,10}" placeholder="e.g. 52010000 or 520100" required aria-describedby="hsCodeDescription" />
+                <button id="lookupHsCode" class="text-button" type="button">Verify HS Code</button>
+                <small id="hsCodeDescription" aria-live="polite">Required: enter a 6–10 digit HS Code. Exact tariff verification depends on the configured country reference.</small>
+              </div>
+
+              <div id="commodityField" class="field derived-field" hidden>
+                <label for="productCommodity"><span>Product / commodity <em>(from HS Code)</em></span></label>
+                <input id="productCommodity" name="productCommodity" type="text" readonly aria-readonly="true" placeholder="The tariff description will appear after HS Code verification" />
+                <small id="productCommodityNote">Automatically populated from the verified HS Code.</small>
+              </div>
+
+              <label class="field">
+                <span>Quantity <em>(optional)</em></span>
+                <input id="quantity" name="quantity" type="number" min="0" step="any" placeholder="100000" />
+              </label>
+
+              <label class="field">
+                <span>Declared unit price <em>(optional)</em></span>
+                <input id="invoicePrice" name="invoicePrice" type="number" min="0" step="any" placeholder="50" />
+              </label>
+
+              <label class="field">
+                <span>Market lower range <em>(optional)</em></span>
+                <input id="marketLow" name="marketLow" type="number" min="0" step="any" placeholder="10" />
+              </label>
+
+              <label class="field">
+                <span>Market upper range <em>(optional)</em></span>
+                <input id="marketHigh" name="marketHigh" type="number" min="0" step="any" placeholder="12" />
+              </label>
+
+              <label class="field">
+                <span>Origin country <em>(required to start assessment)</em></span>
+                <select id="originCountry" name="originCountry" required>
+                  <option value="">Select origin country</option>
                 </select>
-                <span class="select-chevron" aria-hidden="true">⌄</span>
+              </label>
+
+              <label class="field">
+                <span>Destination country <em>(required to start assessment)</em></span>
+                <select id="destinationCountry" name="destinationCountry" required>
+                  <option value="">Select destination country</option>
+                </select>
+              </label>
+
+              <details class="optional-section field-wide" open>
+                <summary>Optional: Product and goods details</summary>
+                <div class="optional-grid">
+                  <label class="field field-wide">
+                    <span>Product / goods description</span>
+                    <textarea id="productDescription" rows="3" placeholder="Quality, grade, composition, intended use and other goods details"></textarea>
+                  </label>
+                  <label class="field">
+                    <span>Quality / grade</span>
+                    <input id="qualityGrade" type="text" placeholder="e.g. Grade A" />
+                  </label>
+                  <label class="field">
+                    <span>Material / composition</span>
+                    <input id="material" type="text" placeholder="e.g. 100% cotton" />
+                  </label>
+                  <label class="field">
+                    <span>Model / brand</span>
+                    <input id="modelBrand" type="text" placeholder="If applicable" />
+                  </label>
+                  <label class="field">
+                    <span>Unit of measure <em>(optional — used for price comparison)</em></span>
+                    <select id="unitOfMeasure">
+                      <option value="">Select unit</option>
+                      <option>Piece</option>
+                      <option>Kilogram</option>
+                      <option>Tonne</option>
+                      <option>Metre</option>
+                      <option>Yard</option>
+                      <option>Litre</option>
+                      <option>Carton</option>
+                      <option>Set</option>
+                      <option>Other</option>
+                    </select>
+                    <small id="unitProfileNote" class="unit-profile-note">Verify the HS Code to display the expected unit profile.</small>
+                  </label>
+                  <label class="field field-wide">
+                    <span>Technical specification</span>
+                    <textarea id="specification" rows="2" placeholder="Dimensions, technical standards, packing or other specifications"></textarea>
+                  </label>
+                </div>
+              </details>
+
+              <details class="optional-section field-wide" open>
+                <summary>Optional: Price and valuation details</summary>
+                <p class="optional-note">Complete the declared price, market range, unit and currency to enable an indicative price comparison. Source, date and valuation basis improve comparability but do not block this assessment.</p>
+                <div class="optional-grid">
+                  <label class="field">
+                    <span>Total declared value</span>
+                    <input id="totalValue" type="number" min="0" step="any" placeholder="Optional total value" />
+                  </label>
+                  <label class="field">
+                    <span>Currency <em>(optional)</em></span>
+                    <select id="currency">
+                      <option value="">Select currency</option>
+                      <option>USD</option>
+                      <option>EUR</option>
+                      <option>GBP</option>
+                      <option>BDT</option>
+                      <option>CNY</option>
+                      <option>AED</option>
+                      <option>Other</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Market-price source <em>(optional)</em></span>
+                    <input id="marketSource" type="text" placeholder="Source, publication or database" />
+                  </label>
+                  <label class="field">
+                    <span>Market-price date <em>(optional)</em></span>
+                    <input id="marketSourceDate" type="date" />
+                  </label>
+                  <label class="field field-wide">
+                    <span>Valuation basis <em>(optional)</em></span>
+                    <select id="valuationBasis">
+                      <option value="">Select valuation basis</option>
+                      <option>Commercial invoice</option>
+                      <option>Sales contract</option>
+                      <option>Supplier quotation</option>
+                      <option>Independent benchmark</option>
+                      <option>Customs reference</option>
+                      <option>Other</option>
+                    </select>
+                  </label>
+                </div>
+              </details>
+
+              <details class="optional-section field-wide" open>
+                <summary>Core counterparty context — required to start assessment</summary>
+                <p class="optional-note">Select the known status. If the information is not available, choose “Unknown / not provided” and continue with an indicative result.</p>
+                <div class="optional-grid">
+                  <label class="field">
+                    <span>Beneficial ownership <em>(required)</em></span>
+                    <select id="beneficialOwnership" required>
+                      <option value="">Select status</option>
+                      <option>Verified</option>
+                      <option>Partially verified</option>
+                      <option>Not verified</option>
+                      <option value="Unknown" selected>Unknown / not provided</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Buyer–seller relationship <em>(required)</em></span>
+                    <select id="relatedPartyRelationship" required>
+                      <option value="">Select status</option>
+                      <option>No known relationship</option>
+                      <option>Possible relationship</option>
+                      <option>Confirmed relationship</option>
+                      <option value="Unknown" selected>Unknown / not provided</option>
+                    </select>
+                  </label>
+                  <label class="field field-wide">
+                    <span>Payer relationship <em>(required)</em></span>
+                    <select id="payerRelationship" required>
+                      <option value="">Select payer relationship</option>
+                      <option>Buyer</option>
+                      <option>Seller</option>
+                      <option>Third party</option>
+                      <option value="Unknown" selected>Unknown / not provided</option>
+                    </select>
+                  </label>
+                </div>
+              </details>
+
+              <details class="optional-section field-wide">
+                <summary>Optional: Trade and payment details</summary>
+                <div class="optional-grid">
+                  <label class="field">
+                    <span>Incoterms</span>
+                    <select id="incoterms">
+                      <option value="">Select Incoterms</option>
+                      <option>EXW</option><option>FCA</option><option>FOB</option>
+                      <option>FAS</option><option>CFR</option><option>CIF</option><option>CPT</option>
+                      <option>CIP</option><option>DAP</option><option>DPU</option><option>DDP</option>
+                      <option>Other</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Payment terms</span>
+                    <select id="paymentTerms">
+                      <option value="">Select payment terms</option>
+                      <option>Sight LC</option>
+                      <option>Usance LC</option>
+                      <option>Advance payment</option>
+                      <option>Open account</option>
+                      <option>Documentary collection</option>
+                      <option>Other</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Buyer reference</span>
+                    <input id="buyerReference" type="text" placeholder="Use a reference, not personal data" />
+                  </label>
+                  <label class="field">
+                    <span>Seller reference</span>
+                    <input id="sellerReference" type="text" placeholder="Use a reference, not personal data" />
+                  </label>
+                  <label class="field field-wide">
+                    <span>Customer business profile / trade rationale</span>
+                    <textarea id="businessProfile" rows="2" placeholder="Relevant business activity, capacity or rationale for this trade route"></textarea>
+                  </label>
+                </div>
+              </details>
+
+              <details class="optional-section field-wide">
+                <summary>Optional: Shipment and document details</summary>
+              <p class="optional-note">Do not upload or enter confidential documents in this public workspace.</p>
+                <div class="optional-grid">
+                  <label class="field">
+                    <span>Port of loading</span>
+                    <input id="portLoading" type="text" placeholder="e.g. Chattogram" />
+                  </label>
+                  <label class="field">
+                    <span>Port of discharge</span>
+                    <input id="portDischarge" type="text" placeholder="e.g. Jebel Ali" />
+                  </label>
+                  <label class="field field-wide">
+                    <span>Route details</span>
+                    <textarea id="routeDetails" rows="2" placeholder="Trans-shipment, expected route or business rationale"></textarea>
+                  </label>
+                  <label class="field">
+                    <span>Invoice consistency</span>
+                    <select id="invoiceConsistency">
+                      <option value="">Select status</option><option>Consistent</option><option>Needs review</option><option>Not provided</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Packing-list consistency</span>
+                    <select id="packingListConsistency">
+                      <option value="">Select status</option><option>Consistent</option><option>Needs review</option><option>Not provided</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Bill of Lading consistency</span>
+                    <select id="billOfLadingConsistency">
+                      <option value="">Select status</option><option>Consistent</option><option>Needs review</option><option>Not provided</option>
+                    </select>
+                  </label>
+                </div>
+              </details>
+
+              <details class="optional-section field-wide" open>
+                <summary>TBML red-flag indicators — select all that apply</summary>
+                <p class="optional-note">
+                  Select only indicators supported by the information available. These are review signals, not proof of TBML.
+                </p>
+                <div class="tbml-indicator-grid">
+                  <label class="check-card">
+                    <input id="tbmlPriceValue" type="checkbox" data-tbml-indicator="price-value-anomaly" />
+                    <span><strong>Price / valuation anomaly</strong><small>Declared value may not reflect the commercial basis</small></span>
+                  </label>
+                  <label class="check-card">
+                    <input id="tbmlGoodsHsMismatch" type="checkbox" data-tbml-indicator="goods-hs-mismatch" />
+                    <span><strong>Goods / HS Code mismatch</strong><small>Description, specification or classification may not align</small></span>
+                  </label>
+                  <label class="check-card">
+                    <input id="tbmlQuantityUnitMismatch" type="checkbox" data-tbml-indicator="quantity-unit-mismatch" />
+                    <span><strong>Quantity / unit inconsistency</strong><small>Quantity or unit of measure may not align with the documents</small></span>
+                  </label>
+                  <label class="check-card">
+                    <input id="tbmlDocumentInconsistency" type="checkbox" data-tbml-indicator="document-inconsistency" />
+                    <span><strong>Document inconsistency</strong><small>Invoice, packing list or Bill of Lading may conflict</small></span>
+                  </label>
+                  <label class="check-card">
+                    <input id="tbmlRoutePortAnomaly" type="checkbox" data-tbml-indicator="route-port-anomaly" />
+                    <span><strong>Route / port anomaly</strong><small>Route, port or shipment pattern needs review</small></span>
+                  </label>
+                  <label class="check-card">
+                    <input id="tbmlRelatedUbo" type="checkbox" data-tbml-indicator="related-party-ubo" />
+                    <span><strong>Related party / UBO concern</strong><small>Ownership, control or relationship requires understanding</small></span>
+                  </label>
+                  <label class="check-card">
+                    <input id="tbmlThirdPartyPayment" type="checkbox" data-tbml-indicator="third-party-payment" />
+                    <span><strong>Third-party payment</strong><small>Payer is not clearly linked to the transaction</small></span>
+                  </label>
+                  <label class="check-card">
+                    <input id="tbmlMultiplePhantomShipment" type="checkbox" data-tbml-indicator="multiple-phantom-shipment" />
+                    <span><strong>Multiple / phantom shipment concern</strong><small>Shipment or invoice may be repeated or unsupported</small></span>
+                  </label>
+                  <label class="check-card">
+                    <input id="tbmlBusinessProfileMismatch" type="checkbox" data-tbml-indicator="business-profile-mismatch" />
+                    <span><strong>Business-profile mismatch</strong><small>Trade activity may not fit the customer’s known business</small></span>
+                  </label>
+                  <label class="check-card">
+                    <input id="tbmlUnusualPaymentTerms" type="checkbox" data-tbml-indicator="unusual-payment-terms" />
+                    <span><strong>Unusual payment terms</strong><small>Payment structure requires additional rationale</small></span>
+                  </label>
+                </div>
+                <div class="optional-grid tbml-metadata-grid">
+                  <label class="field">
+                    <span>Indicator confidence</span>
+                    <select id="indicatorConfidence">
+                      <option value="">Select confidence</option>
+                      <option>Low</option>
+                      <option>Medium</option>
+                      <option>High</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Evidence status</span>
+                    <select id="evidenceStatus">
+                      <option value="">Select evidence status</option>
+                      <option>Not provided</option>
+                      <option>Partially available</option>
+                      <option>Available for review</option>
+                    </select>
+                  </label>
+                  <label class="field field-wide">
+                    <span>Reviewer evidence / rationale note</span>
+                    <textarea id="reviewerEvidenceNote" rows="3" placeholder="Required when an indicator is selected: state the evidence, source or reviewer rationale supporting the selection."></textarea>
+                  </label>
+                </div>
+              </details>
+
+              <details class="optional-section field-wide" open>
+                <summary>International AML/CFT control context</summary>
+                <p class="optional-note">
+                  Use these fields to record review context mapped to international standards. They are control findings—not automatic sanctions, STR or legal decisions—and require evidence and authorised reviewer judgement.
+                </p>
+                <div class="optional-grid">
+                  <label class="field">
+                    <span>Jurisdiction risk status</span>
+                    <select id="jurisdictionRisk">
+                      <option value="">Select status</option>
+                      <option>Normal / not identified</option>
+                      <option>Unknown / not assessed</option>
+                      <option>Increased monitoring</option>
+                      <option>Call for action</option>
+                      <option>Sanctions / TF/PF concern</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>PEP / sanctions screening status</span>
+                    <select id="pepStatus">
+                      <option value="">Select status</option>
+                      <option>No known PEP</option>
+                      <option>Possible PEP</option>
+                      <option>Confirmed PEP</option>
+                      <option>Unknown / not assessed</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Restricted / dual-use goods status</span>
+                    <select id="restrictedGoodsStatus">
+                      <option value="">Select status</option>
+                      <option>Not restricted</option>
+                      <option>Unknown / not assessed</option>
+                      <option>Possible restricted / dual-use</option>
+                      <option>Confirmed restricted / sanctions concern</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Payment transparency status</span>
+                    <select id="paymentInformationStatus">
+                      <option value="">Select status</option>
+                      <option>Complete</option>
+                      <option>Incomplete</option>
+                      <option>Third-party chain</option>
+                      <option>Not provided</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Source of funds / wealth status</span>
+                    <select id="sourceOfFundsStatus">
+                      <option value="">Select status</option>
+                      <option>Supported</option>
+                      <option>Partially supported</option>
+                      <option>Unexplained</option>
+                      <option>Not provided</option>
+                    </select>
+                  </label>
+                </div>
+              </details>
+            </div>
+
+            <div class="check-section">
+              <div class="check-section-title">Additional quick review toggles</div>
+              <p class="optional-note check-section-note">Use these for direct reviewer observations. Related concepts are reconciled with the structured TBML indicators above.</p>
+              <div class="check-grid">
+                <label class="check-card"><input id="relatedParty" type="checkbox" /><span><strong>Related party</strong><small>Buyer/seller may be connected</small></span></label>
+                <label class="check-card"><input id="thirdPartyPayment" type="checkbox" /><span><strong>Third-party payment</strong><small>Payer differs from buyer</small></span></label>
+                <label class="check-card"><input id="routeMismatch" type="checkbox" /><span><strong>Route anomaly</strong><small>Shipping route needs review</small></span></label>
+                <label class="check-card"><input id="documentMismatch" type="checkbox" /><span><strong>Document mismatch</strong><small>Key fields do not align</small></span></label>
+                <label class="check-card"><input id="duplicateInvoice" type="checkbox" /><span><strong>Duplicate invoice</strong><small>Similar invoice may exist</small></span></label>
               </div>
-              <p class="field-help">এই পদগুলোর ক্ষেত্রে ৪০/৫০/৭০/৭৫ শতাংশ interim transition প্রযোজ্য নয়—চূড়ান্ত pay fixation অফিসিয়াল নথি অনুযায়ী যাচাই করুন।</p>
             </div>
 
-            <label class="field-label" for="current-basic">৩০ জুন ২০২৬-এর বর্তমান মূল বেতন</label>
-            <div class="money-input">
-              <span>৳</span>
-              <input id="current-basic" name="current-basic" inputmode="numeric" autocomplete="off" placeholder="যেমন: ৩৭,৯০০" value="" aria-describedby="basic-help" />
-            </div>
-            <p class="field-help" id="basic-help">শুধু মূল বেতন লিখুন; বাড়িভাড়া, চিকিৎসা, উৎসব ভাতা বা অন্যান্য ভাতা নয়।</p>
-
-            <button class="primary-button" type="submit">
-              <span>হিসাব দেখুন</span>
-              <span class="button-arrow" aria-hidden="true">→</span>
-            </button>
+            <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+            <button class="button button-primary button-full" type="submit">Run Risk Check <span class="button-icon" aria-hidden="true">→</span></button>
           </form>
 
-          <div class="rule-note">
-            <span class="rule-number">০১</span>
-            <p><strong>Gazette rule:</strong> নতুন স্কেলে হিসাবের ফল কোনো ধাপে না মিললে পরবর্তী উচ্চতর ধাপে বেতন নির্ধারণ হবে।</p>
-          </div>
-        </section>
-
-        <section class="results" aria-live="polite" aria-atomic="true">
-          <div class="section-heading results-heading">
-            <div>
-              <p class="eyebrow">STEP 02 · OUTPUT</p>
-            <h2>আপনার ফলাফল এখানে দেখাবে</h2>
-          </div>
-            <span class="grade-chip" id="grade-chip">ইনপুট অপেক্ষমাণ</span>
-          </div>
-
-          <div id="validation-message" class="validation-message" role="alert" hidden></div>
-
-          <div class="empty-result" id="empty-result">
-            <div class="empty-result-icon" aria-hidden="true">✦</div>
-            <strong>এটি কোনো default sample result নয়</strong>
-            <p>বাম পাশে গ্রেড ও ৩০ জুন ২০২৬-এর বর্তমান মূল বেতন লিখে <b>হিসাব দেখুন</b> নির্বাচন করুন।</p>
-          </div>
-
-          <div class="result-hero result-block" hidden>
-            <div class="result-label" id="result-hero-label">পূর্ণ নতুন মূল বেতন · ১ জুলাই ২০২৭ থেকে</div>
-            <div class="result-value" id="new-basic">—</div>
-            <div class="result-meta"><span id="new-grade-label">জাতীয় বেতনস্কেল ২০২৬</span><span class="meta-separator">·</span><span id="new-step-label">নতুন স্কেলের ধাপ</span></div>
-          </div>
-
-          <div class="metric-grid result-block" hidden>
-            <article class="metric-card">
-              <span class="metric-icon blue" aria-hidden="true">↗</span>
+          <section id="reportPanel" class="panel report-panel is-empty" aria-live="polite">
+            <div class="panel-heading">
               <div>
-                <span class="metric-label">মোট মূল বেতন বৃদ্ধি</span>
-                <strong id="total-increase">—</strong>
-                <small id="increase-percent">বর্তমান মূল বেতনের উপর</small>
+                <span class="panel-kicker">STEP 02</span>
+                <h3>Risk intelligence report</h3>
               </div>
-            </article>
-            <article class="metric-card">
-              <span class="metric-icon violet" aria-hidden="true">%</span>
-              <div>
-                <span class="metric-label">পর্যায়ভিত্তিক হার</span>
-                <strong id="interim-rate">—</strong>
-                <small>গ্রেডভিত্তিক Gazette rule</small>
-              </div>
-            </article>
-          </div>
+              <button id="copyReportButton" class="text-button" type="button" disabled>Copy summary</button>
+            </div>
 
-          <div class="timeline-card result-block" hidden>
-            <div class="timeline-head">
-              <div>
-                <p class="eyebrow">PAYMENT TIMELINE</p>
-                <h3>পর্যায়ভিত্তিক প্রাপ্যতা</h3>
-              </div>
-              <span class="timeline-tag">মূল বেতন</span>
+            <div id="emptyReport" class="empty-report">
+              <div class="empty-icon">✦</div>
+              <h3>Your review result will appear here</h3>
+              <p>Enter the HS Code and core case context, then run the assessment. Additional information can be added to improve the result.</p>
             </div>
-            <div class="timeline-row">
-              <div class="timeline-marker active">১</div>
-              <div class="timeline-content">
-                <strong id="phase1-title">১ জুলাই – ৩১ ডিসেম্বর ২০২৬</strong>
-                <span id="phase1-description">বর্তমান মূল বেতনের সঙ্গে পার্থক্যের <b id="phase1-rate-inline">৪০%</b> যোগ হবে</span>
-              </div>
-              <div class="timeline-amount">
-                <span class="timeline-amount-label" id="phase1-amount-label">ফলিত মূল বেতন</span>
-                <strong id="phase1-monthly">—</strong>
-                <small id="phase1-increment">অন্তর্বর্তী বৃদ্ধি: —</small>
-              </div>
-            </div>
-            <div class="timeline-connector"></div>
-            <div class="timeline-row">
-              <div class="timeline-marker">২</div>
-              <div class="timeline-content">
-                <strong id="phase2-title">১ জানুয়ারি – ৩০ জুন ২০২৭</strong>
-                <span id="phase2-description">বর্তমান মূল বেতনের সঙ্গে পার্থক্যের <b id="phase2-rate-inline">৭০%</b> যোগ হবে</span>
-              </div>
-              <div class="timeline-amount">
-                <span class="timeline-amount-label" id="phase2-amount-label">ফলিত মূল বেতন</span>
-                <strong id="phase2-monthly">—</strong>
-                <small id="phase2-increment">অন্তর্বর্তী বৃদ্ধি: —</small>
-              </div>
-            </div>
-            <div class="timeline-connector"></div>
-            <div class="timeline-row">
-              <div class="timeline-marker">৩</div>
-              <div class="timeline-content">
-                <strong id="phase3-title">১ জুলাই ২০২৭ থেকে</strong>
-                <span id="phase3-description">পূর্ণ পুনঃনির্ধারিত মূল বেতন; প্রযোজ্য বার্ষিক increment আলাদাভাবে যোগ হবে</span>
-              </div>
-              <div class="timeline-amount emphasis">
-                <span class="timeline-amount-label" id="phase3-amount-label">পূর্ণ মূল বেতন</span>
-                <strong id="phase3-monthly">—</strong>
-                <small id="phase3-increment">বার্ষিক increment প্রযোজ্য হতে পারে</small>
-              </div>
-            </div>
-            <p class="arrears-note" id="arrears-note">গেজেট অনুযায়ী ১ জুলাই ২০২৬ থেকে আদেশ জারির তারিখ পর্যন্ত বেতন বকেয়া হিসাবে প্রাপ্য হতে পারে; এই ক্যালকুলেটর বকেয়ার পরিমাণ নির্ণয় করে না।</p>
-          </div>
 
-          <div class="result-disclaimer result-block" hidden>
-            <strong>Human review required</strong>
-            <p>Demo output only. Final decisions remain with the authorised accounts office. এটি কোনো official pay fixation বা legal determination নয়।</p>
-          </div>
+            <div id="reportContent" class="report-content" hidden>
+              <div class="report-overview">
+                <div>
+                  <span class="mini-label">OVERALL SIGNAL / RISK GRADE</span>
+                  <div class="report-score"><span id="reportScore">—</span><small id="reportScoreSuffix">withheld</small></div>
+                  <span id="reportBand" class="status-pill status-not-ready">NOT READY</span>
+                </div>
+                <div class="report-gauge"><span id="reportGauge"></span></div>
+              </div>
+              <div id="decisionReadiness" class="decision-readiness is-blocked">
+                <div>
+                  <strong id="decisionStatus">Not assessed</strong>
+                  <p id="decisionStatusMessage">The report will identify whether the supplied data and evidence pass the decision-readiness gates.</p>
+                </div>
+                <div class="raw-score"><span>RAW INDICATIVE POINTS</span><strong id="rawScoreValue">—</strong></div>
+              </div>
+              <div id="reportSummary" class="report-summary"></div>
 
-          <div class="math-card result-block" hidden>
-            <div class="math-heading"><span>হিসাবের ধাপ</span><button type="button" id="copy-result" class="copy-button">ফলাফল কপি করুন</button></div>
-            <div class="math-line"><span id="old-min-label">পুরোনো স্কেলের প্রারম্ভিক ধাপ</span><strong id="old-min">—</strong></div>
-            <div class="math-line"><span id="difference-label">বর্তমান বেতন − প্রারম্ভিক ধাপ</span><strong id="difference">—</strong></div>
-            <div class="math-line"><span id="candidate-label">নতুন প্রারম্ভিক ধাপ + পার্থক্য</span><strong id="candidate">—</strong></div>
-            <div class="math-line final"><span id="applied-step-label">প্রযোজ্য নতুন ধাপ</span><strong id="applied-step">—</strong></div>
-          </div>
-        </section>
+              <div class="data-completeness-card">
+                <div class="completeness-header">
+                  <span>DATA COMPLETENESS</span>
+                  <strong id="dataCompletenessValue">0%</strong>
+                </div>
+                <div class="completeness-bar"><span id="dataCompletenessBar"></span></div>
+                <p id="dataCompletenessMessage"></p>
+              </div>
+
+              <div id="dataIntegrityCard" class="data-integrity-card">
+                <div class="integrity-header">
+                  <span>DATA INTEGRITY / COMPARABILITY</span>
+                  <strong id="dataIntegrityValue">Not assessed</strong>
+                </div>
+                <p id="dataIntegrityMessage"></p>
+                <ul id="dataIntegrityList" class="integrity-list"></ul>
+              </div>
+
+              <div id="reviewContext" class="review-context"></div>
+              <div class="report-subheading"><span>Detected indicators</span><span id="flagCount">0 flags</span></div>
+              <div id="flagList" class="flag-list"></div>
+              <div class="recommendation-box">
+                <span class="recommendation-icon">✓</span>
+                <div><strong>Suggested next step</strong><p id="recommendationText"></p></div>
+              </div>
+              <div class="report-footer-note">Assessment output only. It is not a final TBML determination. Final transaction decisions remain with the authorised reviewer.</div>
+            </div>
+          </section>
+        </div>
       </section>
 
-      <section class="scale-section glass-card" aria-labelledby="scale-title">
-        <div class="section-heading scale-heading">
+      <section id="how-it-works" class="section-shell section-block">
+        <div class="section-heading compact-heading">
           <div>
-            <p class="eyebrow">REFERENCE TABLE</p>
-            <h2 id="scale-title">গ্রেডভিত্তিক বেতনস্কেল ২০১৫ → ২০২৬</h2>
+            <div class="eyebrow">From signal to action</div>
+            <h2>A practical review workflow</h2>
           </div>
-          <button type="button" class="ghost-button" id="toggle-table">সম্পূর্ণ ধাপ দেখুন <span>＋</span></button>
+          <p>TradeGuard is designed to support people who review trade transactions—not replace them.</p>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>গ্রেড</th><th>জাতীয় বেতনস্কেল ২০১৫</th><th>জাতীয় বেতনস্কেল ২০২৬</th><th>পর্যায় ১ / ২ হার</th></tr>
-            </thead>
-            <tbody id="scale-table-body"></tbody>
-          </table>
-        </div>
-        <p class="table-note">পুরোনো স্কেলে প্রারম্ভিক ধাপ–সর্বোচ্চ ধাপ দেখানো হয়। “সম্পূর্ণ ধাপ দেখুন” নির্বাচন করলে ২০২৬ সালের নতুন স্কেলের প্রতিটি ধাপ দেখা যাবে।</p>
-      </section>
-
-      <section class="method-grid">
-        <article class="method-card glass-card">
-          <span class="method-index">১</span>
-          <div><h3>পার্থক্য নির্ণয়</h3><p>বর্তমান মূল বেতন থেকে পুরোনো সংশ্লিষ্ট স্কেলের প্রারম্ভিক ধাপ বাদ দেওয়া হয়।</p></div>
-        </article>
-        <article class="method-card glass-card">
-          <span class="method-index">২</span>
-          <div><h3>নতুন স্কেলে যোগ</h3><p>উক্ত পার্থক্য নতুন জাতীয় বেতনস্কেল ২০২৬-এর প্রারম্ভিক ধাপের সঙ্গে যোগ করা হয়।</p></div>
-        </article>
-        <article class="method-card glass-card">
-          <span class="method-index">৩</span>
-          <div><h3>পরবর্তী ধাপ</h3><p>ফল কোনো ধাপে না মিললে পরবর্তী উচ্চতর ধাপ নেওয়া হয়—এটি Gazette-এর নির্ধারিত পদ্ধতি।</p></div>
-        </article>
-      </section>
-
-      <section class="governance-grid" aria-label="Scope and privacy information">
-        <article class="governance-card glass-card">
-          <p class="eyebrow">SCOPE</p>
-          <h3>কাদের জন্য প্রযোজ্য?</h3>
-          <p>এই tool কেবল Bangladesh Government National Pay Scale 2026-এর গ্রেডভিত্তিক ও গেজেটে উল্লেখিত fixed-pay treatment-এর প্রাথমিক হিসাবের জন্য। Autonomous body, Bangladesh Bank/ব্যাংক, financial institution, private employer বা নিজস্ব scale-যুক্ত প্রতিষ্ঠানের জন্য এটি প্রযোজ্য ধরে নেবেন না।</p>
-        </article>
-        <article class="governance-card glass-card">
-          <p class="eyebrow">PRIVACY</p>
-          <h3>আপনার salary data কীভাবে ব্যবহৃত হয়?</h3>
-          <p>এই static app-এর হিসাব browser-এই সম্পন্ন হয়। salary input কোনো server-এ পাঠানো বা সংরক্ষণ করা হয় না; analytics বা third-party script ব্যবহার করা হয়নি। “ফলাফল কপি করুন” কেবল আপনার device-এর clipboard-এ লেখা কপি করে।</p>
-        </article>
-      </section>
-
-      <section class="disclaimer glass-card">
-        <span class="disclaimer-icon" aria-hidden="true">!</span>
-        <div>
-          <strong>গুরুত্বপূর্ণ সতর্কতা</strong>
-          <p>এটি মূল বেতন পুনঃনির্ধারণের একটি সহায়ক ক্যালকুলেটর। পদোন্নতি, উচ্চতর গ্রেড, সিলেকশন গ্রেড, ব্যক্তিগত বেতন, সংরক্ষিত বেতন, ছুটি, অবসর, পেনশন, কর, কর্তন, ভাতা, বকেয়া বা অফিসিয়াল pay fixation-এর বিকল্প নয়। Fixed-pay পদে interim শতাংশ প্রযোজ্য নয়। চূড়ান্ত হিসাব সংশ্লিষ্ট হিসাবরক্ষণ অফিস/প্রতিষ্ঠানের অনুমোদিত নথির সঙ্গে মিলিয়ে নিন।</p>
+        <div class="feature-grid">
+          <article class="feature-card"><span class="feature-number">01</span><h3>Structure the evidence</h3><p>Bring the commercial terms, parties, documents and route into one review context.</p></article>
+          <article class="feature-card"><span class="feature-number">02</span><h3>Prioritise the signal</h3><p>Use transparent rules to surface material inconsistencies and connected risk indicators.</p></article>
+          <article class="feature-card"><span class="feature-number">03</span><h3>Document the action</h3><p>Turn the review into an explainable case note that can be challenged, escalated and reviewed.</p></article>
         </div>
       </section>
 
-      <footer class="footer">
-        <div class="footer-branding">
-          <img src="regtech-nexus-ai-logo-wide.png" alt="RegTech Nexus AI — Audit &amp; Regulatory Intelligence" />
-          <div><strong>Pay Scale 2026 Calculator by RegTech Nexus AI</strong><small>Audit &amp; Regulatory Intelligence</small></div>
+      <section id="pilot" class="section-shell section-block pilot-section">
+        <div class="pilot-card">
+          <div>
+            <div class="eyebrow">Early access</div>
+            <h2>Test the workflow with your own review team.</h2>
+            <p>Request a pilot conversation for bank trade-finance and compliance operations. Exporters, importers and C&amp;F teams can be supported in a scoped pilot.</p>
+            <p class="pilot-email-note">
+              Email us directly as a fallback:
+              <a href="mailto:regtechnexusai@gmail.com?subject=TradeGuard%20pilot%20request&amp;body=Hello%20RegTech%20Nexus%20AI%2C%0A%0AI%20would%20like%20to%20discuss%20a%20TradeGuard%20pilot.%0A%0AOrganisation%3A%20%0AOrganisation%20type%3A%20%0A%0ARegards%2C%0A" aria-label="Email RegTech Nexus AI about a TradeGuard pilot">regtechnexusai@gmail.com</a>
+            </p>
+          </div>
+          <form id="pilotForm" class="pilot-form">
+            <input id="pilotName" type="text" placeholder="Your name" required />
+            <input id="pilotOrganisation" type="text" placeholder="Organisation" required />
+            <select id="pilotType" required>
+              <option value="">Organisation type</option>
+              <option>Bank / financial institution</option>
+              <option>Exporter / importer</option>
+              <option>C&F / trade consultant</option>
+              <option>Compliance / audit team</option>
+            </select>
+            <button class="button button-light button-full" type="submit">Email pilot request <span class="button-icon" aria-hidden="true">→</span></button>
+            <div id="pilotMessage" class="pilot-message" role="status" aria-live="polite"></div>
+          </form>
         </div>
-        <div class="footer-meta">
-          <span>Independent educational calculator · Not an official Government portal</span>
-          <span>Version 1.3 · Last verified 19 September 2026</span>
-          <a href="mailto:regtechnexusai@gmail.com">regtechnexusai@gmail.com</a>
-        </div>
-      </footer>
+      </section>
     </main>
 
-    <div class="toast" id="toast" role="status" aria-live="polite">ফলাফল কপি হয়েছে</div>
-    <script src="app.js?v=5"></script>
+    <footer class="site-footer section-shell">
+      <div class="footer-brand">
+        <img class="footer-logo" src="./regtech-nexus-ai-logo.png" alt="RegTech Nexus AI — TradeGuard" />
+      </div>
+      <a class="footer-link" href="https://regtechnexusai.github.io/tradeguard/" target="_blank" rel="noopener noreferrer">regtechnexusai.github.io/tradeguard/</a>
+      <nav class="footer-links" aria-label="Legal and product information">
+        <a href="./about.html">About and security</a>
+        <a href="./methodology.html">Methodology</a>
+        <a href="./privacy.html">Privacy and PDF handling</a>
+        <a href="./terms.html">Terms</a>
+      </nav>
+      <div class="footer-company-details">
+        <p><strong>RegTech Nexus AI</strong> is an IT product publisher and a sister concern of Travel To Know.</p>
+        <p>Corporate office: 28/A-2, Toyenbee Circular Road, 1st Floor, Motijheel Commercial Area, Dhaka-1000, Bangladesh.</p>
+        <p>Phone: <a href="tel:+8801772282925">+880 1772 282925</a></p>
+      </div>
+      <p>Rule-based review support. Not a regulatory determination or legal interpretation.</p>
+      <span>© 2026 RegTech Nexus AI</span>
+    </footer>
+
+    <script type="module" src="./main.js?v=27"></script>
   </body>
 </html>

@@ -1,64 +1,76 @@
-# PayScale 2026 Calculator — RegTech Nexus AI
+# TradeGuard by RegTech Nexus AI
 
-PayScale 2026 Calculator is a clean, single-purpose, dependency-free static web tool for Bangladesh government service employees. It helps users understand the potential transition from the National Pay Scale 2015 to the National Pay Scale 2026, including the phased basic-pay increase and the next-higher-step rule. It is prepared by **RegTech Nexus AI — Audit & Regulatory Intelligence** and can run directly on GitHub Pages.
+A static, low-cost public MVP (v27) for an explainable, rule-based trade-finance and TBML risk-review workspace.
 
-## What the website does
+## What this version does
 
-- **Live salary calculation:** calculates the potential new basic pay and total difference from the employee's current basic pay.
-- **Phased implementation timeline:** shows Phase 1 (July–December 2026), Phase 2 (January–June 2027), and Phase 3 (from July 2027 onward).
-- **Gazette-rule compliance:** uses the opening step of the old and new scales; when the calculated value does not match an exact new-scale step, it selects the next higher step.
-- **Reference tables:** provides a grade-wise comparison of the 2015 and 2026 scales and the applicable Phase 1/Phase 2 rates.
-- **Governance information:** displays the source order, last-verified date, scope limitation, privacy treatment and human-review disclaimer.
+- Presents the TradeGuard product concept through two separate workspaces: TBML Check and Transaction Monitoring.
+- Accepts fictional or anonymised sample transaction inputs.
+- Applies transparent rule-based red-flag scoring with raw and capped points; the public preview arithmetic reconciles visibly.
+- Lets a visitor run an indicative risk check with only HS Code, route countries and core counterparty status; detailed fields remain optional.
+- Shows an indicative score when supported signals are available, while withholding the decision-ready score when evidence or integrity gates are not met.
+- Separates data completeness from data integrity/comparability.
+- Withholds price scoring when HS Code, goods description, unit or price inputs cannot be compared reliably; missing optional benchmark metadata is shown as a limitation rather than a form blocker.
+- Does not display a misleading 0/100 when no scoreable signal is available.
+- Keeps evidence, confidence and rationale as readiness information for manually selected indicators instead of blocking the public assessment.
+- Maps HS 0206 edible offal to a weight-based unit profile and limits the unit selector to the verified HS profile.
+- Provides a “Start new case” reset flow to prevent prior-case carry-over.
+- Provides a separate `proactive-monitoring.html` Transaction Monitoring workspace with a functional early-warning review.
+- Accepts a transaction-statement PDF up to 10 MB for browser-local text extraction using the pinned self-hosted PDF.js 6.3.289 build.
+- Supports two PDF paths: full-statement mode for available context pre-fill, and transaction-history-only mode for anonymised transaction rows plus manually supplied context.
+- Requires an acknowledgement that the file is fictional, synthetic or anonymised; warns on account/email/identity-like text, clears the browser file input and temporary extracted text after analysis, and has no upload endpoint or case database.
+- Shows a clear privacy and PDF-handling notice, plus a methodology and limitations page.
+- Includes an About and security-boundary page that separates public-demo capability from institutional deployment requirements.
+- Publishes the supplied RegTech Nexus AI / Travel To Know publisher relationship, office and phone details without inventing an unprovided registered entity number.
+- Prepares a pilot request in a pre-filled email draft. A configured mail client is required for the mailto action; a direct email fallback and publisher phone are shown.
+- Uses glossy, raised 3D styling for primary, navigation, utility and workspace buttons.
+- Keeps “Human review required” visible as the review principle.
+- Adds review-only context controls for jurisdiction risk, PEP/screening, restricted or dual-use goods, payment transparency and source of funds/wealth.
+- Keeps control-only findings outside the numeric score; they require evidence and authorised human review.
+- Accepts a 6–10 digit HS-code format; six-digit harmonised inputs and country-specific 8/10-digit extensions remain subject to exact tariff-reference verification.
+- Separates FATF/AML-CFT controls from BCBS governance and IFRS 9 credit-risk / expected-credit-loss evidence paths.
 
-## Included calculation rules
+This public version does **not** upload or store documents on a TradeGuard server, call an AI API, connect to a bank, provide live sanctions/PEP screening, save cases, or make a regulatory determination. It uses deterministic browser-side rules and is not audit-grade or institutionally certified.
 
-The calculation engine follows the uploaded Bangladesh Gazette, Extra, dated 17 September 2026:
-
-1. Take the employee's basic pay as of 30 June 2026.
-2. Subtract the opening step of the corresponding 2015 scale.
-3. Add that difference to the opening step of the corresponding 2026 scale.
-4. If the result is not an exact 2026 scale step, use the next higher step.
-5. From 1 July to 31 December 2026, add 40% of the total difference for Grades 1-9 and 50% for Grades 10-20.
-6. From 1 January to 30 June 2027, add 70% of the total difference for Grades 1-9 and 75% for Grades 10-20.
-7. From 1 July 2027, the full refixed basic pay applies, with the applicable annual increment handled under the Gazette.
-8. Arrears from 1 July 2026 to the Gazette/order issue date may be payable; this app does not quantify arrears.
-9. Fixed-pay treatment is shown separately for Grade 1 (৳156,000), Cabinet Secretary/Principal Secretary-level posts (৳172,000) and Senior Secretary-level posts (৳164,000). The interim percentages do not apply to these fixed-pay cases.
-
-The app deliberately does not calculate house-rent, medical or other allowances, tax, deductions, pension, arrears, promotion, higher-grade entitlement, selection grade, personal pay, leave, annual-increment amount, or final office pay fixation. If the entered basic pay is not a listed 2015-scale step, the app shows a warning and asks the user to verify the official pay-fixation record.
-
-## Scope, privacy and governance
-
-- This is an **unofficial educational/review-support tool**, not a Government or Finance Division portal and not a final pay-fixation decision.
-- It is intended for the Bangladesh Government National Pay Scale 2026. Do not assume that it applies to autonomous bodies, Bangladesh Bank/banks, financial institutions, private employers or organisations with their own pay scales.
-- Calculations are performed in the browser. This static app does not send or store salary inputs and contains no analytics or third-party scripts. The copy-result button only copies the displayed result to the user's device clipboard.
-- The result should be checked against the employee's service book, office pay-fixation record and any later corrigendum or clarification. Final decisions remain with the authorised accounts office.
-- Contact: `regtechnexusai@gmail.com`
+Read [`privacy.html`](./privacy.html) for PDF handling and public-demo privacy limitations. Read [`methodology.html`](./methodology.html) for indicator weights, score bands, price-deviation logic, evidence gating, reference families, data boundaries and production-readiness limits.
 
 ## Run locally
 
-No build step is required:
+No database or build step is required.
+
+### Option 1: VS Code Live Server
+
+1. Open this folder in VS Code.
+2. Install the **Live Server** extension.
+3. Right-click `index.html` and choose **Open with Live Server**.
+
+### Option 2: Python local server
 
 ```bash
-python3 -m http.server 8080 --directory pay-scale-2026-calculator
+python3 -m http.server 5500
 ```
 
-Open `http://localhost:8080` in a browser.
+Then open `http://localhost:5500`.
 
-## Deploy on GitHub Pages
+## Publish through GitHub and Cloudflare Pages
 
 1. Create a GitHub repository.
-2. Upload `index.html`, `styles.css`, `app.js`, `README.md`, `regtech-nexus-ai-logo-wide.png` and `pay-scale-2026-gazette.pdf` to the repository root.
-3. In **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`.
-4. Save. GitHub will provide the public Pages URL.
+2. Upload all files in this folder.
+3. In Cloudflare: **Workers & Pages → Create application → Pages → Connect to Git**.
+4. Select the GitHub repository.
+5. For a static site, leave the build command empty and use `.` as the output directory, or use the repository root as the publish directory.
+6. Deploy.
 
-## Data maintenance
+## Next development stage
 
-The old-scale range and the new-scale steps are kept at the top of `app.js` inside the `SCALES` object. If the Finance Division publishes a correction or a new implementation order, update only that data block and the source note.
+After user validation, add:
 
-## Source note
+1. A hosted lead-capture form with a privacy notice and consent record.
+2. Authentication, role-based access and saved cases.
+3. Secure server-side document processing or an approved on-premise deployment model.
+4. Human-reviewed OCR and structured transaction extraction.
+5. Evidence-linked case reports and server-side audit logging.
+6. Live sanctions, PEP, adverse-media and restricted-goods integrations subject to approved data contracts.
+7. Institution-specific rule calibration, version approval, testing, monitoring and independent security review.
 
-Primary source used for this implementation: user-provided `Pay Scale 2026.pdf`, published as Bangladesh Gazette, Extra, 17 September 2026, Finance Division, Implementation Division-1, Order No. 347-Law/2026. The pay-fixation rules are stated in the Gazette's corresponding-scale and pay-determination provisions. Last verified for this package: 19 September 2026. If a corrigendum or clarification is issued, the official document takes precedence.
-
-## Prepared by
-
-Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
+Do not upload real bank or customer documents to this public version.
