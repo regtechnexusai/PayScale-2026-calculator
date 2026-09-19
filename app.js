@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026. Version 1.8.
+ * S.R.O. No. 347-Law/2026. Version 1.9.
  *
  * The scale steps below are transcribed from the user-provided Gazette PDF.
  * Keep this data block separate and easy to update if an official correction
@@ -270,9 +270,11 @@ function renderGrossSalary() {
     const hill = hillMode === 'none' ? 0 : Math.min(Math.round(basic * 20 / 100), hillCap);
     const haor = grossInput('haor-eligible').checked ? Math.min(Math.round(basic * 20 / 100), 5000) : 0;
     const training = grossInput('training-eligible').checked && grade <= 9 ? Math.round(basic * 10 / 100) : 0;
-    const fixed = medical + education + tiffin + mobile + washing;
+    // Keep medical and education separate in the breakdown table. They are
+    // added explicitly to the total below so they are not shown twice.
+    const fixed = tiffin + mobile + washing;
     const other = travel + hill + haor + training + specialChild + otherManual;
-    return { basic, house, medical, education, fixed, other, total: basic + house + fixed + other };
+    return { basic, house, medical, education, fixed, other, total: basic + house + medical + education + fixed + other };
   });
 
   phases.forEach((values, index) => setGrossPhase(index + 1, values));
