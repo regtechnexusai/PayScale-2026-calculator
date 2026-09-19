@@ -47,7 +47,7 @@ Open `http://localhost:8080` in a browser.
 ## Deploy on GitHub Pages
 
 1. Create a GitHub repository.
-2. Upload `index.html`, `styles.css`, `app.js`, `README.md`, `regtech-nexus-ai-logo.jpg` and `pay-scale-2026-gazette.pdf` to the repository root.
+2. Upload `index.html`, `styles.css`, `app.js`, `README.md`, `regtech-nexus-ai-logo.png` and `pay-scale-2026-gazette.pdf` to the repository root.
 3. In **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`.
 4. Save. GitHub will provide the public Pages URL.
 
