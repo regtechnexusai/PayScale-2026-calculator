@@ -59,6 +59,50 @@ const validation = document.querySelector('#validation-message');
 const toast = document.querySelector('#toast');
 const emptyResult = document.querySelector('#empty-result');
 const resultBlocks = [...document.querySelectorAll('.result-block')];
+const grossSection = document.querySelector('#gross-salary-module');
+const grossForm = document.querySelector('#gross-form');
+const allowanceProfileSelect = document.querySelector('#allowance-profile');
+const grossProfileNote = document.querySelector('#gross-profile-note');
+
+const ALLOWANCE_PROFILES = {
+  general: {
+    label: 'সাধারণ সরকারি চাকরি',
+    sro: 'S.R.O. No. 347-Law/2026',
+    automatic: true,
+    note: 'এই preview-তে S.R.O. No. 347-Law/2026-এর নিশ্চিত সাধারণ ভাতা-হার ব্যবহার করা হচ্ছে।'
+  },
+  bank: {
+    label: 'ব্যাংক, বিমা ও আর্থিক প্রতিষ্ঠান',
+    sro: 'S.R.O. No. 349-Law/2026',
+    automatic: true,
+    note: 'এই preview-তে S.R.O. No. 349-Law/2026-এর সাধারণ allowance clauses ব্যবহার করা হচ্ছে; প্রতিষ্ঠানের নিজস্ব service rule থাকলে সেটিই চূড়ান্ত।'
+  },
+  public: {
+    label: 'Public Bodies/রাষ্ট্রায়ত্ত প্রতিষ্ঠান',
+    sro: 'S.R.O. No. 348-Law/2026',
+    automatic: false,
+    note: 'S.R.O. No. 348-Law/2026 নির্বাচিত হয়েছে। এই আলাদা order-এর institution-specific allowance schedule এখানে এখনো স্বয়ংক্রিয়ভাবে transcribe করা হয়নি।'
+  },
+  police: {
+    label: 'বাংলাদেশ পুলিশ',
+    sro: 'S.R.O. No. 350-Law/2026',
+    automatic: false,
+    note: 'S.R.O. No. 350-Law/2026 নির্বাচিত হয়েছে। Police unit/post-specific special allowance ভুলভাবে যোগ না করার জন্য এই profile-এ full gross auto-calculation বন্ধ রাখা হয়েছে।'
+  },
+  bgb: {
+    label: 'BGB',
+    sro: 'S.R.O. No. 351-Law/2026',
+    automatic: false,
+    note: 'S.R.O. No. 351-Law/2026 নির্বাচিত হয়েছে। BGB-specific allowance schedule যাচাই না করে সাধারণ হার auto-apply করা হচ্ছে না।'
+  }
+};
+
+const grossInputIds = [
+  'government-housing', 'medical-eligible', 'mobile-eligible', 'washing-eligible',
+  'medical-band', 'education-children', 'tiffin-eligible', 'travel-eligible',
+  'haor-eligible', 'training-eligible', 'hill-allowance', 'special-child-count',
+  'other-allowance', 'duty-station', 'allowance-profile'
+];
 
 const fixedPosts = {
   156000: 'গ্রেড ১ · নির্ধারিত বেতন',
@@ -117,6 +161,125 @@ function clearValidation() {
 function showResultState(hasResult) {
   emptyResult.hidden = hasResult;
   resultBlocks.forEach((block) => { block.hidden = !hasResult; });
+  grossSection.hidden = !hasResult;
+  if (!hasResult) clearGrossOutput();
+}
+
+function houseRentRate(grade, station) {
+  const stationRates = {
+    dhaka: { low: 60, mid: 50, high: 45, top: 40 },
+    'listed-city': { low: 50, mid: 40, high: 35, top: 30 },
+    other: { low: 45, mid: 35, high: 30, top: 25 }
+  };
+  const rates = stationRates[station] || stationRates.dhaka;
+  if (grade >= 16) return rates.low;
+  if (grade >= 10) return rates.mid;
+  if (grade >= 5) return rates.high;
+  return rates.top;
+}
+
+function grossInput(id) {
+  return document.getElementById(id);
+}
+
+function setGrossCell(id, value) {
+  setText(id, money(value));
+}
+
+function clearGrossOutput() {
+  const ids = [
+    'gross-phase1-total', 'gross-phase2-total', 'gross-phase3-total',
+    'gross-phase1-basic', 'gross-phase2-basic', 'gross-phase3-basic',
+    'gross-phase1-house', 'gross-phase2-house', 'gross-phase3-house',
+    'gross-phase1-medical', 'gross-phase2-medical', 'gross-phase3-medical',
+    'gross-phase1-education', 'gross-phase2-education', 'gross-phase3-education',
+    'gross-phase1-fixed', 'gross-phase2-fixed', 'gross-phase3-fixed',
+    'gross-phase1-other', 'gross-phase2-other', 'gross-phase3-other',
+    'gross-phase1-total-row', 'gross-phase2-total-row', 'gross-phase3-total-row'
+  ];
+  ids.forEach((id) => setText(id, '—'));
+  setText('gross-phase1-meta', 'প্রথম অন্তর্বর্তী মূল বেতনসহ');
+  setText('gross-phase2-meta', 'দ্বিতীয় অন্তর্বর্তী মূল বেতনসহ');
+  setText('gross-phase3-meta', 'পূর্ণ নতুন মূল বেতনসহ');
+  grossProfileNote.textContent = '';
+  grossProfileNote.classList.remove('warning');
+  setText('gross-grade-chip', 'গ্রেড অপেক্ষমাণ');
+}
+
+function updateAllowanceAvailability(grade) {
+  const gradeBased = ['tiffin-eligible', 'travel-eligible'];
+  gradeBased.forEach((id) => {
+    const input = grossInput(id);
+    const eligible = grade >= 11;
+    input.disabled = !eligible;
+    if (!eligible) input.checked = false;
+  });
+  const training = grossInput('training-eligible');
+  training.disabled = grade > 9;
+  if (grade > 9) training.checked = false;
+}
+
+function setGrossPhase(phase, values) {
+  setGrossCell('gross-phase' + phase + '-basic', values.basic);
+  setGrossCell('gross-phase' + phase + '-house', values.house);
+  setGrossCell('gross-phase' + phase + '-medical', values.medical);
+  setGrossCell('gross-phase' + phase + '-education', values.education);
+  setGrossCell('gross-phase' + phase + '-fixed', values.fixed);
+  setGrossCell('gross-phase' + phase + '-other', values.other);
+  setGrossCell('gross-phase' + phase + '-total', values.total);
+  setGrossCell('gross-phase' + phase + '-total-row', values.total);
+}
+
+function renderGrossSalary() {
+  const result = window.lastCalculation;
+  if (!result) return;
+
+  const profile = ALLOWANCE_PROFILES[allowanceProfileSelect.value] || ALLOWANCE_PROFILES.general;
+  const grade = result.fixed ? 1 : result.grade;
+  setText('gross-grade-chip', result.fixed ? 'স্থির পদ · গ্রেড ১ হার' : 'গ্রেড ' + toBn(grade));
+  grossProfileNote.textContent = profile.note;
+  grossProfileNote.classList.toggle('warning', !profile.automatic);
+  updateAllowanceAvailability(grade);
+
+  if (!profile.automatic) {
+    const phases = [result.phase1Pay, result.phase2Pay, result.phase3Pay];
+    phases.forEach((basic, index) => setGrossCell('gross-phase' + (index + 1) + '-basic', basic));
+    ['1', '2', '3'].forEach((phase) => {
+      ['house', 'medical', 'education', 'fixed', 'other', 'total', 'total-row'].forEach((part) => setText('gross-phase' + phase + '-' + part, '—'));
+    });
+    ['1', '2', '3'].forEach((phase) => setText('gross-phase' + phase + '-meta', 'এই order-এর allowance schedule আলাদা করে মিলিয়ে নিন'));
+    setText('gross-footnote', 'এই আলাদা pay order-এর ভাতা-প্যাকেজ এখনো এই static preview-তে স্বয়ংক্রিয়ভাবে transcribe করা হয়নি। সাধারণ সরকারি হার ধরে কোনো gross salary দেখানো হচ্ছে না।');
+    return;
+  }
+
+  const medicalEligible = grossInput('medical-eligible').checked;
+  const medical = medicalEligible ? (grossInput('medical-band').value === 'over50' ? 4000 : 3000) : 0;
+  const education = Math.min(2, Number(grossInput('education-children').value || 0)) * 500;
+  const tiffin = grossInput('tiffin-eligible').checked && grade >= 11 ? 500 : 0;
+  const mobile = grossInput('mobile-eligible').checked ? (grade <= 5 ? 500 : 150) : 0;
+  const washing = grossInput('washing-eligible').checked ? 300 : 0;
+  const station = grossInput('duty-station').value;
+  const travel = grossInput('travel-eligible').checked && grade >= 11 && station !== 'other' ? 600 : 0;
+  const specialChild = Math.min(2, Number(grossInput('special-child-count').value || 0)) * 3000;
+  const otherManual = parseMoney(grossInput('other-allowance').value) || 0;
+  const hillMode = grossInput('hill-allowance').value;
+  const hasGovernmentHousing = grossInput('government-housing').checked === false;
+  const phases = [result.phase1Pay, result.phase2Pay, result.phase3Pay].map((basic) => {
+    const house = hasGovernmentHousing ? 0 : Math.round(basic * houseRentRate(grade, station) / 100);
+    const hillCap = hillMode === 'other' ? 5500 : 5000;
+    const hill = hillMode === 'none' ? 0 : Math.min(Math.round(basic * 20 / 100), hillCap);
+    const haor = grossInput('haor-eligible').checked ? Math.min(Math.round(basic * 20 / 100), 5000) : 0;
+    const training = grossInput('training-eligible').checked && grade <= 9 ? Math.round(basic * 10 / 100) : 0;
+    const fixed = medical + education + tiffin + mobile + washing;
+    const other = travel + hill + haor + training + specialChild + otherManual;
+    return { basic, house, medical, education, fixed, other, total: basic + house + fixed + other };
+  });
+
+  phases.forEach((values, index) => setGrossPhase(index + 1, values));
+  setText('gross-phase1-meta', 'মূল বেতন + নির্বাচিত ভাতা');
+  setText('gross-phase2-meta', 'মূল বেতন + নির্বাচিত ভাতা');
+  setText('gross-phase3-meta', 'মূল বেতন + নির্বাচিত ভাতা');
+  setText('gross-footnote', 'বাড়িভাড়া ' + toBn(houseRentRate(grade, station)) + '% হারে ধরা হয়েছে; সরকারি বাসস্থান থাকলে তা বাদ। চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল ও শর্তসাপেক্ষ ভাতার checkbox-গুলি আপনার বাস্তব অবস্থা অনুযায়ী ঠিক করুন।');
 }
 
 function calculate(showErrors = false) {
@@ -217,6 +380,7 @@ function calculate(showErrors = false) {
   setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : 'নতুন স্কেলের ধাপ ' + toBn(stepIndex));
 
   window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
+  renderGrossSalary();
 }
 
 form.addEventListener('submit', (event) => {
@@ -249,6 +413,9 @@ currentBasic.addEventListener('blur', () => {
   if (Number.isFinite(parsed)) currentBasic.value = numberBn(parsed);
 });
 
+grossForm.addEventListener('input', renderGrossSalary);
+grossForm.addEventListener('change', renderGrossSalary);
+
 document.querySelector('#toggle-table').addEventListener('click', (event) => {
   const expanded = event.currentTarget.dataset.expanded === 'true';
   event.currentTarget.dataset.expanded = String(!expanded);
@@ -268,6 +435,8 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     '১ জুলাই–৩১ ডিসেম্বর ২০২৬: ' + money(result.phase1Pay),
     '১ জানুয়ারি–৩০ জুন ২০২৭: ' + money(result.phase2Pay),
     '১ জুলাই ২০২৭ থেকে: ' + money(result.phase3Pay),
+    'Gross profile: ' + (ALLOWANCE_PROFILES[allowanceProfileSelect.value]?.sro || '—'),
+    'আনুমানিক Gross Salary (পর্যায় ৩): ' + document.querySelector('#gross-phase3-total').textContent,
     'Prepared by RegTech Nexus AI',
     'সূত্র: Bangladesh Gazette, Extra, 17 September 2026 · S.R.O. No. 347-Law/2026',
     'Demo output only. Final decisions remain with the authorised accounts office.',
