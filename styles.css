@@ -110,7 +110,7 @@ select option { color: #102348; background: #f5f8ff; }
 .rule-note p { margin: 0; color: var(--muted); font-size: 11px; }
 .rule-note strong { color: var(--muted-strong); }
 
-.results { min-width: 0; }
+.results { min-width: 0; scroll-margin-top: 14px; outline: none; }
 .results-heading { margin: 5px 0 18px; }
 .output-note { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
 .grade-chip, .timeline-tag { padding: 6px 10px; border: 1px solid rgba(106, 213, 255, .27); border-radius: 8px; color: var(--cyan); background: rgba(53, 159, 232, .1); font-size: 12px; font-weight: 600; }

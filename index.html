@@ -23,7 +23,7 @@
     <meta name="twitter:title" content="PayScale 2026 Calculator | RegTech Nexus AI" />
     <meta name="twitter:description" content="Gazette-based Bangladesh government basic-pay transition calculator." />
     <meta name="twitter:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
-    <link rel="stylesheet" href="styles.css?v=6" />
+    <link rel="stylesheet" href="styles.css?v=7" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -126,13 +126,13 @@
             <a href="https://www.dpp.gov.bd/" target="_blank" rel="noopener">সরকারি গেজেট আর্কাইভ</a>
             <a href="https://mof.gov.bd/" target="_blank" rel="noopener">অর্থ মন্ত্রণালয়</a>
             <span>শেষ যাচাই: ১৯ সেপ্টেম্বর ২০২৬</span>
-            <span>Version 1.4</span>
+            <span>Version 1.5</span>
           </div>
         </div>
         <div class="update-note">
           <strong>সংশোধনী নজরে রাখুন</strong>
           <p>পরবর্তী corrigendum, clarification বা implementation order প্রকাশিত হলে অফিসিয়াল নথিই অগ্রাধিকার পাবে এবং এই tool আপডেট করতে হবে।</p>
-          <p class="change-log"><strong>v1.4:</strong> scope exclusions, official links, share metadata, basic-pay wording এবং automated audit coverage যোগ করা হয়েছে।</p>
+          <p class="change-log"><strong>v1.5:</strong> Step 1 submit করার পর Step 2 ফলাফল panel স্বয়ংক্রিয়ভাবে viewport-এর শীর্ষে আনা হয়েছে।</p>
         </div>
       </section>
 
@@ -210,11 +210,11 @@
           </div>
         </section>
 
-        <section class="results" aria-live="polite" aria-atomic="true">
+        <section class="results" id="results-panel" tabindex="-1" aria-labelledby="results-title" aria-live="polite" aria-atomic="true">
           <div class="section-heading results-heading">
             <div>
               <p class="eyebrow">STEP 02 · BASIC PAY OUTPUT</p>
-            <h2>আপনার মূল বেতনের ফলাফল</h2>
+            <h2 id="results-title">আপনার মূল বেতনের ফলাফল</h2>
             <p class="output-note">শুধু মূল বেতন; ভাতা, কর্তন ও অন্যান্য সুবিধা এতে অন্তর্ভুক্ত নয়।</p>
           </div>
             <span class="grade-chip" id="grade-chip">ইনপুট অপেক্ষমাণ</span>
@@ -385,13 +385,13 @@
         </div>
         <div class="footer-meta">
           <span>Independent educational calculator · Not an official Government portal</span>
-          <span>Version 1.4 · Last verified 19 September 2026</span>
+          <span>Version 1.5 · Last verified 19 September 2026</span>
           <a href="mailto:regtechnexusai@gmail.com">regtechnexusai@gmail.com</a>
         </div>
       </footer>
     </main>
 
     <div class="toast" id="toast" role="status" aria-live="polite">ফলাফল কপি হয়েছে</div>
-    <script src="app.js?v=6"></script>
+    <script src="app.js?v=7"></script>
   </body>
 </html>

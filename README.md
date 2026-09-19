@@ -67,4 +67,4 @@ Primary source used for this implementation: user-provided `Pay Scale 2026.pdf`,
 
 ## Prepared by
 
-Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. Version 1.4. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
+Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. Version 1.5. On mobile, submitting Step 1 moves the Step 2 result panel to the top of the viewport for easier review. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.

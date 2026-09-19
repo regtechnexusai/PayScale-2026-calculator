@@ -53,6 +53,7 @@ const gradeFieldGroup = document.querySelector('#grade-field-group');
 const gradeSelect = document.querySelector('#grade');
 const currentBasic = document.querySelector('#current-basic');
 const form = document.querySelector('#calculator-form');
+const resultsPanel = document.querySelector('#results-panel');
 const tableBody = document.querySelector('#scale-table-body');
 const validation = document.querySelector('#validation-message');
 const toast = document.querySelector('#toast');
@@ -218,7 +219,14 @@ function calculate(showErrors = false) {
   window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
 }
 
-form.addEventListener('submit', (event) => { event.preventDefault(); calculate(true); });
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  calculate(true);
+  window.requestAnimationFrame(() => {
+    resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    resultsPanel.focus({ preventScroll: true });
+  });
+});
 gradeSelect.addEventListener('change', () => {
   const current = parseMoney(currentBasic.value);
   const previous = window.lastCalculation;
