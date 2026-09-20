@@ -1,35 +1,12 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026. Version 1.10.
+ * S.R.O. No. 347-Law/2026. Version 1.11.
  *
- * The scale steps below are transcribed from the user-provided Gazette PDF.
- * Keep this data block separate and easy to update if an official correction
+ * Scale steps are kept in scale-data.js as the single source of truth.
+ * Update that file and run the regression tests if an official correction
  * or subsequent order changes any scale step.
  */
-
-const SCALES = {
-  1:  { old: [78000], new: [156000], rate: 40, fixed: true },
-  2:  { old: [66000, 68480, 71050, 73720, 76490], new: [132000, 135700, 139400, 143200, 147200, 151200, 155000], rate: 40 },
-  3:  { old: [56500, 58760, 61120, 63570, 66120, 68790, 71530, 74400], new: [113000, 117000, 121100, 125300, 129700, 134000, 139000, 143800, 148800], rate: 40 },
-  4:  { old: [50000, 52000, 54080, 56250, 58500, 60840, 63280, 65820, 68460, 71200], new: [100000, 103500, 107200, 110900, 114800, 118800, 123000, 127300, 131700, 136300, 142400], rate: 40 },
-  5:  { old: [43000, 44580, 46170, 47810, 49600, 51430, 53360, 55280, 57200, 59220, 61200, 63160, 65000, 66840, 68580, 69850], new: [86000, 89500, 93100, 96800, 100700, 104700, 108900, 113200, 117700, 122500, 127400, 132400, 139700], rate: 40 },
-  6:  { old: [35500, 37280, 39150, 41110, 43170, 45330, 47600, 49980, 52480, 55110, 57870, 60790, 63810, 67010], new: [71000, 74600, 78300, 82200, 86400, 90700, 95200, 100000, 104900, 110200, 115700, 121500, 127600, 134000], rate: 40 },
-  7:  { old: [29000, 30450, 31980, 33580, 35260, 37030, 38890, 40840, 42890, 45040, 47300, 49670, 52160, 54750, 57470, 60270, 63410], new: [58000, 60900, 64000, 67200, 70500, 74100, 77800, 81700, 85700, 90000, 94500, 99200, 104200, 109400, 114900, 120600, 126800], rate: 40 },
-  8:  { old: [23000, 24150, 25360, 26630, 27970, 29370, 30840, 32390, 34010, 35710, 37500, 39380, 41350, 43420, 45590, 47870, 50270, 52790, 55470], new: [46000, 48300, 50800, 53300, 56000, 58800, 61700, 64800, 68000, 71400, 75000, 78700, 82700, 86800, 91100, 95700, 100500, 105500, 110800], rate: 40 },
-  9:  { old: [22000, 23100, 24260, 25480, 26760, 28100, 29510, 30990, 32540, 34170, 35880, 37680, 39570, 41550, 43630, 45820, 48110, 50510, 53060], new: [44000, 46200, 48600, 51000, 53500, 56200, 59000, 62000, 65100, 68300, 71900, 75300, 79100, 83000, 87200, 91500, 96100, 100900, 105700], rate: 40 },
-  10: { old: [16000, 16800, 17640, 18530, 19460, 20440, 21470, 22550, 23680, 24870, 26110, 27390, 28710, 30080, 31510, 33000, 34560, 36190, 37800, 38640], new: [32000, 33600, 35300, 37100, 38900, 40900, 42900, 45100, 47300, 49700, 52200, 54800, 57500, 60400, 63400, 66600, 69900, 73400, 77300], rate: 50 },
-  11: { old: [12500, 13130, 13790, 14480, 15210, 15980, 16780, 17620, 18490, 19410, 20380, 21390, 22460, 23580, 24760, 26000, 27300, 28670, 30230], new: [25000, 26300, 27600, 29000, 30400, 32000, 33600, 35200, 37000, 38800, 40800, 42800, 44900, 47200, 49500, 52000, 54600, 57300, 60500], rate: 50 },
-  12: { old: [11300, 11870, 12470, 13100, 13760, 14450, 15180, 15940, 16740, 17580, 18460, 19380, 20350, 21370, 22440, 23560, 24740, 26000, 27300], new: [24300, 25600, 26800, 28200, 29600, 31100, 32600, 34200, 36000, 37900, 39600, 41600, 43900, 45900, 48200, 50600, 53100, 55900, 58700], rate: 50 },
-  13: { old: [11000, 11550, 12130, 12740, 13380, 14050, 14760, 15500, 16280, 17100, 17960, 18860, 19810, 20800, 21860, 22960, 24110, 25280, 26590], new: [24000, 25200, 26500, 27800, 29200, 30900, 32200, 33800, 35500, 37300, 39100, 41100, 43200, 45000, 47600, 49900, 52400, 55100, 58000], rate: 50 },
-  14: { old: [10200, 10710, 11250, 11810, 12400, 13020, 13670, 14350, 15070, 15820, 16610, 17440, 18310, 19230, 20200, 21210, 22280, 23400, 24680], new: [23500, 24700, 26000, 27300, 28600, 30000, 31500, 33100, 34800, 36500, 38300, 40200, 42900, 44400, 46600, 48900, 51000, 53900, 56800], rate: 50 },
-  15: { old: [9700, 10190, 10700, 11240, 11810, 12400, 13020, 13670, 14350, 15070, 15820, 16610, 17440, 18310, 19230, 20200, 21210, 22280, 23490], new: [22800, 24000, 25200, 26400, 27800, 29100, 30600, 32100, 33700, 35400, 37200, 39000, 41000, 43000, 45200, 47400, 49800, 52000, 55200], rate: 50 },
-  16: { old: [9300, 9770, 10260, 10780, 11320, 11890, 12490, 13120, 13780, 14470, 15200, 15960, 16760, 17600, 18480, 19410, 20390, 21410, 22490], new: [21900, 23000, 24200, 25400, 26700, 28000, 29400, 30900, 32400, 34000, 35700, 37500, 39400, 41300, 43200, 45600, 47900, 50200, 52900], rate: 50 },
-  17: { old: [9000, 9450, 9930, 10430, 10960, 11510, 12090, 12700, 13340, 14010, 14710, 15450, 16220, 17030, 17880, 18770, 19710, 20700, 21800], new: [21400, 22500, 23600, 24800, 26100, 27400, 28700, 30200, 31700, 33200, 34900, 36700, 38500, 40400, 42400, 44500, 46800, 49100, 51900], rate: 50 },
-  18: { old: [8800, 9240, 9710, 10200, 10710, 11250, 11820, 12410, 13030, 13680, 14360, 15080, 15830, 16620, 17450, 18320, 19240, 20210, 21310], new: [21000, 22100, 23200, 24400, 25600, 26900, 28200, 29600, 31100, 32600, 34000, 36000, 37900, 39600, 41600, 43700, 45900, 48200, 50900], rate: 50 },
-  19: { old: [8500, 8930, 9380, 9850, 10350, 10870, 11420, 12000, 12600, 13230, 13890, 14580, 15310, 16080, 16880, 17720, 18600, 19530, 20570], new: [20500, 21600, 22700, 23800, 25000, 26200, 27500, 28900, 30300, 31900, 33400, 35000, 36700, 38400, 40600, 42700, 44800, 47000, 49600], rate: 50 },
-  20: { old: [8250, 8670, 9110, 9570, 10050, 10560, 11090, 11650, 12240, 12860, 13500, 14180, 14900, 15650, 16440, 17270, 18140, 19050, 20010], new: [20000, 21000, 22100, 23200, 24400, 25600, 26900, 28200, 29600, 31100, 32600, 34000, 36000, 37900, 39600, 41600, 43700, 45900, 48400], rate: 50 },
-};
 
 const bnDigits = '০১২৩৪৫৬৭৮৯';
 const enDigits = '0123456789';
@@ -124,6 +101,12 @@ function scaleRange(steps) {
 
 function phaseRates(grade) {
   return grade <= 9 ? { phase1: 40, phase2: 70 } : { phase1: 50, phase2: 75 };
+}
+
+function arrearsDaysToGazetteDate() {
+  const start = Date.UTC(2026, 6, 1);
+  const end = Date.UTC(2026, 8, 17);
+  return Math.floor((end - start) / 86400000) + 1;
 }
 
 function gradeRateLabel(grade, scale) {
@@ -369,6 +352,9 @@ function calculate(showErrors = false) {
   const phase1Increment = isFixed ? null : phase1Pay - current;
   const phase2Increment = isFixed ? null : phase2Pay - current;
   const phase3Pay = applied;
+  const arrearsDays = arrearsDaysToGazetteDate();
+  const arrearsMonthlyIncrease = isFixed ? totalIncrease : phase1Increment;
+  const arrearsEstimate = Math.round(arrearsMonthlyIncrease * arrearsDays / 30);
   const percent = current ? (totalIncrease / current) * 100 : 0;
 
   showResultState(true);
@@ -383,19 +369,19 @@ function calculate(showErrors = false) {
   setText('phase1-title', isFixed ? '১ জুলাই ২০২৬ থেকে' : '১ জুলাই – ৩১ ডিসেম্বর ২০২৬');
   setText('phase1-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে মোট পার্থক্যের ' + toBn(rates.phase1) + '% যোগ হবে');
   setText('phase1-monthly', money(phase1Pay));
-  setText('phase1-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'প্রাপ্য মূল বেতন');
+  setText('phase1-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত প্রাপ্য মূল বেতন');
   setText('phase1-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase1Increment));
   setText('phase2-title', isFixed ? '১ জানুয়ারি ২০২৭ থেকে' : '১ জানুয়ারি – ৩০ জুন ২০২৭');
   setText('phase2-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে মোট পার্থক্যের ' + toBn(rates.phase2) + '% পর্যন্ত যোগ হবে');
   setText('phase2-monthly', money(phase2Pay));
-  setText('phase2-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'প্রাপ্য মূল বেতন');
+  setText('phase2-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত প্রাপ্য মূল বেতন');
   setText('phase2-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase2Increment));
   setText('phase3-title', isFixed ? 'স্থির নির্ধারিত বেতন' : '১ জুলাই ২০২৭ থেকে');
   setText('phase3-description', isFixed ? 'গেজেটের নির্ধারিত বেতন-পদ্ধতি; পর্যায়ভিত্তিক শতাংশ প্রযোজ্য নয়' : 'পূর্ণ পুনঃনির্ধারিত মূল বেতন; প্রযোজ্য বার্ষিক বেতনবৃদ্ধি আলাদাভাবে যোগ হবে');
   setText('phase3-monthly', money(phase3Pay));
   setText('phase3-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'পূর্ণ মূল বেতন');
   setText('phase3-increment', isFixed ? 'অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বার্ষিক বেতনবৃদ্ধি আলাদাভাবে প্রযোজ্য হতে পারে');
-  setText('arrears-note', 'গেজেট অনুযায়ী ১ জুলাই ২০২৬ থেকে আদেশ জারির তারিখ পর্যন্ত বেতন বকেয়া হিসাবে প্রাপ্য হতে পারে; এই ক্যালকুলেটর বকেয়ার পরিমাণ নির্ণয় করে না।');
+  setText('arrears-note', 'গেজেটের ১৭ সেপ্টেম্বর ২০২৬ তারিখ পর্যন্ত আনুমানিক basic-pay arrears: ' + money(arrearsEstimate) + ' (' + toBn(arrearsDays) + ' দিন, ৩০ দিন = ১ মাস ধরে)। এটি allowances, কর্তন বা অফিসিয়াল arrears statement নয়।');
   setText('old-min-label', isFixed ? 'পুরোনো স্কেলের ধাপ' : 'পুরোনো স্কেলের প্রারম্ভিক ধাপ');
   setText('difference-label', isFixed ? 'স্থির বেতন − বর্তমান মূল বেতন' : 'বর্তমান বেতন − প্রারম্ভিক ধাপ');
   setText('candidate-label', isFixed ? 'স্থির বেতন পদ' : 'নতুন প্রারম্ভিক ধাপ + পার্থক্য');
@@ -406,7 +392,7 @@ function calculate(showErrors = false) {
   setText('applied-step', isFixed ? money(applied) + ' · নির্ধারিত' : money(applied) + ' · ধাপ ' + toBn(stepIndex));
   setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : 'নতুন স্কেলের ধাপ ' + toBn(stepIndex));
 
-  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
+  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, arrearsDays, arrearsEstimate, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
   renderGrossSalary();
 }
 
@@ -465,6 +451,7 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     '১ জুলাই–৩১ ডিসেম্বর ২০২৬: ' + money(result.phase1Pay),
     '১ জানুয়ারি–৩০ জুন ২০২৭: ' + money(result.phase2Pay),
     '১ জুলাই ২০২৭ থেকে: ' + money(result.phase3Pay),
+    'আনুমানিক Basic-pay arrears (১ জুলাই–১৭ সেপ্টেম্বর ২০২৬): ' + money(result.arrearsEstimate) + ' · ৩০ দিন = ১ মাস ধরে',
     'Gross profile: ' + profile.sro,
     'আনুমানিক Gross Salary (পর্যায় ৩): ' + (grossAutomatic ? grossTotal : 'স্বয়ংক্রিয়ভাবে গণনা করা হয়নি'),
     grossAutomatic ? 'Gross assumptions: ' + grossAssumptionSummary(result.grade) : 'Gross note: সংশ্লিষ্ট pay order/স্থির পদের ভাতা আলাদা করে যাচাই করতে হবে।',

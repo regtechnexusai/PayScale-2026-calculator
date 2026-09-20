@@ -47,7 +47,7 @@ The listed-city option covers the named city corporations and the Savar/Cox’s 
 
 The displayed amount is a conditional review-support estimate, not a universal entitlement. House rent depends on grade, duty station and government accommodation; medical and education assistance depend on eligibility; tiffin and travel are grade- and condition-specific. For example, a Grade 3 employee in Dhaka has a 40% house-rent rate under the general schedule, not a blanket 40–50% rate.
 
-It excludes income tax, provident fund, pension, loan recovery, other deductions, arrears, festival allowance/bonus and any post/unit-specific special allowance not selected by the user. The result is a review-support estimate, not an official pay-fixation statement.
+It excludes income tax, provident fund, pension, loan recovery, other deductions, arrears, festival allowance/bonus and any post/unit-specific special allowance not selected by the user. The separate basic-pay arrears estimate in Step 02 is not part of Gross Salary. The result is a review-support estimate, not an official pay-fixation statement.
 
 ## Source
 

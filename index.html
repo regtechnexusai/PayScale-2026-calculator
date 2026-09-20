@@ -120,11 +120,12 @@
         <div class="provenance-main">
           <p class="eyebrow">SOURCE &amp; GOVERNANCE</p>
           <h2>কোন নথির ভিত্তিতে হিসাব হচ্ছে?</h2>
-            <p>Primary source: <strong>Bangladesh Gazette, Extra, 17 September 2026</strong> · Finance Division · Implementation Division-1 · <strong>S.R.O. No. 347-Law/2026</strong>. নথির তারিখ ১৭ সেপ্টেম্বর ২০২৬; সংবাদে প্রচারের তারিখ ভিন্ন হতে পারে। পৃথক প্রতিষ্ঠানভিত্তিক pay order-গুলোর নম্বর Scope অংশে দেওয়া আছে।</p>
+            <p>Primary source: <strong>Bangladesh Gazette, Extra, 17 September 2026</strong> · Finance Division · Implementation Division-1 · <strong>S.R.O. No. 347-Law/2026</strong>. নথির তারিখ ১৭ সেপ্টেম্বর ২০২৬; সংবাদে প্রচারের তারিখ ভিন্ন হতে পারে। পৃথক প্রতিষ্ঠানভিত্তিক pay order-গুলোর নম্বর Scope অংশে দেওয়া আছে। Gazette অনুযায়ী নির্ধারিত online pay-fixation system-এ তথ্য দিয়ে authorised office-এর final figure নিতে হবে।</p>
             <div class="provenance-links">
               <a href="pay-scale-2026-gazette.pdf" target="_blank" rel="noopener">Gazette PDF দেখুন</a>
               <a href="https://www.dpp.gov.bd/" target="_blank" rel="noopener">সরকারি গেজেট আর্কাইভ</a>
               <a href="https://mof.gov.bd/" target="_blank" rel="noopener">অর্থ মন্ত্রণালয়</a>
+              <a href="https://www.payfixation.gov.bd/" target="_blank" rel="noopener">Official Pay Fixation portal</a>
               <a href="https://bgpress.dpp.gov.bd/pages/notices/%E0%A6%8F%E0%A6%B8-%E0%A6%86%E0%A6%B0-%E0%A6%93-%E0%A6%A8%E0%A6%82-%E0%A7%A9%E0%A7%AA%E0%A7%AF-%E0%A6%86%E0%A6%87%E0%A6%A8%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%AC-%E0%A6%9A%E0%A6%BE%E0%A6%95%E0%A6%B0%E0%A6%BF-%E0%A6%AC%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%82%E0%A6%95-%E0%A6%AC%E0%A6%BF%E0%A6%AE%E0%A6%BE-%E0%A6%93-%E0%A6%86%E0%A6%B0%E0%A7%8D%E0%A6%A5%E0%A6%BF%E0%A6%95-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A4%E0%A6%BF%E0%A6%B7%E0%A7%8D%E0%A6%A0%E0%A6%BE%E0%A6%A8-%E0%A6%AC%E0%A7%87%E0%A6%A4%E0%A6%A8-%E0%A6%93-%E0%A6%AD%E0%A6%BE%E0%A6%A4%E0%A6%BE%E0%A6%A6%E0%A6%BF-%E0%A6%86%E0%A6%A6%E0%A7%87%E0%A6%B6-%E0%A7%A8%E0%A7%A০%E0%A7%A২%E0%A7%A৬-iu5n19-6aae5425d9cbf60b24ab5c16" target="_blank" rel="noopener">S.R.O. 349 দেখুন</a>
               <span>শেষ যাচাই: ২০ সেপ্টেম্বর ২০২৬</span>
               <span>Version 1.10</span>
@@ -133,7 +134,7 @@
         <div class="update-note">
           <strong>সংশোধনী নজরে রাখুন</strong>
           <p>পরবর্তী corrigendum, clarification বা implementation order প্রকাশিত হলে অফিসিয়াল নথিই অগ্রাধিকার পাবে এবং এই tool আপডেট করতে হবে।</p>
-          <p class="change-log"><strong>v1.10:</strong> আলাদা pay order ও fixed-pay পদে অনুমানভিত্তিক gross salary বন্ধ রাখা হয়েছে; copy-result-এ ব্যবহৃত ভাতার assumptions ও সঠিক S.R.O. নম্বর যোগ হয়েছে।</p>
+          <p class="change-log"><strong>v1.11:</strong> Gazette-ভিত্তিক basic-pay arrears estimate, official online pay-fixation link, single scale-data file এবং regression test suite যোগ হয়েছে।</p>
         </div>
       </section>
 
@@ -303,7 +304,7 @@
                 <small id="phase3-increment">বার্ষিক increment প্রযোজ্য হতে পারে</small>
               </div>
             </div>
-            <p class="arrears-note" id="arrears-note">গেজেট অনুযায়ী ১ জুলাই ২০২৬ থেকে আদেশ জারির তারিখ পর্যন্ত বেতন বকেয়া হিসাবে প্রাপ্য হতে পারে; এই ক্যালকুলেটর বকেয়ার পরিমাণ নির্ণয় করে না।</p>
+            <p class="arrears-note" id="arrears-note">গেজেটের ১৭ সেপ্টেম্বর ২০২৬ তারিখ পর্যন্ত basic-pay arrears এখানে review-support estimate হিসেবে দেখানো হবে।</p>
           </div>
 
           <div class="result-disclaimer result-block" hidden>
@@ -529,13 +530,14 @@
         </div>
         <div class="footer-meta">
           <span>Independent educational calculator · Not an official Government portal</span>
-          <span>Version 1.10 · Last verified 20 September 2026</span>
+          <span>Version 1.11 · Last verified 20 September 2026</span>
           <a href="mailto:regtechnexusai@gmail.com">regtechnexusai@gmail.com</a>
         </div>
       </footer>
     </main>
 
     <div class="toast" id="toast" role="status" aria-live="polite">ফলাফল কপি হয়েছে</div>
-    <script src="app.js?v=11"></script>
+    <script src="scale-data.js?v=2"></script>
+    <script src="app.js?v=13"></script>
   </body>
 </html>
