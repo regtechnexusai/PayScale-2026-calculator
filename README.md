@@ -22,7 +22,7 @@ The general government calculation follows the Bangladesh Gazette, Extra, dated 
 5. From 1 July to 31 December 2026, add 40% for Grades 1–9 and 50% for Grades 10–20.
 6. From 1 January to 30 June 2027, add 70% for Grades 1–9 and 75% for Grades 10–20.
 7. From 1 July 2027, the full refixed basic pay applies, subject to the Gazette and applicable annual increment rules.
-8. The app shows a review-support basic-pay arrears estimate from 1 July to the Gazette date of 17 September 2026, using 30 days as one month. It excludes allowances, deductions, tax and the authorised arrears statement.
+8. The app shows a review-support basic-pay arrears estimate from 1 July to the order date of 17 September 2026, using 30 days as one month. The later 19 September BG Press notice-page date is not used as the arrears endpoint. It excludes allowances, deductions, tax and the authorised arrears statement.
 9. Fixed-pay cases are shown separately; interim percentages do not apply to those cases.
 
 ## Scope and separate 2026 pay orders
@@ -67,4 +67,4 @@ Upload `index.html`, `styles.css`, `scale-data.js`, `app.js`, `basic-pay.test.js
 
 The primary implementation source is the user-provided Bangladesh Gazette PDF for S.R.O. No. 347-Law/2026. Scale data is kept in the `SCALES` object in `scale-data.js`; `basic-pay.test.js` checks the opening, maximum, between-step, phased and fixed-pay cases. If a corrigendum or implementation order is issued, the official document takes precedence.
 
-Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.13**, last verified 20 September 2026. The Gazette document is dated 17 September 2026; media reports may refer to 19 September as the public-circulation date. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
+Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.15**, last verified 20 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate ends at the order date, not the later notice-page date. The non-responsive S.R.O. 349 provenance link was removed; its separate scope/profile note remains for clarity. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.

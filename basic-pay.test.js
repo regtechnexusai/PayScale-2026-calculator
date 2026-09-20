@@ -3,6 +3,8 @@
 const assert = require('node:assert/strict');
 const SCALES = require('./scale-data.js');
 
+assert.deepEqual(SCALES[5].old, [43000, 44940, 46970, 49090, 51300, 53610, 56030, 58560, 61200, 63960, 66840, 69850]);
+
 function phaseRates(grade) {
   return grade <= 9 ? { phase1: 40, phase2: 70 } : { phase1: 50, phase2: 75 };
 }
