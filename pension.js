@@ -1,5 +1,5 @@
 /*
- * Standalone pension and retirement-benefits review page. Version 1.23.
+ * Standalone pension and retirement-benefits review page. Version 1.24.
  * The salary calculator links here but does not combine salary and pension
  * results. Retirement rules live in retirement-data.js as the single source.
  */
@@ -27,6 +27,7 @@ const retirementNetPension = document.querySelector('#retirement-net-pension');
 const validationBox = document.querySelector('#retirement-validation');
 const copyButton = document.querySelector('#copy-pension-result');
 const toast = document.querySelector('#pension-toast');
+const liveSummary = document.querySelector('#retirement-live-summary');
 
 function setText(id, value) {
   const element = document.getElementById(id);
@@ -53,6 +54,7 @@ function clearOutput() {
     validationBox.textContent = '';
     validationBox.hidden = true;
   }
+  if (liveSummary) liveSummary.textContent = '';
 }
 
 function renderReferenceTables() {
@@ -115,6 +117,9 @@ function renderRetirementBenefits() {
     setText('retirement-net-rate', '—');
     setText('retirement-net-result', '—');
     setText('retirement-net-note', 'বর্তমান net pension লিখলে সংশ্লিষ্ট band অনুযায়ী একটি সীমাবদ্ধ review estimate দেখা যাবে।');
+    if (liveSummary) {
+      liveSummary.textContent = 'পেনশন হিসাব সম্পন্ন। গ্রস pension ' + money(grossPension) + ', আনুতোষিক ' + money(gratuity) + ', এবং ছুটি নগদায়ন ' + money(leaveEncashment) + '।';
+    }
     return;
   }
   const adjustedNet = Math.min(band.maximum, Math.max(band.minimum, Math.round(currentNet * (1 + band.rate / 100))));
@@ -122,6 +127,9 @@ function renderRetirementBenefits() {
   setText('retirement-net-rate', toBn(band.rate) + '%');
   setText('retirement-net-result', money(adjustedNet));
   setText('retirement-net-note', 'সীমা: ' + money(band.minimum) + ' – ' + money(band.maximum) + '; এটি net pension-এর review estimate, final pension order নয়।');
+  if (liveSummary) {
+    liveSummary.textContent = 'পেনশন হিসাব সম্পন্ন। গ্রস pension ' + money(grossPension) + ', আনুতোষিক ' + money(gratuity) + ', এবং ছুটি নগদায়ন ' + money(leaveEncashment) + '।';
+  }
 }
 
 function prefillFromSalaryPage() {
@@ -183,3 +191,6 @@ retirementBasic?.addEventListener('blur', () => {
   if (Number.isFinite(parsed)) retirementBasic.value = numberBn(parsed);
 });
 copyButton?.addEventListener('click', copyPensionResult);
+document.querySelector('#print-pension-result')?.addEventListener('click', () => {
+  if (document.querySelector('#retirement-total-lump-sum')?.textContent !== '—') window.print();
+});

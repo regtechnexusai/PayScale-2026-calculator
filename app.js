@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026. Version 1.23.
+ * S.R.O. No. 347-Law/2026. Version 1.24.
  *
  * Scale steps are kept in scale-data.js as the single source of truth.
  * Update that file and run the regression tests if an official correction
@@ -36,6 +36,7 @@ const resultsPanel = document.querySelector('#results-panel');
 const tableBody = document.querySelector('#scale-table-body');
 const validation = document.querySelector('#validation-message');
 const toast = document.querySelector('#toast');
+const resultLiveSummary = document.querySelector('#result-live-summary');
 const emptyResult = document.querySelector('#empty-result');
 const resultBlocks = [...document.querySelectorAll('.result-block')];
 const grossSection = document.querySelector('#gross-salary-module');
@@ -155,6 +156,7 @@ function showResultState(hasResult) {
   grossSection.hidden = !hasResult;
   if (openRetirementBenefits) openRetirementBenefits.hidden = !hasResult;
   if (!hasResult) clearGrossOutput();
+  if (!hasResult && resultLiveSummary) resultLiveSummary.textContent = '';
 }
 
 function houseRentBand(basic) {
@@ -431,6 +433,10 @@ function calculate(showErrors = false) {
   setText('applied-step', isFixed ? money(annualIncrementBasic) + ' · নির্ধারিত' : money(annualIncrementBasic) + ' · ধাপ ' + toBn(incrementedStepIndex));
   setText('full-step', isFixed ? money(fullBasic) + ' · নির্ধারিত' : money(fullBasic) + ' · ধাপ ' + toBn(fullStepIndex));
   setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : '১ জুলাই ২০২৭ · annual incrementসহ পূর্ণ ধাপ ' + toBn(fullStepIndex));
+  if (resultLiveSummary) {
+    resultLiveSummary.textContent = (isFixed ? 'স্থির নির্ধারিত বেতন ' : 'গ্রেড ' + toBn(grade) + ' এর হিসাব সম্পন্ন। ') +
+      '১ জুলাই ২০২৬ থেকে ' + money(phase1Pay) + ', ১ জানুয়ারি ২০২৭ থেকে ' + money(phase2Pay) + ', এবং ১ জুলাই ২০২৭ থেকে ' + money(phase3Pay) + ' প্রাপ্য মূল বেতন।';
+  }
 
   window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, payFixationBasic: applied, annualIncrementBasic, fullBasic, annualIncrement: annualIncrementBasic - applied, secondAnnualIncrement: fullBasic - annualIncrementBasic, transitionIncrease, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, arrearsDays, arrearsEstimate, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
   if (openRetirementBenefits) {
@@ -539,6 +545,10 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     validation.textContent = 'কপি করা সম্ভব হয়নি; ফলাফলটি ম্যানুয়ালি কপি করুন।';
     validation.hidden = false;
   }
+});
+
+document.querySelector('#print-result')?.addEventListener('click', () => {
+  if (window.lastCalculation) window.print();
 });
 
 renderScaleTable(false);
