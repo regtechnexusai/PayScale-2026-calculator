@@ -49,6 +49,16 @@ h3 { margin-bottom: 4px; font-size: 17px; }
 .effective-badge { align-self: start; padding: 13px 18px 12px; border: 1px solid var(--line-strong); border-radius: 14px; background: rgba(20, 42, 83, .62); text-align: right; box-shadow: var(--shadow); }
 .effective-badge span { display: block; color: var(--muted); font-size: 12px; }
 .effective-badge strong { color: var(--green); font-size: 15px; }
+.quick-choice-section { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; margin-bottom: 22px; }
+.choice-card { position: relative; display: flex; min-width: 0; min-height: 126px; flex-direction: column; justify-content: center; padding: 20px 48px 18px 19px; border: 1px solid rgba(162, 224, 255, .42); border-radius: 17px; color: #eafaff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 5px 0 rgba(43, 100, 168, .6), 0 14px 26px rgba(36, 91, 174, .17); text-decoration: none; transition: transform .16s, box-shadow .16s, border-color .16s; }
+.choice-card:hover, .choice-card:focus-visible { transform: translateY(-2px); border-color: rgba(200, 247, 255, .9); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), 0 7px 0 rgba(43, 100, 168, .72), 0 18px 32px rgba(36, 91, 174, .28); }
+.choice-card:active { transform: translateY(2px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 2px 0 rgba(43, 100, 168, .72), 0 8px 16px rgba(36, 91, 174, .16); }
+.choice-card-salary { background: linear-gradient(135deg, rgba(67, 177, 235, .28), rgba(32, 82, 157, .72)); }
+.choice-card-pension { background: linear-gradient(135deg, rgba(130, 154, 255, .3), rgba(58, 56, 139, .72)); }
+.choice-kicker { display: block; margin-bottom: 7px; color: #9feaff; font-family: 'Manrope', sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .14em; }
+.choice-card strong { display: block; color: #fff; font-size: 18px; line-height: 1.18; }
+.choice-card p { max-width: 470px; margin: 6px 0 0; color: #c8e8f5; font-size: 11px; line-height: 1.45; }
+.choice-arrow { position: absolute; top: 50%; right: 18px; color: #d7fbff; font-family: 'Manrope', sans-serif; font-size: 25px; line-height: 1; transform: translateY(-50%); }
 
 .glass-card { border: 1px solid var(--line); background: linear-gradient(135deg, rgba(20, 42, 83, .74), rgba(9, 25, 54, .8)); box-shadow: var(--shadow); backdrop-filter: blur(18px); }
 .notice { display: flex; gap: 13px; align-items: flex-start; padding: 17px 20px; margin-bottom: 22px; border-radius: 17px; }
@@ -326,6 +336,12 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
   h1 { font-size: 31px; }
   .hero-subtitle { font-size: 14px; }
   .hero-proof { gap: 9px 13px; }
+  .quick-choice-section { gap: 10px; }
+  .choice-card { min-height: 116px; padding: 14px 30px 13px 12px; border-radius: 13px; }
+  .choice-kicker { margin-bottom: 5px; font-size: 7px; letter-spacing: .08em; }
+  .choice-card strong { font-size: 12px; line-height: 1.25; }
+  .choice-card p { margin-top: 4px; font-size: 9px; line-height: 1.35; }
+  .choice-arrow { right: 10px; font-size: 19px; }
   .unofficial-banner { align-items: flex-start; flex-direction: column; }
   .scope-gate { grid-template-columns: 1fr; gap: 9px; }
   .scope-gate-message { grid-column: auto; }

@@ -1,6 +1,6 @@
-# Gross Salary module — rule map (v1.21)
+# Gross Salary module — rule map (v1.23)
 
-This file documents the allowance rules used by the optional Step 03 module. The existing Step 01/02 basic-pay calculation is unchanged.
+This file documents the allowance rules used by the optional Step 03 module. Step 01/02 keeps the 1 July 2026 transition basic and the 1 July 2027 full basic distinct, including the annual increment required at each applicable date.
 
 ## Profiles and transcription status
 
@@ -45,7 +45,7 @@ The listed-city option covers the named city corporations and the Savar/Cox’s 
 
 `Gross Salary = phase basic pay + selected allowances`.
 
-The displayed amount is a conditional review-support estimate, not a universal entitlement. House rent depends on each phase basic pay, duty station and government accommodation; medical and education assistance depend on eligibility; tiffin and travel are grade- and condition-specific. The house-rent rate is selected from the 2015 basic-pay bands above, and the statutory minimum is applied where relevant—not a blanket 40–50% rate.
+The displayed amount is a conditional review-support estimate, not a universal entitlement. House rent depends on each displayed phase basic pay, duty station and government accommodation; medical and education assistance depend on eligibility; tiffin and travel are grade- and condition-specific. The house-rent rate is selected from the 2015 basic-pay bands above, and the statutory minimum is applied where relevant—not a blanket 40–50% rate. Allowance timing and the final payroll base must still be reconciled with the authorised accounts office before this preview is used for payroll.
 
 It excludes income tax, provident fund, pension, loan recovery, other deductions, arrears, festival allowance/bonus and any post/unit-specific special allowance not selected by the user. The separate basic-pay arrears estimate in Step 02 is not part of Gross Salary. The result is a review-support estimate, not an official pay-fixation statement.
 

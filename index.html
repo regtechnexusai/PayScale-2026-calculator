@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b1630" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
-    <meta name="description" content="বাংলাদেশের জাতীয় বেতনস্কেল ২০২৬-এর basic pay এবং conditional Gross Salary review-support calculator—পেনশন হিসাবের জন্য আলাদা page।" />
+    <meta name="description" content="বাংলাদেশের জাতীয় বেতনস্কেল ২০২৬-এর basic pay calculator এবং আলাদা conditional allowance preview—পেনশন হিসাব পৃথক page-এ।" />
     <meta name="robots" content="index,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>PayScale 2026 | RegTech Nexus AI</title>
@@ -13,7 +13,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="bn_BD" />
     <meta property="og:title" content="PayScale 2026 Calculator | RegTech Nexus AI" />
-    <meta property="og:description" content="জাতীয় বেতনস্কেল ২০২৬-এর basic pay ও conditional Gross Salary estimate দেখুন; পেনশন হিসাব আলাদা page-এ।" />
+    <meta property="og:description" content="জাতীয় বেতনস্কেল ২০২৬-এর basic pay, তিন পর্যায়ের increment-inclusive ফল ও আলাদা conditional allowance preview দেখুন; পেনশন পৃথক page-এ।" />
     <meta property="og:url" content="https://regtechnexusai.github.io/PayScale-2026-calculator/" />
     <meta property="og:site_name" content="RegTech Nexus AI" />
     <meta property="og:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
@@ -24,7 +24,7 @@
     <meta name="twitter:title" content="PayScale 2026 Calculator | RegTech Nexus AI" />
     <meta name="twitter:description" content="Gazette-based Bangladesh basic-pay transition and conditional gross-salary review calculator." />
     <meta name="twitter:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
-    <link rel="stylesheet" href="styles.css?v=17" />
+    <link rel="stylesheet" href="styles.css?v=18" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -33,7 +33,7 @@
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Web",
         "url": "https://regtechnexusai.github.io/PayScale-2026-calculator/",
-        "description": "বাংলাদেশের জাতীয় বেতনস্কেল ২০২৬-এর basic pay ও conditional Gross Salary বোঝার গেজেট-ভিত্তিক সহায়ক ক্যালকুলেটর; পেনশন হিসাবের জন্য পৃথক page রয়েছে।",
+        "description": "বাংলাদেশের জাতীয় বেতনস্কেল ২০২৬-এর basic pay ও তিন পর্যায়ের increment-inclusive ফল বোঝার গেজেট-ভিত্তিক সহায়ক ক্যালকুলেটর; conditional allowance preview এবং পৃথক pension page রয়েছে।",
         "author": {
           "@type": "Organization",
           "name": "RegTech Nexus AI"
@@ -67,6 +67,21 @@
         </div>
       </header>
 
+      <section class="quick-choice-section" aria-label="হিসাবের ধরন নির্বাচন করুন">
+        <a class="choice-card choice-card-salary" href="#salary-calculator">
+          <span class="choice-kicker">CURRENT EMPLOYEE</span>
+          <strong>আপনার মূল বেতন কতটা বাড়বে?</strong>
+          <p>বর্তমানে বেতনপ্রাপ্ত কর্মচারীদের জন্য PayScale 2026 হিসাব শুরু করুন।</p>
+          <span class="choice-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="choice-card choice-card-pension" href="pension.html">
+          <span class="choice-kicker">PENSION / RETIREMENT</span>
+          <strong>পেনশন ও অবসর সুবিধার হিসাব</strong>
+          <p>বর্তমান বেতন না দিয়েই সরাসরি পৃথক অবসর সুবিধার হিসাব দেখুন।</p>
+          <span class="choice-arrow" aria-hidden="true">→</span>
+        </a>
+      </section>
+
       <noscript>
         <section class="noscript-note glass-card" role="status">
           <strong>JavaScript চালু করুন</strong>
@@ -94,7 +109,7 @@
           <article>
             <span>03</span>
             <strong>গেজেটের নিয়ম অনুসরণ</strong>
-            <p>পুরোনো ও নতুন স্কেলের প্রারম্ভিক ধাপের পার্থক্য, পরবর্তী উচ্চতর ধাপ এবং Article 9(2)-এর ১টি annual increment অনুসরণ করে।</p>
+            <p>পুরোনো ও নতুন স্কেলের প্রারম্ভিক ধাপের পার্থক্য, পরবর্তী উচ্চতর ধাপ, ১ জুলাই ২০২৬-এর Article 9(2) increment এবং ১ জুলাই ২০২৭-এর প্রযোজ্য annual increment অনুসরণ করে।</p>
           </article>
           <article>
             <span>04</span>
@@ -113,7 +128,7 @@
         <div class="notice-icon" aria-hidden="true">i</div>
         <div>
           <strong>বেতন ও পেনশন—দুটি আলাদা হিসাব</strong>
-          <p>এই পেজে প্রথমে ৩০ জুন ২০২৬-এর মূল বেতন ধরে Article 5 ও Article 9(2) অনুযায়ী PayScale 2026 হিসাব হবে। ফলাফলের নিচের আলাদা link দিয়ে সেই ফলের basic pay prefill করা pension page খুলবে।</p>
+          <p>এই পেজে প্রথমে ৩০ জুন ২০২৬-এর মূল বেতন ধরে Article 5 ও Article 9(2) অনুযায়ী PayScale 2026 হিসাব হবে। ফলাফলের নিচের আলাদা link দিয়ে ১ জুলাই ২০২৭-এর full basic prefill করা pension page খুলবে।</p>
         </div>
       </section>
 
@@ -129,13 +144,13 @@
               <a href="https://www.payfixation.gov.bd/" target="_blank" rel="noopener">Official Pay Fixation portal</a>
               <a href="https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf" target="_blank" rel="noopener">Retirement Benefits Gazette PDF</a>
               <span>শেষ যাচাই: ২০ সেপ্টেম্বর ২০২৬</span>
-              <span>Version 1.21</span>
+              <span>Version 1.23</span>
             </div>
         </div>
         <div class="update-note">
           <strong>সংশোধনী নজরে রাখুন</strong>
           <p>পরবর্তী corrigendum, clarification বা implementation order প্রকাশিত হলে অফিসিয়াল নথিই অগ্রাধিকার পাবে এবং এই tool আপডেট করতে হবে।</p>
-          <p class="change-log"><strong>v1.21:</strong> পেনশন ও অবসর সুবিধার হিসাব আলাদা <code>pension.html</code> page-এ নেওয়া হয়েছে; মূল বেতন ফল থেকে basic pay সেখানে prefill হবে।</p>
+          <p class="change-log"><strong>v1.23:</strong> Article 9(2)-এর ১ জুলাই ২০২৬ increment এবং ১ জুলাই ২০২৭-এর পরবর্তী annual increment আলাদা করে phase calculation-এ যোগ করা হয়েছে; Grade 1–20 regression audit যুক্ত হয়েছে।</p>
         </div>
       </section>
 
@@ -147,16 +162,16 @@
           <p><strong>পর্যায় ২:</strong> ১ জানুয়ারি–৩০ জুন ২০২৭ সময়ে গ্রেড ১–৯-এর জন্য ৭০% এবং গ্রেড ১০–২০-এর জন্য ৭৫% cumulative পার্থক্য যোগ করা হয়। পূর্ণ নতুন basic ১ জুলাই ২০২৭ থেকে।</p>
           <p><strong>বকেয়া:</strong> আদেশের জারির তারিখ পর্যন্ত ১ জুলাই ২০২৬ থেকে basic-pay arrears প্রযোজ্য। এই নথির তারিখ ১৭ সেপ্টেম্বর ২০২৬; BG Press notice page-এ ১৯ সেপ্টেম্বরের প্রকাশ-তারিখটি arrears-এর শেষ তারিখ হিসেবে ধরা হয়নি।</p>
           <p><strong>নির্ধারিত বেতন:</strong> গ্রেড ১-এর ৳ ১,৫৬,০০০ এবং গেজেটে উল্লেখিত সচিব পর্যায়ের নির্ধারিত পদগুলোতে interim শতাংশ প্রযোজ্য নয়।</p>
-          <p><strong>পদ্ধতি:</strong> Article 5 অনুযায়ী বর্তমান বেতন ও পুরোনো প্রারম্ভিক ধাপের পার্থক্য নতুন স্কেলের প্রারম্ভিক ধাপে যোগ করা হয়; ফল ধাপে না মিললে একবার পরবর্তী উচ্চতর ধাপ নেওয়া হয়। এরপর Article 9(2) অনুযায়ী ১ জুলাই ২০২৬-এর ১টি annual increment যোগ হয়—এটি arbitrary “Step 5/Step 6” নয়। পর্যায় ১/২-এর হার এই increment-সহ মোট পার্থক্যের উপর প্রয়োগ করা হয়।</p>
+          <p><strong>পদ্ধতি:</strong> Article 5 অনুযায়ী বর্তমান বেতন ও পুরোনো প্রারম্ভিক ধাপের পার্থক্য নতুন স্কেলের প্রারম্ভিক ধাপে যোগ করা হয়; ফল ধাপে না মিললে একবার পরবর্তী উচ্চতর ধাপ নেওয়া হয়। এরপর ১ জুলাই ২০২৬-এ Article 9(2)-এর ১টি annual increment এবং ১ জুলাই ২০২৭-এর full-pay stage-এ পরবর্তী annual increment ধরা হয়—এগুলো arbitrary “Step 5/Step 6” নয়। পর্যায় ১/২-এর হার ২০২৬-এর increment-inclusive transition basic-এর পার্থক্যের উপর প্রয়োগ করা হয়।</p>
           <p><strong>পৃথক pay order:</strong> Public Bodies ও রাষ্ট্রায়ত্ত প্রতিষ্ঠান—S.R.O. No. 348-Law/2026; ব্যাংক, বিমা ও আর্থিক প্রতিষ্ঠান—S.R.O. No. 349-Law/2026; বাংলাদেশ পুলিশ—S.R.O. No. 350-Law/2026; BGB—S.R.O. No. 351-Law/2026।</p>
-          <p><strong>Gross Salary preview:</strong> এটি কেবল S.R.O. 347-এর নির্বাচিত ও শর্তসাপেক্ষ ভাতা ধরে করা একটি review-support estimate; Step 01/02-এর basic-pay ফল থেকে আলাদা। Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ সালের বাড়িভাড়া schedule ব্যবহার করা হয়; ১ জানুয়ারি ২০২৮-এর নতুন হার আগাম প্রয়োগ করা হয় না। কর্তন, আয়কর, bonus, arrears এবং আলাদা pay order-এর ভাতা এতে স্বয়ংক্রিয়ভাবে ধরা হয় না।</p>
+          <p><strong>Gross Salary preview:</strong> এটি কেবল S.R.O. 347-এর নির্বাচিত ও শর্তসাপেক্ষ ভাতা ধরে করা একটি conditional review-support estimate; Step 01/02-এর basic-pay ফল থেকে আলাদা। Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ সালের বাড়িভাড়া schedule ব্যবহার করা হয়; ১ জানুয়ারি ২০২৮-এর নতুন হার আগাম প্রয়োগ করা হয় না। allowance timing ও eligibility-এর চূড়ান্ত প্রয়োগ authorised accounts office-এর। কর্তন, আয়কর, bonus, arrears এবং আলাদা pay order-এর ভাতা এতে স্বয়ংক্রিয়ভাবে ধরা হয় না।</p>
           <p><strong>অবসরকালীন সুবিধা:</strong> পেনশন/অবসর সুবিধার হিসাব এই salary page-এ দেখানো হয় না; ফলাফলের নিচের link দিয়ে পৃথক <code>pension.html</code> page খুলে ১৭ সেপ্টেম্বর ২০২৬-এর প্রজ্ঞাপনের table অনুযায়ী review estimate দেখুন। এটি PPO বা pension sanction নয়।</p>
           <p><strong>সতর্কতা:</strong> এটি কেবল মূল বেতনের প্রাথমিক হিসাব; গেজেট, সংশোধনী ও অফিসিয়াল pay fixation অগ্রাধিকার পাবে। ১ জানুয়ারি ২০২৭ থেকে পূর্ণ basic নয়—এই পর্যায়ে গ্রেডভেদে ৭০% বা ৭৫% cumulative increase দেখানো হয়।</p>
         </div>
       </details>
 
       <section class="workspace-grid">
-        <section class="calculator glass-card" aria-labelledby="calculator-title">
+        <section class="calculator glass-card" id="salary-calculator" aria-labelledby="calculator-title">
           <div class="section-heading">
             <div>
               <p class="eyebrow">STEP 01 · INPUT</p>
@@ -235,7 +250,7 @@
             <div>
               <p class="eyebrow">STEP 02 · BASIC PAY OUTPUT</p>
             <h2 id="results-title">আপনার মূল বেতনের ফলাফল</h2>
-            <p class="output-note">শুধু মূল বেতন; ভাতা, কর্তন ও অন্যান্য সুবিধা এতে অন্তর্ভুক্ত নয়।</p>
+            <p class="output-note">এখানে মূল বেতন ও তিন পর্যায়ের increment-inclusive ফল দেখানো হয়; ভাতা, কর্তন ও অন্যান্য সুবিধা আলাদা conditional preview-তে দেখা যায়।</p>
           </div>
             <span class="grade-chip" id="grade-chip">ইনপুট অপেক্ষমাণ</span>
           </div>
@@ -278,7 +293,7 @@
               <div>
               <p class="eyebrow">BASIC PAY TIMELINE</p>
                 <h3>পর্যায়ভিত্তিক প্রাপ্যতা</h3>
-            <p class="timeline-note" id="timeline-note">Article 5-এর pay fixation ও Article 9(2)-এর annual incrementসহ মোট পার্থক্যের নির্ধারিত অংশ যোগ হবে।</p>
+            <p class="timeline-note" id="timeline-note">Article 5-এর pay fixation, ১ জুলাই ২০২৬-এর Article 9(2) increment এবং ১ জুলাই ২০২৭-এর প্রযোজ্য annual increment অনুসরণ করে ফল দেখানো হবে।</p>
               </div>
               <span class="timeline-tag">মূল বেতন</span>
             </div>
@@ -312,7 +327,7 @@
               <div class="timeline-marker">৩</div>
               <div class="timeline-content">
                 <strong id="phase3-title">১ জুলাই ২০২৭ থেকে</strong>
-                <span id="phase3-description">পূর্ণ পুনঃনির্ধারিত মূল বেতন; প্রযোজ্য বার্ষিক increment আলাদাভাবে যোগ হবে</span>
+                <span id="phase3-description">১ জুলাই ২০২৬ ও ১ জুলাই ২০২৭-এর প্রযোজ্য annual incrementসহ পূর্ণ মূল বেতন</span>
               </div>
               <div class="timeline-amount emphasis">
                 <span class="timeline-amount-label" id="phase3-amount-label">পূর্ণ মূল বেতন</span>
@@ -334,7 +349,8 @@
             <div class="math-line"><span id="difference-label">বর্তমান বেতন − প্রারম্ভিক ধাপ</span><strong id="difference">—</strong></div>
             <div class="math-line"><span id="candidate-label">নতুন প্রারম্ভিক ধাপ + পার্থক্য</span><strong id="candidate">—</strong></div>
             <div class="math-line"><span id="pay-fixation-label">Article 5-এর pay-fixation ধাপ</span><strong id="pay-fixation-step">—</strong></div>
-            <div class="math-line final"><span id="applied-step-label">Article 9 incrementসহ প্রযোজ্য নতুন মূল বেতন</span><strong id="applied-step">—</strong></div>
+            <div class="math-line"><span id="applied-step-label">১ জুলাই ২০২৬ · Article 9(2) incrementসহ transition basic</span><strong id="applied-step">—</strong></div>
+            <div class="math-line final"><span id="full-step-label">১ জুলাই ২০২৭ · annual incrementসহ পূর্ণ basic</span><strong id="full-step">—</strong></div>
           </div>
 
           <div class="retirement-action result-block" hidden>
@@ -352,7 +368,7 @@
           <div>
             <p class="eyebrow">STEP 03 · CONDITIONAL GROSS PREVIEW</p>
             <h2 id="gross-title">শর্তসাপেক্ষ Gross Salary preview</h2>
-            <p class="output-note">এটি S.R.O. 347-এর নির্বাচিত প্রযোজ্য ভাতা ধরে করা review-support estimate; Step 01/02-এর basic-pay result নয়। ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ সালের বাড়িভাড়া schedule ধরা হয়েছে। আয়কর, কর্তন, বকেয়া, উৎসব ভাতা ও bonus এতে নেই।</p>
+            <p class="output-note">এটি S.R.O. 347-এর নির্বাচিত প্রযোজ্য ভাতা ধরে করা conditional review-support estimate; Step 01/02-এর basic-pay result নয়। ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ সালের বাড়িভাড়া schedule ধরা হয়েছে, তবে allowance timing ও eligibility-এর চূড়ান্ত প্রয়োগ authorised accounts office নির্ধারণ করবে। আয়কর, কর্তন, বকেয়া, উৎসব ভাতা ও bonus এতে নেই।</p>
           </div>
           <span class="grade-chip" id="gross-grade-chip">গ্রেড অপেক্ষমাণ</span>
         </div>
@@ -555,7 +571,7 @@
         </div>
         <div class="footer-meta">
           <span>Independent educational calculator · Not an official Government portal</span>
-          <span>Version 1.21 · Last verified 20 September 2026</span>
+          <span>Version 1.23 · Last verified 20 September 2026</span>
         </div>
         <div class="footer-contact" aria-label="Contact">
           <span>Contact</span>
@@ -566,6 +582,6 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite" hidden>ফলাফল কপি হয়েছে</div>
     <script src="scale-data.js?v=3"></script>
-    <script src="app.js?v=24"></script>
+    <script src="app.js?v=26"></script>
   </body>
 </html>

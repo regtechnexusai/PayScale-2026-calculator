@@ -1,5 +1,5 @@
 /*
- * Standalone pension and retirement-benefits review page. Version 1.21.
+ * Standalone pension and retirement-benefits review page. Version 1.23.
  * The salary calculator links here but does not combine salary and pension
  * results. Retirement rules live in retirement-data.js as the single source.
  */

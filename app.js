@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026. Version 1.21.
+ * S.R.O. No. 347-Law/2026. Version 1.23.
  *
  * Scale steps are kept in scale-data.js as the single source of truth.
  * Update that file and run the regression tests if an official correction
@@ -327,7 +327,9 @@ function calculate(showErrors = false) {
   let applied;
   let stepIndex = null;
   let annualIncrementBasic;
+  let fullBasic;
   let incrementedStepIndex = null;
+  let fullStepIndex = null;
 
   if (!Number.isFinite(current) || current <= 0) {
     window.lastCalculation = null;
@@ -348,6 +350,7 @@ function calculate(showErrors = false) {
     difference = fixedTarget - current;
     applied = fixedTarget;
     annualIncrementBasic = applied;
+    fullBasic = applied;
   } else {
     if (current < oldMinimum || current > oldMaximum) {
       window.lastCalculation = null;
@@ -370,18 +373,23 @@ function calculate(showErrors = false) {
     stepIndex = scale.new.indexOf(applied) + 1;
     annualIncrementBasic = nextAnnualStep(applied, scale.new);
     incrementedStepIndex = scale.new.indexOf(annualIncrementBasic) + 1;
+    fullBasic = nextAnnualStep(annualIncrementBasic, scale.new);
+    fullStepIndex = scale.new.indexOf(fullBasic) + 1;
   }
 
   // Article 5 fixes the pay at the matched/next-higher 2026 step. Article
   // 9(2) then gives one annual increment on 1 July 2026 before the phased
-  // difference is applied. This is not an arbitrary extra Step 5/Step 6.
-  const totalIncrease = annualIncrementBasic - current;
+  // difference is applied. Article 1(3)(গ) makes the 1 July 2027 full-pay
+  // stage payable with the next annual increment as well. These are listed
+  // scale steps; they are not arbitrary extra Step 5/Step 6 advances.
+  const transitionIncrease = annualIncrementBasic - current;
+  const totalIncrease = fullBasic - current;
   const rates = isFixed ? { phase1: null, phase2: null } : phaseRates(grade);
-  const phase1Pay = isFixed ? applied : current + Math.round(totalIncrease * rates.phase1 / 100);
-  const phase2Pay = isFixed ? applied : current + Math.round(totalIncrease * rates.phase2 / 100);
+  const phase1Pay = isFixed ? applied : current + Math.round(transitionIncrease * rates.phase1 / 100);
+  const phase2Pay = isFixed ? applied : current + Math.round(transitionIncrease * rates.phase2 / 100);
   const phase1Increment = isFixed ? null : phase1Pay - current;
   const phase2Increment = isFixed ? null : phase2Pay - current;
-  const phase3Pay = annualIncrementBasic;
+  const phase3Pay = fullBasic;
   const arrearsDays = arrearsDaysToGazetteDate();
   const arrearsMonthlyIncrease = isFixed ? totalIncrease : phase1Increment;
   const arrearsEstimate = Math.round(arrearsMonthlyIncrease * arrearsDays / 30);
@@ -392,40 +400,41 @@ function calculate(showErrors = false) {
   setText('grade-chip', fixedMode ? 'স্থির বেতন' : ('গ্রেড ' + toBn(grade) + (isFixed ? ' · নির্ধারিত' : '')));
   setText('result-hero-label', isFixed ? 'স্থির নির্ধারিত মূল বেতন · ১ জুলাই ২০২৬ থেকে' : 'পূর্ণ নতুন মূল বেতন · ১ জুলাই ২০২৭ থেকে');
   setText('interim-rate', isFixed ? 'প্রযোজ্য নয়' : toBn(rates.phase1) + '% → ' + toBn(rates.phase2) + '% → ১০০%');
-  setText('timeline-note', isFixed ? 'এটি নির্ধারিত স্থির বেতন; interim শতাংশ প্রযোজ্য নয়।' : 'Article 5-এর pay fixation ও Article 9(2)-এর ১টি annual incrementসহ মোট পার্থক্যের নির্ধারিত অংশ বর্তমান বেতনে যোগ হয়েছে।');
-  setText('new-basic', money(annualIncrementBasic));
+  setText('timeline-note', isFixed ? 'এটি নির্ধারিত স্থির বেতন; interim শতাংশ প্রযোজ্য নয়।' : 'Article 5-এর pay fixation-এর পর ১ জুলাই ২০২৬-এর ১টি annual incrementসহ transition difference-এর নির্ধারিত অংশ যোগ হয়েছে; ১ জুলাই ২০২৭ থেকে প্রযোজ্য পরবর্তী annual incrementসহ পূর্ণ basic দেখানো হয়েছে।');
+  setText('new-basic', money(fullBasic));
   setText('total-increase', money(totalIncrease));
   setText('increase-percent', toBn(percent.toFixed(1)) + '% · বর্তমান মূল বেতনের উপর');
   setText('phase1-title', isFixed ? '১ জুলাই ২০২৬ থেকে' : '১ জুলাই – ৩১ ডিসেম্বর ২০২৬');
-  setText('phase1-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'Article 5/9 অনুযায়ী মোট পার্থক্যের ' + toBn(rates.phase1) + '% বর্তমান বেতনে যোগ হবে');
+  setText('phase1-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : '১ জুলাই ২০২৬-এর incrementসহ transition difference-এর ' + toBn(rates.phase1) + '% বর্তমান বেতনে যোগ হবে');
   setText('phase1-monthly', money(phase1Pay));
   setText('phase1-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত প্রাপ্য মূল বেতন');
   setText('phase1-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase1Increment));
   setText('phase2-title', isFixed ? '১ জানুয়ারি ২০২৭ থেকে' : '১ জানুয়ারি – ৩০ জুন ২০২৭');
-  setText('phase2-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'Article 5/9 অনুযায়ী মোট পার্থক্যের ' + toBn(rates.phase2) + '% পর্যন্ত যোগ হবে');
+  setText('phase2-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : '১ জুলাই ২০২৬-এর incrementসহ transition difference-এর ' + toBn(rates.phase2) + '% পর্যন্ত যোগ হবে');
   setText('phase2-monthly', money(phase2Pay));
   setText('phase2-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত প্রাপ্য মূল বেতন');
   setText('phase2-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase2Increment));
   setText('phase3-title', isFixed ? 'স্থির নির্ধারিত বেতন' : '১ জুলাই ২০২৭ থেকে');
-  setText('phase3-description', isFixed ? 'গেজেটের নির্ধারিত বেতন-পদ্ধতি; পর্যায়ভিত্তিক শতাংশ প্রযোজ্য নয়' : 'Article 5-এর pay fixation-এর পর Article 9(2) অনুযায়ী ১ জুলাই ২০২৬-এর ১টি annual incrementসহ পূর্ণ মূল বেতন');
+  setText('phase3-description', isFixed ? 'গেজেটের নির্ধারিত বেতন-পদ্ধতি; পর্যায়ভিত্তিক শতাংশ প্রযোজ্য নয়' : '১ জুলাই ২০২৬-এর Article 9(2) increment এবং ১ জুলাই ২০২৭-এর প্রযোজ্য annual incrementসহ পূর্ণ মূল বেতন');
   setText('phase3-monthly', money(phase3Pay));
   setText('phase3-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'পূর্ণ মূল বেতন');
-  setText('phase3-increment', isFixed ? 'অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'Article 9(2)-এর ১টি annual increment অন্তর্ভুক্ত');
+  setText('phase3-increment', isFixed ? 'অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : '২০২৬ ও ২০২৭-এর প্রযোজ্য annual increment অন্তর্ভুক্ত');
   setText('arrears-note', 'গেজেটের ১৭ সেপ্টেম্বর ২০২৬ তারিখ পর্যন্ত আনুমানিক basic-pay arrears: ' + money(arrearsEstimate) + ' (' + toBn(arrearsDays) + ' দিন, ৩০ দিন = ১ মাস ধরে)। এটি allowances, কর্তন বা অফিসিয়াল arrears statement নয়।');
   setText('old-min-label', isFixed ? 'পুরোনো স্কেলের ধাপ' : 'পুরোনো স্কেলের প্রারম্ভিক ধাপ');
   setText('difference-label', isFixed ? 'স্থির বেতন − বর্তমান মূল বেতন' : 'বর্তমান বেতন − প্রারম্ভিক ধাপ');
   setText('candidate-label', isFixed ? 'স্থির বেতন পদ' : 'নতুন প্রারম্ভিক ধাপ + পার্থক্য');
-  setText('applied-step-label', isFixed ? 'প্রযোজ্য নির্ধারিত বেতন' : 'Article 9 incrementসহ প্রযোজ্য নতুন মূল বেতন');
+  setText('applied-step-label', isFixed ? 'প্রযোজ্য নির্ধারিত বেতন' : '১ জুলাই ২০২৬ · Article 9(2) incrementসহ transition basic');
   setText('old-min', isFixed ? 'প্রযোজ্য নয়' : money(oldMinimum));
   setText('difference', money(difference));
   setText('candidate', isFixed ? fixedPosts[fixedTarget] : money(candidate));
   setText('pay-fixation-step', isFixed ? money(applied) + ' · নির্ধারিত' : money(applied) + ' · ধাপ ' + toBn(stepIndex));
   setText('applied-step', isFixed ? money(annualIncrementBasic) + ' · নির্ধারিত' : money(annualIncrementBasic) + ' · ধাপ ' + toBn(incrementedStepIndex));
-  setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : 'Article 9 incrementসহ নতুন ধাপ ' + toBn(incrementedStepIndex));
+  setText('full-step', isFixed ? money(fullBasic) + ' · নির্ধারিত' : money(fullBasic) + ' · ধাপ ' + toBn(fullStepIndex));
+  setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : '১ জুলাই ২০২৭ · annual incrementসহ পূর্ণ ধাপ ' + toBn(fullStepIndex));
 
-  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, payFixationBasic: applied, annualIncrementBasic, annualIncrement: annualIncrementBasic - applied, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, arrearsDays, arrearsEstimate, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
+  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, payFixationBasic: applied, annualIncrementBasic, fullBasic, annualIncrement: annualIncrementBasic - applied, secondAnnualIncrement: fullBasic - annualIncrementBasic, transitionIncrease, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, arrearsDays, arrearsEstimate, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
   if (openRetirementBenefits) {
-    openRetirementBenefits.href = 'pension.html?basic=' + encodeURIComponent(annualIncrementBasic) + '&grade=' + encodeURIComponent(grade);
+    openRetirementBenefits.href = 'pension.html?basic=' + encodeURIComponent(fullBasic) + '&grade=' + encodeURIComponent(grade);
   }
   renderGrossSalary();
 }
@@ -503,7 +512,8 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     result.fixed ? 'ধরন: স্থির বেতন' : 'গ্রেড: ' + result.grade,
     'বর্তমান মূল বেতন: ' + money(result.current),
     'Article 5 pay-fixation basic: ' + money(result.payFixationBasic),
-    'Article 9 incrementসহ নতুন পূর্ণ মূল বেতন: ' + money(result.annualIncrementBasic),
+    '১ জুলাই ২০২৬-এর Article 9(2) incrementসহ transition basic: ' + money(result.annualIncrementBasic),
+    '১ জুলাই ২০২৭-এর annual incrementসহ পূর্ণ মূল বেতন: ' + money(result.fullBasic),
     'মোট বৃদ্ধি: ' + money(result.totalIncrease),
     '১ জুলাই–৩১ ডিসেম্বর ২০২৬: ' + money(result.phase1Pay),
     '১ জানুয়ারি–৩০ জুন ২০২৭: ' + money(result.phase2Pay),
