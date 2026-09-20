@@ -24,7 +24,7 @@
     <meta name="twitter:title" content="PayScale 2026 Calculator | RegTech Nexus AI" />
     <meta name="twitter:description" content="Gazette-based Bangladesh basic-pay transition and conditional gross-salary review calculator." />
     <meta name="twitter:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
-    <link rel="stylesheet" href="styles.css?v=15" />
+    <link rel="stylesheet" href="styles.css?v=16" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -53,7 +53,7 @@
         <div class="hero-copy">
           <p class="eyebrow">PAYSCALE 2026 CALCULATOR · REGTECH NEXUS AI</p>
           <h1>আপনার মূল বেতন কতটা বাড়বে?</h1>
-          <p class="hero-subtitle">PayScale 2026 Calculator হলো জাতীয় বেতনস্কেল ২০২৬ অনুযায়ী বর্তমান মূল বেতন থেকে সম্ভাব্য নতুন মূল বেতন, ধাপে ধাপে বৃদ্ধি এবং পূর্ণ পার্থক্য বোঝার একটি নিয়মভিত্তিক সহায়ক ক্যালকুলেটর।</p>
+          <p class="hero-subtitle">এখানে দুটি হিসাব আলাদা রাখা হয়েছে: PayScale 2026 অনুযায়ী মূল বেতন পুনঃনির্ধারণ এবং আলাদা বাটনে পেনশন/অবসর সুবিধার review estimate। একটির ফল অন্যটির সঙ্গে যোগ করা হয় না।</p>
           <div class="hero-proof" aria-label="Tool principles">
             <span>নিয়মভিত্তিক</span>
             <span>ব্যাখ্যাযোগ্য</span>
@@ -78,7 +78,7 @@
         <div class="about-tool-heading">
           <p class="eyebrow">ABOUT THIS CALCULATOR</p>
           <h2 id="about-tool-title">PayScale 2026 Calculator কী করে?</h2>
-          <p>বাংলাদেশ সরকারের কর্মচারীদের জন্য তৈরি এই নির্দিষ্ট ওয়েব টুলটি ১৭ সেপ্টেম্বর ২০২৬ তারিখের Finance Division-এর সরকারি প্রজ্ঞাপন/গেজেটের ভিত্তিতে ২০১৫ সালের জাতীয় বেতনস্কেল থেকে ২০২৬ সালের কাঠামোয় সম্ভাব্য মূল বেতন পরিবর্তন বোঝাতে সহায়তা করে।</p>
+          <p>বাংলাদেশ সরকারের কর্মচারীদের জন্য তৈরি এই ওয়েব টুলে ১৭ সেপ্টেম্বর ২০২৬ তারিখের Finance Division-এর সরকারি প্রজ্ঞাপন/গেজেট অনুযায়ী মূল বেতন পুনঃনির্ধারণ এবং পৃথকভাবে পেনশন/অবসর সুবিধার প্রাথমিক review estimate দেখানো হয়। দুটি হিসাব স্বতন্ত্র।</p>
         </div>
         <div class="about-tool-grid">
           <article>
@@ -112,8 +112,8 @@
       <section class="notice glass-card">
         <div class="notice-icon" aria-hidden="true">i</div>
         <div>
-          <strong>হিসাবের ভিত্তি</strong>
-          <p>৩০ জুন ২০২৬ তারিখে প্রাপ্য মূল বেতন, Article 5-এর pay-fixation step এবং Article 9(2)-এর ১টি annual increment-এর ভিত্তিতে হিসাব করা হচ্ছে।</p>
+          <strong>বেতন ও পেনশন—দুটি আলাদা হিসাব</strong>
+          <p>প্রথমে ৩০ জুন ২০২৬-এর মূল বেতন ধরে Article 5 ও Article 9(2) অনুযায়ী PayScale 2026 হিসাব হবে। এরপর আলাদা বাটনে সেই ফলের basic pay ধরে পেনশন/অবসর সুবিধার review estimate দেখা যাবে।</p>
         </div>
       </section>
 
@@ -129,13 +129,13 @@
               <a href="https://www.payfixation.gov.bd/" target="_blank" rel="noopener">Official Pay Fixation portal</a>
               <a href="https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf" target="_blank" rel="noopener">Retirement Benefits Gazette PDF</a>
               <span>শেষ যাচাই: ২০ সেপ্টেম্বর ২০২৬</span>
-              <span>Version 1.19</span>
+              <span>Version 1.20</span>
             </div>
         </div>
         <div class="update-note">
           <strong>সংশোধনী নজরে রাখুন</strong>
           <p>পরবর্তী corrigendum, clarification বা implementation order প্রকাশিত হলে অফিসিয়াল নথিই অগ্রাধিকার পাবে এবং এই tool আপডেট করতে হবে।</p>
-          <p class="change-log"><strong>v1.19:</strong> বেতন-ফলাফলের পাশে পৃথক পেনশন ও অবসর সুবিধা হিসাবের button যোগ করা হয়েছে।</p>
+          <p class="change-log"><strong>v1.20:</strong> বাটনের ভাষা আরও পরিষ্কার করে “বেতন কত হবে ও পেনশন হিসাব দেখুন” করা হয়েছে এবং হালকা 3D button style যোগ করা হয়েছে।</p>
         </div>
       </section>
 
@@ -245,7 +245,7 @@
           <div class="empty-result" id="empty-result">
             <div class="empty-result-icon" aria-hidden="true">✦</div>
             <strong>এটি কোনো নমুনা ফলাফল নয়</strong>
-            <p>বাম পাশে গ্রেড ও ৩০ জুন ২০২৬-এর বর্তমান মূল বেতন লিখে <b>হিসাব দেখুন</b> নির্বাচন করুন। এই tool কেবল মূল বেতন হিসাব করে।</p>
+          <p>বাম পাশে গ্রেড ও ৩০ জুন ২০২৬-এর বর্তমান মূল বেতন লিখে <b>হিসাব দেখুন</b> নির্বাচন করুন। পেনশন/অবসর সুবিধার জন্য ফলাফলের নিচে থাকা পৃথক বাটন ব্যবহার করুন।</p>
           </div>
 
           <div class="result-hero result-block" hidden>
@@ -339,10 +339,10 @@
 
           <div class="retirement-action result-block" hidden>
             <div>
-              <strong>পেনশন ও অবসর সুবিধা</strong>
-              <p>এই বেতন-ফলাফলের basic pay ধরে আলাদা retirement calculation দেখুন।</p>
+              <strong>বেতন কত হবে ও পেনশন হিসাব দেখুন</strong>
+              <p>প্রথমে মূল বেতনের ফলাফল দেখুন, তারপর একই basic pay ধরে আলাদা pension calculation খুলুন।</p>
             </div>
-            <button type="button" id="open-retirement-benefits" class="secondary-button">পেনশন হিসাব করুন <span aria-hidden="true">→</span></button>
+            <button type="button" id="open-retirement-benefits" class="secondary-button">বেতন কত হবে ও পেনশন হিসাব দেখুন <span aria-hidden="true">→</span></button>
           </div>
         </section>
       </section>
@@ -655,7 +655,7 @@
         <span class="disclaimer-icon" aria-hidden="true">!</span>
         <div>
           <strong>গুরুত্বপূর্ণ সতর্কতা</strong>
-          <p>Step 01/02-এ মূল বেতন পুনঃনির্ধারণের সহায়ক হিসাব দেখানো হয়। Step 03-এ কেবল S.R.O. 347-এর নির্বাচিত ও শর্তসাপেক্ষ ভাতা ধরে আলাদা Gross Salary preview দেওয়া হয়—এটি universal gross, net salary বা অফিসিয়াল pay fixation নয়। আয়কর, কর্তন, বকেয়া, bonus, পদোন্নতি, উচ্চতর গ্রেড, সিলেকশন গ্রেড, ব্যক্তিগত বেতন, সংরক্ষিত বেতন, ছুটি, অবসর বা পেনশনের হিসাব এতে নেই। Fixed-pay পদে interim শতাংশ প্রযোজ্য নয়। চূড়ান্ত হিসাব সংশ্লিষ্ট হিসাবরক্ষণ অফিস/প্রতিষ্ঠানের অনুমোদিত নথির সঙ্গে মিলিয়ে নিন।</p>
+          <p>Step 01/02-এ মূল বেতন পুনঃনির্ধারণের সহায়ক হিসাব দেখানো হয়। Step 03-এ কেবল S.R.O. 347-এর নির্বাচিত ও শর্তসাপেক্ষ ভাতা ধরে আলাদা Gross Salary preview দেওয়া হয়—এটি universal gross, net salary বা অফিসিয়াল pay fixation নয়। আলাদা Step 04 বাটনে পেনশন ও অবসর সুবিধার review estimate দেখা যায়; এটি বেতন বা Gross Salary-এর সঙ্গে যোগ করা হয় না। আয়কর, কর্তন, বকেয়া, bonus, পদোন্নতি, উচ্চতর গ্রেড, সিলেকশন গ্রেড, ব্যক্তিগত বেতন, সংরক্ষিত বেতন, medical/family pension এবং অফিসিয়াল PPO এতে চূড়ান্তভাবে নির্ধারিত নয়। Fixed-pay পদে interim শতাংশ প্রযোজ্য নয়। চূড়ান্ত হিসাব সংশ্লিষ্ট হিসাবরক্ষণ অফিস/প্রতিষ্ঠানের অনুমোদিত নথির সঙ্গে মিলিয়ে নিন।</p>
         </div>
       </section>
 
@@ -666,7 +666,7 @@
         </div>
         <div class="footer-meta">
           <span>Independent educational calculator · Not an official Government portal</span>
-          <span>Version 1.19 · Last verified 20 September 2026</span>
+          <span>Version 1.20 · Last verified 20 September 2026</span>
         </div>
         <div class="footer-contact" aria-label="Contact">
           <span>Contact</span>
@@ -678,6 +678,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite" hidden>ফলাফল কপি হয়েছে</div>
     <script src="scale-data.js?v=3"></script>
     <script src="retirement-data.js?v=1"></script>
-    <script src="app.js?v=22"></script>
+    <script src="app.js?v=23"></script>
   </body>
 </html>

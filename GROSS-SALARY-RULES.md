@@ -1,4 +1,4 @@
-# Gross Salary module — rule map (v1.19)
+# Gross Salary module — rule map (v1.20)
 
 This file documents the allowance rules used by the optional Step 03 module. The existing Step 01/02 basic-pay calculation is unchanged.
 
