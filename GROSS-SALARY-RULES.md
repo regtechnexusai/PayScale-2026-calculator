@@ -1,4 +1,4 @@
-# Gross Salary module — rule map (v1.20)
+# Gross Salary module — rule map (v1.21)
 
 This file documents the allowance rules used by the optional Step 03 module. The existing Step 01/02 basic-pay calculation is unchanged.
 
@@ -49,9 +49,9 @@ The displayed amount is a conditional review-support estimate, not a universal e
 
 It excludes income tax, provident fund, pension, loan recovery, other deductions, arrears, festival allowance/bonus and any post/unit-specific special allowance not selected by the user. The separate basic-pay arrears estimate in Step 02 is not part of Gross Salary. The result is a review-support estimate, not an official pay-fixation statement.
 
-## Retirement Benefits module
+## Separate pension page
 
-The optional Step 04 module is documented separately from the monthly Gross Salary preview. It uses the separate Finance Division retirement-benefit Gazette dated 17 September 2026:
+The salary page does not embed or combine retirement results. The separate `pension.html` page and `pension.js` use the Finance Division retirement-benefit Gazette dated 17 September 2026:
 
 - Gross pension rate: ২১% for ৫ years, increasing by the published service-year table to ৯০% for ২৫ years or more.
 - Pensionable portion: ৫০% of the calculated gross pension is shown after the standard surrender assumption.
