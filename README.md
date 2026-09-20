@@ -10,6 +10,7 @@ PayScale 2026 Calculator is a dependency-free static web tool for understanding 
 - Provides a grade-wise 2015 → 2026 reference table.
 - Adds an optional Step 03 Gross Salary preview for the transcribed general-government allowance rules: house rent, medical, education assistance, tiffin, mobile, washing and selected conditional allowances. Separate bank/public-body/police/BGB orders and fixed-pay posts are shown without an automatic gross total until their allowance schedules are separately transcribed and verified.
 - Shows source, separate pay-order numbers, privacy treatment and human-review warnings.
+- Adds an optional Step 04 Retirement Benefits preview from the separate 17 September 2026 retirement-benefit Gazette: gross pension rate, 50% surrender-based pensionable portion, gratuity, up to 18 months’ leave encashment and net-pension bands.
 
 ## General calculation rules
 
@@ -48,7 +49,7 @@ Calculations are performed in the browser. This static app does not send or stor
 
 Contact: `regtechnexusai@gmail.com`
 
-Official references: [Bangladesh Government Press](https://bgpress.dpp.gov.bd/), [Ministry of Finance](https://mof.gov.bd/) and the [official Pay Fixation portal](https://www.payfixation.gov.bd/).
+Official references: [Bangladesh Government Press](https://bgpress.dpp.gov.bd/), [Ministry of Finance](https://mof.gov.bd/), the [official Pay Fixation portal](https://www.payfixation.gov.bd/) and the [Retirement Benefits Gazette PDF](https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf).
 
 ## Run locally
 
@@ -62,10 +63,10 @@ Open `http://localhost:8080` in a browser.
 
 ## Deploy on GitHub Pages
 
-Upload `index.html`, `styles.css`, `scale-data.js`, `app.js`, `basic-pay.test.js`, `README.md`, `GROSS-SALARY-RULES.md`, the logo files, `payscale-2026-og.png` and `pay-scale-2026-gazette.pdf` to the repository root. Run `node basic-pay.test.js` before publishing. Then open **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, and save.
+Upload `index.html`, `styles.css`, `scale-data.js`, `retirement-data.js`, `app.js`, `basic-pay.test.js`, `retirement-benefits.test.js`, `README.md`, `GROSS-SALARY-RULES.md`, the logo files, `payscale-2026-og.png` and `pay-scale-2026-gazette.pdf` to the repository root. Run `node basic-pay.test.js` and `node retirement-benefits.test.js` before publishing. Then open **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, and save.
 
 ## Source and maintenance
 
 The primary implementation source is the user-provided Bangladesh Gazette PDF for S.R.O. No. 347-Law/2026. Scale data is kept in the `SCALES` object in `scale-data.js`; `basic-pay.test.js` checks the opening, maximum, between-step, phased and fixed-pay cases. If a corrigendum or implementation order is issued, the official document takes precedence.
 
-Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.17**, last verified 20 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate ends at the order date, not the later notice-page date. The non-responsive S.R.O. 349 provenance link and the non-working Official S.R.O. notice link were removed; separate scope/profile notes remain for clarity. Article 9(2) increment treatment and Article 15(1) house-rent timing are documented in the current release. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
+Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.19**, last verified 20 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate ends at the order date, not the later notice-page date. The non-responsive S.R.O. 349 provenance link and the non-working Official S.R.O. notice link were removed; separate scope/profile notes remain for clarity. Article 9(2) increment treatment, Article 15(1) house-rent timing, the separate retirement-benefit Gazette module and its dedicated result button are documented in the current release. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.

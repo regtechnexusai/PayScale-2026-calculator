@@ -169,6 +169,12 @@ form :disabled { cursor: not-allowed; opacity: .56; }
 .math-line strong { color: var(--muted-strong); font-family: 'Manrope'; font-size: 12px; white-space: nowrap; }
 .math-line.final { padding-top: 12px; margin-top: 4px; border-top: 1px dashed rgba(160,188,240,.23); color: #e7f7ff; }
 .math-line.final strong { color: var(--green); font-size: 15px; }
+.retirement-action { display: flex; justify-content: space-between; gap: 14px; align-items: center; padding: 14px 15px; margin-top: 13px; border: 1px solid rgba(156, 131, 255, .28); border-radius: 13px; background: rgba(32, 27, 79, .2); }
+.retirement-action strong { color: #e6ddff; font-size: 12px; }
+.retirement-action p { margin: 3px 0 0; color: var(--muted); font-size: 10px; }
+.secondary-button { display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto; padding: 10px 13px; border: 1px solid rgba(156, 131, 255, .55); border-radius: 10px; color: #e6ddff; background: rgba(156, 131, 255, .13); font-size: 11px; font-weight: 700; }
+.secondary-button:hover { border-color: rgba(106, 213, 255, .75); color: var(--cyan); background: rgba(106, 213, 255, .1); }
+.secondary-button span { color: var(--cyan); font-family: 'Manrope'; font-size: 16px; line-height: 1; }
 .result-disclaimer { display: flex; gap: 10px; padding: 13px 15px; margin-top: 13px; border: 1px solid rgba(255, 211, 126, .28); border-radius: 13px; background: rgba(89, 69, 35, .2); }
 .result-disclaimer strong { flex: 0 0 auto; color: #ffe4aa; font-family: 'Manrope', sans-serif; font-size: 10px; }
 .result-disclaimer p { margin: 0; color: #d5c28f; font-size: 10px; }
@@ -212,6 +218,37 @@ form :disabled { cursor: not-allowed; opacity: .56; }
 .gross-total-row td { color: #e7f7ff !important; font-weight: 800; background: rgba(106, 213, 255, .07); }
 .gross-total-row td:not(:first-child) { color: var(--green) !important; }
 .gross-footnote { padding: 11px 12px 0; margin: 12px 0 0; border-top: 1px dashed rgba(255, 211, 126, .22); color: #d5c28f; font-size: 10px; }
+
+.retirement-section { padding: 25px; margin-top: 22px; border-radius: 20px; scroll-margin-top: 14px; }
+.retirement-section .section-heading { margin-bottom: 17px; }
+.source-chip { display: inline-flex; align-items: center; white-space: nowrap; text-decoration: none; }
+.retirement-profile-note { padding: 11px 13px; margin-bottom: 15px; border: 1px solid rgba(255, 211, 126, .24); border-radius: 11px; color: #d5c28f; background: rgba(89, 69, 35, .18); font-size: 11px; }
+.retirement-input-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+.retirement-form .field-label { margin-top: 0; }
+.retirement-summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 11px; margin-top: 17px; }
+.retirement-card { min-width: 0; padding: 15px; border: 1px solid var(--line); border-radius: 14px; background: rgba(12, 28, 59, .72); }
+.retirement-card span, .retirement-card small { display: block; }
+.retirement-card span { color: var(--muted); font-size: 10px; }
+.retirement-card strong { display: block; margin: 7px 0 2px; color: #e7f7ff; font-family: 'Manrope'; font-size: clamp(20px, 3vw, 27px); line-height: 1.1; }
+.retirement-card small { color: var(--muted); font-size: 9px; }
+.retirement-card:nth-child(1) strong, .retirement-card:nth-child(4) strong { color: var(--cyan); }
+.retirement-card:nth-child(2) strong, .retirement-card:nth-child(5) strong { color: #c4b7ff; }
+.retirement-card-emphasis { border-color: rgba(117, 224, 186, .32); background: rgba(24, 74, 69, .2); }
+.retirement-card-emphasis strong { color: var(--green); }
+.retirement-net-card { display: grid; grid-template-columns: 1fr 1.2fr; gap: 16px; align-items: center; padding: 17px; margin-top: 13px; border: 1px solid rgba(156, 131, 255, .25); border-radius: 15px; background: rgba(32, 27, 79, .2); }
+.retirement-net-card h3 { margin-bottom: 2px; }
+.retirement-net-values { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.retirement-net-values span { display: block; padding: 10px; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); font-size: 9px; }
+.retirement-net-values strong { display: block; margin-top: 4px; color: #e7f7ff; font-family: 'Manrope'; font-size: 13px; }
+.retirement-net-values span:last-child strong { color: var(--green); }
+.retirement-reference { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 13px; background: rgba(12, 28, 59, .45); }
+.retirement-reference summary { color: var(--muted-strong); cursor: pointer; font-size: 12px; font-weight: 700; }
+.retirement-reference-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; padding-top: 12px; }
+.retirement-reference-grid table { min-width: 0; font-size: 10px; }
+.retirement-reference-grid th, .retirement-reference-grid td { padding: 8px 9px; }
+.retirement-reference-grid caption { padding: 8px; color: var(--cyan); text-align: left; font-size: 11px; font-weight: 700; }
+.retirement-net-table { grid-column: 1 / -1; }
+.retirement-footnote { padding: 11px 12px 0; margin: 12px 0 0; border-top: 1px dashed rgba(255, 211, 126, .22); color: #d5c28f; font-size: 10px; }
 
 .scale-section { margin-top: 22px; padding: 25px; border-radius: 20px; }
 .scale-heading { align-items: center; margin-bottom: 15px; }
@@ -278,11 +315,17 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
   .unofficial-banner { align-items: flex-start; flex-direction: column; }
   .scope-gate { grid-template-columns: 1fr; gap: 9px; }
   .scope-gate-message { grid-column: auto; }
-  .calculator, .scale-section, .gross-section { padding: 20px 16px; }
+  .calculator, .scale-section, .gross-section, .retirement-section { padding: 20px 16px; }
   .section-heading { margin-bottom: 19px; }
   .status-dot { display: none; }
   .metric-grid { grid-template-columns: 1fr; }
-  .gross-input-grid, .gross-option-grid, .conditional-grid, .gross-summary-grid { grid-template-columns: 1fr; }
+  .gross-input-grid, .gross-option-grid, .conditional-grid, .gross-summary-grid, .retirement-input-grid, .retirement-summary-grid { grid-template-columns: 1fr; }
+  .retirement-net-card { grid-template-columns: 1fr; }
+  .retirement-action { align-items: stretch; flex-direction: column; }
+  .secondary-button { justify-content: center; }
+  .retirement-net-values { grid-template-columns: 1fr; }
+  .retirement-reference-grid { grid-template-columns: 1fr; }
+  .retirement-net-table { grid-column: auto; }
   .timeline-row { grid-template-columns: 26px 1fr; }
   .timeline-amount { grid-column: 2; align-items: flex-start; margin-top: -6px; text-align: left; }
   .governance-grid, .about-tool-grid { grid-template-columns: 1fr; }

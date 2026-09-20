@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b1630" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
-    <meta name="description" content="বাংলাদেশের জাতীয় বেতনস্কেল ২০২৬ অনুযায়ী তিন পর্যায়ের basic pay এবং S.R.O. 347 profile-এ শর্তসাপেক্ষ Gross Salary review-support preview—PayScale 2026 by RegTech Nexus AI।" />
+    <meta name="description" content="বাংলাদেশের জাতীয় বেতনস্কেল ২০২৬-এর basic pay, conditional Gross Salary এবং অবসরকালীন সুবিধার review-support calculator—PayScale 2026 by RegTech Nexus AI।" />
     <meta name="robots" content="index,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>PayScale 2026 | RegTech Nexus AI</title>
@@ -13,7 +13,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="bn_BD" />
     <meta property="og:title" content="PayScale 2026 Calculator | RegTech Nexus AI" />
-    <meta property="og:description" content="জাতীয় বেতনস্কেল ২০২৬ অনুযায়ী তিন পর্যায়ের basic pay এবং S.R.O. 347 profile-এ শর্তসাপেক্ষ Gross Salary review-support preview দেখুন।" />
+    <meta property="og:description" content="জাতীয় বেতনস্কেল ২০২৬-এর basic pay, conditional Gross Salary এবং অবসরকালীন সুবিধার review-support estimate দেখুন।" />
     <meta property="og:url" content="https://regtechnexusai.github.io/PayScale-2026-calculator/" />
     <meta property="og:site_name" content="RegTech Nexus AI" />
     <meta property="og:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
@@ -24,7 +24,7 @@
     <meta name="twitter:title" content="PayScale 2026 Calculator | RegTech Nexus AI" />
     <meta name="twitter:description" content="Gazette-based Bangladesh basic-pay transition and conditional gross-salary review calculator." />
     <meta name="twitter:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
-    <link rel="stylesheet" href="styles.css?v=13" />
+    <link rel="stylesheet" href="styles.css?v=15" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -33,7 +33,7 @@
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Web",
         "url": "https://regtechnexusai.github.io/PayScale-2026-calculator/",
-        "description": "বাংলাদেশের জাতীয় বেতনস্কেল ২০২৬ অনুযায়ী তিন পর্যায়ের basic pay এবং S.R.O. 347 profile-এ শর্তসাপেক্ষ Gross Salary review-support preview বোঝার গেজেট-ভিত্তিক সহায়ক ক্যালকুলেটর।",
+        "description": "বাংলাদেশের জাতীয় বেতনস্কেল ২০২৬-এর basic pay, conditional Gross Salary এবং অবসরকালীন সুবিধার review-support estimate বোঝার গেজেট-ভিত্তিক সহায়ক ক্যালকুলেটর।",
         "author": {
           "@type": "Organization",
           "name": "RegTech Nexus AI"
@@ -127,14 +127,15 @@
               <a href="https://www.dpp.gov.bd/" target="_blank" rel="noopener">সরকারি গেজেট আর্কাইভ</a>
               <a href="https://mof.gov.bd/" target="_blank" rel="noopener">অর্থ মন্ত্রণালয়</a>
               <a href="https://www.payfixation.gov.bd/" target="_blank" rel="noopener">Official Pay Fixation portal</a>
+              <a href="https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf" target="_blank" rel="noopener">Retirement Benefits Gazette PDF</a>
               <span>শেষ যাচাই: ২০ সেপ্টেম্বর ২০২৬</span>
-              <span>Version 1.17</span>
+              <span>Version 1.19</span>
             </div>
         </div>
         <div class="update-note">
           <strong>সংশোধনী নজরে রাখুন</strong>
           <p>পরবর্তী corrigendum, clarification বা implementation order প্রকাশিত হলে অফিসিয়াল নথিই অগ্রাধিকার পাবে এবং এই tool আপডেট করতে হবে।</p>
-          <p class="change-log"><strong>v1.17:</strong> Article 9(2)-এর annual increment, Article 15(1)-এর ২০১৫ বাড়িভাড়া schedule, government-scope gate এবং conditional Gross Salary wording সংশোধন করা হয়েছে।</p>
+          <p class="change-log"><strong>v1.19:</strong> বেতন-ফলাফলের পাশে পৃথক পেনশন ও অবসর সুবিধা হিসাবের button যোগ করা হয়েছে।</p>
         </div>
       </section>
 
@@ -149,6 +150,7 @@
           <p><strong>পদ্ধতি:</strong> Article 5 অনুযায়ী বর্তমান বেতন ও পুরোনো প্রারম্ভিক ধাপের পার্থক্য নতুন স্কেলের প্রারম্ভিক ধাপে যোগ করা হয়; ফল ধাপে না মিললে একবার পরবর্তী উচ্চতর ধাপ নেওয়া হয়। এরপর Article 9(2) অনুযায়ী ১ জুলাই ২০২৬-এর ১টি annual increment যোগ হয়—এটি arbitrary “Step 5/Step 6” নয়। পর্যায় ১/২-এর হার এই increment-সহ মোট পার্থক্যের উপর প্রয়োগ করা হয়।</p>
           <p><strong>পৃথক pay order:</strong> Public Bodies ও রাষ্ট্রায়ত্ত প্রতিষ্ঠান—S.R.O. No. 348-Law/2026; ব্যাংক, বিমা ও আর্থিক প্রতিষ্ঠান—S.R.O. No. 349-Law/2026; বাংলাদেশ পুলিশ—S.R.O. No. 350-Law/2026; BGB—S.R.O. No. 351-Law/2026।</p>
           <p><strong>Gross Salary preview:</strong> এটি কেবল S.R.O. 347-এর নির্বাচিত ও শর্তসাপেক্ষ ভাতা ধরে করা একটি review-support estimate; Step 01/02-এর basic-pay ফল থেকে আলাদা। Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ সালের বাড়িভাড়া schedule ব্যবহার করা হয়; ১ জানুয়ারি ২০২৮-এর নতুন হার আগাম প্রয়োগ করা হয় না। কর্তন, আয়কর, bonus, arrears এবং আলাদা pay order-এর ভাতা এতে স্বয়ংক্রিয়ভাবে ধরা হয় না।</p>
+          <p><strong>অবসরকালীন সুবিধা:</strong> ১৭ সেপ্টেম্বর ২০২৬-এর পৃথক সরকারি প্রজ্ঞাপনের table অনুযায়ী gross pension rate, ৫০% সমর্পণের পর pensionable অংশ, আনুতোষিক, সর্বোচ্চ ১৮ মাস ছুটি নগদায়ন এবং net-pension band আলাদাভাবে দেখানো হয়। এটি PPO বা pension sanction নয়।</p>
           <p><strong>সতর্কতা:</strong> এটি কেবল মূল বেতনের প্রাথমিক হিসাব; গেজেট, সংশোধনী ও অফিসিয়াল pay fixation অগ্রাধিকার পাবে। ১ জানুয়ারি ২০২৭ থেকে পূর্ণ basic নয়—এই পর্যায়ে গ্রেডভেদে ৭০% বা ৭৫% cumulative increase দেখানো হয়।</p>
         </div>
       </details>
@@ -334,6 +336,14 @@
             <div class="math-line"><span id="pay-fixation-label">Article 5-এর pay-fixation ধাপ</span><strong id="pay-fixation-step">—</strong></div>
             <div class="math-line final"><span id="applied-step-label">Article 9 incrementসহ প্রযোজ্য নতুন মূল বেতন</span><strong id="applied-step">—</strong></div>
           </div>
+
+          <div class="retirement-action result-block" hidden>
+            <div>
+              <strong>পেনশন ও অবসর সুবিধা</strong>
+              <p>এই বেতন-ফলাফলের basic pay ধরে আলাদা retirement calculation দেখুন।</p>
+            </div>
+            <button type="button" id="open-retirement-benefits" class="secondary-button">পেনশন হিসাব করুন <span aria-hidden="true">→</span></button>
+          </div>
         </section>
       </section>
 
@@ -476,6 +486,117 @@
         <p class="gross-footnote" id="gross-footnote">চূড়ান্ত gross salary নির্ভর করবে আপনার pay order, পদ, কর্মস্থল, সরকারি বাসস্থান, যোগ্যতা ও অফিসের অনুমোদনের উপর।</p>
       </section>
 
+      <section class="retirement-section glass-card" id="retirement-benefits-module" aria-labelledby="retirement-title" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 04 · RETIREMENT BENEFITS</p>
+            <h2 id="retirement-title">অবসরকালীন সুবিধার প্রাথমিক হিসাব</h2>
+            <p class="output-note">১৭ সেপ্টেম্বর ২০২৬-এর অবসরকালীন সুবিধা সংক্রান্ত সরকারি প্রজ্ঞাপনের table ধরে gross pension, আনুতোষিক, ছুটি নগদায়ন এবং net-pension band-এর review-support estimate।</p>
+          </div>
+          <a class="grade-chip source-chip" href="https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf" target="_blank" rel="noopener">Official Gazette PDF</a>
+        </div>
+
+        <div class="retirement-profile-note">এখানে যে basic pay লিখবেন, সেটি অবসর সুবিধা নির্ধারণে প্রযোজ্য basic pay হিসেবে ধরুন। Article/office-specific service history, qualifying service, PPO, medical allowance, deductions ও authorised pension order আলাদাভাবে যাচাই করতে হবে।</div>
+
+        <form id="retirement-form" class="retirement-form" novalidate>
+          <div class="retirement-input-grid">
+            <div>
+              <label class="field-label" for="retirement-basic">অবসর সুবিধার জন্য প্রযোজ্য মূল বেতন</label>
+              <div class="money-input">
+                <span>৳</span>
+                <input id="retirement-basic" name="retirement-basic" inputmode="numeric" autocomplete="off" placeholder="যেমন: ৫০,০০০" aria-describedby="retirement-basic-note" />
+              </div>
+              <p class="field-help" id="retirement-basic-note">যে basic pay-এর ভিত্তিতে অবসর সুবিধা নির্ধারণ হবে, সেটি লিখুন।</p>
+            </div>
+            <div>
+              <label class="field-label" for="retirement-service-years">পেনশনযোগ্য চাকরিকাল</label>
+              <div class="select-wrap">
+                <select id="retirement-service-years" name="retirement-service-years">
+                  <option value="5">৫ বছর</option>
+                  <option value="6">৬ বছর</option>
+                  <option value="7">৭ বছর</option>
+                  <option value="8">৮ বছর</option>
+                  <option value="9">৯ বছর</option>
+                  <option value="10">১০ বছর</option>
+                  <option value="11">১১ বছর</option>
+                  <option value="12">১২ বছর</option>
+                  <option value="13">১৩ বছর</option>
+                  <option value="14">১৪ বছর</option>
+                  <option value="15">১৫ বছর</option>
+                  <option value="16">১৬ বছর</option>
+                  <option value="17">১৭ বছর</option>
+                  <option value="18">১৮ বছর</option>
+                  <option value="19">১৯ বছর</option>
+                  <option value="20">২০ বছর</option>
+                  <option value="21">২১ বছর</option>
+                  <option value="22">২২ বছর</option>
+                  <option value="23">২৩ বছর</option>
+                  <option value="24">২৪ বছর</option>
+                  <option value="25" selected>২৫ বছর বা তদূর্ধ্ব</option>
+                </select>
+                <span class="select-chevron" aria-hidden="true">⌄</span>
+              </div>
+              <p class="field-help">৫ বছর বা তদূর্ধ্ব qualifying service-এর table প্রযোজ্য।</p>
+            </div>
+            <div>
+              <label class="field-label" for="retirement-leave-months">ছুটি নগদায়নের মাস</label>
+              <div class="select-wrap">
+                <select id="retirement-leave-months" name="retirement-leave-months">
+                  <option value="0">০ মাস</option>
+                  <option value="6">৬ মাস</option>
+                  <option value="12">১২ মাস</option>
+                  <option value="18" selected>১৮ মাস · সর্বোচ্চ</option>
+                </select>
+                <span class="select-chevron" aria-hidden="true">⌄</span>
+              </div>
+              <p class="field-help">ছুটি নগদায়নের সর্বোচ্চ সীমা ১৮ মাস।</p>
+            </div>
+            <div>
+              <label class="field-label" for="retirement-net-pension">৩০ জুন ২০২৬-এর বর্তমান net pension · ঐচ্ছিক</label>
+              <div class="money-input">
+                <span>৳</span>
+                <input id="retirement-net-pension" name="retirement-net-pension" inputmode="numeric" autocomplete="off" placeholder="যেমন: ২০,০০০" aria-describedby="retirement-net-note" />
+              </div>
+              <p class="field-help" id="retirement-net-note">বর্তমান net pension লিখলে সংশ্লিষ্ট band অনুযায়ী estimate দেখা যাবে।</p>
+            </div>
+          </div>
+        </form>
+
+        <div id="retirement-validation" class="validation-message" role="alert" hidden></div>
+
+        <div class="retirement-summary-grid" aria-live="polite" aria-atomic="true">
+          <article class="retirement-card"><span>গ্রস pension rate</span><strong id="retirement-rate">—</strong><small>চাকরিকাল অনুযায়ী</small></article>
+          <article class="retirement-card"><span>গ্রস pension</span><strong id="retirement-gross-pension">—</strong><small>মূল বেতন × rate</small></article>
+          <article class="retirement-card"><span>সমর্পণের পর pensionable অংশ</span><strong id="retirement-pensionable">—</strong><small>৫০% সমর্পণ ধরে</small></article>
+          <article class="retirement-card"><span>আনুতোষিক</span><strong id="retirement-gratuity">—</strong><small id="retirement-gratuity-rate">হার: —</small></article>
+          <article class="retirement-card"><span>ছুটি নগদায়ন</span><strong id="retirement-leave-encashment">—</strong><small>নির্বাচিত মাস × basic pay</small></article>
+          <article class="retirement-card retirement-card-emphasis"><span>আনুতোষিক + ছুটি নগদায়ন</span><strong id="retirement-total-lump-sum">—</strong><small>এককালীন review estimate</small></article>
+        </div>
+
+        <div class="retirement-net-card">
+          <div>
+            <p class="eyebrow">NET PENSION BAND</p>
+            <h3>নিট পেনশন পুনর্নির্ধারণ</h3>
+            <p class="field-help">বর্তমান net pension দিলে গেজেটের band, বৃদ্ধির হার এবং minimum/maximum সীমা ধরে estimate দেখানো হবে।</p>
+          </div>
+          <div class="retirement-net-values">
+            <span>প্রযোজ্য band <strong id="retirement-net-band">—</strong></span>
+            <span>বৃদ্ধির হার <strong id="retirement-net-rate">—</strong></span>
+            <span>আনুমানিক নতুন net pension <strong id="retirement-net-result">—</strong></span>
+          </div>
+        </div>
+
+        <details class="retirement-reference">
+          <summary>অবসর সুবিধার গেজেট table দেখুন</summary>
+          <div class="retirement-reference-grid">
+            <div class="table-wrap"><table><caption>গ্রস pension নির্ধারণের হার</caption><thead><tr><th>পেনশনযোগ্য চাকরিকাল</th><th>হার</th></tr></thead><tbody id="retirement-service-table-body"></tbody></table></div>
+            <div class="table-wrap"><table><caption>আনুতোষিকের হার</caption><thead><tr><th>পেনশনযোগ্য চাকরিকাল</th><th>প্রতি টাকায়</th></tr></thead><tbody id="retirement-gratuity-table-body"></tbody></table></div>
+            <div class="table-wrap retirement-net-table"><table><caption>নিট pension band</caption><thead><tr><th>৩০ জুনের net pension</th><th>হার</th><th>সর্বনিম্ন</th><th>সর্বোচ্চ</th></tr></thead><tbody id="retirement-net-table-body"></tbody></table></div>
+          </div>
+        </details>
+        <p class="retirement-footnote">এটি official pension sanction, PPO বা gratuity order নয়। Pensionable service, qualifying service, retirement reason, leave record, medical allowance, family pension, deductions এবং সংশ্লিষ্ট হিসাবরক্ষণ অফিসের সিদ্ধান্ত চূড়ান্ত।</p>
+      </section>
+
       <section class="scale-section glass-card" aria-labelledby="scale-title">
         <div class="section-heading scale-heading">
           <div>
@@ -545,7 +666,7 @@
         </div>
         <div class="footer-meta">
           <span>Independent educational calculator · Not an official Government portal</span>
-          <span>Version 1.17 · Last verified 20 September 2026</span>
+          <span>Version 1.19 · Last verified 20 September 2026</span>
         </div>
         <div class="footer-contact" aria-label="Contact">
           <span>Contact</span>
@@ -556,6 +677,7 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite" hidden>ফলাফল কপি হয়েছে</div>
     <script src="scale-data.js?v=3"></script>
-    <script src="app.js?v=19"></script>
+    <script src="retirement-data.js?v=1"></script>
+    <script src="app.js?v=22"></script>
   </body>
 </html>

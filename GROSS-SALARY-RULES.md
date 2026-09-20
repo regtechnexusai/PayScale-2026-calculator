@@ -1,4 +1,4 @@
-# Gross Salary module — rule map (v1.17)
+# Gross Salary module — rule map (v1.19)
 
 This file documents the allowance rules used by the optional Step 03 module. The existing Step 01/02 basic-pay calculation is unchanged.
 
@@ -49,6 +49,18 @@ The displayed amount is a conditional review-support estimate, not a universal e
 
 It excludes income tax, provident fund, pension, loan recovery, other deductions, arrears, festival allowance/bonus and any post/unit-specific special allowance not selected by the user. The separate basic-pay arrears estimate in Step 02 is not part of Gross Salary. The result is a review-support estimate, not an official pay-fixation statement.
 
+## Retirement Benefits module
+
+The optional Step 04 module is documented separately from the monthly Gross Salary preview. It uses the separate Finance Division retirement-benefit Gazette dated 17 September 2026:
+
+- Gross pension rate: ২১% for ৫ years, increasing by the published service-year table to ৯০% for ২৫ years or more.
+- Pensionable portion: ৫০% of the calculated gross pension is shown after the standard surrender assumption.
+- Gratuity: the published rate table is applied to that pensionable/surrendered portion—২৬৫ for ৫–৯ years, ২৬০ for ১০–১৪ years, ২৪৫ for ১৫–১৯ years and ২৩০ for ২০ years or more.
+- Leave encashment: the user may select up to ১৮ months; the estimate is applicable basic pay × selected months.
+- Net pension: the published band rate and minimum/maximum limits are shown. If a current net pension is entered, the tool applies the band rate and clamps the result within the published limits as a review estimate.
+
+These figures do not include medical allowance, family pension, deductions, qualifying-service exceptions, PPO corrections, arrears or any office-specific sanction. The official retirement-benefit notification and authorised pension office decision take precedence.
+
 ## Source
 
-Primary source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division, S.R.O. No. 347-Law/2026, especially Article 9(2) (annual increment) and Article 15(1) (2015 house-rent schedule through 31 December 2027). The separate S.R.O. No. 349-Law/2026 profile remains visible for scope but is not automatically transcribed here. Always check the latest official Gazette, corrigendum, clarification and the employee’s authorised pay-fixation statement before using a result.
+Primary sources: [Bangladesh Gazette, Extra, 17 September 2026, S.R.O. No. 347-Law/2026](pay-scale-2026-gazette.pdf), especially Article 9(2) (annual increment) and Article 15(1) (2015 house-rent schedule through 31 December 2027), and the [separate retirement-benefit Gazette](https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf). The separate S.R.O. No. 349-Law/2026 profile remains visible for scope but is not automatically transcribed here. Always check the latest official Gazette, corrigendum, clarification and the employee’s authorised pay-fixation or pension statement before using a result.
