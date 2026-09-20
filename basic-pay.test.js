@@ -47,6 +47,15 @@ assert.deepEqual(calculate(9, 53060), {
   phase2: 68628,
   phase3: 75300,
 });
+// Grade 5 guardrail: do not apply an additional competitor-style
+// "Step 5/Step 6" advance after the Gazette next-higher-step rule.
+assert.deepEqual(calculate(5, 53610), {
+  candidate: 96610,
+  applied: 96800,
+  phase1: 70886,
+  phase2: 83843,
+  phase3: 96800,
+});
 assert.deepEqual(calculate(9, 37900), {
   candidate: 59900,
   applied: 62000,

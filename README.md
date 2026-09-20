@@ -67,4 +67,4 @@ Upload `index.html`, `styles.css`, `scale-data.js`, `app.js`, `basic-pay.test.js
 
 The primary implementation source is the user-provided Bangladesh Gazette PDF for S.R.O. No. 347-Law/2026. Scale data is kept in the `SCALES` object in `scale-data.js`; `basic-pay.test.js` checks the opening, maximum, between-step, phased and fixed-pay cases. If a corrigendum or implementation order is issued, the official document takes precedence.
 
-Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.11**, last verified 20 September 2026. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
+Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.12**, last verified 20 September 2026. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
