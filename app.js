@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026. Version 1.16.
+ * S.R.O. No. 347-Law/2026. Version 1.17.
  *
  * Scale steps are kept in scale-data.js as the single source of truth.
  * Update that file and run the regression tests if an official correction
@@ -30,6 +30,8 @@ const gradeFieldGroup = document.querySelector('#grade-field-group');
 const gradeSelect = document.querySelector('#grade');
 const currentBasic = document.querySelector('#current-basic');
 const form = document.querySelector('#calculator-form');
+const scopeGateMessage = document.querySelector('#scope-gate-message');
+const scopeRadios = [...document.querySelectorAll('input[name="scope-check"]')];
 const resultsPanel = document.querySelector('#results-panel');
 const tableBody = document.querySelector('#scale-table-body');
 const validation = document.querySelector('#validation-message');
@@ -46,7 +48,7 @@ const ALLOWANCE_PROFILES = {
     label: 'সাধারণ সরকারি চাকরি',
     sro: 'S.R.O. No. 347-Law/2026',
     automatic: true,
-    note: 'সাধারণ সরকারি চাকরির জন্য S.R.O. No. 347-Law/2026-এর নির্বাচিত ভাতা-হার ব্যবহার করা হচ্ছে। S.R.O. 349 সাধারণ সরকারি চাকরির জন্য নয়।'
+    note: 'সাধারণ সরকারি চাকরির জন্য S.R.O. No. 347-Law/2026-এর নির্বাচিত ভাতা-হার ব্যবহার করা হচ্ছে। Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ সালের বাড়িভাড়া schedule প্রযোজ্য; S.R.O. 349 সাধারণ সরকারি চাকরির জন্য নয়।'
   },
   bank: {
     label: 'ব্যাংক, বিমা ও আর্থিক প্রতিষ্ঠান',
@@ -127,6 +129,11 @@ function nearestNewStep(candidate, steps) {
   return steps.find((step) => step >= candidate) || null;
 }
 
+function nextAnnualStep(applied, steps) {
+  const index = steps.indexOf(applied);
+  return index >= 0 && index < steps.length - 1 ? steps[index + 1] : applied;
+}
+
 function setText(id, value) { document.getElementById(id).textContent = value; }
 
 function setValidation(message, warning = false) {
@@ -148,17 +155,30 @@ function showResultState(hasResult) {
   if (!hasResult) clearGrossOutput();
 }
 
-function houseRentRate(grade, station) {
+function houseRentBand(basic) {
+  if (basic <= 9700) return 'low';
+  if (basic <= 16000) return 'mid';
+  if (basic <= 35500) return 'high';
+  return 'top';
+}
+
+function houseRentAllowance(basic, station) {
+  // Article 15(1) keeps the 2015 house-rent schedule through 31 Dec 2027.
+  // The 2026 schedule starts on 1 Jan 2028, outside these three phases.
   const stationRates = {
-    dhaka: { low: 60, mid: 50, high: 45, top: 40 },
-    'listed-city': { low: 50, mid: 40, high: 35, top: 30 },
-    other: { low: 45, mid: 35, high: 30, top: 25 }
+    dhaka: {
+      low: [65, 5600], mid: [60, 6400], high: [55, 9600], top: [50, 19500]
+    },
+    'listed-city': {
+      low: [55, 5000], mid: [50, 5400], high: [45, 8000], top: [40, 16000]
+    },
+    other: {
+      low: [50, 4500], mid: [45, 4800], high: [40, 7000], top: [35, 13800]
+    }
   };
   const rates = stationRates[station] || stationRates.dhaka;
-  if (grade >= 16) return rates.low;
-  if (grade >= 10) return rates.mid;
-  if (grade >= 5) return rates.high;
-  return rates.top;
+  const [rate, minimum] = rates[houseRentBand(basic)];
+  return Math.max(Math.round(basic * rate / 100), minimum);
 }
 
 function grossAssumptionSummary(grade) {
@@ -179,7 +199,7 @@ function grossAssumptionSummary(grade) {
     medical,
     'শিক্ষা সহায়তা ' + money(education)
   ].filter(Boolean).join(', ');
-  return 'বাড়িভাড়া ' + toBn(houseRentRate(grade, station)) + '% (' + stationLabel + '), ' + housing + '; ' + fixed + '।';
+  return 'বাড়িভাড়া ২০১৫ schedule-এর phase-basic অনুযায়ী rate/minimum (' + stationLabel + '), ৩১ ডিসেম্বর ২০২৭ পর্যন্ত; ' + housing + '; ' + fixed + '।';
 }
 
 function grossInput(id) {
@@ -272,7 +292,7 @@ function renderGrossSalary() {
   const hillMode = grossInput('hill-allowance').value;
   const hasGovernmentHousing = grossInput('government-housing').checked === false;
   const phases = [result.phase1Pay, result.phase2Pay, result.phase3Pay].map((basic) => {
-    const house = hasGovernmentHousing ? 0 : Math.round(basic * houseRentRate(grade, station) / 100);
+    const house = hasGovernmentHousing ? 0 : houseRentAllowance(basic, station);
     const hillCap = hillMode === 'other' ? 5500 : 5000;
     const hill = hillMode === 'none' ? 0 : Math.min(Math.round(basic * 20 / 100), hillCap);
     const haor = grossInput('haor-eligible').checked ? Math.min(Math.round(basic * 20 / 100), 5000) : 0;
@@ -288,7 +308,7 @@ function renderGrossSalary() {
   setText('gross-phase1-meta', 'মূল বেতন + নির্বাচিত ভাতা');
   setText('gross-phase2-meta', 'মূল বেতন + নির্বাচিত ভাতা');
   setText('gross-phase3-meta', 'মূল বেতন + নির্বাচিত ভাতা');
-  setText('gross-footnote', 'এটি official pay fixation নয়—review-support estimate। বাড়িভাড়া ' + toBn(houseRentRate(grade, station)) + '% হারে ধরা হয়েছে; সরকারি বাসস্থান থাকলে তা বাদ। চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল ও শর্তসাপেক্ষ ভাতার checkbox-গুলি আপনার বাস্তব অবস্থা অনুযায়ী ঠিক করুন।');
+  setText('gross-footnote', 'এটি official pay fixation নয়—review-support estimate। Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ সালের বাড়িভাড়া schedule ব্যবহার করা হয়েছে; ১ জানুয়ারি ২০২৮-এর নতুন হার এই preview-তে আগাম প্রয়োগ করা হয়নি। সরকারি বাসস্থান থাকলে বাড়িভাড়া বাদ। চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল ও শর্তসাপেক্ষ ভাতার checkbox-গুলি আপনার বাস্তব অবস্থা অনুযায়ী ঠিক করুন।');
 }
 
 function calculate(showErrors = false) {
@@ -304,6 +324,8 @@ function calculate(showErrors = false) {
   let candidate = null;
   let applied;
   let stepIndex = null;
+  let annualIncrementBasic;
+  let incrementedStepIndex = null;
 
   if (!Number.isFinite(current) || current <= 0) {
     window.lastCalculation = null;
@@ -323,6 +345,7 @@ function calculate(showErrors = false) {
     }
     difference = fixedTarget - current;
     applied = fixedTarget;
+    annualIncrementBasic = applied;
   } else {
     if (current < oldMinimum || current > oldMaximum) {
       window.lastCalculation = null;
@@ -343,15 +366,20 @@ function calculate(showErrors = false) {
       return;
     }
     stepIndex = scale.new.indexOf(applied) + 1;
+    annualIncrementBasic = nextAnnualStep(applied, scale.new);
+    incrementedStepIndex = scale.new.indexOf(annualIncrementBasic) + 1;
   }
 
-  const totalIncrease = applied - current;
+  // Article 5 fixes the pay at the matched/next-higher 2026 step. Article
+  // 9(2) then gives one annual increment on 1 July 2026 before the phased
+  // difference is applied. This is not an arbitrary extra Step 5/Step 6.
+  const totalIncrease = annualIncrementBasic - current;
   const rates = isFixed ? { phase1: null, phase2: null } : phaseRates(grade);
   const phase1Pay = isFixed ? applied : current + Math.round(totalIncrease * rates.phase1 / 100);
   const phase2Pay = isFixed ? applied : current + Math.round(totalIncrease * rates.phase2 / 100);
   const phase1Increment = isFixed ? null : phase1Pay - current;
   const phase2Increment = isFixed ? null : phase2Pay - current;
-  const phase3Pay = applied;
+  const phase3Pay = annualIncrementBasic;
   const arrearsDays = arrearsDaysToGazetteDate();
   const arrearsMonthlyIncrease = isFixed ? totalIncrease : phase1Increment;
   const arrearsEstimate = Math.round(arrearsMonthlyIncrease * arrearsDays / 30);
@@ -362,42 +390,63 @@ function calculate(showErrors = false) {
   setText('grade-chip', fixedMode ? 'স্থির বেতন' : ('গ্রেড ' + toBn(grade) + (isFixed ? ' · নির্ধারিত' : '')));
   setText('result-hero-label', isFixed ? 'স্থির নির্ধারিত মূল বেতন · ১ জুলাই ২০২৬ থেকে' : 'পূর্ণ নতুন মূল বেতন · ১ জুলাই ২০২৭ থেকে');
   setText('interim-rate', isFixed ? 'প্রযোজ্য নয়' : toBn(rates.phase1) + '% → ' + toBn(rates.phase2) + '% → ১০০%');
-  setText('timeline-note', isFixed ? 'এটি নির্ধারিত স্থির বেতন; interim শতাংশ প্রযোজ্য নয়।' : 'প্রতিটি amount হলো বর্তমান মূল বেতনসহ ফলিত payable basic; নিচে interim increase আলাদা দেখানো হয়েছে।');
-  setText('new-basic', money(applied));
+  setText('timeline-note', isFixed ? 'এটি নির্ধারিত স্থির বেতন; interim শতাংশ প্রযোজ্য নয়।' : 'Article 5-এর pay fixation ও Article 9(2)-এর ১টি annual incrementসহ মোট পার্থক্যের নির্ধারিত অংশ বর্তমান বেতনে যোগ হয়েছে।');
+  setText('new-basic', money(annualIncrementBasic));
   setText('total-increase', money(totalIncrease));
   setText('increase-percent', toBn(percent.toFixed(1)) + '% · বর্তমান মূল বেতনের উপর');
   setText('phase1-title', isFixed ? '১ জুলাই ২০২৬ থেকে' : '১ জুলাই – ৩১ ডিসেম্বর ২০২৬');
-  setText('phase1-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে মোট পার্থক্যের ' + toBn(rates.phase1) + '% যোগ হবে');
+  setText('phase1-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'Article 5/9 অনুযায়ী মোট পার্থক্যের ' + toBn(rates.phase1) + '% বর্তমান বেতনে যোগ হবে');
   setText('phase1-monthly', money(phase1Pay));
   setText('phase1-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত প্রাপ্য মূল বেতন');
   setText('phase1-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase1Increment));
   setText('phase2-title', isFixed ? '১ জানুয়ারি ২০২৭ থেকে' : '১ জানুয়ারি – ৩০ জুন ২০২৭');
-  setText('phase2-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বর্তমান মূল বেতনের সঙ্গে মোট পার্থক্যের ' + toBn(rates.phase2) + '% পর্যন্ত যোগ হবে');
+  setText('phase2-description', isFixed ? 'স্থির বেতন; অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'Article 5/9 অনুযায়ী মোট পার্থক্যের ' + toBn(rates.phase2) + '% পর্যন্ত যোগ হবে');
   setText('phase2-monthly', money(phase2Pay));
   setText('phase2-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'ফলিত প্রাপ্য মূল বেতন');
   setText('phase2-increment', isFixed ? 'interim শতাংশ প্রযোজ্য নয়' : 'অন্তর্বর্তী বৃদ্ধি: ' + money(phase2Increment));
   setText('phase3-title', isFixed ? 'স্থির নির্ধারিত বেতন' : '১ জুলাই ২০২৭ থেকে');
-  setText('phase3-description', isFixed ? 'গেজেটের নির্ধারিত বেতন-পদ্ধতি; পর্যায়ভিত্তিক শতাংশ প্রযোজ্য নয়' : 'পূর্ণ পুনঃনির্ধারিত মূল বেতন; প্রযোজ্য বার্ষিক বেতনবৃদ্ধি আলাদাভাবে যোগ হবে');
+  setText('phase3-description', isFixed ? 'গেজেটের নির্ধারিত বেতন-পদ্ধতি; পর্যায়ভিত্তিক শতাংশ প্রযোজ্য নয়' : 'Article 5-এর pay fixation-এর পর Article 9(2) অনুযায়ী ১ জুলাই ২০২৬-এর ১টি annual incrementসহ পূর্ণ মূল বেতন');
   setText('phase3-monthly', money(phase3Pay));
   setText('phase3-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'পূর্ণ মূল বেতন');
-  setText('phase3-increment', isFixed ? 'অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'বার্ষিক বেতনবৃদ্ধি আলাদাভাবে প্রযোজ্য হতে পারে');
+  setText('phase3-increment', isFixed ? 'অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : 'Article 9(2)-এর ১টি annual increment অন্তর্ভুক্ত');
   setText('arrears-note', 'গেজেটের ১৭ সেপ্টেম্বর ২০২৬ তারিখ পর্যন্ত আনুমানিক basic-pay arrears: ' + money(arrearsEstimate) + ' (' + toBn(arrearsDays) + ' দিন, ৩০ দিন = ১ মাস ধরে)। এটি allowances, কর্তন বা অফিসিয়াল arrears statement নয়।');
   setText('old-min-label', isFixed ? 'পুরোনো স্কেলের ধাপ' : 'পুরোনো স্কেলের প্রারম্ভিক ধাপ');
   setText('difference-label', isFixed ? 'স্থির বেতন − বর্তমান মূল বেতন' : 'বর্তমান বেতন − প্রারম্ভিক ধাপ');
   setText('candidate-label', isFixed ? 'স্থির বেতন পদ' : 'নতুন প্রারম্ভিক ধাপ + পার্থক্য');
-  setText('applied-step-label', isFixed ? 'প্রযোজ্য নির্ধারিত বেতন' : 'প্রযোজ্য নতুন ধাপ');
+  setText('applied-step-label', isFixed ? 'প্রযোজ্য নির্ধারিত বেতন' : 'Article 9 incrementসহ প্রযোজ্য নতুন মূল বেতন');
   setText('old-min', isFixed ? 'প্রযোজ্য নয়' : money(oldMinimum));
   setText('difference', money(difference));
   setText('candidate', isFixed ? fixedPosts[fixedTarget] : money(candidate));
-  setText('applied-step', isFixed ? money(applied) + ' · নির্ধারিত' : money(applied) + ' · ধাপ ' + toBn(stepIndex));
-  setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : 'নতুন স্কেলের ধাপ ' + toBn(stepIndex));
+  setText('pay-fixation-step', isFixed ? money(applied) + ' · নির্ধারিত' : money(applied) + ' · ধাপ ' + toBn(stepIndex));
+  setText('applied-step', isFixed ? money(annualIncrementBasic) + ' · নির্ধারিত' : money(annualIncrementBasic) + ' · ধাপ ' + toBn(incrementedStepIndex));
+  setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : 'Article 9 incrementসহ নতুন ধাপ ' + toBn(incrementedStepIndex));
 
-  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, arrearsDays, arrearsEstimate, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
+  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, payFixationBasic: applied, annualIncrementBasic, annualIncrement: annualIncrementBasic - applied, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, arrearsDays, arrearsEstimate, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
   renderGrossSalary();
+}
+
+function isGeneralScopeSelected() {
+  return document.querySelector('input[name="scope-check"]:checked')?.value === 'general';
+}
+
+function updateScopeGate() {
+  const general = isGeneralScopeSelected();
+  form.querySelectorAll('input, select, button').forEach((control) => {
+    control.disabled = !general;
+  });
+  scopeGateMessage.hidden = general;
+  if (!general) {
+    window.lastCalculation = null;
+    showResultState(false);
+    clearValidation();
+    return;
+  }
+  calculate(false);
 }
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+  if (!isGeneralScopeSelected()) return;
   calculate(true);
   window.requestAnimationFrame(() => {
     resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -428,6 +477,7 @@ currentBasic.addEventListener('blur', () => {
 
 grossForm.addEventListener('input', renderGrossSalary);
 grossForm.addEventListener('change', renderGrossSalary);
+scopeRadios.forEach((radio) => radio.addEventListener('change', updateScopeGate));
 
 document.querySelector('#toggle-table').addEventListener('click', (event) => {
   const expanded = event.currentTarget.dataset.expanded === 'true';
@@ -446,7 +496,8 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     'PayScale 2026 Calculator',
     result.fixed ? 'ধরন: স্থির বেতন' : 'গ্রেড: ' + result.grade,
     'বর্তমান মূল বেতন: ' + money(result.current),
-    'নতুন পূর্ণ মূল বেতন: ' + money(result.applied),
+    'Article 5 pay-fixation basic: ' + money(result.payFixationBasic),
+    'Article 9 incrementসহ নতুন পূর্ণ মূল বেতন: ' + money(result.annualIncrementBasic),
     'মোট বৃদ্ধি: ' + money(result.totalIncrease),
     '১ জুলাই–৩১ ডিসেম্বর ২০২৬: ' + money(result.phase1Pay),
     '১ জানুয়ারি–৩০ জুন ২০২৭: ' + money(result.phase2Pay),
@@ -461,8 +512,12 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
   ].join('\n');
   try {
     await navigator.clipboard.writeText(text);
+    toast.hidden = false;
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 1800);
+    setTimeout(() => {
+      toast.classList.remove('show');
+      toast.hidden = true;
+    }, 1800);
   } catch {
     validation.textContent = 'কপি করা সম্ভব হয়নি; ফলাফলটি ম্যানুয়ালি কপি করুন।';
     validation.hidden = false;
@@ -473,4 +528,5 @@ renderScaleTable(false);
 fixedFields.hidden = true;
 gradeFieldGroup.hidden = false;
 showResultState(false);
-calculate(false);
+toast.hidden = true;
+updateScopeGate();

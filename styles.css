@@ -102,6 +102,15 @@ select option { color: #102348; background: #f5f8ff; }
 .money-input span { position: absolute; left: 15px; top: 11px; color: var(--cyan); font-family: 'Manrope'; font-size: 17px; font-weight: 700; z-index: 1; }
 .money-input input { padding-left: 39px; font-family: 'Manrope', sans-serif; font-weight: 700; }
 .field-help { margin: 6px 0 0; color: var(--muted); font-size: 11px; }
+.scope-gate { display: grid; grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr); gap: 12px 18px; padding: 14px 15px; margin: -6px 0 18px; border: 1px solid rgba(106, 213, 255, .24); border-radius: 13px; background: rgba(53, 159, 232, .07); }
+.scope-gate-copy strong { display: block; color: var(--muted-strong); font-size: 13px; }
+.scope-gate-copy .eyebrow { margin-bottom: 5px; }
+.scope-gate-copy .field-help { margin-top: 3px; }
+.scope-gate-options { display: grid; gap: 7px; align-content: center; }
+.scope-gate-options label { display: flex; gap: 8px; align-items: flex-start; color: var(--muted-strong); font-size: 11px; line-height: 1.35; cursor: pointer; }
+.scope-gate-options input[type="radio"] { flex: 0 0 auto; width: 16px; height: 16px; margin: 1px 0 0; accent-color: var(--cyan); }
+.scope-gate-message { grid-column: 1 / -1; padding: 9px 11px; margin: 0; border: 1px solid rgba(255, 211, 126, .34); border-radius: 9px; color: #ffe4aa; background: rgba(164, 116, 56, .14); font-size: 10px; }
+form :disabled { cursor: not-allowed; opacity: .56; }
 .primary-button { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 14px 16px; margin-top: 25px; border: 0; border-radius: 12px; color: #04132c; background: linear-gradient(100deg, #70ddff, #5ba4ff); box-shadow: 0 11px 28px rgba(71, 162, 255, .24); font-weight: 700; transition: transform .2s, box-shadow .2s; }
 .primary-button:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(71, 162, 255, .32); }
 .button-arrow { font-family: 'Manrope'; font-size: 21px; line-height: 1; }
@@ -267,6 +276,8 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
   .hero-subtitle { font-size: 14px; }
   .hero-proof { gap: 9px 13px; }
   .unofficial-banner { align-items: flex-start; flex-direction: column; }
+  .scope-gate { grid-template-columns: 1fr; gap: 9px; }
+  .scope-gate-message { grid-column: auto; }
   .calculator, .scale-section, .gross-section { padding: 20px 16px; }
   .section-heading { margin-bottom: 19px; }
   .status-dot { display: none; }

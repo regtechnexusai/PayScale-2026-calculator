@@ -1,4 +1,4 @@
-# Gross Salary module — rule map (v1.16)
+# Gross Salary module — rule map (v1.17)
 
 This file documents the allowance rules used by the optional Step 03 module. The existing Step 01/02 basic-pay calculation is unchanged.
 
@@ -7,22 +7,22 @@ This file documents the allowance rules used by the optional Step 03 module. The
 - **S.R.O. No. 347-Law/2026** — general government service order.
 - **S.R.O. No. 349-Law/2026** — bank, insurance and financial institution order, including the definition that lists Bangladesh Bank among the banks. It is selectable for scope visibility, but its allowance schedule is not yet automatically transcribed in this release.
 
-The module does not silently apply the general allowance schedule to S.R.O. 348, 349, 350 or 351. Those orders are selectable so the user can see the scope, but their institution/unit-specific allowance schedules must be transcribed and verified separately before automatic gross calculation is enabled. Fixed-pay posts are treated the same way because the post-specific allowance package is not established by the grade table alone.
+The module does not silently apply the general allowance schedule to S.R.O. 348, 349, 350 or 351. Those orders are selectable so the user can see the scope, but their institution/unit-specific allowance schedules must be transcribed and verified separately before automatic gross calculation is enabled. Fixed-pay posts are treated the same way because the post-specific allowance package is not established by the grade table alone. The Step 01 scope check stops the S.R.O. 347 calculator for users who identify a separate pay order.
 
 ## Rules used for the automatic preview
 
 ### House rent
 
-House rent is calculated on the phase basic pay and is zero when the user confirms that government accommodation is provided.
+Article 15(1) keeps the National Pay Scale 2015 house-rent rates on amounts earned or entitled to through 31 December 2027. Therefore all three displayed 2026–2027 phases use the old 2015 schedule. The 2026 house-rent table starts on 1 January 2028 and is not applied early by this preview. House rent is calculated on each phase’s basic pay and is zero when the user confirms that government accommodation is provided.
 
-| 2026 grade band | Dhaka North/South City Corporation | Listed city corporations / listed municipal areas | Other places |
+| 2015 basic-pay band | Dhaka North/South City Corporation | Listed city corporations / listed municipal areas | Other places |
 |---|---:|---:|---:|
-| Grade 20 minimum step through Grade 16 maximum step | 60% | 50% | 45% |
-| Grade 15 minimum step through Grade 10 maximum step | 50% | 40% | 35% |
-| Grade 9 minimum step through Grade 5 maximum step | 45% | 35% | 30% |
-| Grade 4 minimum step through Grade 1 and above | 40% | 30% | 25% |
+| Up to ৳৯,৭০০ (rate / minimum) | ৬৫% / ৳৫,৬০০ | ৫৫% / ৳৫,০০০ | ৫০% / ৳৪,৫০০ |
+| ৳৯,৭০১–১৬,০০০ (rate / minimum) | ৬০% / ৳৬,৪০০ | ৫০% / ৳৫,৪০০ | ৪৫% / ৳৪,৮০০ |
+| ৳১৬,০০১–৩৫,৫০০ (rate / minimum) | ৫৫% / ৳৯,৬০০ | ৪৫% / ৳৮,০০০ | ৪০% / ৳৭,০০০ |
+| ৳৩৫,৫০১ ও তদূর্ধ্ব (rate / minimum) | ৫০% / ৳১৯,৫০০ | ৪০% / ৳১৬,০০০ | ৩৫% / ৳১৩,৮০০ |
 
-The listed-city option covers the named city corporations and the Savar/Cox’s Bazar municipal areas described in the gazette table. The user remains responsible for selecting the correct location category.
+The listed-city option covers the named city corporations and the Savar/Cox’s Bazar municipal areas described in the gazette table. The user remains responsible for selecting the correct location category and accommodation status.
 
 ### Fixed monthly allowances
 
@@ -45,10 +45,10 @@ The listed-city option covers the named city corporations and the Savar/Cox’s 
 
 `Gross Salary = phase basic pay + selected allowances`.
 
-The displayed amount is a conditional review-support estimate, not a universal entitlement. House rent depends on grade, duty station and government accommodation; medical and education assistance depend on eligibility; tiffin and travel are grade- and condition-specific. For example, a Grade 3 employee in Dhaka has a 40% house-rent rate under the general schedule, not a blanket 40–50% rate.
+The displayed amount is a conditional review-support estimate, not a universal entitlement. House rent depends on each phase basic pay, duty station and government accommodation; medical and education assistance depend on eligibility; tiffin and travel are grade- and condition-specific. The house-rent rate is selected from the 2015 basic-pay bands above, and the statutory minimum is applied where relevant—not a blanket 40–50% rate.
 
 It excludes income tax, provident fund, pension, loan recovery, other deductions, arrears, festival allowance/bonus and any post/unit-specific special allowance not selected by the user. The separate basic-pay arrears estimate in Step 02 is not part of Gross Salary. The result is a review-support estimate, not an official pay-fixation statement.
 
 ## Source
 
-Primary source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division, S.R.O. Nos. 347-Law/2026 and 349-Law/2026. Always check the latest official Gazette, corrigendum, clarification and the employee’s authorised pay-fixation statement before using a result.
+Primary source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division, S.R.O. No. 347-Law/2026, especially Article 9(2) (annual increment) and Article 15(1) (2015 house-rent schedule through 31 December 2027). The separate S.R.O. No. 349-Law/2026 profile remains visible for scope but is not automatically transcribed here. Always check the latest official Gazette, corrigendum, clarification and the employee’s authorised pay-fixation statement before using a result.

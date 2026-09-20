@@ -6,7 +6,7 @@ PayScale 2026 Calculator is a dependency-free static web tool for understanding 
 
 - Calculates potential new basic pay and total difference from current basic pay.
 - Shows Phase 1 (July–December 2026), Phase 2 (January–June 2027) and Phase 3 (from July 2027).
-- Applies the opening-step difference and next-higher-step rule described in the general gazette.
+- Applies the opening-step difference and next-higher-step rule described in the general gazette, then applies the one 1 July 2026 annual increment required by Article 9(2).
 - Provides a grade-wise 2015 → 2026 reference table.
 - Adds an optional Step 03 Gross Salary preview for the transcribed general-government allowance rules: house rent, medical, education assistance, tiffin, mobile, washing and selected conditional allowances. Separate bank/public-body/police/BGB orders and fixed-pay posts are shown without an automatic gross total until their allowance schedules are separately transcribed and verified.
 - Shows source, separate pay-order numbers, privacy treatment and human-review warnings.
@@ -18,12 +18,13 @@ The general government calculation follows the Bangladesh Gazette, Extra, dated 
 1. Take the employee’s basic pay as of 30 June 2026.
 2. Subtract the opening step of the corresponding 2015 scale.
 3. Add that difference to the opening step of the corresponding 2026 scale.
-4. If the result is not an exact 2026 step, use the next higher step.
-5. From 1 July to 31 December 2026, add 40% for Grades 1–9 and 50% for Grades 10–20.
-6. From 1 January to 30 June 2027, add 70% for Grades 1–9 and 75% for Grades 10–20.
-7. From 1 July 2027, the full refixed basic pay applies, subject to the Gazette and applicable annual increment rules.
-8. The app shows a review-support basic-pay arrears estimate from 1 July to the order date of 17 September 2026, using 30 days as one month. The later 19 September BG Press notice-page date is not used as the arrears endpoint. It excludes allowances, deductions, tax and the authorised arrears statement.
-9. Fixed-pay cases are shown separately; interim percentages do not apply to those cases.
+4. If the result is not an exact 2026 step, use the next higher step (Article 5 pay fixation).
+5. Apply one annual increment on 1 July 2026 under Article 9(2). This is the next listed increment step, not an arbitrary extra Step 5/Step 6.
+6. From 1 July to 31 December 2026, add 40% for Grades 1–9 and 50% for Grades 10–20 of the difference between the current basic and the increment-inclusive result.
+7. From 1 January to 30 June 2027, add 70% for Grades 1–9 and 75% for Grades 10–20 of that same total difference.
+8. From 1 July 2027, the full increment-inclusive refixed basic pay applies.
+9. The app shows a review-support basic-pay arrears estimate from 1 July to the order date of 17 September 2026, using 30 days as one month. The later 19 September BG Press notice-page date is not used as the arrears endpoint. It excludes allowances, deductions, tax and the authorised arrears statement.
+10. Fixed-pay cases are shown separately; interim percentages do not apply to those cases.
 
 ## Scope and separate 2026 pay orders
 
@@ -39,7 +40,7 @@ This is an **unofficial educational/review-support tool**, not a Government or F
 
 ## Gross Salary module
 
-The optional Step 03 module keeps the basic-pay result unchanged and adds selected allowances to each of the three pay phases. S.R.O. 347 is the only profile with an automatic gross preview in this release. S.R.O. Nos. 348, 349, 350 and 351 can be selected for scope visibility, but their institution/unit-specific allowance schedules are not silently treated as the general schedule. Fixed-pay posts are also excluded from automatic gross estimation. See [GROSS-SALARY-RULES.md](GROSS-SALARY-RULES.md) for the exact rule map and exclusions.
+The optional Step 03 module keeps the basic-pay result unchanged and adds selected allowances to each of the three pay phases. S.R.O. 347 is the only profile with an automatic gross preview in this release. Under Article 15(1), the 2015 house-rent rates and minimums remain in force through 31 December 2027; the 2026 house-rent schedule begins 1 January 2028 and is not applied early. S.R.O. Nos. 348, 349, 350 and 351 can be selected for scope visibility, but their institution/unit-specific allowance schedules are not silently treated as the general schedule. Fixed-pay posts are also excluded from automatic gross estimation. See [GROSS-SALARY-RULES.md](GROSS-SALARY-RULES.md) for the exact rule map and exclusions.
 
 ## Privacy
 
@@ -67,4 +68,4 @@ Upload `index.html`, `styles.css`, `scale-data.js`, `app.js`, `basic-pay.test.js
 
 The primary implementation source is the user-provided Bangladesh Gazette PDF for S.R.O. No. 347-Law/2026. Scale data is kept in the `SCALES` object in `scale-data.js`; `basic-pay.test.js` checks the opening, maximum, between-step, phased and fixed-pay cases. If a corrigendum or implementation order is issued, the official document takes precedence.
 
-Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.16**, last verified 20 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate ends at the order date, not the later notice-page date. The non-responsive S.R.O. 349 provenance link and the non-working Official S.R.O. notice link were removed; separate scope/profile notes remain for clarity. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
+Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.17**, last verified 20 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate ends at the order date, not the later notice-page date. The non-responsive S.R.O. 349 provenance link and the non-working Official S.R.O. notice link were removed; separate scope/profile notes remain for clarity. Article 9(2) increment treatment and Article 15(1) house-rent timing are documented in the current release. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.

@@ -15,14 +15,18 @@ function calculate(grade, current) {
   const candidate = fixed ? null : scale.new[0] + current - scale.old[0];
   const applied = fixed ? scale.new[0] : scale.new.find((step) => step >= candidate);
   assert.ok(applied, `No new step for Grade ${grade}, current ${current}`);
-  const totalIncrease = applied - current;
+  const annualIncrementBasic = fixed
+    ? applied
+    : (scale.new[scale.new.indexOf(applied) + 1] || applied);
+  const totalIncrease = annualIncrementBasic - current;
   const rates = fixed ? { phase1: null, phase2: null } : phaseRates(grade);
   return {
     candidate,
     applied,
+    annualIncrementBasic,
     phase1: fixed ? applied : current + Math.round(totalIncrease * rates.phase1 / 100),
     phase2: fixed ? applied : current + Math.round(totalIncrease * rates.phase2 / 100),
-    phase3: applied,
+    phase3: annualIncrementBasic,
   };
 }
 
@@ -45,9 +49,10 @@ for (const [gradeText, scale] of Object.entries(SCALES)) {
 assert.deepEqual(calculate(9, 53060), {
   candidate: 75060,
   applied: 75300,
-  phase1: 61956,
-  phase2: 68628,
-  phase3: 75300,
+  annualIncrementBasic: 79100,
+  phase1: 63476,
+  phase2: 71288,
+  phase3: 79100,
 });
 // Grade 9 audit case: the candidate 75,060 is rounded to the next listed
 // Gazette step, 75,300; it is not an extra Step-5/Step-6 advance.
@@ -58,34 +63,39 @@ assert.deepEqual(calculate(9, 53060).applied, 75300);
 assert.deepEqual(calculate(5, 53610), {
   candidate: 96610,
   applied: 96800,
-  phase1: 70886,
-  phase2: 83843,
-  phase3: 96800,
+  annualIncrementBasic: 100700,
+  phase1: 72446,
+  phase2: 86573,
+  phase3: 100700,
 });
 assert.deepEqual(calculate(9, 37900), {
   candidate: 59900,
   applied: 62000,
-  phase1: 47540,
-  phase2: 54770,
-  phase3: 62000,
+  annualIncrementBasic: 65100,
+  phase1: 48780,
+  phase2: 56940,
+  phase3: 65100,
 });
 assert.deepEqual(calculate(10, 16000), {
   candidate: 32000,
   applied: 32000,
-  phase1: 24000,
-  phase2: 28000,
-  phase3: 32000,
+  annualIncrementBasic: 33600,
+  phase1: 24800,
+  phase2: 29200,
+  phase3: 33600,
 });
 assert.deepEqual(calculate(20, 20010), {
   candidate: 31760,
   applied: 32600,
-  phase1: 26305,
-  phase2: 29453,
-  phase3: 32600,
+  annualIncrementBasic: 34000,
+  phase1: 27005,
+  phase2: 30503,
+  phase3: 34000,
 });
 assert.deepEqual(calculate(1, 78000), {
   candidate: null,
   applied: 156000,
+  annualIncrementBasic: 156000,
   phase1: 156000,
   phase2: 156000,
   phase3: 156000,
