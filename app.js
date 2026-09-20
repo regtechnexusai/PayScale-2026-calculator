@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026. Version 1.9.
+ * S.R.O. No. 347-Law/2026. Version 1.10.
  *
  * The scale steps below are transcribed from the user-provided Gazette PDF.
  * Keep this data block separate and easy to update if an official correction
@@ -74,8 +74,8 @@ const ALLOWANCE_PROFILES = {
   bank: {
     label: 'ব্যাংক, বিমা ও আর্থিক প্রতিষ্ঠান',
     sro: 'S.R.O. No. 349-Law/2026',
-    automatic: true,
-    note: 'ব্যাংক, বিমা ও আর্থিক প্রতিষ্ঠানের জন্য S.R.O. No. 349-Law/2026-এর নির্বাচিত allowance clauses ব্যবহার করা হচ্ছে; প্রতিষ্ঠানের নিজস্ব service rule থাকলে সেটিই চূড়ান্ত।'
+    automatic: false,
+    note: 'S.R.O. No. 349-Law/2026 নির্বাচিত হয়েছে। এই static preview-তে bank/insurance/financial-institution-এর allowance schedule আলাদাভাবে সম্পূর্ণ transcribe ও verify করা হয়নি; সাধারণ S.R.O. 347-এর হার প্রয়োগ করা হচ্ছে না।'
   },
   public: {
     label: 'Public Bodies/রাষ্ট্রায়ত্ত প্রতিষ্ঠান',
@@ -178,6 +178,27 @@ function houseRentRate(grade, station) {
   return rates.top;
 }
 
+function grossAssumptionSummary(grade) {
+  const stationInput = grossInput('duty-station');
+  const stationLabel = stationInput?.selectedOptions?.[0]?.textContent.trim() || 'নির্বাচিত duty station';
+  const station = stationInput?.value || 'dhaka';
+  const housing = grossInput('government-housing').checked ? 'সরকারি বাসস্থান নেই' : 'সরকারি বাসস্থান আছে';
+  const medical = grossInput('medical-eligible').checked
+    ? (grossInput('medical-band').value === 'over50' ? 'চিকিৎসা ৳ ৪,০০০' : 'চিকিৎসা ৳ ৩,০০০')
+    : 'চিকিৎসা ০';
+  const education = Math.min(2, Number(grossInput('education-children').value || 0)) * 500;
+  const mobile = grossInput('mobile-eligible').checked ? (grade <= 5 ? 500 : 150) : 0;
+  const fixed = [
+    grossInput('tiffin-eligible').checked && grade >= 11 ? 'টিফিন ৳ ৫০০' : '',
+    grossInput('travel-eligible').checked && grade >= 11 && station !== 'other' ? 'যাতায়াত ৳ ৬০০' : '',
+    grossInput('washing-eligible').checked ? 'ধোলাই ৳ ৩০০' : '',
+    'মোবাইল ' + money(mobile),
+    medical,
+    'শিক্ষা সহায়তা ' + money(education)
+  ].filter(Boolean).join(', ');
+  return 'বাড়িভাড়া ' + toBn(houseRentRate(grade, station)) + '% (' + stationLabel + '), ' + housing + '; ' + fixed + '।';
+}
+
 function grossInput(id) {
   return document.getElementById(id);
 }
@@ -237,18 +258,21 @@ function renderGrossSalary() {
   const profile = ALLOWANCE_PROFILES[allowanceProfileSelect.value] || ALLOWANCE_PROFILES.general;
   const grade = result.fixed ? 1 : result.grade;
   setText('gross-grade-chip', result.fixed ? 'স্থির পদ · গ্রেড ১ হার' : 'গ্রেড ' + toBn(grade));
-  grossProfileNote.textContent = profile.note;
-  grossProfileNote.classList.toggle('warning', !profile.automatic);
+  const fixedNote = 'স্থির/বিশেষ পদের জন্য পদভিত্তিক allowance schedule আলাদাভাবে যাচাই না করে gross salary auto-calculation দেখানো হচ্ছে না।';
+  grossProfileNote.textContent = result.fixed ? fixedNote : profile.note;
+  grossProfileNote.classList.toggle('warning', !profile.automatic || result.fixed);
   updateAllowanceAvailability(grade);
 
-  if (!profile.automatic) {
+  if (!profile.automatic || result.fixed) {
     const phases = [result.phase1Pay, result.phase2Pay, result.phase3Pay];
     phases.forEach((basic, index) => setGrossCell('gross-phase' + (index + 1) + '-basic', basic));
     ['1', '2', '3'].forEach((phase) => {
       ['house', 'medical', 'education', 'fixed', 'other', 'total', 'total-row'].forEach((part) => setText('gross-phase' + phase + '-' + part, '—'));
     });
-    ['1', '2', '3'].forEach((phase) => setText('gross-phase' + phase + '-meta', 'এই order-এর allowance schedule আলাদা করে মিলিয়ে নিন'));
-    setText('gross-footnote', 'এই আলাদা pay order-এর ভাতা-প্যাকেজ এখনো এই static preview-তে স্বয়ংক্রিয়ভাবে transcribe করা হয়নি। সাধারণ সরকারি হার ধরে কোনো gross salary দেখানো হচ্ছে না।');
+    ['1', '2', '3'].forEach((phase) => setText('gross-phase' + phase + '-meta', result.fixed ? 'পদভিত্তিক ভাতা আলাদা করে মিলিয়ে নিন' : 'এই order-এর allowance schedule আলাদা করে মিলিয়ে নিন'));
+    setText('gross-footnote', result.fixed
+      ? 'স্থির/বিশেষ পদের gross salary এই preview-তে স্বয়ংক্রিয়ভাবে দেখানো হচ্ছে না। সংশ্লিষ্ট পদ, office order এবং authorised pay-fixation statement দেখে ভাতা যোগ করুন।'
+      : 'এই আলাদা pay order-এর ভাতা-প্যাকেজ এখনো এই static preview-তে স্বয়ংক্রিয়ভাবে transcribe করা হয়নি। সাধারণ সরকারি হার ধরে কোনো gross salary দেখানো হচ্ছে না।');
     return;
   }
 
@@ -429,6 +453,9 @@ document.querySelector('#toggle-table').addEventListener('click', (event) => {
 document.querySelector('#copy-result').addEventListener('click', async () => {
   const result = window.lastCalculation;
   if (!result) return;
+  const profile = ALLOWANCE_PROFILES[allowanceProfileSelect.value] || ALLOWANCE_PROFILES.general;
+  const grossAutomatic = profile.automatic && !result.fixed;
+  const grossTotal = document.querySelector('#gross-phase3-total').textContent;
   const text = [
     'PayScale 2026 Calculator',
     result.fixed ? 'ধরন: স্থির বেতন' : 'গ্রেড: ' + result.grade,
@@ -438,10 +465,11 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     '১ জুলাই–৩১ ডিসেম্বর ২০২৬: ' + money(result.phase1Pay),
     '১ জানুয়ারি–৩০ জুন ২০২৭: ' + money(result.phase2Pay),
     '১ জুলাই ২০২৭ থেকে: ' + money(result.phase3Pay),
-    'Gross profile: ' + (ALLOWANCE_PROFILES[allowanceProfileSelect.value]?.sro || '—'),
-    'আনুমানিক Gross Salary (পর্যায় ৩): ' + document.querySelector('#gross-phase3-total').textContent,
+    'Gross profile: ' + profile.sro,
+    'আনুমানিক Gross Salary (পর্যায় ৩): ' + (grossAutomatic ? grossTotal : 'স্বয়ংক্রিয়ভাবে গণনা করা হয়নি'),
+    grossAutomatic ? 'Gross assumptions: ' + grossAssumptionSummary(result.grade) : 'Gross note: সংশ্লিষ্ট pay order/স্থির পদের ভাতা আলাদা করে যাচাই করতে হবে।',
     'Prepared by RegTech Nexus AI',
-    'সূত্র: Bangladesh Gazette, Extra, 17 September 2026 · S.R.O. No. 347-Law/2026',
+    'সূত্র: Bangladesh Gazette, Extra, 17 September 2026 · ' + profile.sro,
     'Demo output only. Final decisions remain with the authorised accounts office.',
   ].join('\n');
   try {

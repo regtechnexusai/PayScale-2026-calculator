@@ -8,7 +8,7 @@ PayScale 2026 Calculator is a dependency-free static web tool for understanding 
 - Shows Phase 1 (July–December 2026), Phase 2 (January–June 2027) and Phase 3 (from July 2027).
 - Applies the opening-step difference and next-higher-step rule described in the general gazette.
 - Provides a grade-wise 2015 → 2026 reference table.
-- Adds an optional Step 03 Gross Salary preview for selected general/bank allowance clauses: house rent, medical, education assistance, tiffin, mobile, washing and selected conditional allowances. The result is conditional and profile-specific, not a universal entitlement.
+- Adds an optional Step 03 Gross Salary preview for the transcribed general-government allowance rules: house rent, medical, education assistance, tiffin, mobile, washing and selected conditional allowances. Separate bank/public-body/police/BGB orders and fixed-pay posts are shown without an automatic gross total until their allowance schedules are separately transcribed and verified.
 - Shows source, separate pay-order numbers, privacy treatment and human-review warnings.
 
 ## General calculation rules
@@ -39,7 +39,7 @@ This is an **unofficial educational/review-support tool**, not a Government or F
 
 ## Gross Salary module
 
-The optional Step 03 module keeps the basic-pay result unchanged and adds selected allowances to each of the three pay phases. S.R.O. 347 is the general-government profile; S.R.O. 349 is only for banks, insurance and financial institutions. S.R.O. Nos. 348, 350 and 351 can be selected for scope visibility, but their institution/unit-specific allowance schedules are not silently treated as the general schedule. See [GROSS-SALARY-RULES.md](GROSS-SALARY-RULES.md) for the exact rule map and exclusions.
+The optional Step 03 module keeps the basic-pay result unchanged and adds selected allowances to each of the three pay phases. S.R.O. 347 is the only profile with an automatic gross preview in this release. S.R.O. Nos. 348, 349, 350 and 351 can be selected for scope visibility, but their institution/unit-specific allowance schedules are not silently treated as the general schedule. Fixed-pay posts are also excluded from automatic gross estimation. See [GROSS-SALARY-RULES.md](GROSS-SALARY-RULES.md) for the exact rule map and exclusions.
 
 ## Privacy
 
@@ -67,4 +67,4 @@ Upload `index.html`, `styles.css`, `app.js`, `README.md`, `GROSS-SALARY-RULES.md
 
 The primary implementation source is the user-provided Bangladesh Gazette PDF for S.R.O. No. 347-Law/2026. Scale data is kept in the `SCALES` object near the top of `app.js`. If a corrigendum or implementation order is issued, the official document takes precedence.
 
-Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.9**, last verified 19 September 2026. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
+Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.10**, last verified 20 September 2026. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.

@@ -2,12 +2,12 @@
 
 This file documents the allowance rules used by the optional Step 03 module. The existing Step 01/02 basic-pay calculation is unchanged.
 
-## Automatically transcribed profiles
+## Profiles and transcription status
 
 - **S.R.O. No. 347-Law/2026** — general government service order.
-- **S.R.O. No. 349-Law/2026** — bank, insurance and financial institution order, including the definition that lists Bangladesh Bank among the banks. It must not be used as the default for ordinary government service.
+- **S.R.O. No. 349-Law/2026** — bank, insurance and financial institution order, including the definition that lists Bangladesh Bank among the banks. It is selectable for scope visibility, but its allowance schedule is not yet automatically transcribed in this release.
 
-The module does not silently apply the general allowance schedule to S.R.O. 348, 350 or 351. Those orders are selectable so the user can see the scope, but their institution/unit-specific allowance schedules must be transcribed and verified separately before automatic gross calculation is enabled.
+The module does not silently apply the general allowance schedule to S.R.O. 348, 349, 350 or 351. Those orders are selectable so the user can see the scope, but their institution/unit-specific allowance schedules must be transcribed and verified separately before automatic gross calculation is enabled. Fixed-pay posts are treated the same way because the post-specific allowance package is not established by the grade table alone.
 
 ## Rules used for the automatic preview
 
