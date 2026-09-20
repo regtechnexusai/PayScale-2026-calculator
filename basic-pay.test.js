@@ -47,6 +47,10 @@ assert.deepEqual(calculate(9, 53060), {
   phase2: 68628,
   phase3: 75300,
 });
+// Grade 9 audit case: the candidate 75,060 is rounded to the next listed
+// Gazette step, 75,300; it is not an extra Step-5/Step-6 advance.
+assert.deepEqual(calculate(9, 53060).candidate, 75060);
+assert.deepEqual(calculate(9, 53060).applied, 75300);
 // Grade 5 guardrail: do not apply an additional competitor-style
 // "Step 5/Step 6" advance after the Gazette next-higher-step rule.
 assert.deepEqual(calculate(5, 53610), {
