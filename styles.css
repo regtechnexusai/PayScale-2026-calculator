@@ -65,6 +65,11 @@ h3 { margin-bottom: 4px; font-size: 17px; }
 .notice-icon { display: grid; place-items: center; flex: 0 0 23px; width: 23px; height: 23px; border: 1px solid rgba(106, 213, 255, .58); border-radius: 50%; color: var(--cyan); font-family: 'Manrope'; font-weight: 700; font-size: 13px; }
 .notice strong { display: block; margin: -2px 0 2px; font-size: 14px; }
 .notice p { margin: 0; color: var(--muted-strong); font-size: 13px; }
+.release-banner { margin-bottom: 22px; border-color: rgba(255, 211, 126, .28); background: linear-gradient(135deg, rgba(89, 69, 35, .3), rgba(20, 42, 83, .72)); }
+.release-banner .notice-icon { border-color: rgba(255, 211, 126, .58); color: #ffe4aa; }
+.release-banner strong { color: #ffe4aa; }
+.release-banner p { font-size: 12px; }
+.release-banner a, .update-note a { color: var(--cyan); font-weight: 700; text-underline-offset: 3px; }
 .noscript-note { padding: 15px 18px; margin-bottom: 22px; border-color: rgba(255, 211, 126, .28); border-radius: 14px; background: rgba(89, 69, 35, .2); }
 .noscript-note strong { color: #ffe4aa; font-size: 13px; }
 .noscript-note p { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
