@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b1630" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
-    <meta name="description" content="PayScale 2026 Calculator থেকে আলাদা পেনশন ও অবসর সুবিধার review-support calculator by RegTech Nexus AI।" />
+    <meta name="description" content="PayScale 2026 Calculator থেকে আলাদা পেনশন ও অবসর সুবিধার গেজেট-ভিত্তিক review-support calculator by RegTech Nexus AI।" />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://regtechnexusai.github.io/PayScale-2026-calculator/pension.html" />
     <meta property="og:type" content="website" />
@@ -14,9 +14,13 @@
     <meta property="og:description" content="গ্রস pension, আনুতোষিক, ছুটি নগদায়ন ও net-pension band-এর আলাদা review-support estimate।" />
     <meta property="og:url" content="https://regtechnexusai.github.io/PayScale-2026-calculator/pension.html" />
     <meta property="og:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="পেনশন ও অবসর সুবিধার হিসাব | RegTech Nexus AI" />
+    <meta name="twitter:description" content="গেজেট-ভিত্তিক গ্রস pension, আনুতোষিক, ছুটি নগদায়ন ও net-pension band-এর আলাদা review-support estimate।" />
+    <meta name="twitter:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
     <title>পেনশন ও অবসর সুবিধার হিসাব | RegTech Nexus AI</title>
     <link rel="icon" href="regtech-nexus-ai-logo.png" type="image/png" />
-    <link rel="stylesheet" href="styles.css?v=19" />
+    <link rel="stylesheet" href="styles.css?v=20" />
   </head>
   <body>
     <div class="orb orb-one" aria-hidden="true"></div>
@@ -60,7 +64,7 @@
           <a class="grade-chip source-chip" href="https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf" target="_blank" rel="noopener">Official Gazette PDF</a>
         </div>
 
-        <div class="retirement-profile-note">PayScale page থেকে এলে basic pay স্বয়ংক্রিয়ভাবে prefill হবে। প্রয়োজন হলে এখানে basic pay পরিবর্তন করে আলাদা retirement scenario পরীক্ষা করুন। Qualifying service, PPO, medical allowance, deductions ও authorised pension order আলাদাভাবে যাচাই করতে হবে।</div>
+        <div class="retirement-profile-note">PayScale page থেকে এলে basic pay স্বয়ংক্রিয়ভাবে prefill হবে। চাকরিকাল ও ছুটি নগদায়নের মাস নিজে নির্বাচন না করা পর্যন্ত কোনো optimistic result দেখানো হবে না। Qualifying service, PPO, medical allowance, deductions ও authorised pension order আলাদাভাবে যাচাই করতে হবে।</div>
 
         <form id="retirement-form" class="retirement-form" novalidate>
           <div class="retirement-input-grid">
@@ -76,11 +80,12 @@
               <label class="field-label" for="retirement-service-years">পেনশনযোগ্য চাকরিকাল</label>
               <div class="select-wrap">
                 <select id="retirement-service-years" name="retirement-service-years">
+                  <option value="" selected>নির্বাচন করুন</option>
                   <option value="5">৫ বছর</option><option value="6">৬ বছর</option><option value="7">৭ বছর</option><option value="8">৮ বছর</option><option value="9">৯ বছর</option>
                   <option value="10">১০ বছর</option><option value="11">১১ বছর</option><option value="12">১২ বছর</option><option value="13">১৩ বছর</option><option value="14">১৪ বছর</option>
                   <option value="15">১৫ বছর</option><option value="16">১৬ বছর</option><option value="17">১৭ বছর</option><option value="18">১৮ বছর</option><option value="19">১৯ বছর</option>
                   <option value="20">২০ বছর</option><option value="21">২১ বছর</option><option value="22">২২ বছর</option><option value="23">২৩ বছর</option><option value="24">২৪ বছর</option>
-                  <option value="25" selected>২৫ বছর বা তদূর্ধ্ব</option>
+                  <option value="25">২৫ বছর বা তদূর্ধ্ব</option>
                 </select>
                 <span class="select-chevron" aria-hidden="true">⌄</span>
               </div>
@@ -90,7 +95,7 @@
               <label class="field-label" for="retirement-leave-months">ছুটি নগদায়নের মাস</label>
               <div class="select-wrap">
                 <select id="retirement-leave-months" name="retirement-leave-months">
-                  <option value="0">০ মাস</option><option value="6">৬ মাস</option><option value="12">১২ মাস</option><option value="18" selected>১৮ মাস · সর্বোচ্চ</option>
+                  <option value="" selected>নির্বাচন করুন</option><option value="0">০ মাস</option><option value="6">৬ মাস</option><option value="12">১২ মাস</option><option value="18">১৮ মাস · সর্বোচ্চ</option>
                 </select>
                 <span class="select-chevron" aria-hidden="true">⌄</span>
               </div>
@@ -106,6 +111,15 @@
             </div>
           </div>
         </form>
+
+        <div class="retirement-audit-summary" id="retirement-audit-summary" role="note">
+          <strong>হিসাবের ইনপুট ও assumptions</strong>
+          <span id="retirement-audit-basic">মূল বেতন: —</span>
+          <span id="retirement-audit-service">পেনশনযোগ্য চাকরিকাল: —</span>
+          <span id="retirement-audit-leave">ছুটি নগদায়ন: —</span>
+          <span id="retirement-audit-commutation">সমর্পণ: ৫০% ধরে</span>
+          <span id="retirement-audit-generated">হিসাবের সময়: —</span>
+        </div>
 
         <div id="retirement-validation" class="validation-message" role="alert" hidden></div>
         <p id="retirement-live-summary" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
@@ -135,9 +149,15 @@
         <details class="retirement-reference">
           <summary>অবসর সুবিধার গেজেট table দেখুন</summary>
           <div class="retirement-reference-grid">
-            <div class="table-wrap"><table><caption>গ্রস pension নির্ধারণের হার</caption><thead><tr><th>পেনশনযোগ্য চাকরিকাল</th><th>হার</th></tr></thead><tbody id="retirement-service-table-body"></tbody></table></div>
-            <div class="table-wrap"><table><caption>আনুতোষিকের হার</caption><thead><tr><th>পেনশনযোগ্য চাকরিকাল</th><th>প্রতি টাকায়</th></tr></thead><tbody id="retirement-gratuity-table-body"></tbody></table></div>
-            <div class="table-wrap retirement-net-table"><table><caption>নিট pension band</caption><thead><tr><th>৩০ জুনের net pension</th><th>হার</th><th>সর্বনিম্ন</th><th>সর্বোচ্চ</th></tr></thead><tbody id="retirement-net-table-body"></tbody></table></div>
+            <div class="table-wrap"><table><caption>গ্রস pension নির্ধারণের হার</caption><thead><tr><th scope="col">পেনশনযোগ্য চাকরিকাল</th><th scope="col">হার</th></tr></thead><tbody id="retirement-service-table-body">
+              <tr><td>৫ বছর</td><td>২১%</td></tr><tr><td>৬ বছর</td><td>২৪%</td></tr><tr><td>৭ বছর</td><td>২৭%</td></tr><tr><td>৮ বছর</td><td>৩০%</td></tr><tr><td>৯ বছর</td><td>৩৩%</td></tr><tr><td>১০ বছর</td><td>৩৬%</td></tr><tr><td>১১ বছর</td><td>৩৯%</td></tr><tr><td>১২ বছর</td><td>৪২%</td></tr><tr><td>১৩ বছর</td><td>৪৫%</td></tr><tr><td>১৪ বছর</td><td>৫১%</td></tr><tr><td>১৫ বছর</td><td>৫৪%</td></tr><tr><td>১৬ বছর</td><td>৫৭%</td></tr><tr><td>১৭ বছর</td><td>৬০%</td></tr><tr><td>১৮ বছর</td><td>৬৩%</td></tr><tr><td>১৯ বছর</td><td>৬৬%</td></tr><tr><td>২০ বছর</td><td>৭২%</td></tr><tr><td>২১ বছর</td><td>৭৫%</td></tr><tr><td>২২ বছর</td><td>৭৮%</td></tr><tr><td>২৩ বছর</td><td>৮১%</td></tr><tr><td>২৪ বছর</td><td>৮৭%</td></tr><tr><td>২৫ বছর ও তদূর্ধ্ব</td><td>৯০%</td></tr>
+            </tbody></table></div>
+            <div class="table-wrap"><table><caption>আনুতোষিকের হার</caption><thead><tr><th scope="col">পেনশনযোগ্য চাকরিকাল</th><th scope="col">প্রতি টাকায়</th></tr></thead><tbody id="retirement-gratuity-table-body">
+              <tr><td>৫–৯ বছর</td><td>২৬৫</td></tr><tr><td>১০–১৪ বছর</td><td>২৬০</td></tr><tr><td>১৫–১৯ বছর</td><td>২৪৫</td></tr><tr><td>২০ বছর বা তদূর্ধ্ব</td><td>২৩০</td></tr>
+            </tbody></table></div>
+            <div class="table-wrap retirement-net-table"><table><caption>নিট pension band</caption><thead><tr><th scope="col">৩০ জুনের net pension</th><th scope="col">হার</th><th scope="col">সর্বনিম্ন</th><th scope="col">সর্বোচ্চ</th></tr></thead><tbody id="retirement-net-table-body">
+              <tr><td>সর্বনিম্ন–৳৯,০০০</td><td>১০০%</td><td>৳ ১০,০০০</td><td>৳ ১৮,০০০</td></tr><tr><td>৳৯,০০১–৳২০,০০০</td><td>৭৫%</td><td>৳ ১৮,০০১</td><td>৳ ৩৫,০০০</td></tr><tr><td>৳২০,০০১–৳৩০,০০০</td><td>৬৫%</td><td>৳ ৩৫,০০১</td><td>৳ ৪৯,০০০</td></tr><tr><td>৳৩০,০০১–৳৪০,০০০</td><td>৬০%</td><td>৳ ৪৯,০০১</td><td>৳ ৬২,০০০</td></tr><tr><td>৳৪০,০০১ ও তদূর্ধ্ব</td><td>৫৫%</td><td>৳ ৬২,০০১</td><td>৳ ৭০,২০০</td></tr>
+            </tbody></table></div>
           </div>
         </details>
 
@@ -156,7 +176,7 @@
         </div>
         <div class="footer-meta">
           <span>Independent educational calculator · Not an official Government portal</span>
-          <span><span data-app-version>Version 1.24</span> · Last verified 20 September 2026</span>
+          <span><span data-app-version>Version 1.25</span> · Last verified 21 September 2026</span>
         </div>
         <div class="footer-contact" aria-label="Contact">
           <span>Contact</span>
@@ -176,6 +196,6 @@
     <div class="toast" id="pension-toast" role="status" aria-live="polite" hidden>পেনশন ফলাফল কপি হয়েছে</div>
     <script src="retirement-data.js?v=1"></script>
     <script src="release-meta.js?v=1"></script>
-    <script src="pension.js?v=3"></script>
+    <script src="pension.js?v=4"></script>
   </body>
 </html>

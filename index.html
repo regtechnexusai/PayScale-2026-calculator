@@ -25,7 +25,7 @@
     <meta name="twitter:title" content="PayScale 2026 Calculator | RegTech Nexus AI" />
     <meta name="twitter:description" content="Gazette-based Bangladesh basic-pay transition and conditional gross-salary review calculator." />
     <meta name="twitter:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
-    <link rel="stylesheet" href="styles.css?v=19" />
+    <link rel="stylesheet" href="styles.css?v=20" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -86,7 +86,7 @@
       <noscript>
         <section class="noscript-note glass-card" role="status">
           <strong>JavaScript চালু করুন</strong>
-          <p>এই calculator-এর হিসাব ও grade table browser-এ JavaScript চালু থাকলে দেখা যাবে। Gazette-এর সহজপাঠ্য সারাংশ নিচে পড়তে পারবেন।</p>
+          <p>ফলাফলের হিসাব এবং সম্পূর্ণ ধাপের expansion-এর জন্য browser-এ JavaScript চালু করুন। ১–২০ গ্রেডের opening–maximum reference table এবং Gazette-এর সহজপাঠ্য সারাংশ নিচে দেখা যাবে।</p>
         </section>
       </noscript>
 
@@ -145,13 +145,13 @@
               <a href="https://www.payfixation.gov.bd/" target="_blank" rel="noopener">Official Pay Fixation portal</a>
               <a href="https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf" target="_blank" rel="noopener">Retirement Benefits Gazette PDF</a>
               <span>শেষ যাচাই: ২০ সেপ্টেম্বর ২০২৬</span>
-              <span data-app-version>Version 1.24</span>
+              <span data-app-version>Version 1.25</span>
             </div>
         </div>
         <div class="update-note">
           <strong>সংশোধনী নজরে রাখুন</strong>
           <p>পরবর্তী corrigendum, clarification বা implementation order প্রকাশিত হলে অফিসিয়াল নথিই অগ্রাধিকার পাবে এবং এই tool আপডেট করতে হবে।</p>
-          <p class="change-log"><strong>v1.24:</strong> ২০ গ্রেডের regression test, print/PDF view, policy links, discrepancy reporting, accessibility live-summary এবং repository/SEO maintenance যুক্ত হয়েছে।</p>
+          <p class="change-log"><strong>v1.25:</strong> audit-ready input/source/version/time summary, no-JavaScript grade reference fallback, Bengali-input guardrails এবং pension-এর optimistic default বন্ধ করা হয়েছে।</p>
         </div>
       </section>
 
@@ -355,6 +355,15 @@
             <div class="math-line final"><span id="full-step-label">১ জুলাই ২০২৭ · annual incrementসহ পূর্ণ basic</span><strong id="full-step">—</strong></div>
           </div>
 
+          <div class="salary-audit-summary result-block" id="salary-audit-summary" role="note" hidden>
+            <strong>হিসাবের ইনপুট ও উৎস</strong>
+            <span id="salary-audit-grade">গ্রেড: —</span>
+            <span id="salary-audit-current">বর্তমান মূল বেতন: —</span>
+            <span id="salary-audit-source">সূত্র: S.R.O. No. 347-Law/2026 · Bangladesh Gazette, Extra, ১৭ সেপ্টেম্বর ২০২৬</span>
+            <span id="salary-audit-version">Version 1.25</span>
+            <span id="salary-audit-generated">হিসাবের সময়: —</span>
+          </div>
+
           <div class="retirement-action result-block" hidden>
             <div>
               <strong>বেতন কত হবে ও পেনশন হিসাব দেখুন</strong>
@@ -518,7 +527,28 @@
             <thead>
               <tr><th scope="col">গ্রেড</th><th scope="col">জাতীয় বেতনস্কেল ২০১৫</th><th scope="col">জাতীয় বেতনস্কেল ২০২৬</th><th scope="col">পর্যায় ১ / ২ হার</th></tr>
             </thead>
-            <tbody id="scale-table-body"></tbody>
+            <tbody id="scale-table-body">
+              <tr><td>গ্রেড ১</td><td>৳ ৭৮,০০০</td><td>৳ ১,৫৬,০০০ · স্থির</td><td>স্থির / প্রযোজ্য নয়</td></tr>
+              <tr><td>গ্রেড ২</td><td>৳ ৬৬,০০০–৳ ৭৬,৪৯০</td><td>৳ ১,৩২,০০০–৳ ১,৫৫,০০০</td><td>৪০% / ৭০%</td></tr>
+              <tr><td>গ্রেড ৩</td><td>৳ ৫৬,৫০০–৳ ৭৪,৪০০</td><td>৳ ১,১৩,০০০–৳ ১,৪৮,৮০০</td><td>৪০% / ৭০%</td></tr>
+              <tr><td>গ্রেড ৪</td><td>৳ ৫০,০০০–৳ ৭১,২০০</td><td>৳ ১,০০,০০০–৳ ১,৪২,৪০০</td><td>৪০% / ৭০%</td></tr>
+              <tr><td>গ্রেড ৫</td><td>৳ ৪৩,০০০–৳ ৬৯,৮৫০</td><td>৳ ৮৬,০০০–৳ ১,৩৯,৭০০</td><td>৪০% / ৭০%</td></tr>
+              <tr><td>গ্রেড ৬</td><td>৳ ৩৫,৫০০–৳ ৬৭,০১০</td><td>৳ ৭১,০০০–৳ ১,৩৪,০০০</td><td>৪০% / ৭০%</td></tr>
+              <tr><td>গ্রেড ৭</td><td>৳ ২৯,০০০–৳ ৬৩,৪১০</td><td>৳ ৫৮,০০০–৳ ১,২৬,৮০০</td><td>৪০% / ৭০%</td></tr>
+              <tr><td>গ্রেড ৮</td><td>৳ ২৩,০০০–৳ ৫৫,৪৭০</td><td>৳ ৪৬,০০০–৳ ১,১০,৮০০</td><td>৪০% / ৭০%</td></tr>
+              <tr><td>গ্রেড ৯</td><td>৳ ২২,০০০–৳ ৫৩,০৬০</td><td>৳ ৪৪,০০০–৳ ১,০৫,৭০০</td><td>৪০% / ৭০%</td></tr>
+              <tr><td>গ্রেড ১০</td><td>৳ ১৬,০০০–৳ ৩৮,৬৪০</td><td>৳ ৩২,০০০–৳ ৭৭,৩০০</td><td>৫০% / ৭৫%</td></tr>
+              <tr><td>গ্রেড ১১</td><td>৳ ১২,৫০০–৳ ৩০,২৩০</td><td>৳ ২৫,০০০–৳ ৬০,৫০০</td><td>৫০% / ৭৫%</td></tr>
+              <tr><td>গ্রেড ১২</td><td>৳ ১১,৩০০–৳ ২৭,৩০০</td><td>৳ ২৪,৩০০–৳ ৫৮,৭০০</td><td>৫০% / ৭৫%</td></tr>
+              <tr><td>গ্রেড ১৩</td><td>৳ ১১,০০০–৳ ২৬,৫৯০</td><td>৳ ২৪,০০০–৳ ৫৮,০০০</td><td>৫০% / ৭৫%</td></tr>
+              <tr><td>গ্রেড ১৪</td><td>৳ ১০,২০০–৳ ২৪,৬৮০</td><td>৳ ২৩,৫০০–৳ ৫৬,৮০০</td><td>৫০% / ৭৫%</td></tr>
+              <tr><td>গ্রেড ১৫</td><td>৳ ৯,৭০০–৳ ২৩,৪৯০</td><td>৳ ২২,৮০০–৳ ৫৫,২০০</td><td>৫০% / ৭৫%</td></tr>
+              <tr><td>গ্রেড ১৬</td><td>৳ ৯,৩০০–৳ ২২,৪৯০</td><td>৳ ২১,৯০০–৳ ৫২,৯০০</td><td>৫০% / ৭৫%</td></tr>
+              <tr><td>গ্রেড ১৭</td><td>৳ ৯,০০০–৳ ২১,৮০০</td><td>৳ ২১,৪০০–৳ ৫১,৯০০</td><td>৫০% / ৭৫%</td></tr>
+              <tr><td>গ্রেড ১৮</td><td>৳ ৮,৮০০–৳ ২১,৩১০</td><td>৳ ২১,০০০–৳ ৫০,৯০০</td><td>৫০% / ৭৫%</td></tr>
+              <tr><td>গ্রেড ১৯</td><td>৳ ৮,৫০০–৳ ২০,৫৭০</td><td>৳ ২০,৫০০–৳ ৪৯,৬০০</td><td>৫০% / ৭৫%</td></tr>
+              <tr><td>গ্রেড ২০</td><td>৳ ৮,২৫০–৳ ২০,০১০</td><td>৳ ২০,০০০–৳ ৪৮,৪০০</td><td>৫০% / ৭৫%</td></tr>
+            </tbody>
           </table>
         </div>
         <p class="table-note">পুরোনো স্কেলে প্রারম্ভিক ধাপ–সর্বোচ্চ ধাপ দেখানো হয়। “সম্পূর্ণ ধাপ দেখুন” নির্বাচন করলে ২০২৬ সালের নতুন স্কেলের প্রতিটি ধাপ দেখা যাবে।</p>
@@ -573,7 +603,7 @@
         </div>
         <div class="footer-meta">
           <span>Independent educational calculator · Not an official Government portal</span>
-          <span><span data-app-version>Version 1.24</span> · Last verified 20 September 2026</span>
+          <span><span data-app-version>Version 1.25</span> · Last verified 21 September 2026</span>
         </div>
         <div class="footer-contact" aria-label="Contact">
           <span>Contact</span>
@@ -593,6 +623,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite" hidden>ফলাফল কপি হয়েছে</div>
     <script src="scale-data.js?v=3"></script>
     <script src="release-meta.js?v=1"></script>
-    <script src="app.js?v=27"></script>
+    <script src="app.js?v=28"></script>
   </body>
 </html>

@@ -182,6 +182,9 @@ form :disabled { cursor: not-allowed; opacity: .56; }
 .math-line strong { color: var(--muted-strong); font-family: 'Manrope'; font-size: 12px; white-space: nowrap; }
 .math-line.final { padding-top: 12px; margin-top: 4px; border-top: 1px dashed rgba(160,188,240,.23); color: #e7f7ff; }
 .math-line.final strong { color: var(--green); font-size: 15px; }
+.salary-audit-summary, .retirement-audit-summary { display: flex; flex-wrap: wrap; gap: 8px 14px; padding: 11px 13px; margin-top: 13px; border: 1px dashed rgba(106, 213, 255, .3); border-radius: 11px; color: var(--muted); background: rgba(53, 159, 232, .05); font-size: 10px; }
+.salary-audit-summary strong, .retirement-audit-summary strong { flex-basis: 100%; color: var(--muted-strong); }
+.salary-audit-summary span, .retirement-audit-summary span { overflow-wrap: anywhere; }
 .retirement-action { display: flex; justify-content: space-between; gap: 14px; align-items: center; padding: 14px 15px; margin-top: 13px; border: 1px solid rgba(156, 131, 255, .28); border-radius: 13px; background: rgba(32, 27, 79, .2); }
 .retirement-action strong { color: #e6ddff; font-size: 12px; }
 .retirement-action p { margin: 3px 0 0; color: var(--muted); font-size: 10px; }
@@ -397,7 +400,7 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
 }
 
 @media print {
-  @page { margin: 14mm; }
+  @page { margin: 10mm; }
   html, body { min-width: 0; color: #111; background: #fff !important; }
   body { font-family: Arial, 'Noto Sans Bengali', sans-serif; }
   .orb, .hero, .quick-choice-section, .noscript-note, .about-tool, .unofficial-banner,
@@ -412,11 +415,16 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
   .results-heading h2, .gross-section h2, .retirement-section h2, .timeline-card h3, .retirement-net-card h3 { color: #111; }
   .output-note, .timeline-note, .field-help, .timeline-content span, .timeline-amount-label, .timeline-amount small, .gross-footnote, .retirement-footnote { color: #444; }
   .result-hero, .metric-card, .timeline-card, .math-card, .result-disclaimer, .gross-profile-note,
-  .gross-total-card, .retirement-card, .retirement-net-card { border: 1px solid #bbb; color: #111; background: #fff; box-shadow: none; }
+  .gross-total-card, .retirement-card, .retirement-net-card, .salary-audit-summary, .retirement-audit-summary { border: 1px solid #bbb; color: #111; background: #fff; box-shadow: none; }
   .result-value, .metric-card strong, .timeline-amount, .timeline-amount.emphasis, .math-line strong,
   .gross-total-card strong, .retirement-card strong, .retirement-net-values strong { color: #111 !important; }
   .grade-chip, .timeline-tag { color: #111; background: #fff; border-color: #aaa; }
   .math-line, .metric-label, .metric-card small, .gross-total-card span, .gross-total-card small, .retirement-card span, .retirement-card small, .retirement-net-values span { color: #333; }
+  .salary-audit-summary, .retirement-audit-summary { color: #333; }
+  .salary-audit-summary strong, .retirement-audit-summary strong { color: #111; }
+  .result-hero, .metric-card, .timeline-card, .math-card, .result-disclaimer, .salary-audit-summary,
+  .gross-total-card, .retirement-card, .retirement-net-card, .retirement-audit-summary { break-inside: avoid; page-break-inside: avoid; }
+  h2, h3 { break-after: avoid; page-break-after: avoid; }
   .gross-section { margin-top: 16px; }
   [hidden] { display: none !important; }
 }

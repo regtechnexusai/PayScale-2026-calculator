@@ -1,5 +1,5 @@
 /*
- * Standalone pension and retirement-benefits review page. Version 1.24.
+ * Standalone pension and retirement-benefits review page. Version 1.25.
  * The salary calculator links here but does not combine salary and pension
  * results. Retirement rules live in retirement-data.js as the single source.
  */
@@ -29,6 +29,22 @@ const copyButton = document.querySelector('#copy-pension-result');
 const toast = document.querySelector('#pension-toast');
 const liveSummary = document.querySelector('#retirement-live-summary');
 
+function auditTimestamp() {
+  return new Date().toLocaleString('bn-BD', { dateStyle: 'medium', timeStyle: 'short' });
+}
+
+function updateAuditSummary(basic, serviceYears, leaveMonths, generated = false) {
+  setText('retirement-audit-basic', Number.isFinite(basic) && basic > 0 ? 'মূল বেতন: ' + money(basic) : 'মূল বেতন: —');
+  setText('retirement-audit-service', Number.isFinite(serviceYears) && serviceYears >= 5
+    ? 'পেনশনযোগ্য চাকরিকাল: ' + (retirementService?.selectedOptions?.[0]?.textContent || '')
+    : 'পেনশনযোগ্য চাকরিকাল: —');
+  setText('retirement-audit-leave', Number.isFinite(leaveMonths) && leaveMonths >= 0
+    ? 'ছুটি নগদায়ন: ' + (retirementLeaveMonths?.selectedOptions?.[0]?.textContent || '')
+    : 'ছুটি নগদায়ন: —');
+  setText('retirement-audit-commutation', 'সমর্পণ: ৫০% ধরে');
+  setText('retirement-audit-generated', generated ? 'হিসাবের সময়: ' + auditTimestamp() : 'হিসাবের সময়: —');
+}
+
 function setText(id, value) {
   const element = document.getElementById(id);
   if (element) element.textContent = value;
@@ -55,6 +71,7 @@ function clearOutput() {
     validationBox.hidden = true;
   }
   if (liveSummary) liveSummary.textContent = '';
+  updateAuditSummary(NaN, NaN, NaN, false);
 }
 
 function renderReferenceTables() {
@@ -75,11 +92,22 @@ function renderReferenceTables() {
 
 function renderRetirementBenefits() {
   const basic = parseMoney(retirementBasic?.value);
-  const serviceYears = Number(retirementService?.value);
-  const leaveMonths = Number(retirementLeaveMonths?.value);
+  const serviceValue = retirementService?.value || '';
+  const leaveValue = retirementLeaveMonths?.value || '';
+  const serviceYears = serviceValue === '' ? NaN : Number(serviceValue);
+  const leaveMonths = leaveValue === '' ? NaN : Number(leaveValue);
 
   if (!Number.isFinite(basic) || basic <= 0) {
     clearOutput();
+    return;
+  }
+  if (serviceValue === '' || leaveValue === '') {
+    clearOutput();
+    updateAuditSummary(basic, serviceYears, leaveMonths, false);
+    if (validationBox) {
+      validationBox.textContent = 'হিসাব দেখতে পেনশনযোগ্য চাকরিকাল এবং ছুটি নগদায়নের মাস নির্বাচন করুন। সর্বোচ্চ সুবিধা ধরে কোনো default result দেখানো হচ্ছে না।';
+      validationBox.hidden = false;
+    }
     return;
   }
   if (!Number.isFinite(serviceYears) || serviceYears < 5 || serviceYears > 25) {
@@ -108,10 +136,11 @@ function renderRetirementBenefits() {
   setText('retirement-leave-encashment', money(leaveEncashment));
   setText('retirement-total-lump-sum', money(lumpSum));
   setText('retirement-basic-note', 'গ্রস pension rate: ' + toBn(grossRate) + '%; ৫০% সমর্পণ ধরে pensionable portion দেখানো হয়েছে। চিকিৎসা ভাতা, কর্তন ও অফিসিয়াল PPO এতে নেই।');
+  updateAuditSummary(basic, serviceYears, leaveMonths, true);
   if (validationBox) validationBox.hidden = true;
 
   const currentNet = parseMoney(retirementNetPension?.value);
-  const band = Number.isFinite(currentNet) && currentNet >= 0 ? netBand(currentNet) : null;
+  const band = Number.isFinite(currentNet) && currentNet > 0 ? netBand(currentNet) : null;
   if (!band) {
     setText('retirement-net-band', '—');
     setText('retirement-net-rate', '—');
@@ -161,7 +190,10 @@ async function copyPensionResult() {
     'ছুটি নগদায়ন: ' + document.querySelector('#retirement-leave-encashment').textContent,
     'আনুতোষিক + ছুটি নগদায়ন: ' + document.querySelector('#retirement-total-lump-sum').textContent,
     'আনুমানিক নতুন net pension: ' + document.querySelector('#retirement-net-result').textContent,
+    'সমর্পণ: ৫০% ধরে',
     'সূত্র: ১৭ সেপ্টেম্বর ২০২৬-এর Retirement Benefits Gazette',
+    'Version: ' + (window.PAYSCALE_META?.version || '1.25'),
+    document.querySelector('#retirement-audit-generated')?.textContent || ('হিসাবের সময়: ' + auditTimestamp()),
     'এটি review-support estimate; official pension sanction/PPO নয়।'
   ].join('\n');
   try {

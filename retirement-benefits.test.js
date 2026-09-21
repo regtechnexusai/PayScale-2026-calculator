@@ -17,7 +17,7 @@ function calculate(basic, serviceYears, leaveMonths, currentNet = null) {
   const pensionablePortion = Math.round(grossPension / 2);
   const gratuity = pensionablePortion * gratuityRate(serviceYears);
   const leaveEncashment = basic * Math.min(RULES.maximumLeaveMonths, leaveMonths);
-  const band = Number.isFinite(currentNet) ? netBand(currentNet) : null;
+  const band = Number.isFinite(currentNet) && currentNet > 0 ? netBand(currentNet) : null;
   const adjustedNet = band
     ? Math.min(band.maximum, Math.max(band.minimum, Math.round(currentNet * (1 + band.rate / 100))))
     : null;
@@ -27,10 +27,28 @@ function calculate(basic, serviceYears, leaveMonths, currentNet = null) {
 assert.equal(RULES.grossPensionRates[5], 21);
 assert.equal(RULES.grossPensionRates[25], 90);
 assert.equal(RULES.grossPensionRates[30], undefined);
+assert.deepEqual(Object.keys(RULES.grossPensionRates).map(Number), Array.from({ length: 21 }, (_, index) => index + 5));
+for (const years of Object.keys(RULES.grossPensionRates).map(Number)) {
+  assert.ok(RULES.grossPensionRates[years] > 0, `Gross pension rate for ${years} years`);
+  assert.ok(gratuityRate(years) > 0, `Gratuity rate for ${years} years`);
+}
 assert.equal(gratuityRate(9), 265);
+assert.equal(gratuityRate(10), 260);
 assert.equal(gratuityRate(14), 260);
+assert.equal(gratuityRate(15), 245);
 assert.equal(gratuityRate(19), 245);
+assert.equal(gratuityRate(20), 230);
 assert.equal(gratuityRate(25), 230);
+
+assert.equal(netBand(9000).rate, 100);
+assert.equal(netBand(9001).rate, 75);
+assert.equal(netBand(20000).rate, 75);
+assert.equal(netBand(20001).rate, 65);
+assert.equal(netBand(30000).rate, 65);
+assert.equal(netBand(30001).rate, 60);
+assert.equal(netBand(40000).rate, 60);
+assert.equal(netBand(40001).rate, 55);
+assert.equal(netBand(100000).rate, 55);
 
 assert.deepEqual(calculate(50000, 25, 18), {
   grossPension: 45000,
@@ -42,5 +60,12 @@ assert.deepEqual(calculate(50000, 25, 18), {
 assert.equal(calculate(50000, 25, 18, 20000).adjustedNet, 35000);
 assert.equal(calculate(50000, 25, 18, 30000).adjustedNet, 49000);
 assert.equal(calculate(50000, 25, 24).leaveEncashment, 900000);
+assert.equal(calculate(143800, 25, 18).grossPension, 129420);
+assert.equal(calculate(143800, 25, 18).pensionablePortion, 64710);
+assert.equal(calculate(143800, 25, 18).gratuity, 14883300);
+assert.equal(calculate(143800, 25, 18).leaveEncashment, 2588400);
+assert.equal(calculate(50000, 25, 18, 9000).adjustedNet, 18000);
+assert.equal(calculate(50000, 25, 18, 100000).adjustedNet, 70200);
+assert.equal(calculate(50000, 25, 18, 0).adjustedNet, null);
 
 console.log('Passed retirement-rate, gratuity, net-pension-band and leave-encashment tests.');

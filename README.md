@@ -1,6 +1,6 @@
 # PayScale 2026 Calculator — RegTech Nexus AI
 
-**Release:** v1.24 · **Last verified:** 20 September 2026
+**Release:** v1.25 · **Last verified:** 21 September 2026
 
 PayScale 2026 Calculator is a dependency-free static web tool for understanding Bangladesh pay-order transitions. It calculates potential basic-pay changes, phased implementation and the next-higher-step rule. It is prepared by **RegTech Nexus AI — Audit & Regulatory Intelligence** and runs on GitHub Pages.
 
@@ -16,6 +16,8 @@ PayScale 2026 Calculator is a dependency-free static web tool for understanding 
 - Presents two entry choices at the top of the homepage: current-employee salary recalculation or direct pension/retirement-benefits calculation without requiring current salary.
 - Provides a browser print/PDF view for the salary and pension result pages.
 - Includes linked About, Methodology, Privacy, Terms and Changelog pages, plus a discrepancy-report route.
+- Prints/copies audit context: selected inputs, ৫০% pension-surrender assumption where applicable, Gazette reference, release version and calculation time.
+- Keeps opening–maximum grade reference rows and pension tables in static HTML as a no-JavaScript/search fallback; JavaScript adds full-step expansion and calculations.
 - Includes a static site smoke test that checks required files and local HTML targets before deployment.
 
 ## General calculation rules
@@ -75,4 +77,4 @@ Upload the application files in this repository root, including `index.html`, `p
 
 The primary implementation source is the user-provided Bangladesh Gazette PDF for S.R.O. No. 347-Law/2026. Scale data is kept in the `SCALES` object in `scale-data.js`; `basic-pay.test.js` checks the opening, maximum, between-step, phased and fixed-pay cases. If a corrigendum or implementation order is issued, the official document takes precedence.
 
-Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.24**, last verified 20 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate ends at the order date, not the later notice-page date. The non-responsive S.R.O. 349 provenance link and the non-working Official S.R.O. notice link were removed; separate scope/profile notes remain for clarity. Article 9(2) increment treatment, the 1 July 2027 full-stage increment, Article 15(1) house-rent timing, the separate `pension.html` retirement-benefit page, its dedicated result button, the two-entry homepage choice, print/PDF output, policy pages, SEO files, accessibility live-summary and clarified salary/pension wording are documented in the current release. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
+Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.25**, last verified 21 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate ends at the order date, not the later notice-page date. The non-responsive S.R.O. 349 provenance link and the non-working Official S.R.O. notice link were removed; separate scope/profile notes remain for clarity. Article 9(2) increment treatment, the 1 July 2027 full-stage increment, Article 15(1) house-rent timing, the separate `pension.html` retirement-benefit page, its dedicated result button, the two-entry homepage choice, print/PDF output, static reference fallbacks, audit-ready copy context, policy pages, SEO files, accessibility live-summary and clarified salary/pension wording are documented in the current release. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.

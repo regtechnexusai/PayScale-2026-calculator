@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026. Version 1.24.
+ * S.R.O. No. 347-Law/2026. Version 1.25.
  *
  * Scale steps are kept in scale-data.js as the single source of truth.
  * Update that file and run the regression tests if an official correction
@@ -22,6 +22,7 @@ const parseMoney = (value) => {
 };
 const money = (value) => '৳ ' + Math.max(0, Math.round(value)).toLocaleString('en-IN').replace(/[0-9]/g, (digit) => bnDigits[digit]);
 const numberBn = (value) => Math.max(0, Math.round(value)).toLocaleString('en-IN').replace(/[0-9]/g, (digit) => bnDigits[digit]);
+const auditTimestamp = () => new Date().toLocaleString('bn-BD', { dateStyle: 'medium', timeStyle: 'short' });
 
 const payTypeSelect = document.querySelector('#pay-type');
 const fixedPostSelect = document.querySelector('#fixed-post');
@@ -433,6 +434,11 @@ function calculate(showErrors = false) {
   setText('applied-step', isFixed ? money(annualIncrementBasic) + ' · নির্ধারিত' : money(annualIncrementBasic) + ' · ধাপ ' + toBn(incrementedStepIndex));
   setText('full-step', isFixed ? money(fullBasic) + ' · নির্ধারিত' : money(fullBasic) + ' · ধাপ ' + toBn(fullStepIndex));
   setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : '১ জুলাই ২০২৭ · annual incrementসহ পূর্ণ ধাপ ' + toBn(fullStepIndex));
+  setText('salary-audit-grade', isFixed ? 'ধরন: স্থির বেতন' : 'গ্রেড: ' + toBn(grade));
+  setText('salary-audit-current', 'বর্তমান মূল বেতন: ' + money(current));
+  setText('salary-audit-source', 'সূত্র: S.R.O. No. 347-Law/2026 · Bangladesh Gazette, Extra, ১৭ সেপ্টেম্বর ২০২৬');
+  setText('salary-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.25'));
+  setText('salary-audit-generated', 'হিসাবের সময়: ' + auditTimestamp());
   if (resultLiveSummary) {
     resultLiveSummary.textContent = (isFixed ? 'স্থির নির্ধারিত বেতন ' : 'গ্রেড ' + toBn(grade) + ' এর হিসাব সম্পন্ন। ') +
       '১ জুলাই ২০২৬ থেকে ' + money(phase1Pay) + ', ১ জানুয়ারি ২০২৭ থেকে ' + money(phase2Pay) + ', এবং ১ জুলাই ২০২৭ থেকে ' + money(phase3Pay) + ' প্রাপ্য মূল বেতন।';
@@ -529,6 +535,9 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     'আনুমানিক Gross Salary (পর্যায় ৩): ' + (grossAutomatic ? grossTotal : 'স্বয়ংক্রিয়ভাবে গণনা করা হয়নি'),
     grossAutomatic ? 'Gross assumptions: ' + grossAssumptionSummary(result.grade) : 'Gross note: সংশ্লিষ্ট pay order/স্থির পদের ভাতা আলাদা করে যাচাই করতে হবে।',
     ...retirementLines,
+    'হিসাবের সময়: ' + (document.querySelector('#salary-audit-generated')?.textContent || auditTimestamp()),
+    'Version: ' + (window.PAYSCALE_META?.version || '1.25'),
+    'Inputs: ' + (result.fixed ? 'স্থির বেতন' : 'গ্রেড ' + result.grade) + ' · বর্তমান মূল বেতন ' + money(result.current),
     'Prepared by RegTech Nexus AI',
     'সূত্র: Bangladesh Gazette, Extra, 17 September 2026 · ' + profile.sro,
     'Demo output only. Final decisions remain with the authorised accounts office.',
