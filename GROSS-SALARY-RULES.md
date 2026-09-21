@@ -1,4 +1,4 @@
-# Gross Salary module — rule map (v1.26)
+# Gross Salary module — rule map (v1.27)
 
 This file documents the allowance rules used by the optional Step 03 module. Step 01/02 keeps the 1 July 2026 transition basic and the 1 July 2027 full basic distinct, including the annual increment required at each applicable date.
 
@@ -45,6 +45,8 @@ The listed-city option covers the named city corporations and the Savar/Cox’s 
 
 `Gross Salary = phase basic pay + selected allowances`.
 
+All conditional allowance checkboxes start unticked. The user must confirm eligibility before an allowance is included; the tool does not assume medical, mobile or accommodation status from a default profile.
+
 The displayed amount is a conditional review-support estimate, not a universal entitlement. House rent depends on each displayed phase basic pay, duty station and government accommodation; medical and education assistance depend on eligibility; tiffin and travel are grade- and condition-specific. The house-rent rate is selected from the 2015 basic-pay bands above, and the statutory minimum is applied where relevant—not a blanket 40–50% rate. Allowance timing and the final payroll base must still be reconciled with the authorised accounts office before this preview is used for payroll.
 
 It excludes income tax, provident fund, pension, loan recovery, other deductions, arrears, festival allowance/bonus and any post/unit-specific special allowance not selected by the user. The separate basic-pay arrears estimate in Step 02 is not part of Gross Salary. The result is a review-support estimate, not an official pay-fixation statement.
@@ -54,8 +56,8 @@ It excludes income tax, provident fund, pension, loan recovery, other deductions
 The salary page does not embed or combine retirement results. The separate `pension.html` page and `pension.js` use the Finance Division retirement-benefit Gazette dated 17 September 2026:
 
 - Gross pension rate: ২১% for ৫ years, increasing by the published service-year table to ৯০% for ২৫ years or more.
-- Pensionable portion: ৫০% of the calculated gross pension is shown after the standard surrender assumption.
-- Gratuity: the published rate table is applied to that pensionable/surrendered portion—২৬৫ for ৫–৯ years, ২৬০ for ১০–১৪ years, ২৪৫ for ১৫–১৯ years and ২৩০ for ২০ years or more.
+- Pensionable portion: the remaining portion after the selected surrender assumption is shown. The default review assumption is ৫০%; ৪০% and ৬০% sensitivity options are also visible.
+- Gratuity: the published rate table is applied to the selected surrendered portion—২৬৫ for ৫–৯ years, ২৬০ for ১০–১৪ years, ২৪৫ for ১৫–১৯ years and ২৩০ for ২০ years or more.
 - Leave encashment: the user may select up to ১৮ months; the estimate is applicable basic pay × selected months.
 - Net pension: the published band rate and minimum/maximum limits are shown. If a current net pension is entered, the tool applies the band rate and clamps the result within the published limits as a review estimate.
 

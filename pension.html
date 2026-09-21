@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
     <title>পেনশন ও অবসর সুবিধার হিসাব | RegTech Nexus AI</title>
     <link rel="icon" href="regtech-nexus-ai-logo.png" type="image/png" />
-    <link rel="stylesheet" href="styles.css?v=20" />
+    <link rel="stylesheet" href="styles.css?v=21" />
   </head>
   <body>
     <div class="orb orb-one" aria-hidden="true"></div>
@@ -64,7 +64,7 @@
           <a class="grade-chip source-chip" href="https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf" target="_blank" rel="noopener">Official Gazette PDF</a>
         </div>
 
-        <div class="retirement-profile-note">PayScale page থেকে এলে phase অনুযায়ী basic pay prefill হবে। অবসরের পর্যায়, চাকরিকাল ও ছুটি নগদায়নের মাস নিজে নির্বাচন না করা পর্যন্ত কোনো optimistic result দেখানো হবে না। Qualifying service, PPO, medical allowance, deductions ও authorised pension order আলাদাভাবে যাচাই করতে হবে।</div>
+        <div class="retirement-profile-note">PayScale page থেকে এলে phase অনুযায়ী basic pay prefill হবে। Salary link ছাড়া Phase 1/2/3 নির্বাচন করলে source basic যাচাই করা যাবে না—সেক্ষেত্রে “নিজে যাচাইকৃত last drawn basic” নির্বাচন করুন। অবসরের পর্যায়, চাকরিকাল, ছুটি নগদায়নের মাস ও surrender assumption নিজে নির্বাচন না করা পর্যন্ত কোনো optimistic result দেখানো হবে না। Qualifying service, PPO, medical allowance, deductions ও authorised pension order আলাদাভাবে যাচাই করতে হবে।</div>
 
         <form id="retirement-form" class="retirement-form" novalidate>
           <div class="retirement-input-grid">
@@ -83,12 +83,12 @@
               <p class="field-help" id="retirement-phase-note">অবসরের সময় অনুযায়ী শেষ প্রযোজ্য basic নির্বাচন করুন। Salary page থেকে এলে পর্যায়ভিত্তিক basic prefill হবে।</p>
             </div>
             <div>
-              <label class="field-label" for="retirement-basic">অবসর সুবিধার জন্য প্রযোজ্য মূল বেতন</label>
+              <label class="field-label" for="retirement-basic">অবসরের তারিখে প্রযোজ্য / শেষ প্রাপ্ত মূল বেতন</label>
               <div class="money-input">
                 <span>৳</span>
                 <input id="retirement-basic" name="retirement-basic" inputmode="numeric" autocomplete="off" placeholder="যেমন: ৫০,০০০" aria-describedby="retirement-basic-note" />
               </div>
-              <p class="field-help" id="retirement-basic-note">PayScale 2026 page-এর result থেকে basic pay আসতে পারে।</p>
+              <p class="field-help" id="retirement-basic-note">Salary page থেকে এলে নির্বাচিত phase-এর basic এখানে prefill হবে; standalone input-এর জন্য নিজে যাচাইকৃত last drawn basic ব্যবহার করুন।</p>
             </div>
             <div>
               <label class="field-label" for="retirement-service-years">পেনশনযোগ্য চাকরিকাল</label>
@@ -123,6 +123,18 @@
               </div>
               <p class="field-help" id="retirement-net-note">বর্তমান net pension লিখলে সংশ্লিষ্ট band অনুযায়ী estimate দেখা যাবে।</p>
             </div>
+            <div>
+              <label class="field-label" for="retirement-commutation">সমর্পণ / commutation assumption</label>
+              <div class="select-wrap">
+                <select id="retirement-commutation" name="retirement-commutation" aria-describedby="retirement-commutation-note">
+                  <option value="40">৪০% সমর্পণ</option>
+                  <option value="50" selected>৫০% সমর্পণ</option>
+                  <option value="60">৬০% সমর্পণ</option>
+                </select>
+                <span class="select-chevron" aria-hidden="true">⌄</span>
+              </div>
+              <p class="field-help" id="retirement-commutation-note">Review sensitivity assumption; authorised pension order-এর অনুমোদিত শতাংশই চূড়ান্ত।</p>
+            </div>
           </div>
         </form>
 
@@ -134,6 +146,8 @@
           <span id="retirement-audit-leave">ছুটি নগদায়ন: —</span>
           <span id="retirement-audit-net">বর্তমান net pension: দেওয়া হয়নি</span>
           <span id="retirement-audit-commutation">সমর্পণ: ৫০% ধরে</span>
+          <span id="retirement-audit-source">সূত্র: ১৭ সেপ্টেম্বর ২০২৬-এর Retirement Benefits Gazette</span>
+          <span id="retirement-audit-version">Version 1.27</span>
           <span id="retirement-audit-generated">হিসাবের সময়: —</span>
         </div>
 
@@ -143,10 +157,15 @@
         <div class="retirement-summary-grid">
           <article class="retirement-card"><span>গ্রস pension rate</span><strong id="retirement-rate">—</strong><small>চাকরিকাল অনুযায়ী</small></article>
           <article class="retirement-card"><span>গ্রস pension</span><strong id="retirement-gross-pension">—</strong><small>মূল বেতন × rate</small></article>
-          <article class="retirement-card"><span>সমর্পণের পর pensionable অংশ</span><strong id="retirement-pensionable">—</strong><small>৫০% সমর্পণ ধরে</small></article>
+          <article class="retirement-card"><span>সমর্পণের পর pensionable অংশ</span><strong id="retirement-pensionable">—</strong><small id="retirement-pensionable-note">৫০% সমর্পণ ধরে</small></article>
           <article class="retirement-card"><span>আনুতোষিক</span><strong id="retirement-gratuity">—</strong><small id="retirement-gratuity-rate">হার: —</small></article>
           <article class="retirement-card"><span>ছুটি নগদায়ন</span><strong id="retirement-leave-encashment">—</strong><small>নির্বাচিত মাস × basic pay</small></article>
           <article class="retirement-card retirement-card-emphasis"><span>আনুতোষিক + ছুটি নগদায়ন</span><strong id="retirement-total-lump-sum">—</strong><small>এককালীন review estimate</small></article>
+        </div>
+
+        <div class="retirement-net-placeholder" id="retirement-net-placeholder" role="note">
+          <strong>নিট pension band দেখাতে current net pension দিন</strong>
+          <p>বর্তমান net pension input না দেওয়া পর্যন্ত band, বৃদ্ধির হার ও সীমাবদ্ধ estimate দেখানো হবে না।</p>
         </div>
 
         <div class="retirement-net-card" id="retirement-net-card" hidden>
@@ -192,7 +211,7 @@
         </div>
         <div class="footer-meta">
           <span>Independent educational calculator · Not an official Government portal</span>
-          <span><span data-app-version>Version 1.26</span> · Last verified 21 September 2026</span>
+          <span><span data-app-version>Version 1.27</span> · Last verified 21 September 2026</span>
         </div>
         <div class="footer-contact" aria-label="Contact">
           <span>Contact</span>
@@ -212,6 +231,6 @@
     <div class="toast" id="pension-toast" role="status" aria-live="polite" hidden>পেনশন ফলাফল কপি হয়েছে</div>
     <script src="retirement-data.js?v=1"></script>
     <script src="release-meta.js?v=1"></script>
-    <script src="pension.js?v=4"></script>
+    <script src="pension.js?v=5"></script>
   </body>
 </html>

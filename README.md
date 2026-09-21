@@ -1,6 +1,6 @@
 # PayScale 2026 Calculator — RegTech Nexus AI
 
-**Release:** v1.26 · **Last verified:** 21 September 2026
+**Release:** v1.27 · **Last verified:** 21 September 2026
 
 PayScale 2026 Calculator is a dependency-free static web tool for understanding Bangladesh pay-order transitions. It calculates potential basic-pay changes, phased implementation and the next-higher-step rule. It is prepared by **RegTech Nexus AI — Audit & Regulatory Intelligence** and runs on GitHub Pages.
 
@@ -12,11 +12,11 @@ PayScale 2026 Calculator is a dependency-free static web tool for understanding 
 - Provides a grade-wise 2015 → 2026 reference table.
 - Adds an optional Step 03 Gross Salary preview for the transcribed general-government allowance rules: house rent, medical, education assistance, tiffin, mobile, washing and selected conditional allowances. Separate bank/public-body/police/BGB orders and fixed-pay posts are shown without an automatic gross total until their allowance schedules are separately transcribed and verified.
 - Shows source, separate pay-order numbers, privacy treatment and human-review warnings.
-- Keeps Retirement Benefits on a separate `pension.html` page from the salary calculator. The dedicated page reads the 17 September 2026 retirement-benefit Gazette: gross pension rate, 50% surrender-based pensionable portion, gratuity, up to 18 months’ leave encashment and net-pension bands. A salary result passes Phase 1, Phase 2 and Phase 3 basic values to that page; the user selects the applicable retirement phase before calculation, and the two results are never added together.
+- Keeps Retirement Benefits on a separate `pension.html` page from the salary calculator. The dedicated page reads the 17 September 2026 retirement-benefit Gazette: gross pension rate, surrender-based pensionable portion, gratuity, up to 18 months’ leave encashment and net-pension bands. The default surrender assumption is 50%, with visible 40%/60% sensitivity options. A salary result passes Phase 1, Phase 2 and Phase 3 basic values to that page; the user selects the applicable retirement phase before calculation, and the two results are never added together.
 - Presents two entry choices at the top of the homepage: current-employee salary recalculation or direct pension/retirement-benefits calculation without requiring current salary.
 - Provides a browser print/PDF view for the salary and pension result pages.
 - Includes linked About, Methodology, Privacy, Terms and Changelog pages, plus a discrepancy-report route.
-- Prints/copies audit context: selected inputs, ৫০% pension-surrender assumption where applicable, Gazette reference, release version and calculation time.
+- Prints/copies audit context: selected inputs, surrender/commutation assumption, Gazette reference, release version and calculation time.
 - Keeps opening–maximum grade reference rows and pension tables in static HTML as a no-JavaScript/search fallback; JavaScript adds full-step expansion and calculations.
 - Includes a static site smoke test that checks required files and local HTML targets before deployment.
 
@@ -32,7 +32,7 @@ The general government calculation follows the Bangladesh Gazette, Extra, dated 
 6. From 1 July to 31 December 2026, add 40% for Grades 1–9 and 50% for Grades 10–20 of the difference between the current basic and the 1 July 2026 increment-inclusive transition basic.
 7. From 1 January to 30 June 2027, add 70% for Grades 1–9 and 75% for Grades 10–20 of that same transition difference.
 8. From 1 July 2027, the next annual increment is included and the full increment-inclusive basic pay applies. For example, the Grade 10 audit case 31,780 → 49,700 (Article 5) → 52,200 (1 July 2026 increment) → 54,800 (1 July 2027 full stage).
-9. The app shows a review-support basic-pay arrears estimate as of 17 September 2026, using 30 days as one month. Official month-wise arrears may differ. The later 19 September BG Press notice-page date is not used as the arrears endpoint. It excludes allowances, deductions, tax and the authorised arrears statement.
+9. The app shows a review-support basic-pay arrears estimate as of 17 September 2026, using two full months plus 17 prorated days over a 30-day month. Official month-wise arrears may differ. The later 19 September BG Press notice-page date is not used as the arrears endpoint. It excludes allowances, deductions, tax and the authorised arrears statement.
 10. Fixed-pay cases are shown separately; interim percentages do not apply to those cases.
 
 ## Scope and separate 2026 pay orders
@@ -49,7 +49,7 @@ This is an **unofficial educational/review-support tool**, not a Government or F
 
 ## Gross Salary module
 
-The optional Step 03 module keeps the basic-pay result unchanged and adds selected allowances to each of the three pay phases. S.R.O. 347 is the only profile with an automatic gross preview in this release. Under Article 15(1), the 2015 house-rent rates and minimums remain in force through 31 December 2027; the 2026 house-rent schedule begins 1 January 2028 and is not applied early. S.R.O. Nos. 348, 349, 350 and 351 can be selected for scope visibility, but their institution/unit-specific allowance schedules are not silently treated as the general schedule. Fixed-pay posts are also excluded from automatic gross estimation. See [GROSS-SALARY-RULES.md](GROSS-SALARY-RULES.md) for the exact rule map and exclusions.
+The optional Step 03 module keeps the basic-pay result unchanged and adds selected allowances to each of the three pay phases. S.R.O. 347 is the only profile with an automatic gross preview in this release. All conditional allowance checkboxes start unticked; eligibility must be confirmed by the user. Under Article 15(1), the 2015 house-rent rates and minimums remain in force through 31 December 2027; the 2026 house-rent schedule begins 1 January 2028 and is not applied early. S.R.O. Nos. 348, 349, 350 and 351 can be selected for scope visibility, but their institution/unit-specific allowance schedules are not silently treated as the general schedule. Fixed-pay posts are also excluded from automatic gross estimation. See [GROSS-SALARY-RULES.md](GROSS-SALARY-RULES.md) for the exact rule map and exclusions.
 
 ## Privacy
 
@@ -77,4 +77,4 @@ Upload the application files in this repository root, including `index.html`, `p
 
 The primary implementation source is the user-provided Bangladesh Gazette PDF for S.R.O. No. 347-Law/2026. Scale data is kept in the `SCALES` object in `scale-data.js`; `basic-pay.test.js` checks the opening, maximum, between-step, phased and fixed-pay cases. If a corrigendum or implementation order is issued, the official document takes precedence.
 
-Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.26**, last verified 21 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate is stated as of 17 September and uses the disclosed 30-day-month convention. The non-responsive S.R.O. 349 provenance link and the non-working Official S.R.O. notice link were removed; separate scope/profile notes remain for clarity. Article 9(2) increment treatment, the 1 July 2027 full-stage increment, Article 15(1) house-rent timing, retirement-phase basic selection, net-pension input gating, the separate `pension.html` retirement-benefit page, its dedicated result button, the two-entry homepage choice, print/PDF output, static reference fallbacks, audit-ready copy context, policy pages, SEO files, accessibility live-summary and clarified salary/pension wording are documented in the current release. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
+Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.27**, last verified 21 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate is stated as of 17 September and uses two full months plus 17 prorated days over a 30-day month. Article 9(2) increment treatment, the 1 July 2027 full-stage increment, Article 15(1) house-rent timing, retirement-phase basic selection, net-pension input gating, surrender sensitivity, conservative allowance defaults, the separate `pension.html` retirement-benefit page, its dedicated result button, the two-entry homepage choice, print/PDF output, static reference fallbacks, audit-ready copy context, policy pages, SEO files and accessibility live-summary are documented in the current release. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.

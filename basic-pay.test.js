@@ -34,6 +34,10 @@ function calculate(grade, current) {
   };
 }
 
+function arrearsEstimate(monthlyIncrease) {
+  return Math.round(monthlyIncrease * 2 + monthlyIncrease * 17 / 30);
+}
+
 for (const [gradeText, scale] of Object.entries(SCALES)) {
   const grade = Number(gradeText);
   const start = calculate(grade, scale.old[0]);
@@ -67,6 +71,17 @@ assert.deepEqual(calculate(9, 53060), {
   phase2: 71288,
   phase3: 83000,
 });
+assert.deepEqual(calculate(3, 74400), {
+  candidate: 130900,
+  applied: 134000,
+  annualIncrementBasic: 139000,
+  fullBasic: 143800,
+  phase1: 100240,
+  phase2: 119620,
+  phase3: 143800,
+});
+assert.equal(arrearsEstimate(calculate(3, 74400).phase1 - 74400), 66323);
+assert.equal(arrearsEstimate(calculate(9, 53060).phase1 - 53060), 26734);
 // Grade 9 audit case: the candidate 75,060 is rounded to the next listed
 // Gazette step, 75,300; it is not an extra Step-5/Step-6 advance.
 assert.deepEqual(calculate(9, 53060).candidate, 75060);
@@ -131,4 +146,4 @@ assert.deepEqual(calculate(1, 78000), {
   phase3: 156000,
 });
 
-console.log(`Passed ${Object.keys(SCALES).length} grade regression suites plus Grade 9/10/20, the Article 9(2) Grade 10 audit case and fixed-pay cases.`);
+console.log(`Passed ${Object.keys(SCALES).length} grade regression suites plus Grade 3/9/10/20, arrears convention, the Article 9(2) Grade 10 audit case and fixed-pay cases.`);
