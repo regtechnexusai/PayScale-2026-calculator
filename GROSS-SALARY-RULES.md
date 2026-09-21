@@ -1,4 +1,4 @@
-# Gross Salary module — rule map (v1.25)
+# Gross Salary module — rule map (v1.26)
 
 This file documents the allowance rules used by the optional Step 03 module. Step 01/02 keeps the 1 July 2026 transition basic and the 1 July 2027 full basic distinct, including the annual increment required at each applicable date.
 

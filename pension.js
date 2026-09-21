@@ -1,5 +1,5 @@
 /*
- * Standalone pension and retirement-benefits review page. Version 1.25.
+ * Standalone pension and retirement-benefits review page. Version 1.26.
  * The salary calculator links here but does not combine salary and pension
  * results. Retirement rules live in retirement-data.js as the single source.
  */
@@ -21,26 +21,37 @@ const numberBn = (value) => Math.max(0, Math.round(value)).toLocaleString('en-IN
 
 const retirementForm = document.querySelector('#retirement-form');
 const retirementBasic = document.querySelector('#retirement-basic');
+const retirementPhase = document.querySelector('#retirement-phase');
 const retirementService = document.querySelector('#retirement-service-years');
 const retirementLeaveMonths = document.querySelector('#retirement-leave-months');
 const retirementNetPension = document.querySelector('#retirement-net-pension');
+const retirementNetCard = document.querySelector('#retirement-net-card');
 const validationBox = document.querySelector('#retirement-validation');
 const copyButton = document.querySelector('#copy-pension-result');
 const toast = document.querySelector('#pension-toast');
 const liveSummary = document.querySelector('#retirement-live-summary');
+const salaryPhaseBasics = {};
 
 function auditTimestamp() {
   return new Date().toLocaleString('bn-BD', { dateStyle: 'medium', timeStyle: 'short' });
 }
 
-function updateAuditSummary(basic, serviceYears, leaveMonths, generated = false) {
+function selectedLabel(select) {
+  return select?.selectedOptions?.[0]?.textContent?.trim() || '';
+}
+
+function updateAuditSummary(basic, serviceYears, leaveMonths, phaseValue = '', currentNet = NaN, generated = false) {
   setText('retirement-audit-basic', Number.isFinite(basic) && basic > 0 ? 'মূল বেতন: ' + money(basic) : 'মূল বেতন: —');
+  setText('retirement-audit-phase', phaseValue ? 'অবসরের পর্যায়: ' + selectedLabel(retirementPhase) : 'অবসরের পর্যায়: —');
   setText('retirement-audit-service', Number.isFinite(serviceYears) && serviceYears >= 5
     ? 'পেনশনযোগ্য চাকরিকাল: ' + (retirementService?.selectedOptions?.[0]?.textContent || '')
     : 'পেনশনযোগ্য চাকরিকাল: —');
   setText('retirement-audit-leave', Number.isFinite(leaveMonths) && leaveMonths >= 0
     ? 'ছুটি নগদায়ন: ' + (retirementLeaveMonths?.selectedOptions?.[0]?.textContent || '')
     : 'ছুটি নগদায়ন: —');
+  setText('retirement-audit-net', Number.isFinite(currentNet) && currentNet > 0
+    ? 'বর্তমান net pension: ' + money(currentNet)
+    : 'বর্তমান net pension: দেওয়া হয়নি');
   setText('retirement-audit-commutation', 'সমর্পণ: ৫০% ধরে');
   setText('retirement-audit-generated', generated ? 'হিসাবের সময়: ' + auditTimestamp() : 'হিসাবের সময়: —');
 }
@@ -66,12 +77,13 @@ function clearOutput() {
     'retirement-net-result'
   ].forEach((id) => setText(id, '—'));
   setText('retirement-net-note', 'বর্তমান net pension লিখলে সংশ্লিষ্ট band অনুযায়ী একটি সীমাবদ্ধ review estimate দেখা যাবে।');
+  if (retirementNetCard) retirementNetCard.hidden = true;
   if (validationBox) {
     validationBox.textContent = '';
     validationBox.hidden = true;
   }
   if (liveSummary) liveSummary.textContent = '';
-  updateAuditSummary(NaN, NaN, NaN, false);
+  updateAuditSummary(NaN, NaN, NaN, '', NaN, false);
 }
 
 function renderReferenceTables() {
@@ -92,18 +104,29 @@ function renderReferenceTables() {
 
 function renderRetirementBenefits() {
   const basic = parseMoney(retirementBasic?.value);
+  const phaseValue = retirementPhase?.value || '';
   const serviceValue = retirementService?.value || '';
   const leaveValue = retirementLeaveMonths?.value || '';
   const serviceYears = serviceValue === '' ? NaN : Number(serviceValue);
   const leaveMonths = leaveValue === '' ? NaN : Number(leaveValue);
+  const currentNet = parseMoney(retirementNetPension?.value);
 
   if (!Number.isFinite(basic) || basic <= 0) {
     clearOutput();
     return;
   }
+  if (phaseValue === '') {
+    clearOutput();
+    updateAuditSummary(basic, serviceYears, leaveMonths, phaseValue, currentNet, false);
+    if (validationBox) {
+      validationBox.textContent = 'হিসাব দেখতে অবসরের সময়/প্রযোজ্য basic-এর পর্যায় নির্বাচন করুন।';
+      validationBox.hidden = false;
+    }
+    return;
+  }
   if (serviceValue === '' || leaveValue === '') {
     clearOutput();
-    updateAuditSummary(basic, serviceYears, leaveMonths, false);
+    updateAuditSummary(basic, serviceYears, leaveMonths, phaseValue, currentNet, false);
     if (validationBox) {
       validationBox.textContent = 'হিসাব দেখতে পেনশনযোগ্য চাকরিকাল এবং ছুটি নগদায়নের মাস নির্বাচন করুন। সর্বোচ্চ সুবিধা ধরে কোনো default result দেখানো হচ্ছে না।';
       validationBox.hidden = false;
@@ -135,13 +158,13 @@ function renderRetirementBenefits() {
   setText('retirement-gratuity', money(gratuity));
   setText('retirement-leave-encashment', money(leaveEncashment));
   setText('retirement-total-lump-sum', money(lumpSum));
-  setText('retirement-basic-note', 'গ্রস pension rate: ' + toBn(grossRate) + '%; ৫০% সমর্পণ ধরে pensionable portion দেখানো হয়েছে। চিকিৎসা ভাতা, কর্তন ও অফিসিয়াল PPO এতে নেই।');
-  updateAuditSummary(basic, serviceYears, leaveMonths, true);
+  setText('retirement-basic-note', selectedLabel(retirementPhase) + ' অনুযায়ী প্রযোজ্য basic ব্যবহার করা হয়েছে। গ্রস pension rate: ' + toBn(grossRate) + '%; ৫০% সমর্পণ ধরে pensionable portion দেখানো হয়েছে। চিকিৎসা ভাতা, কর্তন ও অফিসিয়াল PPO এতে নেই।');
+  updateAuditSummary(basic, serviceYears, leaveMonths, phaseValue, currentNet, true);
   if (validationBox) validationBox.hidden = true;
 
-  const currentNet = parseMoney(retirementNetPension?.value);
   const band = Number.isFinite(currentNet) && currentNet > 0 ? netBand(currentNet) : null;
   if (!band) {
+    if (retirementNetCard) retirementNetCard.hidden = true;
     setText('retirement-net-band', '—');
     setText('retirement-net-rate', '—');
     setText('retirement-net-result', '—');
@@ -151,6 +174,7 @@ function renderRetirementBenefits() {
     }
     return;
   }
+  if (retirementNetCard) retirementNetCard.hidden = false;
   const adjustedNet = Math.min(band.maximum, Math.max(band.minimum, Math.round(currentNet * (1 + band.rate / 100))));
   setText('retirement-net-band', band.label);
   setText('retirement-net-rate', toBn(band.rate) + '%');
@@ -165,9 +189,28 @@ function prefillFromSalaryPage() {
   const params = new URLSearchParams(window.location.search);
   const basic = parseMoney(params.get('basic'));
   const grade = params.get('grade');
+  ['phase1', 'phase2', 'phase3'].forEach((phase) => {
+    const value = parseMoney(params.get(phase));
+    if (Number.isFinite(value) && value > 0) salaryPhaseBasics[phase] = value;
+  });
   if (!Number.isFinite(basic) || basic <= 0 || !retirementBasic) return;
-  retirementBasic.value = numberBn(basic);
-  setText('retirement-basic-note', 'PayScale 2026-এর গ্রেড ' + toBn(grade || '') + ' result থেকে basic pay prefill করা হয়েছে; প্রয়োজন হলে পরিবর্তন করুন।');
+  const prefilledPhase = Number.isFinite(salaryPhaseBasics.phase3) ? 'phase3' : 'custom';
+  if (retirementPhase) retirementPhase.value = prefilledPhase;
+  retirementBasic.value = numberBn(salaryPhaseBasics[prefilledPhase] || basic);
+  setText('retirement-basic-note', prefilledPhase === 'phase3'
+    ? 'PayScale 2026-এর গ্রেড ' + toBn(grade || '') + ' result থেকে ১ জুলাই ২০২৭-এর full basic prefill করা হয়েছে; অবসরের সময় অনুযায়ী পর্যায় পরিবর্তন করুন।'
+    : 'PayScale 2026-এর গ্রেড ' + toBn(grade || '') + ' result থেকে basic pay prefill করা হয়েছে; অবসরের পর্যায় নির্বাচন করে প্রয়োজন হলে পরিবর্তন করুন।');
+}
+
+function applyPhaseBasic() {
+  const phaseValue = retirementPhase?.value || '';
+  const phaseBasic = salaryPhaseBasics[phaseValue];
+  if (Number.isFinite(phaseBasic) && retirementBasic) {
+    retirementBasic.value = numberBn(phaseBasic);
+    setText('retirement-basic-note', selectedLabel(retirementPhase) + ' অনুযায়ী PayScale result-এর basic prefill করা হয়েছে; প্রয়োজন হলে official record অনুযায়ী পরিবর্তন করুন।');
+  } else if (phaseValue === 'custom') {
+    setText('retirement-basic-note', 'Official service record অনুযায়ী last drawn basic লিখুন।');
+  }
 }
 
 async function copyPensionResult() {
@@ -182,17 +225,19 @@ async function copyPensionResult() {
   const text = [
     'পেনশন ও অবসর সুবিধার হিসাব',
     'অবসর সুবিধার জন্য প্রযোজ্য মূল বেতন: ' + money(basic),
+    'অবসরের পর্যায়: ' + selectedLabel(retirementPhase),
     'পেনশনযোগ্য চাকরিকাল: ' + (retirementService?.selectedOptions?.[0]?.textContent || ''),
+    'বর্তমান net pension: ' + (Number.isFinite(parseMoney(retirementNetPension?.value)) ? money(parseMoney(retirementNetPension.value)) : 'দেওয়া হয়নি'),
     'গ্রস pension rate: ' + document.querySelector('#retirement-rate').textContent,
     'গ্রস pension: ' + document.querySelector('#retirement-gross-pension').textContent,
     'সমর্পণের পর pensionable অংশ: ' + document.querySelector('#retirement-pensionable').textContent,
     'আনুতোষিক: ' + document.querySelector('#retirement-gratuity').textContent,
     'ছুটি নগদায়ন: ' + document.querySelector('#retirement-leave-encashment').textContent,
     'আনুতোষিক + ছুটি নগদায়ন: ' + document.querySelector('#retirement-total-lump-sum').textContent,
-    'আনুমানিক নতুন net pension: ' + document.querySelector('#retirement-net-result').textContent,
+    'আনুমানিক নতুন net pension: ' + (document.querySelector('#retirement-net-card')?.hidden ? 'প্রযোজ্য নয় — input দেওয়া হয়নি' : document.querySelector('#retirement-net-result').textContent),
     'সমর্পণ: ৫০% ধরে',
     'সূত্র: ১৭ সেপ্টেম্বর ২০২৬-এর Retirement Benefits Gazette',
-    'Version: ' + (window.PAYSCALE_META?.version || '1.25'),
+    'Version: ' + (window.PAYSCALE_META?.version || '1.26'),
     document.querySelector('#retirement-audit-generated')?.textContent || ('হিসাবের সময়: ' + auditTimestamp()),
     'এটি review-support estimate; official pension sanction/PPO নয়।'
   ].join('\n');
@@ -217,7 +262,10 @@ prefillFromSalaryPage();
 renderRetirementBenefits();
 
 retirementForm?.addEventListener('input', renderRetirementBenefits);
-retirementForm?.addEventListener('change', renderRetirementBenefits);
+retirementForm?.addEventListener('change', (event) => {
+  if (event.target === retirementPhase) applyPhaseBasic();
+  renderRetirementBenefits();
+});
 retirementBasic?.addEventListener('blur', () => {
   const parsed = parseMoney(retirementBasic.value);
   if (Number.isFinite(parsed)) retirementBasic.value = numberBn(parsed);

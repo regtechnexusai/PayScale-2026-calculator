@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026. Version 1.25.
+ * S.R.O. No. 347-Law/2026. Version 1.26.
  *
  * Scale steps are kept in scale-data.js as the single source of truth.
  * Update that file and run the regression tests if an official correction
@@ -422,7 +422,7 @@ function calculate(showErrors = false) {
   setText('phase3-monthly', money(phase3Pay));
   setText('phase3-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'পূর্ণ মূল বেতন');
   setText('phase3-increment', isFixed ? 'অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : '২০২৬ ও ২০২৭-এর প্রযোজ্য annual increment অন্তর্ভুক্ত');
-  setText('arrears-note', 'গেজেটের ১৭ সেপ্টেম্বর ২০২৬ তারিখ পর্যন্ত আনুমানিক basic-pay arrears: ' + money(arrearsEstimate) + ' (' + toBn(arrearsDays) + ' দিন, ৩০ দিন = ১ মাস ধরে)। এটি allowances, কর্তন বা অফিসিয়াল arrears statement নয়।');
+  setText('arrears-note', 'আনুমানিক basic-pay arrears (as of ১৭ সেপ্টেম্বর ২০২৬): ' + money(arrearsEstimate) + ' (' + toBn(arrearsDays) + ' দিন; ৩০ দিন = ১ মাস ধরে)। এটি allowances, কর্তন বা অফিসিয়াল arrears statement নয়।');
   setText('old-min-label', isFixed ? 'পুরোনো স্কেলের ধাপ' : 'পুরোনো স্কেলের প্রারম্ভিক ধাপ');
   setText('difference-label', isFixed ? 'স্থির বেতন − বর্তমান মূল বেতন' : 'বর্তমান বেতন − প্রারম্ভিক ধাপ');
   setText('candidate-label', isFixed ? 'স্থির বেতন পদ' : 'নতুন প্রারম্ভিক ধাপ + পার্থক্য');
@@ -437,7 +437,7 @@ function calculate(showErrors = false) {
   setText('salary-audit-grade', isFixed ? 'ধরন: স্থির বেতন' : 'গ্রেড: ' + toBn(grade));
   setText('salary-audit-current', 'বর্তমান মূল বেতন: ' + money(current));
   setText('salary-audit-source', 'সূত্র: S.R.O. No. 347-Law/2026 · Bangladesh Gazette, Extra, ১৭ সেপ্টেম্বর ২০২৬');
-  setText('salary-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.25'));
+  setText('salary-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.26'));
   setText('salary-audit-generated', 'হিসাবের সময়: ' + auditTimestamp());
   if (resultLiveSummary) {
     resultLiveSummary.textContent = (isFixed ? 'স্থির নির্ধারিত বেতন ' : 'গ্রেড ' + toBn(grade) + ' এর হিসাব সম্পন্ন। ') +
@@ -446,7 +446,7 @@ function calculate(showErrors = false) {
 
   window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, payFixationBasic: applied, annualIncrementBasic, fullBasic, annualIncrement: annualIncrementBasic - applied, secondAnnualIncrement: fullBasic - annualIncrementBasic, transitionIncrease, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, arrearsDays, arrearsEstimate, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
   if (openRetirementBenefits) {
-    openRetirementBenefits.href = 'pension.html?basic=' + encodeURIComponent(fullBasic) + '&grade=' + encodeURIComponent(grade);
+    openRetirementBenefits.href = 'pension.html?basic=' + encodeURIComponent(fullBasic) + '&phase1=' + encodeURIComponent(phase1Pay) + '&phase2=' + encodeURIComponent(phase2Pay) + '&phase3=' + encodeURIComponent(phase3Pay) + '&grade=' + encodeURIComponent(grade);
   }
   renderGrossSalary();
 }
@@ -530,13 +530,13 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     '১ জুলাই–৩১ ডিসেম্বর ২০২৬: ' + money(result.phase1Pay),
     '১ জানুয়ারি–৩০ জুন ২০২৭: ' + money(result.phase2Pay),
     '১ জুলাই ২০২৭ থেকে: ' + money(result.phase3Pay),
-    'আনুমানিক Basic-pay arrears (১ জুলাই–১৭ সেপ্টেম্বর ২০২৬): ' + money(result.arrearsEstimate) + ' · ৩০ দিন = ১ মাস ধরে',
+    'আনুমানিক Basic-pay arrears (as of ১৭ সেপ্টেম্বর ২০২৬): ' + money(result.arrearsEstimate) + ' · ৩০ দিন = ১ মাস ধরে',
     'Gross profile: ' + profile.sro,
     'আনুমানিক Gross Salary (পর্যায় ৩): ' + (grossAutomatic ? grossTotal : 'স্বয়ংক্রিয়ভাবে গণনা করা হয়নি'),
     grossAutomatic ? 'Gross assumptions: ' + grossAssumptionSummary(result.grade) : 'Gross note: সংশ্লিষ্ট pay order/স্থির পদের ভাতা আলাদা করে যাচাই করতে হবে।',
     ...retirementLines,
     'হিসাবের সময়: ' + (document.querySelector('#salary-audit-generated')?.textContent || auditTimestamp()),
-    'Version: ' + (window.PAYSCALE_META?.version || '1.25'),
+    'Version: ' + (window.PAYSCALE_META?.version || '1.26'),
     'Inputs: ' + (result.fixed ? 'স্থির বেতন' : 'গ্রেড ' + result.grade) + ' · বর্তমান মূল বেতন ' + money(result.current),
     'Prepared by RegTech Nexus AI',
     'সূত্র: Bangladesh Gazette, Extra, 17 September 2026 · ' + profile.sro,

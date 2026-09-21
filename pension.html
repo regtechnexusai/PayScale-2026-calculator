@@ -64,10 +64,24 @@
           <a class="grade-chip source-chip" href="https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf" target="_blank" rel="noopener">Official Gazette PDF</a>
         </div>
 
-        <div class="retirement-profile-note">PayScale page থেকে এলে basic pay স্বয়ংক্রিয়ভাবে prefill হবে। চাকরিকাল ও ছুটি নগদায়নের মাস নিজে নির্বাচন না করা পর্যন্ত কোনো optimistic result দেখানো হবে না। Qualifying service, PPO, medical allowance, deductions ও authorised pension order আলাদাভাবে যাচাই করতে হবে।</div>
+        <div class="retirement-profile-note">PayScale page থেকে এলে phase অনুযায়ী basic pay prefill হবে। অবসরের পর্যায়, চাকরিকাল ও ছুটি নগদায়নের মাস নিজে নির্বাচন না করা পর্যন্ত কোনো optimistic result দেখানো হবে না। Qualifying service, PPO, medical allowance, deductions ও authorised pension order আলাদাভাবে যাচাই করতে হবে।</div>
 
         <form id="retirement-form" class="retirement-form" novalidate>
           <div class="retirement-input-grid">
+            <div>
+              <label class="field-label" for="retirement-phase">অবসরের সময় / প্রযোজ্য basic-এর পর্যায়</label>
+              <div class="select-wrap">
+                <select id="retirement-phase" name="retirement-phase" aria-describedby="retirement-phase-note">
+                  <option value="" selected>নির্বাচন করুন</option>
+                  <option value="phase1">১ জুলাই–৩১ ডিসেম্বর ২০২৬ · পর্যায় ১</option>
+                  <option value="phase2">১ জানুয়ারি–৩০ জুন ২০২৭ · পর্যায় ২</option>
+                  <option value="phase3">১ জুলাই ২০২৭ থেকে · পূর্ণ basic</option>
+                  <option value="custom">নিজে যাচাইকৃত last drawn basic</option>
+                </select>
+                <span class="select-chevron" aria-hidden="true">⌄</span>
+              </div>
+              <p class="field-help" id="retirement-phase-note">অবসরের সময় অনুযায়ী শেষ প্রযোজ্য basic নির্বাচন করুন। Salary page থেকে এলে পর্যায়ভিত্তিক basic prefill হবে।</p>
+            </div>
             <div>
               <label class="field-label" for="retirement-basic">অবসর সুবিধার জন্য প্রযোজ্য মূল বেতন</label>
               <div class="money-input">
@@ -115,8 +129,10 @@
         <div class="retirement-audit-summary" id="retirement-audit-summary" role="note">
           <strong>হিসাবের ইনপুট ও assumptions</strong>
           <span id="retirement-audit-basic">মূল বেতন: —</span>
+          <span id="retirement-audit-phase">অবসরের পর্যায়: —</span>
           <span id="retirement-audit-service">পেনশনযোগ্য চাকরিকাল: —</span>
           <span id="retirement-audit-leave">ছুটি নগদায়ন: —</span>
+          <span id="retirement-audit-net">বর্তমান net pension: দেওয়া হয়নি</span>
           <span id="retirement-audit-commutation">সমর্পণ: ৫০% ধরে</span>
           <span id="retirement-audit-generated">হিসাবের সময়: —</span>
         </div>
@@ -133,7 +149,7 @@
           <article class="retirement-card retirement-card-emphasis"><span>আনুতোষিক + ছুটি নগদায়ন</span><strong id="retirement-total-lump-sum">—</strong><small>এককালীন review estimate</small></article>
         </div>
 
-        <div class="retirement-net-card">
+        <div class="retirement-net-card" id="retirement-net-card" hidden>
           <div>
             <p class="eyebrow">NET PENSION BAND</p>
             <h3>নিট পেনশন পুনর্নির্ধারণ</h3>
@@ -176,7 +192,7 @@
         </div>
         <div class="footer-meta">
           <span>Independent educational calculator · Not an official Government portal</span>
-          <span><span data-app-version>Version 1.25</span> · Last verified 21 September 2026</span>
+          <span><span data-app-version>Version 1.26</span> · Last verified 21 September 2026</span>
         </div>
         <div class="footer-contact" aria-label="Contact">
           <span>Contact</span>
