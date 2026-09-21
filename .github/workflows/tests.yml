@@ -18,10 +18,13 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run checks
+      - name: Syntax checks
         run: |
           node --check app.js
           node --check pension.js
+
+      - name: Calculation regression tests
+        run: |
           node basic-pay.test.js
           node retirement-benefits.test.js
           node site-smoke.test.js
