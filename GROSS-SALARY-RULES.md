@@ -1,4 +1,4 @@
-# Gross Salary module — rule map (v1.27)
+# Gross Salary module — rule map (v1.29)
 
 This file documents the allowance rules used by the optional Step 03 module. Step 01/02 keeps the 1 July 2026 transition basic and the 1 July 2027 full basic distinct, including the annual increment required at each applicable date.
 
@@ -65,4 +65,4 @@ These figures do not include medical allowance, family pension, deductions, qual
 
 ## Source
 
-Primary sources: [Bangladesh Gazette, Extra, 17 September 2026, S.R.O. No. 347-Law/2026](pay-scale-2026-gazette.pdf), especially Article 9(2) (annual increment) and Article 15(1) (2015 house-rent schedule through 31 December 2027), and the [separate retirement-benefit Gazette](https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf). The separate S.R.O. No. 349-Law/2026 profile remains visible for scope but is not automatically transcribed here. Always check the latest official Gazette, corrigendum, clarification and the employee’s authorised pay-fixation or pension statement before using a result.
+Primary sources: [Bangladesh Government Press Gazette source index](https://bgpress.dpp.gov.bd/) for the 17 September 2026 Bangladesh Gazette, Extra, S.R.O. No. 347-Law/2026, especially Article 9(2) (annual increment) and Article 15(1) (2015 house-rent schedule through 31 December 2027), and the [separate retirement-benefit Gazette](https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf). The separate S.R.O. No. 349-Law/2026 profile remains visible for scope but is not automatically transcribed here. Always check the latest official Gazette, corrigendum, clarification and the employee’s authorised pay-fixation or pension statement before using a result.

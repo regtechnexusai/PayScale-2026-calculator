@@ -1,5 +1,5 @@
 /*
- * Standalone pension and retirement-benefits review page. Version 1.27.
+ * Standalone pension and retirement-benefits review page. Version 1.29.
  * The salary calculator links here but does not combine salary and pension
  * results. Retirement rules live in retirement-data.js as the single source.
  */
@@ -55,8 +55,8 @@ function updateAuditSummary(basic, serviceYears, leaveMonths, phaseValue = '', c
     ? 'বর্তমান net pension: ' + money(currentNet)
     : 'বর্তমান net pension: দেওয়া হয়নি');
   setText('retirement-audit-commutation', 'সমর্পণ: ' + toBn(commutationPercent) + '% ধরে');
-  setText('retirement-audit-source', 'সূত্র: ১৭ সেপ্টেম্বর ২০২৬-এর Retirement Benefits Gazette');
-  setText('retirement-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.27'));
+  setText('retirement-audit-source', 'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬');
+  setText('retirement-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.29'));
   setText('retirement-audit-generated', generated ? 'হিসাবের সময়: ' + auditTimestamp() : 'হিসাবের সময়: —');
 }
 
@@ -80,7 +80,7 @@ function clearOutput() {
     'retirement-total-lump-sum', 'retirement-net-band', 'retirement-net-rate',
     'retirement-net-result'
   ].forEach((id) => setText(id, '—'));
-  setText('retirement-pensionable-note', 'সমর্পণ assumption অনুযায়ী অবশিষ্ট pensionable অংশ');
+  setText('retirement-pensionable-note', 'সমর্পণের পর অবশিষ্ট মাসিক pension');
   setText('retirement-net-note', 'বর্তমান net pension লিখলে সংশ্লিষ্ট band অনুযায়ী একটি সীমাবদ্ধ review estimate দেখা যাবে।');
   if (retirementNetCard) retirementNetCard.hidden = true;
   if (retirementNetPlaceholder) retirementNetPlaceholder.hidden = false;
@@ -173,12 +173,12 @@ function renderRetirementBenefits() {
   setText('retirement-rate', toBn(grossRate) + '%');
   setText('retirement-gross-pension', money(grossPension));
   setText('retirement-pensionable', money(pensionablePortion));
-  setText('retirement-pensionable-note', toBn(commutationPercent) + '% সমর্পণ assumption-এর পর অবশিষ্ট');
+  setText('retirement-pensionable-note', toBn(commutationPercent) + '% সমর্পণের পর অবশিষ্ট মাসিক pension');
   setText('retirement-gratuity-rate', toBn(gratuityRateValue) + ' টাকা / ১ টাকা · ' + toBn(commutationPercent) + '% সমর্পিত pension');
   setText('retirement-gratuity', money(gratuity));
   setText('retirement-leave-encashment', money(leaveEncashment));
   setText('retirement-total-lump-sum', money(lumpSum));
-  setText('retirement-basic-note', selectedLabel(retirementPhase) + ' অনুযায়ী প্রযোজ্য basic ব্যবহার করা হয়েছে। গ্রস pension rate: ' + toBn(grossRate) + '%; ' + toBn(commutationPercent) + '% সমর্পণ ধরে pensionable portion দেখানো হয়েছে। চিকিৎসা ভাতা, কর্তন ও অফিসিয়াল PPO এতে নেই।');
+  setText('retirement-basic-note', selectedLabel(retirementPhase) + ' অনুযায়ী প্রযোজ্য basic ব্যবহার করা হয়েছে। গ্রস pension rate: ' + toBn(grossRate) + '%; ' + toBn(commutationPercent) + '% সমর্পণের পর অবশিষ্ট মাসিক pension দেখানো হয়েছে। ' + (encashmentMonths === 18 ? 'পূর্ণ ১৮ মাসের অনুমোদিত leave balance আছে ধরে হিসাব করা হয়েছে। ' : '') + 'চিকিৎসা ভাতা, কর্তন ও অফিসিয়াল PPO এতে নেই।');
   updateAuditSummary(basic, serviceYears, leaveMonths, phaseValue, currentNet, commutationPercent, true);
   if (validationBox) validationBox.hidden = true;
 
@@ -263,14 +263,14 @@ async function copyPensionResult() {
     'বর্তমান net pension: ' + (Number.isFinite(parseMoney(retirementNetPension?.value)) ? money(parseMoney(retirementNetPension.value)) : 'দেওয়া হয়নি'),
     'গ্রস pension rate: ' + document.querySelector('#retirement-rate').textContent,
     'গ্রস pension: ' + document.querySelector('#retirement-gross-pension').textContent,
-    'সমর্পণের পর pensionable অংশ: ' + document.querySelector('#retirement-pensionable').textContent,
+    'সমর্পণের পর মাসিক pension: ' + document.querySelector('#retirement-pensionable').textContent,
     'আনুতোষিক: ' + document.querySelector('#retirement-gratuity').textContent,
     'ছুটি নগদায়ন: ' + document.querySelector('#retirement-leave-encashment').textContent,
     'আনুতোষিক + ছুটি নগদায়ন: ' + document.querySelector('#retirement-total-lump-sum').textContent,
     'আনুমানিক নতুন net pension: ' + (document.querySelector('#retirement-net-card')?.hidden ? 'প্রযোজ্য নয় — input দেওয়া হয়নি' : document.querySelector('#retirement-net-result').textContent),
     'সমর্পণ: ' + (retirementCommutation?.selectedOptions?.[0]?.textContent || '৫০% সমর্পণ'),
-    'সূত্র: ১৭ সেপ্টেম্বর ২০২৬-এর Retirement Benefits Gazette',
-    'Version: ' + (window.PAYSCALE_META?.version || '1.27'),
+    'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · Official Gazette PDF: ' + (window.RETIREMENT_RULES?.sourceUrl || 'https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf'),
+    'Version: ' + (window.PAYSCALE_META?.version || '1.29'),
     document.querySelector('#retirement-audit-generated')?.textContent || ('হিসাবের সময়: ' + auditTimestamp()),
     'এটি review-support estimate; official pension sanction/PPO নয়।'
   ].join('\n');
@@ -304,6 +304,8 @@ retirementBasic?.addEventListener('blur', () => {
   if (Number.isFinite(parsed)) retirementBasic.value = numberBn(parsed);
 });
 copyButton?.addEventListener('click', copyPensionResult);
-document.querySelector('#print-pension-result')?.addEventListener('click', () => {
-  if (document.querySelector('#retirement-total-lump-sum')?.textContent !== '—') window.print();
+document.querySelector('#print-pension-result')?.addEventListener('click', async () => {
+  if (document.querySelector('#retirement-total-lump-sum')?.textContent === '—') return;
+  if (document.fonts?.ready) await document.fonts.ready;
+  window.print();
 });

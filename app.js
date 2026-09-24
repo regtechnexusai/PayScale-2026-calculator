@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026. Version 1.27.
+ * S.R.O. No. 347-Law/2026. Version 1.29.
  *
  * Scale steps are kept in scale-data.js as the single source of truth.
  * Update that file and run the regression tests if an official correction
@@ -212,9 +212,22 @@ function grossAssumptionSummary(grade) {
     grossInput('washing-eligible').checked ? 'ধোলাই ৳ ৩০০' : '',
     'মোবাইল ' + money(mobile),
     medical,
-    'শিক্ষা সহায়তা ' + money(education)
+    'শিক্ষা সহায়তা ' + money(education),
+    'অন্যান্য manual ভাতা ' + money(parseMoney(grossInput('other-allowance').value) || 0)
   ].filter(Boolean).join(', ');
   return 'বাড়িভাড়া ২০১৫ schedule-এর phase-basic অনুযায়ী rate/minimum (' + stationLabel + '), ৩১ ডিসেম্বর ২০২৭ পর্যন্ত; ' + housing + '; ' + fixed + '।';
+}
+
+function grossBreakdownSummary() {
+  const parts = [
+    ['মূল বেতন', 'gross-phase3-basic'],
+    ['বাড়িভাড়া', 'gross-phase3-house'],
+    ['চিকিৎসা', 'gross-phase3-medical'],
+    ['শিক্ষা সহায়তা', 'gross-phase3-education'],
+    ['টিফিন / মোবাইল / ধোলাই', 'gross-phase3-fixed'],
+    ['অন্যান্য নির্বাচিত ভাতা', 'gross-phase3-other']
+  ].map(([label, id]) => label + ' ' + (document.querySelector('#' + id)?.textContent || '—'));
+  return 'Gross breakdown (পর্যায় ৩): ' + parts.join(' + ') + ' = ' + (document.querySelector('#gross-phase3-total')?.textContent || '—');
 }
 
 function grossInput(id) {
@@ -450,7 +463,7 @@ function calculate(showErrors = false) {
   setText('salary-audit-grade', isFixed ? 'ধরন: স্থির বেতন' : 'গ্রেড: ' + toBn(grade));
   setText('salary-audit-current', 'বর্তমান মূল বেতন: ' + money(current));
   setText('salary-audit-source', 'সূত্র: S.R.O. No. 347-Law/2026 · Bangladesh Gazette, Extra, ১৭ সেপ্টেম্বর ২০২৬');
-  setText('salary-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.27'));
+  setText('salary-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.29'));
   setText('salary-audit-generated', 'হিসাবের সময়: ' + auditTimestamp());
   if (resultLiveSummary) {
     resultLiveSummary.textContent = (isFixed ? 'স্থির নির্ধারিত বেতন ' : 'গ্রেড ' + toBn(grade) + ' এর হিসাব সম্পন্ন। ') +
@@ -547,9 +560,10 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     'Gross profile: ' + profile.sro,
     'আনুমানিক Gross Salary (পর্যায় ৩): ' + (grossAutomatic ? grossTotal : 'স্বয়ংক্রিয়ভাবে গণনা করা হয়নি'),
     grossAutomatic ? 'Gross assumptions: ' + grossAssumptionSummary(result.grade) : 'Gross note: সংশ্লিষ্ট pay order/স্থির পদের ভাতা আলাদা করে যাচাই করতে হবে।',
+    grossAutomatic ? grossBreakdownSummary() : '',
     ...retirementLines,
     'হিসাবের সময়: ' + (document.querySelector('#salary-audit-generated')?.textContent || auditTimestamp()),
-    'Version: ' + (window.PAYSCALE_META?.version || '1.27'),
+    'Version: ' + (window.PAYSCALE_META?.version || '1.29'),
     'Inputs: ' + (result.fixed ? 'স্থির বেতন' : 'গ্রেড ' + result.grade) + ' · বর্তমান মূল বেতন ' + money(result.current),
     'Prepared by RegTech Nexus AI',
     'সূত্র: Bangladesh Gazette, Extra, 17 September 2026 · ' + profile.sro,
@@ -569,8 +583,10 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
   }
 });
 
-document.querySelector('#print-result')?.addEventListener('click', () => {
-  if (window.lastCalculation) window.print();
+document.querySelector('#print-result')?.addEventListener('click', async () => {
+  if (!window.lastCalculation) return;
+  if (document.fonts?.ready) await document.fonts.ready;
+  window.print();
 });
 
 renderScaleTable(false);
