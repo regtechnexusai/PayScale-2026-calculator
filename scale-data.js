@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator — single source of truth for the scale tables.
  * Transcribed from Bangladesh Gazette, Extra, 17 September 2026,
- * S.R.O. No. 347-Law/2026. Keep corrections here and re-run the tests.
+ * S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026). Keep corrections here and re-run the tests.
  */
 
 const SCALES = {

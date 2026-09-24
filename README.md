@@ -1,6 +1,6 @@
 # PayScale 2026 Calculator — RegTech Nexus AI
 
-**Release:** v1.29 · **Last verified:** 24 September 2026
+**Release:** v1.30 · **Last verified:** 24 September 2026
 
 PayScale 2026 Calculator is a dependency-free static web tool for understanding Bangladesh pay-order transitions. It calculates potential basic-pay changes, phased implementation and the next-higher-step rule. It is prepared by **RegTech Nexus AI — Audit & Regulatory Intelligence** and runs on GitHub Pages.
 
@@ -22,7 +22,7 @@ PayScale 2026 Calculator is a dependency-free static web tool for understanding 
 
 ## General calculation rules
 
-The general government calculation follows the Bangladesh Gazette, Extra, dated 17 September 2026, **S.R.O. No. 347-Law/2026 — চাকরি (বেতন ও ভাতাদি) আদেশ, ২০২৬**:
+The general government calculation follows the Bangladesh Gazette, Extra, dated 17 September 2026, **S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026) — চাকরি (বেতন ও ভাতাদি) আদেশ, ২০২৬**:
 
 1. Take the employee’s basic pay as of 30 June 2026.
 2. Subtract the opening step of the corresponding 2015 scale.
@@ -37,7 +37,7 @@ The general government calculation follows the Bangladesh Gazette, Extra, dated 
 
 ## Scope and separate 2026 pay orders
 
-- General government service: **S.R.O. No. 347-Law/2026**.
+- General government service: **S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026)**.
 - Self-governed (Public Bodies) and state-owned institutions: **S.R.O. No. 348-Law/2026**.
 - Banks, insurance and financial institutions: **S.R.O. No. 349-Law/2026**. The uploaded order’s definitions include Bangladesh Bank within “bank”.
 - Bangladesh Police: **S.R.O. No. 350-Law/2026**.
@@ -75,6 +75,6 @@ Upload the application files in this repository root, including `index.html`, `p
 
 ## Source and maintenance
 
-The primary implementation source is the user-provided Bangladesh Gazette PDF for S.R.O. No. 347-Law/2026. Scale data is kept in the `SCALES` object in `scale-data.js`; `basic-pay.test.js` checks the opening, maximum, between-step, phased and fixed-pay cases. If a corrigendum or implementation order is issued, the official document takes precedence.
+The primary implementation source is the user-provided Bangladesh Gazette PDF for S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026). Scale data is kept in the `SCALES` object in `scale-data.js`; `basic-pay.test.js` checks the opening, maximum, between-step, phased and fixed-pay cases. If a corrigendum or implementation order is issued, the official document takes precedence.
 
-Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.29**, last verified 24 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate is stated as of 17 September and uses two full months plus 17 prorated days over a 30-day month. Article 9(2) increment treatment, the 1 July 2027 full-stage increment, Article 15(1) house-rent timing, retirement-phase basic selection, net-pension input gating, surrender sensitivity, conservative allowance defaults, the separate `pension.html` retirement-benefit page, its dedicated result button, the two-entry homepage choice, browser print/PDF output, the bundled Bengali font, static reference fallbacks, component-level gross breakdown, audit-ready copy context, policy pages, SEO files and accessibility live-summary are documented in the current release. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.
+Prepared by **RegTech Nexus AI** — Audit & Regulatory Intelligence. **Version 1.30**, last verified 24 September 2026. The Gazette document is dated 17 September 2026; the BG Press notice page records 19 September as the publication date. The arrears estimate is stated as of 17 September and uses two full months plus 17 prorated days over a 30-day month. Article 9(2) increment treatment, the 1 July 2027 full-stage increment, Article 15(1) house-rent timing, retirement-phase basic selection, net-pension input gating, surrender sensitivity, rate-table manual verification, commutation rounding disclosure, conservative allowance defaults, component-level gross breakdown, audit-ready copy context, policy pages, SEO files and accessibility live-summary are documented in the current release. This is an independent educational calculator and review-support tool; it is not an official Government or Finance Division pay-fixation portal.

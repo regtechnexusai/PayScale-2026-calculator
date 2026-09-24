@@ -1,5 +1,5 @@
 /*
- * Standalone pension and retirement-benefits review page. Version 1.29.
+ * Standalone pension and retirement-benefits review page. Version 1.30.
  * The salary calculator links here but does not combine salary and pension
  * results. Retirement rules live in retirement-data.js as the single source.
  */
@@ -55,8 +55,8 @@ function updateAuditSummary(basic, serviceYears, leaveMonths, phaseValue = '', c
     ? 'বর্তমান net pension: ' + money(currentNet)
     : 'বর্তমান net pension: দেওয়া হয়নি');
   setText('retirement-audit-commutation', 'সমর্পণ: ' + toBn(commutationPercent) + '% ধরে');
-  setText('retirement-audit-source', 'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬');
-  setText('retirement-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.29'));
+  setText('retirement-audit-source', 'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · official PDF');
+  setText('retirement-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.30'));
   setText('retirement-audit-generated', generated ? 'হিসাবের সময়: ' + auditTimestamp() : 'হিসাবের সময়: —');
 }
 
@@ -178,7 +178,7 @@ function renderRetirementBenefits() {
   setText('retirement-gratuity', money(gratuity));
   setText('retirement-leave-encashment', money(leaveEncashment));
   setText('retirement-total-lump-sum', money(lumpSum));
-  setText('retirement-basic-note', selectedLabel(retirementPhase) + ' অনুযায়ী প্রযোজ্য basic ব্যবহার করা হয়েছে। গ্রস pension rate: ' + toBn(grossRate) + '%; ' + toBn(commutationPercent) + '% সমর্পণের পর অবশিষ্ট মাসিক pension দেখানো হয়েছে। ' + (encashmentMonths === 18 ? 'পূর্ণ ১৮ মাসের অনুমোদিত leave balance আছে ধরে হিসাব করা হয়েছে। ' : '') + 'চিকিৎসা ভাতা, কর্তন ও অফিসিয়াল PPO এতে নেই।');
+  setText('retirement-basic-note', selectedLabel(retirementPhase) + ' অনুযায়ী প্রযোজ্য basic ব্যবহার করা হয়েছে। গ্রস pension rate: ' + toBn(grossRate) + '%; ' + toBn(commutationPercent) + '% সমর্পণের পর অবশিষ্ট মাসিক pension দেখানো হয়েছে। সমর্পিত অংশ whole taka-য় round করে অবশিষ্ট অংশ gross pension থেকে বাদ দেওয়া হয়েছে। ' + (encashmentMonths === 18 ? 'পূর্ণ ১৮ মাসের অনুমোদিত leave balance আছে ধরে হিসাব করা হয়েছে। ' : '') + 'চিকিৎসা ভাতা, কর্তন ও অফিসিয়াল PPO এতে নেই।');
   updateAuditSummary(basic, serviceYears, leaveMonths, phaseValue, currentNet, commutationPercent, true);
   if (validationBox) validationBox.hidden = true;
 
@@ -270,7 +270,9 @@ async function copyPensionResult() {
     'আনুমানিক নতুন net pension: ' + (document.querySelector('#retirement-net-card')?.hidden ? 'প্রযোজ্য নয় — input দেওয়া হয়নি' : document.querySelector('#retirement-net-result').textContent),
     'সমর্পণ: ' + (retirementCommutation?.selectedOptions?.[0]?.textContent || '৫০% সমর্পণ'),
     'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · Official Gazette PDF: ' + (window.RETIREMENT_RULES?.sourceUrl || 'https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf'),
-    'Version: ' + (window.PAYSCALE_META?.version || '1.29'),
+    'Rate-table note: ২৩ বছর/৮১%সহ intermediate rates are transcribed review-support figures; authorised record দিয়ে verify করুন।',
+    'Rounding note: সমর্পিত pension whole taka-য় round; অবশিষ্ট = gross pension − rounded surrendered pension।',
+    'Version: ' + (window.PAYSCALE_META?.version || '1.30'),
     document.querySelector('#retirement-audit-generated')?.textContent || ('হিসাবের সময়: ' + auditTimestamp()),
     'এটি review-support estimate; official pension sanction/PPO নয়।'
   ].join('\n');

@@ -1,10 +1,10 @@
-# Gross Salary module — rule map (v1.29)
+# Gross Salary module — rule map (v1.30)
 
 This file documents the allowance rules used by the optional Step 03 module. Step 01/02 keeps the 1 July 2026 transition basic and the 1 July 2027 full basic distinct, including the annual increment required at each applicable date.
 
 ## Profiles and transcription status
 
-- **S.R.O. No. 347-Law/2026** — general government service order.
+- **S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026)** — general government service order.
 - **S.R.O. No. 349-Law/2026** — bank, insurance and financial institution order, including the definition that lists Bangladesh Bank among the banks. It is selectable for scope visibility, but its allowance schedule is not yet automatically transcribed in this release.
 
 The module does not silently apply the general allowance schedule to S.R.O. 348, 349, 350 or 351. Those orders are selectable so the user can see the scope, but their institution/unit-specific allowance schedules must be transcribed and verified separately before automatic gross calculation is enabled. Fixed-pay posts are treated the same way because the post-specific allowance package is not established by the grade table alone. The Step 01 scope check stops the S.R.O. 347 calculator for users who identify a separate pay order.
@@ -65,4 +65,4 @@ These figures do not include medical allowance, family pension, deductions, qual
 
 ## Source
 
-Primary sources: [Bangladesh Government Press Gazette source index](https://bgpress.dpp.gov.bd/) for the 17 September 2026 Bangladesh Gazette, Extra, S.R.O. No. 347-Law/2026, especially Article 9(2) (annual increment) and Article 15(1) (2015 house-rent schedule through 31 December 2027), and the [separate retirement-benefit Gazette](https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf). The separate S.R.O. No. 349-Law/2026 profile remains visible for scope but is not automatically transcribed here. Always check the latest official Gazette, corrigendum, clarification and the employee’s authorised pay-fixation or pension statement before using a result.
+Primary sources: [Bangladesh Government Press Gazette source index](https://bgpress.dpp.gov.bd/) for the 17 September 2026 Bangladesh Gazette, Extra, S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026), especially Article 9(2) (annual increment) and Article 15(1) (2015 house-rent schedule through 31 December 2027), and the [separate retirement-benefit Gazette](https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf). The separate S.R.O. No. 349-Ain/2026 profile remains visible for scope but is not automatically transcribed here. Always check the latest official Gazette, corrigendum, clarification and the employee’s authorised pay-fixation or pension statement before using a result.

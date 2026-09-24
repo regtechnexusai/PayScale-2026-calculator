@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Law/2026. Version 1.29.
+ * S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026). Version 1.30.
  *
  * Scale steps are kept in scale-data.js as the single source of truth.
  * Update that file and run the regression tests if an official correction
@@ -49,33 +49,33 @@ const openRetirementBenefits = document.querySelector('#open-retirement-benefits
 const ALLOWANCE_PROFILES = {
   general: {
     label: 'সাধারণ সরকারি চাকরি',
-    sro: 'S.R.O. No. 347-Law/2026',
+    sro: 'S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026)',
     automatic: true,
-    note: 'সাধারণ সরকারি চাকরির জন্য S.R.O. No. 347-Law/2026-এর নির্বাচিত ভাতা-হার ব্যবহার করা হচ্ছে। Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ সালের বাড়িভাড়া schedule প্রযোজ্য; S.R.O. 349 সাধারণ সরকারি চাকরির জন্য নয়।'
+    note: 'সাধারণ সরকারি চাকরির জন্য S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026)-এর নির্বাচিত ভাতা-হার ব্যবহার করা হচ্ছে। Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ সালের বাড়িভাড়া schedule প্রযোজ্য; S.R.O. 349 সাধারণ সরকারি চাকরির জন্য নয়।'
   },
   bank: {
     label: 'ব্যাংক, বিমা ও আর্থিক প্রতিষ্ঠান',
-    sro: 'S.R.O. No. 349-Law/2026',
+    sro: 'S.R.O. No. 349-Ain/2026 (English reference: 349-Law/2026)',
     automatic: false,
-    note: 'S.R.O. No. 349-Law/2026 নির্বাচিত হয়েছে। এই static preview-তে bank/insurance/financial-institution-এর allowance schedule আলাদাভাবে সম্পূর্ণ transcribe ও verify করা হয়নি; সাধারণ S.R.O. 347-এর হার প্রয়োগ করা হচ্ছে না।'
+    note: 'S.R.O. No. 349-Ain/2026 (English reference: 349-Law/2026) নির্বাচিত হয়েছে। এই static preview-তে bank/insurance/financial-institution-এর allowance schedule আলাদাভাবে সম্পূর্ণ transcribe ও verify করা হয়নি; সাধারণ S.R.O. 347-এর হার প্রয়োগ করা হচ্ছে না।'
   },
   public: {
     label: 'Public Bodies/রাষ্ট্রায়ত্ত প্রতিষ্ঠান',
-    sro: 'S.R.O. No. 348-Law/2026',
+    sro: 'S.R.O. No. 348-Ain/2026 (English reference: 348-Law/2026)',
     automatic: false,
-    note: 'S.R.O. No. 348-Law/2026 নির্বাচিত হয়েছে। এই আলাদা order-এর institution-specific allowance schedule এখানে এখনো স্বয়ংক্রিয়ভাবে transcribe করা হয়নি।'
+    note: 'S.R.O. No. 348-Ain/2026 (English reference: 348-Law/2026) নির্বাচিত হয়েছে। এই আলাদা order-এর institution-specific allowance schedule এখানে এখনো স্বয়ংক্রিয়ভাবে transcribe করা হয়নি।'
   },
   police: {
     label: 'বাংলাদেশ পুলিশ',
-    sro: 'S.R.O. No. 350-Law/2026',
+    sro: 'S.R.O. No. 350-Ain/2026 (English reference: 350-Law/2026)',
     automatic: false,
-    note: 'S.R.O. No. 350-Law/2026 নির্বাচিত হয়েছে। Police unit/post-specific special allowance ভুলভাবে যোগ না করার জন্য এই profile-এ full gross auto-calculation বন্ধ রাখা হয়েছে।'
+    note: 'S.R.O. No. 350-Ain/2026 (English reference: 350-Law/2026) নির্বাচিত হয়েছে। Police unit/post-specific special allowance ভুলভাবে যোগ না করার জন্য এই profile-এ full gross auto-calculation বন্ধ রাখা হয়েছে।'
   },
   bgb: {
     label: 'BGB',
-    sro: 'S.R.O. No. 351-Law/2026',
+    sro: 'S.R.O. No. 351-Ain/2026 (English reference: 351-Law/2026)',
     automatic: false,
-    note: 'S.R.O. No. 351-Law/2026 নির্বাচিত হয়েছে। BGB-specific allowance schedule যাচাই না করে সাধারণ হার auto-apply করা হচ্ছে না।'
+    note: 'S.R.O. No. 351-Ain/2026 (English reference: 351-Law/2026) নির্বাচিত হয়েছে। BGB-specific allowance schedule যাচাই না করে সাধারণ হার auto-apply করা হচ্ছে না।'
   }
 };
 
@@ -175,7 +175,7 @@ function houseRentBand(basic) {
   return 'top';
 }
 
-function houseRentAllowance(basic, station) {
+function houseRentRateMinimum(basic, station) {
   // Article 15(1) keeps the 2015 house-rent schedule through 31 Dec 2027.
   // The 2026 schedule starts on 1 Jan 2028, outside these three phases.
   const stationRates = {
@@ -191,6 +191,11 @@ function houseRentAllowance(basic, station) {
   };
   const rates = stationRates[station] || stationRates.dhaka;
   const [rate, minimum] = rates[houseRentBand(basic)];
+  return { rate, minimum };
+}
+
+function houseRentAllowance(basic, station) {
+  const { rate, minimum } = houseRentRateMinimum(basic, station);
   return Math.max(Math.round(basic * rate / 100), minimum);
 }
 
@@ -215,7 +220,14 @@ function grossAssumptionSummary(grade) {
     'শিক্ষা সহায়তা ' + money(education),
     'অন্যান্য manual ভাতা ' + money(parseMoney(grossInput('other-allowance').value) || 0)
   ].filter(Boolean).join(', ');
-  return 'বাড়িভাড়া ২০১৫ schedule-এর phase-basic অনুযায়ী rate/minimum (' + stationLabel + '), ৩১ ডিসেম্বর ২০২৭ পর্যন্ত; ' + housing + '; ' + fixed + '।';
+  const phase3Basic = window.lastCalculation?.phase3Pay;
+  const phase3Rule = Number.isFinite(phase3Basic)
+    ? houseRentRateMinimum(phase3Basic, station)
+    : null;
+  const rateNote = phase3Rule
+    ? 'পর্যায় ৩ basic-এর জন্য rate ' + toBn(phase3Rule.rate) + '% এবং minimum ' + money(phase3Rule.minimum)
+    : 'phase-basic band অনুযায়ী rate/minimum';
+  return 'বাড়িভাড়া ২০১৫ schedule-এর basic-band rate/minimum (' + stationLabel + '), ৩১ ডিসেম্বর ২০২৭ পর্যন্ত; ' + rateNote + '; ' + housing + '; ' + fixed + '।';
 }
 
 function grossBreakdownSummary() {
@@ -224,8 +236,15 @@ function grossBreakdownSummary() {
     ['বাড়িভাড়া', 'gross-phase3-house'],
     ['চিকিৎসা', 'gross-phase3-medical'],
     ['শিক্ষা সহায়তা', 'gross-phase3-education'],
-    ['টিফিন / মোবাইল / ধোলাই', 'gross-phase3-fixed'],
-    ['অন্যান্য নির্বাচিত ভাতা', 'gross-phase3-other']
+    ['মোবাইল', 'gross-phase3-mobile'],
+    ['টিফিন', 'gross-phase3-tiffin'],
+    ['ধোলাই', 'gross-phase3-washing'],
+    ['যাতায়াত', 'gross-phase3-travel'],
+    ['পাহাড়ি', 'gross-phase3-hill'],
+    ['হাওড়/দ্বীপচর', 'gross-phase3-haor'],
+    ['প্রশিক্ষণ প্রতিষ্ঠান', 'gross-phase3-training'],
+    ['বিশেষ-প্রয়োজন child', 'gross-phase3-special-child'],
+    ['অন্যান্য manual', 'gross-phase3-manual-other']
   ].map(([label, id]) => label + ' ' + (document.querySelector('#' + id)?.textContent || '—'));
   return 'Gross breakdown (পর্যায় ৩): ' + parts.join(' + ') + ' = ' + (document.querySelector('#gross-phase3-total')?.textContent || '—');
 }
@@ -245,14 +264,22 @@ function clearGrossOutput() {
     'gross-phase1-house', 'gross-phase2-house', 'gross-phase3-house',
     'gross-phase1-medical', 'gross-phase2-medical', 'gross-phase3-medical',
     'gross-phase1-education', 'gross-phase2-education', 'gross-phase3-education',
-    'gross-phase1-fixed', 'gross-phase2-fixed', 'gross-phase3-fixed',
-    'gross-phase1-other', 'gross-phase2-other', 'gross-phase3-other',
+    'gross-phase1-mobile', 'gross-phase2-mobile', 'gross-phase3-mobile',
+    'gross-phase1-tiffin', 'gross-phase2-tiffin', 'gross-phase3-tiffin',
+    'gross-phase1-washing', 'gross-phase2-washing', 'gross-phase3-washing',
+    'gross-phase1-travel', 'gross-phase2-travel', 'gross-phase3-travel',
+    'gross-phase1-hill', 'gross-phase2-hill', 'gross-phase3-hill',
+    'gross-phase1-haor', 'gross-phase2-haor', 'gross-phase3-haor',
+    'gross-phase1-training', 'gross-phase2-training', 'gross-phase3-training',
+    'gross-phase1-special-child', 'gross-phase2-special-child', 'gross-phase3-special-child',
+    'gross-phase1-manual-other', 'gross-phase2-manual-other', 'gross-phase3-manual-other',
     'gross-phase1-total-row', 'gross-phase2-total-row', 'gross-phase3-total-row'
   ];
   ids.forEach((id) => setText(id, '—'));
   setText('gross-phase1-meta', 'প্রথম অন্তর্বর্তী মূল বেতনসহ');
   setText('gross-phase2-meta', 'দ্বিতীয় অন্তর্বর্তী মূল বেতনসহ');
   setText('gross-phase3-meta', 'পূর্ণ নতুন মূল বেতনসহ');
+  setText('gross-house-rule', 'বাড়িভাড়া rule: ২০১৫ schedule-এর basic-pay band ও duty station অনুযায়ী rate/minimum; ৩১ ডিসেম্বর ২০২৭ পর্যন্ত।');
   grossProfileNote.textContent = '';
   grossProfileNote.classList.remove('warning');
   setText('gross-grade-chip', 'গ্রেড অপেক্ষমাণ');
@@ -276,8 +303,15 @@ function setGrossPhase(phase, values) {
   setGrossCell('gross-phase' + phase + '-house', values.house);
   setGrossCell('gross-phase' + phase + '-medical', values.medical);
   setGrossCell('gross-phase' + phase + '-education', values.education);
-  setGrossCell('gross-phase' + phase + '-fixed', values.fixed);
-  setGrossCell('gross-phase' + phase + '-other', values.other);
+  setGrossCell('gross-phase' + phase + '-mobile', values.mobile);
+  setGrossCell('gross-phase' + phase + '-tiffin', values.tiffin);
+  setGrossCell('gross-phase' + phase + '-washing', values.washing);
+  setGrossCell('gross-phase' + phase + '-travel', values.travel);
+  setGrossCell('gross-phase' + phase + '-hill', values.hill);
+  setGrossCell('gross-phase' + phase + '-haor', values.haor);
+  setGrossCell('gross-phase' + phase + '-training', values.training);
+  setGrossCell('gross-phase' + phase + '-special-child', values.specialChild);
+  setGrossCell('gross-phase' + phase + '-manual-other', values.manualOther);
   setGrossCell('gross-phase' + phase + '-total', values.total);
   setGrossCell('gross-phase' + phase + '-total-row', values.total);
 }
@@ -298,12 +332,13 @@ function renderGrossSalary() {
     const phases = [result.phase1Pay, result.phase2Pay, result.phase3Pay];
     phases.forEach((basic, index) => setGrossCell('gross-phase' + (index + 1) + '-basic', basic));
     ['1', '2', '3'].forEach((phase) => {
-      ['house', 'medical', 'education', 'fixed', 'other', 'total', 'total-row'].forEach((part) => setText('gross-phase' + phase + '-' + part, '—'));
+      ['house', 'medical', 'education', 'mobile', 'tiffin', 'washing', 'travel', 'hill', 'haor', 'training', 'special-child', 'manual-other', 'total', 'total-row'].forEach((part) => setText('gross-phase' + phase + '-' + part, '—'));
     });
     ['1', '2', '3'].forEach((phase) => setText('gross-phase' + phase + '-meta', result.fixed ? 'পদভিত্তিক ভাতা আলাদা করে মিলিয়ে নিন' : 'এই order-এর allowance schedule আলাদা করে মিলিয়ে নিন'));
     setText('gross-footnote', result.fixed
       ? 'স্থির/বিশেষ পদের gross salary এই preview-তে স্বয়ংক্রিয়ভাবে দেখানো হচ্ছে না। সংশ্লিষ্ট পদ, office order এবং authorised pay-fixation statement দেখে ভাতা যোগ করুন।'
       : 'এই আলাদা pay order-এর ভাতা-প্যাকেজ এখনো এই static preview-তে স্বয়ংক্রিয়ভাবে transcribe করা হয়নি। সাধারণ সরকারি হার ধরে কোনো gross salary দেখানো হচ্ছে না।');
+    setText('gross-house-rule', 'বাড়িভাড়া/ভাতা: এই pay order বা fixed post-এর institution/unit-specific schedule আলাদাভাবে verify করুন; সাধারণ S.R.O. 347-এর rate এখানে apply করা হয়নি।');
     return;
   }
 
@@ -318,25 +353,26 @@ function renderGrossSalary() {
   const specialChild = Math.min(2, Number(grossInput('special-child-count').value || 0)) * 3000;
   const otherManual = parseMoney(grossInput('other-allowance').value) || 0;
   const hillMode = grossInput('hill-allowance').value;
-  const governmentAccommodationProvided = grossInput('government-housing').checked === false;
+  const governmentAccommodationProvided = !grossInput('government-housing').checked;
   const phases = [result.phase1Pay, result.phase2Pay, result.phase3Pay].map((basic) => {
     const house = governmentAccommodationProvided ? 0 : houseRentAllowance(basic, station);
     const hillCap = hillMode === 'other' ? 5500 : 5000;
     const hill = hillMode === 'none' ? 0 : Math.min(Math.round(basic * 20 / 100), hillCap);
     const haor = grossInput('haor-eligible').checked ? Math.min(Math.round(basic * 20 / 100), 5000) : 0;
     const training = grossInput('training-eligible').checked && grade <= 9 ? Math.round(basic * 10 / 100) : 0;
-    // Keep medical and education separate in the breakdown table. They are
-    // added explicitly to the total below so they are not shown twice.
-    const fixed = tiffin + mobile + washing;
-    const other = travel + hill + haor + training + specialChild + otherManual;
-    return { basic, house, medical, education, fixed, other, total: basic + house + medical + education + fixed + other };
+    return {
+      basic, house, medical, education, mobile, tiffin, washing, travel, hill,
+      haor, training, specialChild, manualOther: otherManual,
+      total: basic + house + medical + education + mobile + tiffin + washing + travel + hill + haor + training + specialChild + otherManual
+    };
   });
 
   phases.forEach((values, index) => setGrossPhase(index + 1, values));
   setText('gross-phase1-meta', 'মূল বেতন + নির্বাচিত ভাতা');
   setText('gross-phase2-meta', 'মূল বেতন + নির্বাচিত ভাতা');
   setText('gross-phase3-meta', 'মূল বেতন + নির্বাচিত ভাতা');
-  setText('gross-footnote', 'এটি official pay fixation নয়—review-support estimate। Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ সালের বাড়িভাড়া schedule ব্যবহার করা হয়েছে; ১ জানুয়ারি ২০২৮-এর নতুন হার এই preview-তে আগাম প্রয়োগ করা হয়নি। সরকারি বাসস্থান থাকলে বাড়িভাড়া বাদ। চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল ও শর্তসাপেক্ষ ভাতার checkbox-গুলি আপনার বাস্তব অবস্থা অনুযায়ী ঠিক করুন।');
+  setText('gross-house-rule', 'বাড়িভাড়া rule: Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ schedule; rate/minimum grade নয়, প্রতিটি phase-এর basic-pay band ও duty station অনুযায়ী। ১ জানুয়ারি ২০২৮-এর নতুন হার এই preview-তে আগাম প্রয়োগ করা হয়নি।');
+  setText('gross-footnote', 'এটি official pay fixation নয়—review-support estimate। সরকারি বাসস্থান থাকলে বাড়িভাড়া বাদ। চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল, ধোলাই এবং শর্তসাপেক্ষ ভাতার checkbox-গুলি বাস্তব eligibility ও authorised record অনুযায়ী ঠিক করুন।');
 }
 
 function calculate(showErrors = false) {
@@ -462,8 +498,8 @@ function calculate(showErrors = false) {
   setText('new-step-label', isFixed ? 'নির্ধারিত বেতন' : '১ জুলাই ২০২৭ · annual incrementসহ পূর্ণ ধাপ ' + toBn(fullStepIndex));
   setText('salary-audit-grade', isFixed ? 'ধরন: স্থির বেতন' : 'গ্রেড: ' + toBn(grade));
   setText('salary-audit-current', 'বর্তমান মূল বেতন: ' + money(current));
-  setText('salary-audit-source', 'সূত্র: S.R.O. No. 347-Law/2026 · Bangladesh Gazette, Extra, ১৭ সেপ্টেম্বর ২০২৬');
-  setText('salary-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.29'));
+  setText('salary-audit-source', 'সূত্র: S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026) · Bangladesh Gazette, Extra, ১৭ সেপ্টেম্বর ২০২৬');
+  setText('salary-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.30'));
   setText('salary-audit-generated', 'হিসাবের সময়: ' + auditTimestamp());
   if (resultLiveSummary) {
     resultLiveSummary.textContent = (isFixed ? 'স্থির নির্ধারিত বেতন ' : 'গ্রেড ' + toBn(grade) + ' এর হিসাব সম্পন্ন। ') +
@@ -563,10 +599,12 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     grossAutomatic ? grossBreakdownSummary() : '',
     ...retirementLines,
     'হিসাবের সময়: ' + (document.querySelector('#salary-audit-generated')?.textContent || auditTimestamp()),
-    'Version: ' + (window.PAYSCALE_META?.version || '1.29'),
+    grossAutomatic ? 'House-rent rule: ২০১৫ schedule-এর basic-band rate/minimum; ৩১ ডিসেম্বর ২০২৭ পর্যন্ত' : '',
+    'Version: ' + (window.PAYSCALE_META?.version || '1.30'),
     'Inputs: ' + (result.fixed ? 'স্থির বেতন' : 'গ্রেড ' + result.grade) + ' · বর্তমান মূল বেতন ' + money(result.current),
     'Prepared by RegTech Nexus AI',
     'সূত্র: Bangladesh Gazette, Extra, 17 September 2026 · ' + profile.sro,
+    'Compliance note: source tables, grade/service eligibility, allowance selection and rounding must be reconciled with the authorised record.',
     'Demo output only. Final decisions remain with the authorised accounts office.',
   ].join('\n');
   try {

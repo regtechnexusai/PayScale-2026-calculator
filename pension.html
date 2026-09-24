@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://regtechnexusai.github.io/PayScale-2026-calculator/payscale-2026-og.png" />
     <title>পেনশন ও অবসর সুবিধার হিসাব | RegTech Nexus AI</title>
     <link rel="icon" href="regtech-nexus-ai-logo.png" type="image/png" />
-    <link rel="stylesheet" href="styles.css?v=22" />
+    <link rel="stylesheet" href="styles.css?v=23" />
   </head>
   <body>
     <div class="orb orb-one" aria-hidden="true"></div>
@@ -65,6 +65,12 @@
         </div>
 
         <div class="retirement-profile-note">PayScale page থেকে এলে phase অনুযায়ী basic pay prefill হবে। Salary link ছাড়া Phase 1/2/3 নির্বাচন করলে source basic যাচাই করা যাবে না—সেক্ষেত্রে “নিজে যাচাইকৃত last drawn basic” নির্বাচন করুন। অবসরের পর্যায়, চাকরিকাল, ছুটি নগদায়নের মাস ও surrender assumption নিজে নির্বাচন না করা পর্যন্ত কোনো optimistic result দেখানো হবে না। Qualifying service, PPO, medical allowance, deductions ও authorised pension order আলাদাভাবে যাচাই করতে হবে।</div>
+
+        <div class="compliance-note" role="note">
+          <strong>Manual verification required</strong>
+          <p>৫–২৫ বছরের gross-pension rate table—including ২৩ বছর = ৮১%—review-support transcription হিসেবে দেখানো হচ্ছে। Rendered official Gazette table এবং authorised pension office record-এর সঙ্গে rate, qualifying service ও retirement eligibility মিলিয়ে নিন।</p>
+          <p>সমর্পিত pension whole taka-য় round করা হয়; অবশিষ্ট মাসিক pension = gross pension − rounded surrendered pension। তাই অর্ধেকের exact decimal থাকলে দুইটি displayed whole-taka amount-এর যোগফলে rounding-এর প্রভাব থাকতে পারে।</p>
+        </div>
 
         <form id="retirement-form" class="retirement-form" novalidate>
           <div class="retirement-input-grid">
@@ -146,8 +152,8 @@
           <span id="retirement-audit-leave">ছুটি নগদায়ন: —</span>
           <span id="retirement-audit-net">বর্তমান net pension: দেওয়া হয়নি</span>
           <span id="retirement-audit-commutation">সমর্পণ: ৫০% ধরে</span>
-          <span id="retirement-audit-source">সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬</span>
-          <span id="retirement-audit-version">Version 1.29</span>
+          <span id="retirement-audit-source">সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · official PDF</span>
+          <span id="retirement-audit-version">Version 1.30</span>
           <span id="retirement-audit-generated">হিসাবের সময়: —</span>
         </div>
 
@@ -211,7 +217,7 @@
         </div>
         <div class="footer-meta">
           <span>Independent educational calculator · Not an official Government portal</span>
-          <span><span data-app-version>Version 1.29</span> · Last verified 24 September 2026</span>
+          <span><span data-app-version>Version 1.30</span> · Last verified 24 September 2026</span>
         </div>
         <div class="footer-contact" aria-label="Contact">
           <span>Contact</span>
@@ -231,6 +237,6 @@
     <div class="toast" id="pension-toast" role="status" aria-live="polite" hidden>পেনশন ফলাফল কপি হয়েছে</div>
     <script src="retirement-data.js?v=1"></script>
     <script src="release-meta.js?v=1"></script>
-    <script src="pension.js?v=6"></script>
+    <script src="pension.js?v=7"></script>
   </body>
 </html>
