@@ -366,6 +366,8 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
 [hidden] { display: none !important; }
 
 @media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(140px, 200px) minmax(0, 1fr); gap: 18px; }
+  .effective-badge { grid-column: 2; justify-self: start; text-align: left; }
   .workspace-grid { grid-template-columns: 1fr; }
   .calculator { position: static; }
   .method-grid { grid-template-columns: 1fr; }
