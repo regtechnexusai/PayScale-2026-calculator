@@ -366,8 +366,11 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
 [hidden] { display: none !important; }
 
 @media (max-width: 900px) {
-  .hero { grid-template-columns: minmax(140px, 200px) minmax(0, 1fr); gap: 18px; }
-  .effective-badge { grid-column: 2; justify-self: start; text-align: left; }
+  /* Keep the complete header in one vertical flow on tablets and narrow screens. */
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 15px; }
+  .brand-logo-frame { justify-self: center; width: min(245px, 74vw); }
+  .hero-copy { min-width: 0; }
+  .effective-badge { grid-column: auto; justify-self: start; text-align: left; }
   .workspace-grid { grid-template-columns: 1fr; }
   .calculator { position: static; }
   .method-grid { grid-template-columns: 1fr; }
