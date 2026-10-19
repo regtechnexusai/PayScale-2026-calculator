@@ -459,40 +459,18 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
 }
 
 
-/* Mobile readability repair — presentation only; calculator logic is untouched. */
+/* Mobile text-contrast correction only. Preserve existing layout, colors, spacing and component settings. */
 @media (max-width: 620px) {
-  body {
-    color: #f3f7ff;
-    background-color: #071126;
-  }
-  .shell { padding-top: 20px; }
-  .hero {
-    padding: 18px 16px 20px;
-    border: 1px solid rgba(160, 188, 240, .24);
-    border-radius: 18px;
-    background: linear-gradient(145deg, #10264a 0%, #0a1731 100%);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, .22);
-  }
   .hero .eyebrow { color: #75ddff; opacity: 1; }
   .hero h1 { color: #ffffff; opacity: 1; }
   .hero-subtitle { color: #e0eaff; opacity: 1; }
-  .hero-proof { color: #d3e0f5; opacity: 1; }
-  .effective-badge {
-    justify-self: start;
-    border-color: rgba(117, 224, 186, .45);
-    background: #142c4c;
-    box-shadow: none;
-  }
-  .effective-badge span { color: #d1def1; }
-  .effective-badge strong { color: #83f0c5; }
-  .release-banner {
-    border-color: rgba(255, 220, 151, .42);
-    background: linear-gradient(135deg, #3c342b 0%, #182b4a 100%);
-  }
-  .release-banner strong { color: #ffe7b0; opacity: 1; }
-  .release-banner p { color: #edf3ff; opacity: 1; }
-  .release-banner a { color: #8de8ff; opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
-  .quick-choice-section .choice-card { filter: none; opacity: 1; }
-  .choice-card .choice-kicker { color: #b9f2ff; }
-  .choice-card p { color: #e2f4ff; }
+  .hero-proof, .hero-proof span { color: #d3e0f5; opacity: 1; }
+  .effective-badge span { color: #d1def1; opacity: 1; }
+  .effective-badge strong { color: #83f0c5; opacity: 1; }
+  .release-banner strong, .update-note strong { color: #ffe7b0; opacity: 1; }
+  .release-banner p, .update-note p { color: #edf3ff; opacity: 1; }
+  .release-banner a, .update-note a { color: #8de8ff; opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
+  .choice-card .choice-kicker { color: #b9f2ff; opacity: 1; }
+  .choice-card strong { color: #ffffff; opacity: 1; }
+  .choice-card p { color: #e2f4ff; opacity: 1; }
 }
