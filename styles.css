@@ -560,3 +560,173 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
   .brand-header-nav { gap: 8px; margin-bottom: 11px; font-size: 12px; }
   .brand-home-link { min-height: 38px; padding: 8px 12px; }
 }
+
+
+/* PayScale 2026 visibility refinement — CSS-only; calculator logic/data untouched. */
+body.payscale-main-page .shell > .hero {
+  grid-template-columns: minmax(170px, 210px) minmax(0, 1fr) auto;
+  gap: clamp(16px, 2vw, 22px);
+  align-items: center;
+}
+body.payscale-main-page .shell > .hero .brand-logo-frame {
+  width: 100%;
+  max-width: 210px;
+  padding: 7px 9px;
+  border-color: rgba(205, 226, 255, .72);
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .22);
+}
+body.payscale-main-page .shell > .hero .brand-logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+body.payscale-main-page .shell > .hero .hero-copy { min-width: 0; }
+body.payscale-main-page .shell > .hero .brand-header-nav { margin-bottom: 12px; }
+body.payscale-main-page .shell > .hero .brand-home-link {
+  color: #f2fbff;
+  background: #12365a;
+  border-color: #4d9ec7;
+  font-size: 13px;
+  font-weight: 750;
+}
+body.payscale-main-page .shell > .hero .brand-home-link:hover,
+body.payscale-main-page .shell > .hero .brand-home-link:focus-visible {
+  background: #075b78;
+  border-color: #8be6f4;
+}
+body.payscale-main-page .shell > .hero .brand-nav-current { color: #e3edff; }
+body.payscale-main-page .shell > .hero .eyebrow {
+  color: #7de4ff;
+  font-size: 11px;
+  letter-spacing: .12em;
+  line-height: 1.55;
+}
+body.payscale-main-page .shell > .hero h1 {
+  color: #f7faff;
+  font-size: clamp(30px, 3.5vw, 46px);
+  line-height: 1.18;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+body.payscale-main-page .shell > .hero .hero-subtitle {
+  color: #d7e5f8;
+  font-size: 15px;
+  line-height: 1.75;
+}
+body.payscale-main-page .shell > .hero .hero-proof {
+  color: #d2e0f5;
+  font-size: 12px;
+  line-height: 1.65;
+}
+body.payscale-main-page .shell > .hero .effective-badge {
+  border-color: #456a99;
+  background: #102b50;
+}
+body.payscale-main-page .shell > .hero .effective-badge span { color: #c7d8ee; }
+body.payscale-main-page .shell > .hero .effective-badge strong { color: #8df0c6; }
+body.payscale-main-page .notice,
+body.payscale-main-page .glass-card,
+body.payscale-main-page .content-card {
+  border-color: rgba(148, 184, 229, .28);
+}
+body.payscale-main-page .notice p,
+body.payscale-main-page .field-help,
+body.payscale-main-page .output-note,
+body.payscale-main-page .timeline-note,
+body.payscale-main-page .timeline-content span,
+body.payscale-main-page .table-note,
+body.payscale-main-page .math-line,
+body.payscale-main-page .scope-list,
+body.payscale-main-page .content-card p,
+body.payscale-main-page .content-card li {
+  color: #d4e1f4;
+  font-size: 13px;
+  line-height: 1.65;
+}
+body.payscale-main-page .notice strong,
+body.payscale-main-page .content-card h2,
+body.payscale-main-page .content-card h3 { color: #f2f7ff; }
+body.payscale-main-page .validation-message.warning,
+body.payscale-main-page .scope-gate-message,
+body.payscale-main-page .gross-profile-note.warning {
+  color: #fff3c9;
+  background: #332b16;
+  border-color: #d4a640;
+  box-shadow: inset 4px 0 0 #f0bd48;
+}
+body.payscale-main-page .results {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(151, 191, 238, .42);
+}
+body.payscale-main-page .results-heading { margin-bottom: 18px; }
+body.payscale-main-page .empty-result {
+  border-color: #4d6e9d;
+  background: linear-gradient(145deg, #132a4d, #0c1d38);
+}
+body.payscale-main-page .empty-result p {
+  color: #e0ebfb;
+  font-size: 14px;
+  line-height: 1.7;
+}
+body.payscale-main-page input,
+body.payscale-main-page select,
+body.payscale-main-page textarea {
+  color: #f4f8ff;
+  border-color: #6e8db7;
+}
+body.payscale-main-page input::placeholder,
+body.payscale-main-page textarea::placeholder { color: #b6c8e2; opacity: 1; }
+body.payscale-main-page :is(input, select, textarea, button, a):focus-visible {
+  outline: 3px solid #80e8f5;
+  outline-offset: 3px;
+}
+body.payscale-main-page .footer-branding img {
+  width: min(210px, 100%);
+  max-height: 68px;
+  object-fit: contain;
+}
+body.payscale-main-page .footer-links a { color: #c8e5ff; }
+body.payscale-main-page .footer-links a:hover,
+body.payscale-main-page .footer-links a:focus-visible { color: #8cecff; }
+@media (max-width: 900px) {
+  body.payscale-main-page .shell > .hero {
+    grid-template-columns: minmax(150px, 185px) minmax(0, 1fr);
+    align-items: start;
+  }
+  body.payscale-main-page .shell > .hero .effective-badge {
+    grid-column: 2;
+    justify-self: start;
+    text-align: left;
+    padding: 9px 12px;
+  }
+}
+@media (max-width: 620px) {
+  body.payscale-main-page .shell { width: min(100% - 24px, 1180px); padding-top: 22px; }
+  body.payscale-main-page .shell > .hero { grid-template-columns: minmax(0, 1fr); gap: 14px; margin-bottom: 22px; }
+  body.payscale-main-page .shell > .hero .brand-logo-frame { justify-self: start; width: min(170px, 48vw); max-width: 170px; padding: 6px 8px; }
+  body.payscale-main-page .shell > .hero .hero-copy { width: 100%; }
+  body.payscale-main-page .shell > .hero .brand-header-nav { gap: 7px; margin-bottom: 10px; font-size: 12px; }
+  body.payscale-main-page .shell > .hero .brand-home-link { min-height: 40px; padding: 8px 12px; font-size: 13px; }
+  body.payscale-main-page .shell > .hero .eyebrow { font-size: 10px; letter-spacing: .09em; }
+  body.payscale-main-page .shell > .hero h1 { font-size: clamp(29px, 8vw, 36px); line-height: 1.24; }
+  body.payscale-main-page .shell > .hero .hero-subtitle { font-size: 14px; line-height: 1.75; }
+  body.payscale-main-page .shell > .hero .hero-proof { gap: 8px 12px; font-size: 11px; }
+  body.payscale-main-page .shell > .hero .effective-badge { grid-column: 1; justify-self: start; }
+  body.payscale-main-page .notice p,
+  body.payscale-main-page .field-help,
+  body.payscale-main-page .output-note,
+  body.payscale-main-page .timeline-note,
+  body.payscale-main-page .timeline-content span,
+  body.payscale-main-page .table-note,
+  body.payscale-main-page .math-line,
+  body.payscale-main-page .scope-list,
+  body.payscale-main-page .content-card p,
+  body.payscale-main-page .content-card li { font-size: 13px; line-height: 1.65; }
+  body.payscale-main-page .results { margin-top: 26px; padding-top: 22px; }
+  body.payscale-main-page .footer-branding img { width: min(185px, 100%); max-height: 60px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.payscale-main-page * { scroll-behavior: auto !important; transition: none !important; }
+}
