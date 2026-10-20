@@ -548,3 +548,15 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
   .empty-result p { font-size: 13px; line-height: 1.55; color: #d8e4f6; }
   .grade-chip { white-space: normal; text-align: center; }
 }
+
+
+/* Brand-aligned header navigation — presentation only */
+.brand-header-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0 0 16px; font-family: 'Manrope', 'RegTech Bengali', sans-serif; font-size: 12px; font-weight: 700; line-height: 1.5; }
+.brand-home-link { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; padding: 8px 13px; border: 1px solid rgba(106, 213, 255, .38); border-radius: 999px; color: #eaf7ff; background: rgba(17, 43, 79, .78); text-decoration: none; transition: background .18s ease, border-color .18s ease, transform .18s ease; }
+.brand-home-link:hover, .brand-home-link:focus-visible { color: #fff; background: rgba(37, 91, 145, .82); border-color: rgba(106, 213, 255, .82); outline: 2px solid transparent; transform: translateY(-1px); }
+.brand-nav-divider { color: rgba(195, 208, 231, .55); }
+.brand-nav-current { color: var(--muted-strong); }
+@media (max-width: 620px) {
+  .brand-header-nav { gap: 8px; margin-bottom: 11px; font-size: 12px; }
+  .brand-home-link { min-height: 38px; padding: 8px 12px; }
+}
