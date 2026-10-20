@@ -457,3 +457,49 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
 .gross-section { margin-top: 16px; }
   [hidden] { display: none !important; }
 }
+
+
+/* Mobile readability patch: visual-only; calculator logic and data are untouched. */
+@media (max-width: 620px) {
+  :root {
+    --muted: #c2d0e8;
+    --muted-strong: #e0eaff;
+  }
+  body {
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  .hero-subtitle { font-size: 15px; line-height: 1.55; }
+  .hero-proof { font-size: 11px; line-height: 1.5; }
+  .effective-badge span { font-size: 13px; }
+  .choice-kicker { font-size: 10px; letter-spacing: .04em; line-height: 1.4; }
+  .choice-card strong { font-size: 14px; line-height: 1.4; }
+  .choice-card p { font-size: 12px; line-height: 1.5; color: #d4e0f5; }
+  .field-help, .output-note, .rule-note p, .provenance-card p,
+  .about-tool-heading > p:last-child, .about-tool-grid p,
+  .source-summary-grid p, .timeline-note, .timeline-content span,
+  .math-line, .table-note, .method-card p, .governance-card p:last-child,
+  .disclaimer p, .scope-list, .noscript-note p, .retirement-action p,
+  .retirement-net-placeholder p, .content-card p, .content-card li {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #c8d7ee;
+  }
+  .metric-label, .metric-card small, .gross-total-card span,
+  .gross-total-card small, .retirement-card span, .retirement-card small,
+  .retirement-net-values span, .timeline-amount-label, .timeline-amount small {
+    font-size: 12px;
+    line-height: 1.45;
+    color: #c8d7ee;
+  }
+  .provenance-links { font-size: 12px; line-height: 1.5; color: #b8cdea; }
+  .footer-links a { color: #c4e7ff; }
+  .calculator label, .scale-section label, .gross-section label,
+  .retirement-section label { font-size: 14px; line-height: 1.45; }
+  input, select, button { font-size: 15px; }
+  input, select { min-height: 44px; }
+  .timeline-row { row-gap: 10px; }
+  .timeline-amount-label, .timeline-amount small { overflow-wrap: anywhere; }
+}
