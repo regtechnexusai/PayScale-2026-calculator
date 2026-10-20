@@ -503,3 +503,48 @@ td:last-child { color: var(--violet); font-family: 'Manrope'; font-weight: 700; 
   .timeline-row { row-gap: 10px; }
   .timeline-amount-label, .timeline-amount small { overflow-wrap: anywhere; }
 }
+
+
+/* Contrast and Bengali text legibility corrections — presentation only. */
+.notice p, .unofficial-banner p, .compliance-note p, .update-note p,
+.disclaimer p, .result-disclaimer p, .validation-message,
+.scope-gate-message, .gross-profile-note.warning { opacity: 1; }
+.notice p { color: #e0eaff; }
+.unofficial-banner p { color: #f4d9c8; }
+.compliance-note { color: #fff0c2; background: #292719; border-color: #b8892f; border-left: 4px solid #f5b942; }
+.compliance-note strong { color: #fff1bf; }
+.compliance-note p { color: #f1e6c8; }
+.update-note { background: #292719; border-color: #8a6c31; }
+.update-note strong, .change-log strong { color: #fff1bf; }
+.update-note p { color: #f1e6c8; }
+.disclaimer { background: #292719; border-color: #8a6c31; border-left: 4px solid #f5b942; }
+.disclaimer strong { color: #fff1bf; }
+.disclaimer p { color: #f1e6c8; }
+.result-disclaimer { background: #292719; border-color: #8a6c31; }
+.result-disclaimer strong { color: #fff1bf; }
+.result-disclaimer p { color: #f1e6c8; }
+.validation-message.warning { color: #fff1bf; background: #292719; border-color: #b8892f; }
+.scope-gate-message { color: #fff1bf; background: #292719; border-color: #8a6c31; }
+.gross-profile-note.warning { color: #fff1bf; background: #292719; border-color: #b8892f; }
+
+@media (max-width: 620px) {
+  body { font-weight: 450; }
+  .field-help, .output-note, .rule-note p, .notice p,
+  .unofficial-banner p, .compliance-note p, .update-note p,
+  .disclaimer p, .result-disclaimer p, .provenance-card p,
+  .about-tool-heading > p:last-child, .about-tool-grid p,
+  .source-summary-grid p, .timeline-note, .timeline-content span,
+  .math-line, .table-note, .method-card p, .governance-card p:last-child,
+  .scope-list, .noscript-note p, .retirement-action p,
+  .retirement-net-placeholder p, .content-card p, .content-card li {
+    color: #d8e4f6;
+    font-weight: 500;
+  }
+  .compliance-note p, .update-note p, .disclaimer p, .result-disclaimer p { color: #f1e6c8; }
+  .notice, .compliance-note, .disclaimer, .result-disclaimer { line-height: 1.6; }
+  .results { margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(160, 188, 240, .28); }
+  .results-heading { margin-top: 0; margin-bottom: 18px; }
+  .empty-result { min-height: 190px; padding: 24px 18px; }
+  .empty-result p { font-size: 13px; line-height: 1.55; color: #d8e4f6; }
+  .grade-chip { white-space: normal; text-align: center; }
+}
