@@ -857,3 +857,86 @@ body.payscale-main-page .footer-links a:focus-visible { color: #8cecff; }
     -webkit-backdrop-filter: none !important;
   }
 }
+
+
+/* Definitive mobile contrast correction: distinguish light hero from dark content cards. */
+@media (max-width: 620px) {
+  body.payscale-main-page .shell > .hero {
+    background: #ffffff !important;
+    color: #142b45 !important;
+    border: 1px solid #dce6f1;
+    box-shadow: 0 10px 30px rgba(15, 38, 67, .08);
+  }
+  body.payscale-main-page .shell > .hero .eyebrow { color: #087e9b !important; }
+  body.payscale-main-page .shell > .hero h1 { color: #142b45 !important; }
+  body.payscale-main-page .shell > .hero .hero-subtitle { color: #344b64 !important; }
+  body.payscale-main-page .shell > .hero .hero-proof { color: #344b64 !important; }
+  body.payscale-main-page .shell > .hero .brand-nav-current { color: #344b64 !important; }
+  body.payscale-main-page .shell > .hero .brand-home-link {
+    color: #ffffff !important;
+    background: #123653 !important;
+  }
+
+  /* The body cards use dark blue backgrounds, so their copy must remain light. */
+  body.payscale-main-page .glass-card,
+  body.payscale-main-page .content-card,
+  body.payscale-main-page .rule-note,
+  body.payscale-main-page .provenance-card,
+  body.payscale-main-page .notice {
+    color: #edf4ff !important;
+  }
+  body.payscale-main-page .glass-card p,
+  body.payscale-main-page .glass-card li,
+  body.payscale-main-page .content-card p,
+  body.payscale-main-page .content-card li,
+  body.payscale-main-page .rule-note p,
+  body.payscale-main-page .provenance-card p,
+  body.payscale-main-page .notice p,
+  body.payscale-main-page .field-help,
+  body.payscale-main-page .output-note,
+  body.payscale-main-page .timeline-note,
+  body.payscale-main-page .timeline-content span,
+  body.payscale-main-page .table-note,
+  body.payscale-main-page .math-line,
+  body.payscale-main-page .scope-list {
+    color: #dbe7f7 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+  body.payscale-main-page .glass-card h2,
+  body.payscale-main-page .glass-card h3,
+  body.payscale-main-page .content-card h2,
+  body.payscale-main-page .content-card h3,
+  body.payscale-main-page .notice strong,
+  body.payscale-main-page .content-card strong {
+    color: #f4f8ff !important;
+    opacity: 1 !important;
+  }
+  body.payscale-main-page .compliance-note,
+  body.payscale-main-page .disclaimer,
+  body.payscale-main-page .result-disclaimer,
+  body.payscale-main-page .update-note,
+  body.payscale-main-page .unofficial-banner {
+    background: #222b39 !important;
+    color: #fff4d5 !important;
+    border-color: #b8892f;
+    opacity: 1 !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  body.payscale-main-page .compliance-note p,
+  body.payscale-main-page .disclaimer p,
+  body.payscale-main-page .result-disclaimer p,
+  body.payscale-main-page .update-note p,
+  body.payscale-main-page .unofficial-banner p {
+    color: #fff0d0 !important;
+  }
+  body.payscale-main-page .footer-branding img {
+    background: #ffffff;
+    padding: 9px 12px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    object-fit: contain;
+  }
+}
