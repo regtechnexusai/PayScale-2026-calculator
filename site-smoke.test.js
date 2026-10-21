@@ -35,7 +35,7 @@ assert.match(index, /release-meta\.js\?v=1/);
 assert.match(pension, /release-meta\.js\?v=1/);
 assert.match(index, /app\.js\?v=31/);
 assert.match(pension, /pension\.js\?v=7/);
-assert.ok(index.includes('styles.css?v=28'), 'Main calculator must load the refreshed stylesheet');
+assert.ok(index.includes('styles.css?v=29'), 'Main calculator must load the refreshed stylesheet');
 assert.match(pension, /styles\.css\?v=23/);
 assert.match(index, /object-src 'none'/);
 assert.match(index, /Version 1\.30/);
