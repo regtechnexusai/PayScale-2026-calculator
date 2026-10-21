@@ -730,3 +730,63 @@ body.payscale-main-page .footer-links a:focus-visible { color: #8cecff; }
 @media (prefers-reduced-motion: reduce) {
   body.payscale-main-page * { scroll-behavior: auto !important; transition: none !important; }
 }
+
+
+/* Mobile contrast repair based on reported screenshots — visual-only. */
+@media (max-width: 620px) {
+  body.payscale-main-page .shell > .hero {
+    background: #ffffff;
+    color: #142b45;
+  }
+  body.payscale-main-page .shell > .hero h1 {
+    color: #142b45;
+  }
+  body.payscale-main-page .shell > .hero .hero-subtitle {
+    color: #465b73;
+  }
+  body.payscale-main-page .shell > .hero .hero-proof {
+    color: #41556d;
+  }
+  body.payscale-main-page .shell > .hero .hero-proof span::before {
+    color: #087e65;
+  }
+  body.payscale-main-page .results-heading h2,
+  body.payscale-main-page .results-heading .eyebrow {
+    color: #142b45;
+  }
+  body.payscale-main-page .output-note {
+    color: #526780;
+  }
+  body.payscale-main-page .grade-chip,
+  body.payscale-main-page .timeline-tag {
+    color: #075d78;
+    background: #eaf7ff;
+    border-color: #9acfe5;
+  }
+  body.payscale-main-page .compliance-note,
+  body.payscale-main-page .disclaimer,
+  body.payscale-main-page .result-disclaimer {
+    color: #fff4d5;
+    background: #242b38;
+    border-color: #c49a43;
+    opacity: 1;
+  }
+  body.payscale-main-page .compliance-note strong,
+  body.payscale-main-page .disclaimer strong,
+  body.payscale-main-page .result-disclaimer strong {
+    color: #fff0bd;
+  }
+  body.payscale-main-page .compliance-note p,
+  body.payscale-main-page .disclaimer p,
+  body.payscale-main-page .result-disclaimer p {
+    color: #f4e8c9;
+    opacity: 1;
+  }
+  body.payscale-main-page .notice,
+  body.payscale-main-page .compliance-note,
+  body.payscale-main-page .disclaimer,
+  body.payscale-main-page .result-disclaimer {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
