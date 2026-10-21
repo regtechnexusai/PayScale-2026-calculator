@@ -790,3 +790,70 @@ body.payscale-main-page .footer-links a:focus-visible { color: #8cecff; }
     -webkit-backdrop-filter: none;
   }
 }
+
+
+/* Mobile readability override: use solid, high-contrast text on every major section. */
+@media (max-width: 620px) {
+  body.payscale-main-page {
+    color: #142b45;
+  }
+  body.payscale-main-page .hero-subtitle,
+  body.payscale-main-page .hero-proof,
+  body.payscale-main-page .field-help,
+  body.payscale-main-page .output-note,
+  body.payscale-main-page .timeline-note,
+  body.payscale-main-page .timeline-content span,
+  body.payscale-main-page .table-note,
+  body.payscale-main-page .math-line,
+  body.payscale-main-page .scope-list,
+  body.payscale-main-page .content-card p,
+  body.payscale-main-page .content-card li,
+  body.payscale-main-page .provenance-card p,
+  body.payscale-main-page .rule-note p,
+  body.payscale-main-page .disclaimer p,
+  body.payscale-main-page .result-disclaimer p,
+  body.payscale-main-page .notice p {
+    color: #344b64 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+  body.payscale-main-page .results-heading h2,
+  body.payscale-main-page .results-heading .eyebrow,
+  body.payscale-main-page .content-card h2,
+  body.payscale-main-page .content-card h3 {
+    color: #142b45 !important;
+    opacity: 1 !important;
+  }
+  body.payscale-main-page .notice,
+  body.payscale-main-page .unofficial-banner,
+  body.payscale-main-page .compliance-note,
+  body.payscale-main-page .update-note,
+  body.payscale-main-page .disclaimer,
+  body.payscale-main-page .result-disclaimer,
+  body.payscale-main-page .rule-note,
+  body.payscale-main-page .provenance-card {
+    opacity: 1 !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  body.payscale-main-page .compliance-note p,
+  body.payscale-main-page .disclaimer p,
+  body.payscale-main-page .result-disclaimer p,
+  body.payscale-main-page .update-note p,
+  body.payscale-main-page .unofficial-banner p {
+    color: #fff4d5 !important;
+  }
+  body.payscale-main-page .compliance-note strong,
+  body.payscale-main-page .disclaimer strong,
+  body.payscale-main-page .result-disclaimer strong,
+  body.payscale-main-page .update-note strong,
+  body.payscale-main-page .unofficial-banner strong {
+    color: #fff0bd !important;
+  }
+  body.payscale-main-page .glass-card,
+  body.payscale-main-page .content-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
