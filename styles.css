@@ -731,74 +731,87 @@ body.payscale-main-page .footer-links a:focus-visible { color: #8cecff; }
   body.payscale-main-page * { scroll-behavior: auto !important; transition: none !important; }
 }
 
-
-/* Mobile contrast repair based on reported screenshots — visual-only. */
-@media (max-width: 620px) {
+/* Unified contrast and compact-viewport repair. Presentation only; calculator logic is untouched. */
+@media (max-width: 1100px) {
+  body.payscale-main-page .shell {
+    width: min(calc(100% - 28px), 920px);
+    padding-top: 22px;
+  }
   body.payscale-main-page .shell > .hero {
-    background: #ffffff;
-    color: #142b45;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px;
+    align-items: start;
+    margin-bottom: 20px;
+    background: #fff !important;
+    color: #142b45 !important;
+    border: 1px solid #dce6f1;
+    box-shadow: 0 10px 30px rgba(15, 38, 67, .08);
   }
-  body.payscale-main-page .shell > .hero h1 {
-    color: #142b45;
+  body.payscale-main-page .shell > .hero .brand-logo-frame {
+    justify-self: start;
+    width: min(210px, 100%);
+    max-width: 210px;
+    background: #fff;
   }
-  body.payscale-main-page .shell > .hero .hero-subtitle {
-    color: #465b73;
+  body.payscale-main-page .shell > .hero .effective-badge {
+    grid-column: auto;
+    justify-self: start;
+    text-align: left;
+    color: #edf4ff !important;
+    background: #123153 !important;
   }
-  body.payscale-main-page .shell > .hero .hero-proof {
-    color: #41556d;
-  }
-  body.payscale-main-page .shell > .hero .hero-proof span::before {
-    color: #087e65;
-  }
-  body.payscale-main-page .results-heading h2,
-  body.payscale-main-page .results-heading .eyebrow {
-    color: #142b45;
-  }
-  body.payscale-main-page .output-note {
-    color: #526780;
-  }
-  body.payscale-main-page .grade-chip,
-  body.payscale-main-page .timeline-tag {
-    color: #075d78;
-    background: #eaf7ff;
-    border-color: #9acfe5;
-  }
-  body.payscale-main-page .compliance-note,
-  body.payscale-main-page .disclaimer,
-  body.payscale-main-page .result-disclaimer {
-    color: #fff4d5;
-    background: #242b38;
-    border-color: #c49a43;
-    opacity: 1;
-  }
-  body.payscale-main-page .compliance-note strong,
-  body.payscale-main-page .disclaimer strong,
-  body.payscale-main-page .result-disclaimer strong {
-    color: #fff0bd;
-  }
-  body.payscale-main-page .compliance-note p,
-  body.payscale-main-page .disclaimer p,
-  body.payscale-main-page .result-disclaimer p {
-    color: #f4e8c9;
-    opacity: 1;
-  }
-  body.payscale-main-page .notice,
-  body.payscale-main-page .compliance-note,
-  body.payscale-main-page .disclaimer,
-  body.payscale-main-page .result-disclaimer {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-}
+  body.payscale-main-page .shell > .hero .effective-badge span { color: #d7e6f8 !important; }
+  body.payscale-main-page .shell > .hero .effective-badge strong { color: #8ce8cf !important; }
+  body.payscale-main-page .shell > .hero .brand-nav-current,
+  body.payscale-main-page .shell > .hero .brand-nav-divider { color: #41556d !important; opacity: 1 !important; }
+  body.payscale-main-page .shell > .hero .brand-home-link { color: #fff !important; background: #123653 !important; }
+  body.payscale-main-page .shell > .hero .eyebrow { color: #087e9b !important; }
+  body.payscale-main-page .shell > .hero h1 { color: #142b45 !important; }
+  body.payscale-main-page .shell > .hero .hero-subtitle,
+  body.payscale-main-page .shell > .hero .hero-proof { color: #344b64 !important; }
+  body.payscale-main-page .shell > .hero .hero-proof span::before { color: #087e65 !important; }
 
-
-/* Mobile readability override: use solid, high-contrast text on every major section. */
-@media (max-width: 620px) {
-  body.payscale-main-page {
-    color: #142b45;
+  /* At compact widths, do not shrink a desktop two-column layout into tiny text. */
+  body.payscale-main-page .quick-choice-section,
+  body.payscale-main-page .about-tool,
+  body.payscale-main-page .provenance-card,
+  body.payscale-main-page .governance-grid,
+  body.payscale-main-page .workspace-grid,
+  body.payscale-main-page .method-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
   }
-  body.payscale-main-page .hero-subtitle,
-  body.payscale-main-page .hero-proof,
+  body.payscale-main-page .about-tool-grid,
+  body.payscale-main-page .gross-input-grid,
+  body.payscale-main-page .gross-option-grid,
+  body.payscale-main-page .conditional-grid,
+  body.payscale-main-page .gross-summary-grid,
+  body.payscale-main-page .metric-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body.payscale-main-page .calculator { position: static; }
+  body.payscale-main-page .scope-gate { grid-template-columns: minmax(0, 1fr); }
+
+  /* Dark content cards always use light foreground text. */
+  body.payscale-main-page .glass-card:not(.hero) {
+    color: #edf4ff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  body.payscale-main-page .glass-card:not(.hero) :is(p, li, h1, h2, h3, h4, summary, label, small, span, strong, b) {
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+  body.payscale-main-page .glass-card:not(.hero) :is(h1, h2, h3, h4, strong, b) { color: #f4f8ff !important; }
+  body.payscale-main-page .glass-card:not(.hero) :is(p, li, summary, label, small) { color: #e0eaf8 !important; }
+  body.payscale-main-page .glass-card:not(.hero) .eyebrow,
+  body.payscale-main-page .glass-card:not(.hero) .method-index,
+  body.payscale-main-page .glass-card:not(.hero) .rule-number { color: #75ddff !important; }
+  body.payscale-main-page .glass-card:not(.hero) a {
+    color: #8fe8ff !important;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+  }
+  body.payscale-main-page .field-label,
   body.payscale-main-page .field-help,
   body.payscale-main-page .output-note,
   body.payscale-main-page .timeline-note,
@@ -806,207 +819,15 @@ body.payscale-main-page .footer-links a:focus-visible { color: #8cecff; }
   body.payscale-main-page .table-note,
   body.payscale-main-page .math-line,
   body.payscale-main-page .scope-list,
-  body.payscale-main-page .content-card p,
-  body.payscale-main-page .content-card li,
-  body.payscale-main-page .provenance-card p,
-  body.payscale-main-page .rule-note p,
-  body.payscale-main-page .disclaimer p,
-  body.payscale-main-page .result-disclaimer p,
-  body.payscale-main-page .notice p {
-    color: #344b64 !important;
+  body.payscale-main-page .rule-note p {
+    color: #e0eaf8 !important;
     opacity: 1 !important;
     text-shadow: none !important;
   }
   body.payscale-main-page .results-heading h2,
-  body.payscale-main-page .results-heading .eyebrow,
-  body.payscale-main-page .content-card h2,
-  body.payscale-main-page .content-card h3 {
-    color: #142b45 !important;
-    opacity: 1 !important;
-  }
-  body.payscale-main-page .notice,
-  body.payscale-main-page .unofficial-banner,
-  body.payscale-main-page .compliance-note,
-  body.payscale-main-page .update-note,
-  body.payscale-main-page .disclaimer,
-  body.payscale-main-page .result-disclaimer,
-  body.payscale-main-page .rule-note,
-  body.payscale-main-page .provenance-card {
-    opacity: 1 !important;
-    filter: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-  body.payscale-main-page .compliance-note p,
-  body.payscale-main-page .disclaimer p,
-  body.payscale-main-page .result-disclaimer p,
-  body.payscale-main-page .update-note p,
-  body.payscale-main-page .unofficial-banner p {
-    color: #fff4d5 !important;
-  }
-  body.payscale-main-page .compliance-note strong,
-  body.payscale-main-page .disclaimer strong,
-  body.payscale-main-page .result-disclaimer strong,
-  body.payscale-main-page .update-note strong,
-  body.payscale-main-page .unofficial-banner strong {
-    color: #fff0bd !important;
-  }
-  body.payscale-main-page .glass-card,
-  body.payscale-main-page .content-card {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-}
+  body.payscale-main-page .results-heading .eyebrow { color: #f4f8ff !important; }
 
-
-/* Definitive mobile contrast correction: distinguish light hero from dark content cards. */
-@media (max-width: 620px) {
-  body.payscale-main-page .shell > .hero {
-    background: #ffffff !important;
-    color: #142b45 !important;
-    border: 1px solid #dce6f1;
-    box-shadow: 0 10px 30px rgba(15, 38, 67, .08);
-  }
-  body.payscale-main-page .shell > .hero .eyebrow { color: #087e9b !important; }
-  body.payscale-main-page .shell > .hero h1 { color: #142b45 !important; }
-  body.payscale-main-page .shell > .hero .hero-subtitle { color: #344b64 !important; }
-  body.payscale-main-page .shell > .hero .hero-proof { color: #344b64 !important; }
-  body.payscale-main-page .shell > .hero .brand-nav-current { color: #344b64 !important; }
-  body.payscale-main-page .shell > .hero .brand-home-link {
-    color: #ffffff !important;
-    background: #123653 !important;
-  }
-
-  /* The body cards use dark blue backgrounds, so their copy must remain light. */
-  body.payscale-main-page .glass-card,
-  body.payscale-main-page .content-card,
-  body.payscale-main-page .rule-note,
-  body.payscale-main-page .provenance-card,
-  body.payscale-main-page .notice {
-    color: #edf4ff !important;
-  }
-  body.payscale-main-page .glass-card p,
-  body.payscale-main-page .glass-card li,
-  body.payscale-main-page .content-card p,
-  body.payscale-main-page .content-card li,
-  body.payscale-main-page .rule-note p,
-  body.payscale-main-page .provenance-card p,
-  body.payscale-main-page .notice p,
-  body.payscale-main-page .field-help,
-  body.payscale-main-page .output-note,
-  body.payscale-main-page .timeline-note,
-  body.payscale-main-page .timeline-content span,
-  body.payscale-main-page .table-note,
-  body.payscale-main-page .math-line,
-  body.payscale-main-page .scope-list {
-    color: #dbe7f7 !important;
-    opacity: 1 !important;
-    text-shadow: none !important;
-  }
-  body.payscale-main-page .glass-card h2,
-  body.payscale-main-page .glass-card h3,
-  body.payscale-main-page .content-card h2,
-  body.payscale-main-page .content-card h3,
-  body.payscale-main-page .notice strong,
-  body.payscale-main-page .content-card strong {
-    color: #f4f8ff !important;
-    opacity: 1 !important;
-  }
-  body.payscale-main-page .compliance-note,
-  body.payscale-main-page .disclaimer,
-  body.payscale-main-page .result-disclaimer,
-  body.payscale-main-page .update-note,
-  body.payscale-main-page .unofficial-banner {
-    background: #222b39 !important;
-    color: #fff4d5 !important;
-    border-color: #b8892f;
-    opacity: 1 !important;
-    filter: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-  body.payscale-main-page .compliance-note p,
-  body.payscale-main-page .disclaimer p,
-  body.payscale-main-page .result-disclaimer p,
-  body.payscale-main-page .update-note p,
-  body.payscale-main-page .unofficial-banner p {
-    color: #fff0d0 !important;
-  }
-  body.payscale-main-page .footer-branding img {
-    background: #ffffff;
-    padding: 9px 12px;
-    border-radius: 12px;
-    box-sizing: border-box;
-    object-fit: contain;
-  }
-}
-
-
-/* Compact viewport repair: explicit foreground colors and a single-column layout for in-app browsers/tablet-width viewports. Presentation-only. */
-@media (max-width: 1100px) {
-  body.payscale-main-page .shell > .hero {
-    background: #fff !important;
-    color: #142b45 !important;
-  }
-  body.payscale-main-page .shell > .hero .brand-nav-current,
-  body.payscale-main-page .shell > .hero .brand-nav-divider {
-    color: #41556d !important;
-    opacity: 1 !important;
-  }
-  body.payscale-main-page .shell > .hero .eyebrow { color: #087e9b !important; }
-  body.payscale-main-page .shell > .hero h1 { color: #142b45 !important; }
-  body.payscale-main-page .shell > .hero .hero-subtitle { color: #344b64 !important; }
-  body.payscale-main-page .shell > .hero .hero-proof { color: #344b64 !important; }
-  body.payscale-main-page .shell > .hero .effective-badge {
-    color: #edf4ff !important;
-    background: #123153 !important;
-  }
-  body.payscale-main-page .shell > .hero .effective-badge span { color: #d7e6f8 !important; }
-  body.payscale-main-page .shell > .hero .effective-badge strong { color: #8ce8cf !important; }
-
-  /* All dark glass/content cards: headings, paragraphs, helper copy and lists. */
-  body.payscale-main-page .glass-card:not(.hero),
-  body.payscale-main-page .glass-card:not(.hero) :is(p, li, h1, h2, h3, h4, summary, label, small, span) {
-    opacity: 1 !important;
-    text-shadow: none !important;
-  }
-  body.payscale-main-page .glass-card:not(.hero) :is(h1, h2, h3, h4) {
-    color: #f4f8ff !important;
-  }
-  body.payscale-main-page .glass-card:not(.hero) :is(p, li, summary, label, small) {
-    color: #e0eaf8 !important;
-  }
-  body.payscale-main-page .glass-card:not(.hero) .eyebrow,
-  body.payscale-main-page .glass-card:not(.hero) .method-index,
-  body.payscale-main-page .glass-card:not(.hero) .rule-number {
-    color: #75ddff !important;
-  }
-  body.payscale-main-page .glass-card:not(.hero) strong,
-  body.payscale-main-page .glass-card:not(.hero) b {
-    color: #f4f8ff !important;
-  }
-  body.payscale-main-page .glass-card:not(.hero) a {
-    color: #8fe8ff !important;
-    text-decoration-thickness: 1.5px;
-    text-underline-offset: 3px;
-  }
-
-  /* Form hints and scope notice were previously too dark on blue surfaces. */
-  body.payscale-main-page .field-help,
-  body.payscale-main-page .scope-gate-message,
-  body.payscale-main-page .scope-gate-copy .field-help,
-  body.payscale-main-page .rule-note p,
-  body.payscale-main-page .output-note,
-  body.payscale-main-page .table-note {
-    color: #e0eaf8 !important;
-    opacity: 1 !important;
-  }
-  body.payscale-main-page .scope-gate-message {
-    background: #243b59 !important;
-    border-color: #7899bd !important;
-  }
-
-  /* Warning and unofficial-tool panels use a warm, dark surface with readable text. */
+  /* Warning panels use a solid dark surface and readable warm text. */
   body.payscale-main-page .unofficial-banner,
   body.payscale-main-page .compliance-note,
   body.payscale-main-page .disclaimer,
@@ -1020,69 +841,20 @@ body.payscale-main-page .footer-links a:focus-visible { color: #8cecff; }
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
-  body.payscale-main-page .unofficial-banner p,
-  body.payscale-main-page .compliance-note p,
-  body.payscale-main-page .disclaimer p,
-  body.payscale-main-page .result-disclaimer p,
-  body.payscale-main-page .update-note p {
-    color: #fff0d0 !important;
-  }
-  body.payscale-main-page .unofficial-badge,
-  body.payscale-main-page .unofficial-banner strong,
-  body.payscale-main-page .compliance-note strong,
-  body.payscale-main-page .disclaimer strong,
-  body.payscale-main-page .result-disclaimer strong,
-  body.payscale-main-page .update-note strong {
-    color: #fff4d9 !important;
-  }
+  body.payscale-main-page .unofficial-banner :is(p, strong),
+  body.payscale-main-page .compliance-note :is(p, strong),
+  body.payscale-main-page .disclaimer :is(p, strong),
+  body.payscale-main-page .result-disclaimer :is(p, strong),
+  body.payscale-main-page .update-note :is(p, strong) { color: #fff0d0 !important; }
+
   body.payscale-main-page .footer-branding img {
     background: #fff;
     padding: 8px 10px;
     border-radius: 10px;
     object-fit: contain;
   }
-}
-
-
-/* Avoid scaled desktop columns in narrow/in-app browser viewports. */
-@media (max-width: 1100px) {
-  body.payscale-main-page .shell {
-    width: min(calc(100% - 28px), 920px);
-    padding-top: 22px;
-  }
-  body.payscale-main-page .shell > .hero {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 14px;
-    align-items: start;
-    margin-bottom: 20px;
-  }
-  body.payscale-main-page .shell > .hero .brand-logo-frame {
-    justify-self: start;
-    width: min(210px, 100%);
-    max-width: 210px;
-  }
-  body.payscale-main-page .shell > .hero .effective-badge {
-    grid-column: auto;
-    justify-self: start;
-    text-align: left;
-  }
-  body.payscale-main-page .quick-choice-section,
-  body.payscale-main-page .about-tool,
-  body.payscale-main-page .provenance-card,
-  body.payscale-main-page .governance-grid,
-  body.payscale-main-page .workspace-grid,
-  body.payscale-main-page .method-grid {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-  body.payscale-main-page .calculator { position: static; }
-  body.payscale-main-page .about-tool-grid,
-  body.payscale-main-page .gross-input-grid,
-  body.payscale-main-page .gross-option-grid,
-  body.payscale-main-page .conditional-grid,
-  body.payscale-main-page .gross-summary-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  body.payscale-main-page .scope-gate {
-    grid-template-columns: minmax(0, 1fr);
-  }
+  body.payscale-main-page .footer { display: flex; flex-direction: column; gap: 12px; }
+  body.payscale-main-page .footer-branding { flex-direction: column; align-items: flex-start; }
+  body.payscale-main-page .footer-meta { align-items: flex-start; text-align: left; }
+  body.payscale-main-page .footer-links { width: 100%; }
 }
