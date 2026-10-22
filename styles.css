@@ -1042,3 +1042,47 @@ body.payscale-main-page .footer-links a:focus-visible { color: #8cecff; }
     object-fit: contain;
   }
 }
+
+
+/* Avoid scaled desktop columns in narrow/in-app browser viewports. */
+@media (max-width: 1100px) {
+  body.payscale-main-page .shell {
+    width: min(calc(100% - 28px), 920px);
+    padding-top: 22px;
+  }
+  body.payscale-main-page .shell > .hero {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px;
+    align-items: start;
+    margin-bottom: 20px;
+  }
+  body.payscale-main-page .shell > .hero .brand-logo-frame {
+    justify-self: start;
+    width: min(210px, 100%);
+    max-width: 210px;
+  }
+  body.payscale-main-page .shell > .hero .effective-badge {
+    grid-column: auto;
+    justify-self: start;
+    text-align: left;
+  }
+  body.payscale-main-page .quick-choice-section,
+  body.payscale-main-page .about-tool,
+  body.payscale-main-page .provenance-card,
+  body.payscale-main-page .governance-grid,
+  body.payscale-main-page .workspace-grid,
+  body.payscale-main-page .method-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  body.payscale-main-page .calculator { position: static; }
+  body.payscale-main-page .about-tool-grid,
+  body.payscale-main-page .gross-input-grid,
+  body.payscale-main-page .gross-option-grid,
+  body.payscale-main-page .conditional-grid,
+  body.payscale-main-page .gross-summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body.payscale-main-page .scope-gate {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
