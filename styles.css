@@ -940,3 +940,106 @@ body.payscale-main-page .footer-links a:focus-visible { color: #8cecff; }
     object-fit: contain;
   }
 }
+
+
+/* Mobile readability repair: explicit foreground colors for each background surface.
+   Keep the light hero separate from dark content cards; presentation-only rules. */
+@media (max-width: 700px) {
+  body.payscale-main-page .shell > .hero {
+    background: #fff !important;
+    color: #142b45 !important;
+  }
+  body.payscale-main-page .shell > .hero .brand-nav-current,
+  body.payscale-main-page .shell > .hero .brand-nav-divider {
+    color: #41556d !important;
+    opacity: 1 !important;
+  }
+  body.payscale-main-page .shell > .hero .eyebrow { color: #087e9b !important; }
+  body.payscale-main-page .shell > .hero h1 { color: #142b45 !important; }
+  body.payscale-main-page .shell > .hero .hero-subtitle { color: #344b64 !important; }
+  body.payscale-main-page .shell > .hero .hero-proof { color: #344b64 !important; }
+  body.payscale-main-page .shell > .hero .effective-badge {
+    color: #edf4ff !important;
+    background: #123153 !important;
+  }
+  body.payscale-main-page .shell > .hero .effective-badge span { color: #d7e6f8 !important; }
+  body.payscale-main-page .shell > .hero .effective-badge strong { color: #8ce8cf !important; }
+
+  /* All dark glass/content cards: headings, paragraphs, helper copy and lists. */
+  body.payscale-main-page .glass-card:not(.hero),
+  body.payscale-main-page .glass-card:not(.hero) :is(p, li, h1, h2, h3, h4, summary, label, small, span) {
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+  body.payscale-main-page .glass-card:not(.hero) :is(h1, h2, h3, h4) {
+    color: #f4f8ff !important;
+  }
+  body.payscale-main-page .glass-card:not(.hero) :is(p, li, summary, label, small) {
+    color: #e0eaf8 !important;
+  }
+  body.payscale-main-page .glass-card:not(.hero) .eyebrow,
+  body.payscale-main-page .glass-card:not(.hero) .method-index,
+  body.payscale-main-page .glass-card:not(.hero) .rule-number {
+    color: #75ddff !important;
+  }
+  body.payscale-main-page .glass-card:not(.hero) strong,
+  body.payscale-main-page .glass-card:not(.hero) b {
+    color: #f4f8ff !important;
+  }
+  body.payscale-main-page .glass-card:not(.hero) a {
+    color: #8fe8ff !important;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+  }
+
+  /* Form hints and scope notice were previously too dark on blue surfaces. */
+  body.payscale-main-page .field-help,
+  body.payscale-main-page .scope-gate-message,
+  body.payscale-main-page .scope-gate-copy .field-help,
+  body.payscale-main-page .rule-note p,
+  body.payscale-main-page .output-note,
+  body.payscale-main-page .table-note {
+    color: #e0eaf8 !important;
+    opacity: 1 !important;
+  }
+  body.payscale-main-page .scope-gate-message {
+    background: #243b59 !important;
+    border-color: #7899bd !important;
+  }
+
+  /* Warning and unofficial-tool panels use a warm, dark surface with readable text. */
+  body.payscale-main-page .unofficial-banner,
+  body.payscale-main-page .compliance-note,
+  body.payscale-main-page .disclaimer,
+  body.payscale-main-page .result-disclaimer,
+  body.payscale-main-page .update-note {
+    background: #292f3b !important;
+    color: #fff0d0 !important;
+    border-color: #c49a54 !important;
+    opacity: 1 !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  body.payscale-main-page .unofficial-banner p,
+  body.payscale-main-page .compliance-note p,
+  body.payscale-main-page .disclaimer p,
+  body.payscale-main-page .result-disclaimer p,
+  body.payscale-main-page .update-note p {
+    color: #fff0d0 !important;
+  }
+  body.payscale-main-page .unofficial-badge,
+  body.payscale-main-page .unofficial-banner strong,
+  body.payscale-main-page .compliance-note strong,
+  body.payscale-main-page .disclaimer strong,
+  body.payscale-main-page .result-disclaimer strong,
+  body.payscale-main-page .update-note strong {
+    color: #fff4d9 !important;
+  }
+  body.payscale-main-page .footer-branding img {
+    background: #fff;
+    padding: 8px 10px;
+    border-radius: 10px;
+    object-fit: contain;
+  }
+}
