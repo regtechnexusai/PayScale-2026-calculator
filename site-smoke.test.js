@@ -42,7 +42,7 @@ assert.match(index, /Version 1\.30/);
 assert.match(pension, /Version 1\.30/);
 assert.ok(fs.existsSync(path.join(root, 'NotoSansBengali.ttf')), 'Missing bundled Bengali font');
 const styles = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
-assert.match(styles, /@media \\(max-width: 1100px\\)/, 'Compact viewport layout rules must be present');
+assert.ok(styles.includes('@media (max-width: 1100px)'), 'Compact viewport layout rules must be present');
 assert.match(styles, /color: #e0eaf8 !important;/, 'High-contrast helper text rules must be present');
 assert.match(styles, /@font-face/);
 assert.match(styles, /NotoSansBengali\.ttf/);
