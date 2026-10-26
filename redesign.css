@@ -440,3 +440,7 @@ body.payscale-main-page .footer-links {
   width: 100% !important;
   min-width: 0 !important;
 }
+
+/* The global site shell already supplies the brand header. Avoid duplicate hero logos and floating home button on PayScale pages. */
+body.payscale-main-page .rt-back-home,
+body:has(.pension-page-header) .rt-back-home{display:none!important}
