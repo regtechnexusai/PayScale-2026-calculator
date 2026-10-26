@@ -444,3 +444,22 @@ body.payscale-main-page .footer-links {
 /* The global site shell already supplies the brand header. Avoid duplicate hero logos and floating home button on PayScale pages. */
 body.payscale-main-page .rt-back-home,
 body:has(.pension-page-header) .rt-back-home{display:none!important}
+
+
+/* Mobile-first PayScale hero: compact hierarchy, consistent chips, and no nested frame. */
+@media(max-width:600px){
+ body.payscale-main-page .shell{width:100%!important;max-width:100%!important;margin:0!important;padding:8px 0 20px!important}
+ body.payscale-main-page .hero{gap:10px!important;padding:16px 16px 18px!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+ body.payscale-main-page .hero-copy{display:flex!important;flex-direction:column!important;gap:8px!important}
+ body.payscale-main-page .brand-header-nav{gap:7px!important;margin:0 0 2px!important;font-size:.9rem!important}
+ body.payscale-main-page .brand-home-link{padding:7px 11px!important;font-size:.9rem!important}
+ body.payscale-main-page .hero .eyebrow{margin:2px 0!important;font-size:.76rem!important;line-height:1.35!important}
+ body.payscale-main-page .hero h1{font-size:clamp(1.7rem,7.4vw,2.25rem)!important;line-height:1.22!important;margin:0!important}
+ body.payscale-main-page .effective-badge{padding:5px 10px!important;gap:7px!important;border-radius:9px!important;font-size:.84rem!important;margin:0!important}
+ body.payscale-main-page .hero .hero-subtitle{font-size:.96rem!important;line-height:1.55!important;margin:0!important;max-width:none!important}
+ body.payscale-main-page .hero .hero-proof{display:flex!important;flex-wrap:wrap!important;justify-content:flex-start!important;gap:7px!important;margin:3px 0 0!important}
+ body.payscale-main-page .hero .hero-proof span{flex:0 1 auto!important;padding:6px 9px!important;font-size:.78rem!important;line-height:1.35!important;border-radius:999px!important}
+ body.payscale-main-page .release-banner{margin:10px 12px!important;padding:13px!important}
+ body.payscale-main-page .quick-choice-section{margin:10px 12px!important;gap:10px!important}
+ body.payscale-main-page .choice-card{min-height:0!important;padding:14px!important}
+}
