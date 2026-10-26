@@ -23,6 +23,8 @@ function localTargets(file) {
 
 for (const page of fs.readdirSync(root).filter((file) => file.endsWith('.html'))) {
   for (const target of localTargets(page)) {
+    // Shared shell assets are supplied by the deployment repository root, not duplicated here.
+    if (target.startsWith('/')) continue; // Root-relative links resolve against the deployment repository, not this source package.
     assert.ok(fs.existsSync(path.join(root, target)), `${page} points to missing local target: ${target}`);
   }
 }
@@ -79,12 +81,12 @@ assert.match(pensionJs, /document\.fonts\?\.ready/);
 assert.doesNotMatch(index, /id="government-housing" checked/);
 assert.doesNotMatch(index, /id="medical-eligible" checked/);
 assert.doesNotMatch(index, /id="mobile-eligible" checked/);
-assert.match(index, /href="about\.html"/);
-assert.match(index, /href="methodology\.html"/);
-assert.match(index, /href="privacy\.html"/);
-assert.match(index, /href="terms\.html"/);
-assert.match(index, /href="changelog\.html"/);
-assert.match(index, /discrepancy%20report/);
+// The calculator now uses the main site's shared footer rather than its former local footer links.
+assert.match(index, /class="rt-shell-footer"/);
+assert.match(index, /href="\/privacy\.html"/);
+assert.match(index, /href="\/terms\.html"/);
+assert.match(index, /href="\/contact\.html"/);
+assert.match(index, /href="\/student\//);
 assert.doesNotMatch(index, /<section class="results"[^>]*aria-live=/);
 
 console.log(`Passed static site smoke test across ${fs.readdirSync(root).filter((file) => file.endsWith('.html')).length} HTML pages.`);
