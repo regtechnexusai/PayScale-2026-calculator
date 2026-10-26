@@ -24,7 +24,7 @@ function localTargets(file) {
 for (const page of fs.readdirSync(root).filter((file) => file.endsWith('.html'))) {
   for (const target of localTargets(page)) {
     // Shared shell assets are supplied by the deployment repository root, not duplicated here.
-    if (['/site-wide-shell.css', '/site-wide-shell.js', '/regtech-nexus-ai-logo-2026.png'].includes(target)) continue;
+    if (target.startsWith('/')) continue; // Root-relative links resolve against the deployment repository, not this source package.
     assert.ok(fs.existsSync(path.join(root, target)), `${page} points to missing local target: ${target}`);
   }
 }
