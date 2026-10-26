@@ -463,3 +463,26 @@ body:has(.pension-page-header) .rt-back-home{display:none!important}
  body.payscale-main-page .quick-choice-section{margin:10px 12px!important;gap:10px!important}
  body.payscale-main-page .choice-card{min-height:0!important;padding:14px!important}
 }
+
+
+/* Final mobile correction: prioritize the salary input instead of introductory content. */
+@media(max-width:600px){
+ body.payscale-main-page .shell{padding-top:0!important;padding-bottom:12px!important}
+ body.payscale-main-page .hero{padding:12px 16px 14px!important;gap:7px!important}
+ body.payscale-main-page .hero-copy{gap:6px!important}
+ body.payscale-main-page .brand-header-nav{margin:0 0 2px!important;gap:6px!important}
+ body.payscale-main-page .brand-home-link{padding:5px 9px!important;font-size:.82rem!important}
+ body.payscale-main-page .hero .eyebrow{font-size:.68rem!important;letter-spacing:.04em!important;margin:0!important}
+ body.payscale-main-page .hero h1{font-size:clamp(1.55rem,6.6vw,1.95rem)!important;line-height:1.15!important;margin:0!important;max-width:100%!important}
+ body.payscale-main-page .effective-badge{padding:4px 8px!important;font-size:.78rem!important;gap:6px!important}
+ body.payscale-main-page .hero .hero-subtitle{font-size:.88rem!important;line-height:1.4!important;margin:0!important}
+ body.payscale-main-page .hero .hero-proof{gap:5px!important;margin:0!important}
+ body.payscale-main-page .hero .hero-proof span{padding:4px 8px!important;font-size:.72rem!important;line-height:1.2!important}
+ body.payscale-main-page .release-banner{margin:8px 12px!important;padding:10px 12px!important;gap:8px!important}
+ body.payscale-main-page .release-banner .notice-icon{display:none!important}
+ body.payscale-main-page .release-banner strong{font-size:.95rem!important;line-height:1.25!important}
+ body.payscale-main-page .release-banner p{font-size:.8rem!important;line-height:1.35!important;margin:4px 0 0!important}
+ body.payscale-main-page .quick-choice-section{margin:8px 12px!important;gap:8px!important}
+ body.payscale-main-page .choice-card{padding:10px 12px!important}
+ body.payscale-main-page .choice-card-salary p,body.payscale-main-page .choice-card-salary .choice-kicker{display:none!important}
+}
