@@ -208,3 +208,145 @@ body.payscale-main-page .footer-contact { line-height: 1.6 !important; }
   body.payscale-main-page .footer-branding img { width: min(220px,100%) !important; }
   body.payscale-main-page .footer-branding > div { width: 100% !important; }
 }
+
+
+/* Final mobile footer and update-note correction based on device screenshots. */
+body.payscale-main-page .provenance-card .update-note {
+  background: #292f3b !important;
+  color: #fff0d0 !important;
+  border: 1px solid #c49a54 !important;
+  opacity: 1 !important;
+  filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+body.payscale-main-page .provenance-card .update-note :is(strong,h1,h2,h3,h4,p,span,small) {
+  color: #fff0d0 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+body.payscale-main-page .provenance-card .update-note a,
+body.payscale-main-page .provenance-card .update-note .change-log a {
+  color: #70dff3 !important;
+  opacity: 1 !important;
+}
+body.payscale-main-page .footer,
+body.payscale-main-page .footer * {
+  box-sizing: border-box !important;
+  word-break: normal !important;
+}
+body.payscale-main-page .footer {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) !important;
+  align-items: start !important;
+  justify-items: stretch !important;
+  gap: 18px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+body.payscale-main-page .footer-branding {
+  display: grid !important;
+  grid-template-columns: minmax(0,220px) minmax(0,1fr) !important;
+  align-items: center !important;
+  justify-content: start !important;
+  justify-items: start !important;
+  gap: 14px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  flex-wrap: nowrap !important;
+}
+body.payscale-main-page .footer-branding img {
+  display: block !important;
+  width: min(220px,100%) !important;
+  min-width: 0 !important;
+  max-width: 220px !important;
+  height: auto !important;
+  aspect-ratio: 1186 / 376 !important;
+  object-fit: contain !important;
+  background: #fff !important;
+  padding: 8px !important;
+  border-radius: 10px !important;
+}
+body.payscale-main-page .footer-branding > div {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+}
+body.payscale-main-page .footer-branding strong,
+body.payscale-main-page .footer-branding small,
+body.payscale-main-page .footer-meta,
+body.payscale-main-page .footer-meta span,
+body.payscale-main-page .footer-contact,
+body.payscale-main-page .footer-contact span,
+body.payscale-main-page .footer-contact a {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  white-space: normal !important;
+  color: #eaf2ff !important;
+  opacity: 1 !important;
+}
+body.payscale-main-page .footer-contact a {
+  overflow-wrap: anywhere !important;
+}
+body.payscale-main-page .footer-links {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px 18px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  padding-top: 16px !important;
+}
+body.payscale-main-page .footer-links a {
+  display: inline-block !important;
+  flex: 0 1 auto !important;
+  min-width: max-content !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+}
+body.payscale-main-page .scope-gate-options label {
+  display: grid !important;
+  grid-template-columns: 20px minmax(0,1fr) !important;
+  align-items: start !important;
+  justify-content: start !important;
+  gap: 10px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+body.payscale-main-page .scope-gate-options input[type="radio"] {
+  display: block !important;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin: .22em 0 0 !important;
+}
+@media(max-width:620px) {
+  body.payscale-main-page .footer { padding: 17px 13px !important; }
+  body.payscale-main-page .footer-branding {
+    grid-template-columns: minmax(0,1fr) !important;
+    gap: 12px !important;
+  }
+  body.payscale-main-page .footer-branding img {
+    width: min(240px,100%) !important;
+    max-width: 240px !important;
+  }
+  body.payscale-main-page .footer-branding > div { width: 100% !important; }
+  body.payscale-main-page .footer-meta,
+  body.payscale-main-page .footer-contact { width: 100% !important; }
+  body.payscale-main-page .footer-links { gap: 12px 16px !important; }
+}
