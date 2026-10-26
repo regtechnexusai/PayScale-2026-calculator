@@ -69,3 +69,142 @@ body:has(.content-page) .content-card a{color:#075d80!important}
  body:has(.content-page) .content-header{padding:17px!important}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*{transition:none!important;animation:none!important}}
+
+/* Mobile readability correction — keep light form/output surfaces on dark ink.
+   Presentation-only override; calculation scripts and data are unchanged. */
+body.payscale-main-page .calculator.glass-card {
+  color: #142b43 !important;
+  background: #ffffff !important;
+  border-color: #d7e2ec !important;
+}
+body.payscale-main-page .calculator.glass-card :is(h1,h2,h3,h4,strong,b,label,.field-label,.field-help,.scope-gate-copy,.scope-gate-copy p,.scope-gate-copy strong,.scope-gate-options label,.rule-note,.rule-note p,.rule-note strong) {
+  color: #263f58 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+body.payscale-main-page .calculator.glass-card .eyebrow,
+body.payscale-main-page .calculator.glass-card .field-help {
+  color: #52677c !important;
+  opacity: 1 !important;
+}
+body.payscale-main-page .calculator.glass-card .scope-gate {
+  color: #263f58 !important;
+  background: #eef5fb !important;
+  border-color: #d4e3ef !important;
+}
+body.payscale-main-page .calculator.glass-card .scope-gate .eyebrow {
+  color: #087e9b !important;
+}
+body.payscale-main-page .calculator.glass-card .scope-gate-options label {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  line-height: 1.55 !important;
+}
+body.payscale-main-page .calculator.glass-card .scope-gate-options input[type="radio"] {
+  flex: 0 0 auto !important;
+  margin: .25em 0 0 !important;
+}
+body.payscale-main-page .calculator.glass-card .select-wrap,
+body.payscale-main-page .calculator.glass-card .money-input {
+  color: #142b43 !important;
+  background: #ffffff !important;
+}
+body.payscale-main-page .calculator.glass-card .rule-note {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  color: #263f58 !important;
+  background: #f4f8fb !important;
+  border-color: #d7e2ec !important;
+}
+body.payscale-main-page .calculator.glass-card .rule-number {
+  flex: 0 0 2.6em !important;
+  min-width: 2.6em !important;
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
+  text-align: center !important;
+  color: #075d80 !important;
+}
+body.payscale-main-page .results .results-heading,
+body.payscale-main-page .results .results-heading h2,
+body.payscale-main-page .results .results-heading .eyebrow {
+  color: #142b43 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+body.payscale-main-page .results .output-note {
+  color: #52677c !important;
+  opacity: 1 !important;
+}
+body.payscale-main-page .results .grade-chip {
+  color: #123c5c !important;
+  background: #e5f2f8 !important;
+  border-color: #b9d5e4 !important;
+  opacity: 1 !important;
+}
+body.payscale-main-page .results .empty-result {
+  color: #eaf2ff !important;
+  background: linear-gradient(145deg,#132a4d,#0c1d38) !important;
+}
+body.payscale-main-page .results .empty-result :is(strong,p,b) {
+  color: #eaf2ff !important;
+  opacity: 1 !important;
+}
+body.payscale-main-page .results .empty-result a {
+  color: #72dff3 !important;
+}
+body.payscale-main-page .footer {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+body.payscale-main-page .footer-branding {
+  display: grid !important;
+  grid-template-columns: minmax(0,205px) minmax(0,1fr) !important;
+  align-items: center !important;
+  gap: 14px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+body.payscale-main-page .footer-branding img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 205px !important;
+  max-height: none !important;
+  height: auto !important;
+  padding: 8px !important;
+  background: #ffffff !important;
+  border-radius: 10px !important;
+  object-fit: contain !important;
+}
+body.payscale-main-page .footer-branding > div {
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow-wrap: anywhere !important;
+}
+body.payscale-main-page .footer-branding strong,
+body.payscale-main-page .footer-branding small,
+body.payscale-main-page .footer-meta,
+body.payscale-main-page .footer-contact {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  color: #eaf2ff !important;
+  overflow-wrap: anywhere !important;
+}
+body.payscale-main-page .footer-branding strong { line-height: 1.5 !important; }
+body.payscale-main-page .footer-meta,
+body.payscale-main-page .footer-contact { line-height: 1.6 !important; }
+@media(max-width:620px) {
+  body.payscale-main-page .calculator.glass-card { padding: 16px 13px !important; }
+  body.payscale-main-page .footer { padding: 17px 13px !important; }
+  body.payscale-main-page .footer-branding {
+    grid-template-columns: minmax(0,1fr) !important;
+    justify-items: start !important;
+    gap: 12px !important;
+  }
+  body.payscale-main-page .footer-branding img { width: min(220px,100%) !important; }
+  body.payscale-main-page .footer-branding > div { width: 100% !important; }
+}
