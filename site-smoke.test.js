@@ -23,6 +23,8 @@ function localTargets(file) {
 
 for (const page of fs.readdirSync(root).filter((file) => file.endsWith('.html'))) {
   for (const target of localTargets(page)) {
+    // Shared shell assets are supplied by the deployment repository root, not duplicated here.
+    if (target === '/site-wide-shell.css' || target === '/site-wide-shell.js') continue;
     assert.ok(fs.existsSync(path.join(root, target)), `${page} points to missing local target: ${target}`);
   }
 }
