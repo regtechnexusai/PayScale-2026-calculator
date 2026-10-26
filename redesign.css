@@ -350,3 +350,93 @@ body.payscale-main-page .scope-gate-options input[type="radio"] {
   body.payscale-main-page .footer-contact { width: 100% !important; }
   body.payscale-main-page .footer-links { gap: 12px 16px !important; }
 }
+
+
+/* 2026-10-26 corrective overrides: preserve readable values and prevent footer column collapse. */
+body.payscale-main-page .metric-card,
+body.payscale-main-page .metric-card > div,
+body.payscale-main-page .metric-card .metric-label,
+body.payscale-main-page .metric-card strong,
+body.payscale-main-page .metric-card small,
+body.payscale-main-page .result-value,
+body.payscale-main-page .result-meta,
+body.payscale-main-page .timeline-card,
+body.payscale-main-page .timeline-card :is(p,span,strong,small),
+body.payscale-main-page .math-card,
+body.payscale-main-page .math-card :is(span,strong),
+body.payscale-main-page .gross-breakdown,
+body.payscale-main-page .gross-table,
+body.payscale-main-page .gross-table td {
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+body.payscale-main-page .metric-card .metric-label,
+body.payscale-main-page .metric-card small,
+body.payscale-main-page .result-meta,
+body.payscale-main-page .timeline-card :is(p,span,small),
+body.payscale-main-page .math-card :is(span,strong) {
+  color: #263f58 !important;
+}
+body.payscale-main-page .metric-card strong,
+body.payscale-main-page .result-value,
+body.payscale-main-page .timeline-amount strong,
+body.payscale-main-page .math-line strong {
+  color: #142b43 !important;
+}
+body.payscale-main-page .footer {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: 20px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+}
+body.payscale-main-page .footer-branding {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+body.payscale-main-page .footer-branding img {
+  display: block !important;
+  flex: 0 0 auto !important;
+  width: min(240px, 100%) !important;
+  min-width: 0 !important;
+  max-width: 240px !important;
+  height: auto !important;
+  aspect-ratio: 1186 / 376 !important;
+  object-fit: contain !important;
+}
+body.payscale-main-page .footer-branding > div,
+body.payscale-main-page .footer-branding strong,
+body.payscale-main-page .footer-branding small,
+body.payscale-main-page .footer-meta,
+body.payscale-main-page .footer-meta span,
+body.payscale-main-page .footer-contact,
+body.payscale-main-page .footer-contact span,
+body.payscale-main-page .footer-contact a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  color: #eaf2ff !important;
+  opacity: 1 !important;
+}
+body.payscale-main-page .footer-contact a { overflow-wrap: anywhere !important; }
+body.payscale-main-page .footer-links {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 12px 18px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
