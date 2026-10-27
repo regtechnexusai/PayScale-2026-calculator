@@ -1115,3 +1115,46 @@ html body.payscale-main-page main.shell .disclaimer :is(strong,p,span,small,b) {
   color: #665F68 !important;
   opacity: 1 !important;
 }
+
+
+/* Final targeted hero and shortcut-card correction based on latest live screenshot.
+   Replace the legacy dark navy hero/cards with a soft pastel multicolour surface. */
+html body.payscale-main-page main.shell > section.hero {
+  color: #4D6078 !important;
+  background: linear-gradient(115deg, #EEF5FF 0%, #F5F0FF 48%, #EAF9F4 100%) !important;
+  border: 1px solid #D9E5F3 !important;
+  box-shadow: 0 8px 28px rgba(129,155,205,.14), 0 0 26px rgba(190,210,255,.20), 0 0 22px rgba(193,236,221,.13) !important;
+}
+html body.payscale-main-page main.shell > section.hero :is(h1,h2,h3,p,.eyebrow,.hero-subtitle,.hero-proof span,.brand-nav-current,.brand-nav-divider) {
+  color: #4D6078 !important;
+}
+html body.payscale-main-page main.shell > section.hero .hero-proof span {
+  background: rgba(255,255,255,.78) !important;
+  border: 1px solid #DCE6F3 !important;
+  box-shadow: 0 2px 10px rgba(153,174,214,.10) !important;
+}
+html body.payscale-main-page main.shell > section.hero .effective-badge {
+  color: #5A7190 !important;
+  background: linear-gradient(110deg,#FFFFFF,#F2F7FF) !important;
+  border-color: #D6E3F3 !important;
+}
+html body.payscale-main-page main.shell .quick-choice-section > .choice-card-salary,
+html body.payscale-main-page main.shell .choice-card-salary {
+  color: #50657C !important;
+  background: linear-gradient(125deg, #EAF4FF 0%, #E8F8F3 100%) !important;
+  border: 1px solid #D3E6EF !important;
+  box-shadow: 0 6px 20px rgba(132,165,208,.12), 0 0 20px rgba(191,220,255,.17) !important;
+}
+html body.payscale-main-page main.shell .quick-choice-section > .choice-card-pension,
+html body.payscale-main-page main.shell .choice-card-pension {
+  color: #625C7C !important;
+  background: linear-gradient(125deg, #F0ECFF 0%, #FFF0F6 100%) !important;
+  border: 1px solid #E4D9F2 !important;
+  box-shadow: 0 6px 20px rgba(165,145,207,.12), 0 0 20px rgba(230,199,231,.15) !important;
+}
+html body.payscale-main-page main.shell :is(.choice-card-salary,.choice-card-pension) :is(h1,h2,h3,p,span,strong,a) {
+  color: inherit !important;
+}
+html body.payscale-main-page main.shell :is(.choice-card-salary,.choice-card-pension) .choice-arrow {
+  color: #7E9BC8 !important;
+}
