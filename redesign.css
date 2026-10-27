@@ -1040,3 +1040,49 @@ body.payscale-main-page .rt-shell-footer a {
     box-shadow: 0 4px 14px rgba(121, 151, 205, .09), 0 0 12px rgba(186, 208, 255, .12) !important;
   }
 }
+
+
+/* Targeted correction for remaining dark components identified in live screenshots. */
+body.payscale-main-page .empty-result,
+body.payscale-main-page .result-hero,
+body.payscale-main-page .content-header,
+body.payscale-main-page .pension-page-header {
+  color: #53647A !important;
+  background: linear-gradient(125deg, #F1F7FF 0%, #F7F2FF 52%, #EFFAF6 100%) !important;
+  border: 1px solid #DCE6F2 !important;
+  box-shadow: 0 6px 22px rgba(140, 164, 210, .12), 0 0 22px rgba(199, 215, 255, .16), 0 0 18px rgba(204, 239, 228, .10) !important;
+}
+body.payscale-main-page :is(.empty-result,.result-hero,.content-header,.pension-page-header) :is(h1,h2,h3,h4,p,span,strong,small,label) {
+  color: #53647A !important;
+}
+body.payscale-main-page .empty-result :is(.empty-icon,.icon,.sparkle) {
+  color: #7F9BD5 !important;
+  background: #FFFFFF !important;
+  border-color: #DDE7F5 !important;
+}
+body.payscale-main-page main.shell .disclaimer {
+  color: #5F6879 !important;
+  background: linear-gradient(115deg, #FFF9ED 0%, #FFF4F8 52%, #F5F2FF 100%) !important;
+  border: 1px solid #F0E2D5 !important;
+  box-shadow: 0 5px 20px rgba(222, 194, 156, .12), 0 0 18px rgba(242, 211, 226, .12) !important;
+}
+body.payscale-main-page main.shell .disclaimer :is(h1,h2,h3,h4,p,span,strong,small) {
+  color: #665F68 !important;
+}
+body.payscale-main-page .effective-badge {
+  color: #61738C !important;
+  background: linear-gradient(110deg, #F1F6FF, #F7F2FF, #EFFAF6) !important;
+  border-color: #DCE5F3 !important;
+}
+body.payscale-main-page .shell > .hero .brand-home-link,
+body.payscale-main-page .brand-home-link {
+  color: #5D7396 !important;
+  background: #FFFFFF !important;
+  border-color: #DCE5F2 !important;
+}
+body.payscale-main-page .shell > .hero .brand-home-link:hover,
+body.payscale-main-page .shell > .hero .brand-home-link:focus-visible {
+  color: #506A91 !important;
+  background: #F1F6FF !important;
+  border-color: #C9D9F2 !important;
+}
