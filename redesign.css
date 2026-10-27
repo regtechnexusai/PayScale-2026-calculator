@@ -1158,3 +1158,171 @@ html body.payscale-main-page main.shell :is(.choice-card-salary,.choice-card-pen
 html body.payscale-main-page main.shell :is(.choice-card-salary,.choice-card-pension) .choice-arrow {
   color: #7E9BC8 !important;
 }
+
+
+/* ==========================================================
+   PayScale 2026 — requested professional main-content palette
+   Scope: main.shell only. Shared site header/footer untouched.
+   Visual CSS only; calculator logic and data are unchanged.
+   ========================================================== */
+html body.payscale-main-page main.shell {
+  --ps-bg: #F4F6FA;
+  --ps-surface: #FFFFFF;
+  --ps-surface-alt: #EEF2F8;
+  --ps-border: #D8DFEA;
+  --ps-border-strong: #B9C4D6;
+  --ps-text: #0F1B2D;
+  --ps-text-body: #26354A;
+  --ps-text-muted: #56667D;
+  --ps-primary: #1D4ED8;
+  --ps-primary-hover: #1740B3;
+  --ps-primary-soft: #E8EFFD;
+  --ps-teal: #0E7C86;
+  --ps-teal-soft: #E3F4F5;
+  --ps-phase-1: #5B8DEF;
+  --ps-phase-2: #2F6FDE;
+  --ps-phase-3: #123A8F;
+  --ps-warn: #8A5A00;
+  --ps-warn-bg: #FFF6DD;
+  --ps-warn-border: #E6C36A;
+  --ps-danger: #A12A1F;
+  --ps-danger-bg: #FDECEA;
+  --ps-danger-border: #E8A9A2;
+  background: var(--ps-bg) !important;
+  color: var(--ps-text-body) !important;
+}
+html body.payscale-main-page main.shell :is(h1,h2,h3,h4) { color: var(--ps-text) !important; }
+html body.payscale-main-page main.shell :is(p,li) { color: var(--ps-text-body); }
+html body.payscale-main-page main.shell :is(small,.muted,.hint,figcaption,caption,.field-help,.table-note) { color: var(--ps-text-muted); }
+html body.payscale-main-page main.shell :is(.eyebrow,.kicker,.label,.choice-kicker,.section-kicker) {
+  color: var(--ps-primary) !important;
+  letter-spacing: .06em;
+}
+html body.payscale-main-page main.shell a:not(.choice-card):not(.brand-home-link) { color: var(--ps-primary) !important; }
+html body.payscale-main-page main.shell a:not(.choice-card):not(.brand-home-link):hover { color: var(--ps-primary-hover) !important; }
+html body.payscale-main-page main.shell :is(a,button,input,select,textarea):focus-visible {
+  outline: 3px solid rgba(29,78,216,.35) !important;
+  outline-offset: 2px;
+}
+html body.payscale-main-page main.shell :is(.calculator.glass-card,.about-tool,.provenance-card,.source-summary,.governance-card,.method-card,.scale-section,.retirement-section,.notice.glass-card,.release-banner,.result-card,.metric-card,.disclaimer,.content-header,.result-hero,.empty-result) {
+  color: var(--ps-text-body) !important;
+  border-color: var(--ps-border) !important;
+  box-shadow: 0 4px 16px rgba(29,78,216,.045), 0 0 18px rgba(14,124,134,.035) !important;
+}
+html body.payscale-main-page main.shell :is(.calculator.glass-card,.about-tool,.provenance-card,.source-summary,.governance-card,.method-card,.scale-section,.retirement-section,.notice.glass-card,.release-banner,.content-header,.result-hero,.empty-result) {
+  background: var(--ps-surface) !important;
+}
+html body.payscale-main-page main.shell > section.hero {
+  color: var(--ps-text-body) !important;
+  background: linear-gradient(120deg,#E8EFFD 0%,#FFFFFF 52%,#E3F4F5 100%) !important;
+  border: 1px solid var(--ps-border) !important;
+}
+html body.payscale-main-page main.shell > section.hero :is(h1,h2,h3,p,.eyebrow,.hero-subtitle,.hero-proof span,.brand-nav-current,.brand-nav-divider) {
+  color: var(--ps-text-body) !important;
+}
+html body.payscale-main-page main.shell .hero-proof span,
+html body.payscale-main-page main.shell .effective-badge,
+html body.payscale-main-page main.shell .brand-home-link {
+  color: var(--ps-primary-hover) !important;
+  background: var(--ps-surface) !important;
+  border-color: var(--ps-border) !important;
+}
+html body.payscale-main-page main.shell :is(input,select,textarea) {
+  background: #FFFFFF !important;
+  color: var(--ps-text) !important;
+  border: 1px solid var(--ps-border-strong) !important;
+  box-shadow: none !important;
+}
+html body.payscale-main-page main.shell :is(input,select,textarea):focus {
+  border-color: var(--ps-primary) !important;
+  box-shadow: 0 0 0 3px rgba(29,78,216,.15) !important;
+}
+html body.payscale-main-page main.shell ::placeholder { color: #8493A8 !important; }
+html body.payscale-main-page main.shell :is(button:not(.brand-home-link),.btn,.button,.primary-button) {
+  background: var(--ps-primary) !important;
+  color: #FFFFFF !important;
+  border-color: var(--ps-primary) !important;
+  box-shadow: none !important;
+}
+html body.payscale-main-page main.shell :is(button:not(.brand-home-link),.btn,.button,.primary-button):hover {
+  background: var(--ps-primary-hover) !important;
+  border-color: var(--ps-primary-hover) !important;
+}
+html body.payscale-main-page main.shell :is(.btn-secondary,.button-secondary,.secondary-button,.ghost-button) {
+  background: var(--ps-surface) !important;
+  color: var(--ps-primary) !important;
+  border: 1px solid var(--ps-primary) !important;
+  box-shadow: none !important;
+}
+html body.payscale-main-page main.shell :is([aria-pressed="true"],.is-active,.selected) {
+  background: var(--ps-primary-soft) !important;
+  border-color: var(--ps-primary) !important;
+  color: var(--ps-primary-hover) !important;
+}
+html body.payscale-main-page main.shell :is(.phase-1,.result-1) { border-top: 4px solid var(--ps-phase-1) !important; }
+html body.payscale-main-page main.shell :is(.phase-2,.result-2) { border-top: 4px solid var(--ps-phase-2) !important; }
+html body.payscale-main-page main.shell :is(.phase-3,.result-3) { border-top: 4px solid var(--ps-phase-3) !important; }
+html body.payscale-main-page main.shell :is(.result-value,.figure,output,.timeline-amount strong,.math-line strong) {
+  color: var(--ps-teal) !important;
+  font-variant-numeric: tabular-nums;
+}
+html body.payscale-main-page main.shell :is(.result-card,.metric-card) {
+  background: var(--ps-teal-soft) !important;
+  border: 1px solid #B6DEE1 !important;
+}
+html body.payscale-main-page main.shell table {
+  background: var(--ps-surface) !important;
+  border-collapse: collapse;
+  border: 1px solid var(--ps-border) !important;
+  font-variant-numeric: tabular-nums;
+  box-shadow: none !important;
+}
+html body.payscale-main-page main.shell thead th {
+  background: #E4EAF5 !important;
+  color: var(--ps-text) !important;
+  border-bottom: 2px solid var(--ps-border-strong) !important;
+}
+html body.payscale-main-page main.shell tbody :is(td,th) {
+  border-bottom: 1px solid var(--ps-border) !important;
+  color: var(--ps-text-body) !important;
+}
+html body.payscale-main-page main.shell tbody tr:nth-child(even) { background: #F7F9FC !important; }
+html body.payscale-main-page main.shell tbody tr:hover { background: var(--ps-primary-soft) !important; }
+html body.payscale-main-page main.shell :is(.notice,.info,.release-banner) {
+  background: var(--ps-primary-soft) !important;
+  border: 1px solid #BFD0F7 !important;
+  border-left: 4px solid var(--ps-primary) !important;
+  color: var(--ps-text-body) !important;
+}
+html body.payscale-main-page main.shell :is(.warning,.caution,.unofficial,.unofficial-banner) {
+  background: var(--ps-warn-bg) !important;
+  border: 1px solid var(--ps-warn-border) !important;
+  border-left: 4px solid #C98A00 !important;
+  color: var(--ps-warn) !important;
+}
+html body.payscale-main-page main.shell :is(.danger,.disclaimer) {
+  background: var(--ps-danger-bg) !important;
+  border: 1px solid var(--ps-danger-border) !important;
+  border-left: 4px solid var(--ps-danger) !important;
+  color: var(--ps-danger) !important;
+}
+html body.payscale-main-page main.shell :is(.disclaimer,.warning,.caution,.unofficial,.unofficial-banner,.notice,.info) :is(h1,h2,h3,h4,p,span,strong,small,b,li) {
+  color: inherit !important;
+}
+html body.payscale-main-page main.shell :is(.badge,.chip,.tag,.grade-chip) {
+  background: var(--ps-primary-soft) !important;
+  color: var(--ps-primary-hover) !important;
+  border: 1px solid #BFD0F7 !important;
+}
+html body.payscale-main-page main.shell hr { border-color: var(--ps-border) !important; }
+html body.payscale-main-page main.shell .choice-card-salary {
+  color: var(--ps-text-body) !important;
+  background: linear-gradient(120deg,#E8EFFD,#E3F4F5) !important;
+  border: 1px solid var(--ps-border) !important;
+}
+html body.payscale-main-page main.shell .choice-card-pension {
+  color: var(--ps-text-body) !important;
+  background: linear-gradient(120deg,#EEF2F8,#E8EFFD) !important;
+  border: 1px solid var(--ps-border) !important;
+}
+html body.payscale-main-page main.shell :is(.choice-card-salary,.choice-card-pension) :is(h1,h2,h3,p,span,strong,a) { color: inherit !important; }
