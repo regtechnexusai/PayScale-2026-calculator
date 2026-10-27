@@ -1326,3 +1326,89 @@ html body.payscale-main-page main.shell .choice-card-pension {
   border: 1px solid var(--ps-border) !important;
 }
 html body.payscale-main-page main.shell :is(.choice-card-salary,.choice-card-pension) :is(h1,h2,h3,p,span,strong,a) { color: inherit !important; }
+
+
+/* ==========================================================
+   PayScale 2026 — user-provided main-content palette
+   Scope is the content inside main.shell, excluding the shared footer.
+   Header/footer, calculations, data and JavaScript are untouched.
+   ========================================================== */
+html body.payscale-main-page main.shell {
+  --ps-bg:#F4F6FA; --ps-surface:#FFFFFF; --ps-surface-alt:#EEF2F8;
+  --ps-border:#D8DFEA; --ps-border-strong:#B9C4D6;
+  --ps-text:#0F1B2D; --ps-body:#26354A; --ps-muted:#56667D;
+  --ps-primary:#1D4ED8; --ps-primary-hover:#1740B3; --ps-primary-soft:#E8EFFD;
+  --ps-teal:#0E7C86; --ps-teal-soft:#E3F4F5;
+  --ps-p1:#5B8DEF; --ps-p2:#2F6FDE; --ps-p3:#123A8F;
+  --ps-warn:#8A5A00; --ps-warn-bg:#FFF6DD; --ps-warn-line:#C98A00;
+  --ps-danger:#A12A1F; --ps-danger-bg:#FDECEA; --ps-danger-line:#A12A1F;
+  background-color:var(--ps-bg) !important;
+  color:var(--ps-body) !important;
+}
+/* Typography — content area only */
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(h1,h2,h3,h4,strong,th) { color:var(--ps-text) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(p,li,td,label,summary) { color:var(--ps-body) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(small,figcaption,caption,[class*="hint"],[class*="muted"],[class*="help"]) { color:var(--ps-muted) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([class*="eyebrow"],[class*="kicker"]) { color:var(--ps-primary) !important; }
+/* Links and accessible focus */
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) a { color:var(--ps-primary) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) a:hover { color:var(--ps-primary-hover) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(a,button,input,select,textarea):focus-visible {
+  outline:3px solid rgba(29,78,216,.35) !important; outline-offset:2px;
+}
+/* Panels / cards */
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(article,details,[class*="card"],[class*="panel"],[class*="box"]) {
+  background-color:var(--ps-surface) !important;
+  border-color:var(--ps-border) !important;
+  color:var(--ps-body) !important;
+}
+/* Form controls */
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(input,select,textarea) {
+  background-color:#FFFFFF !important; color:var(--ps-text) !important;
+  border:1px solid var(--ps-border-strong) !important;
+}
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(input,select,textarea):focus {
+  border-color:var(--ps-primary) !important;
+  box-shadow:0 0 0 3px rgba(29,78,216,.15) !important;
+}
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) ::placeholder { color:#8493A8 !important; }
+/* Buttons */
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(button,[class*="btn"],[class*="button"],a[class*="cta"]) {
+  background-color:var(--ps-primary) !important; border-color:var(--ps-primary) !important; color:#FFFFFF !important;
+}
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(button,[class*="btn"],[class*="button"]):hover {
+  background-color:var(--ps-primary-hover) !important; border-color:var(--ps-primary-hover) !important;
+}
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([aria-pressed="true"],[aria-selected="true"],[class*="active"],[class*="selected"]) {
+  background-color:var(--ps-primary-soft) !important; border-color:var(--ps-primary) !important; color:var(--ps-primary-hover) !important;
+}
+/* Three pay phases and calculated figures */
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([class*="phase-1"],[class*="stage-1"],[class*="result-1"]) { border-top:4px solid var(--ps-p1) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([class*="phase-2"],[class*="stage-2"],[class*="result-2"]) { border-top:4px solid var(--ps-p2) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([class*="phase-3"],[class*="stage-3"],[class*="result-3"]) { border-top:4px solid var(--ps-p3) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(output,[class*="amount"],[class*="value"],[class*="figure"]) {
+  color:var(--ps-teal) !important; font-variant-numeric:tabular-nums;
+}
+/* Tables */
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) table { background:#FFFFFF !important; border:1px solid var(--ps-border) !important; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is(thead th,table th) { background:#E4EAF5 !important; color:var(--ps-text) !important; border-bottom:2px solid var(--ps-border-strong) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) tbody :is(td,th) { border-bottom:1px solid var(--ps-border) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) tbody tr:nth-child(even) { background:#F7F9FC !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) tbody tr:hover { background:var(--ps-primary-soft) !important; }
+/* Notices, warnings and disclaimers */
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([class*="notice"],[class*="info"],[class*="note"]) {
+  background:var(--ps-primary-soft) !important; border:1px solid #BFD0F7 !important; border-left:4px solid var(--ps-primary) !important;
+}
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([class*="warn"],[class*="caution"],[class*="unofficial"]) {
+  background:var(--ps-warn-bg) !important; border:1px solid #E6C36A !important; border-left:4px solid var(--ps-warn-line) !important; color:var(--ps-warn) !important;
+}
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([class*="danger"],[class*="disclaimer"],[class*="alert"]) {
+  background:var(--ps-danger-bg) !important; border:1px solid #E8A9A2 !important; border-left:4px solid var(--ps-danger-line) !important;
+}
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([class*="danger"],[class*="disclaimer"],[class*="alert"]) :is(p,li,strong,h3,h4) { color:var(--ps-danger) !important; }
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([class*="warn"],[class*="caution"],[class*="unofficial"]) :is(p,li,strong,h3,h4) { color:var(--ps-warn) !important; }
+/* Badges and dividers */
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) :is([class*="badge"],[class*="chip"],[class*="tag"],[class*="pill"]) {
+  background:var(--ps-primary-soft) !important; color:var(--ps-primary-hover) !important; border:1px solid #BFD0F7 !important;
+}
+html body.payscale-main-page main.shell > :not(.rt-shell-footer) hr { border-color:var(--ps-border) !important; }
