@@ -486,3 +486,173 @@ body:has(.pension-page-header) .rt-back-home{display:none!important}
  body.payscale-main-page .choice-card{padding:10px 12px!important}
  body.payscale-main-page .choice-card-salary p,body.payscale-main-page .choice-card-salary .choice-kicker{display:none!important}
 }
+
+
+/* PayScale 2026 professional data palette — scoped to main content components.
+   Keep the hero, shared site header, and footer colours unchanged.
+   Presentation only: no calculation logic, data, or event handlers are modified. */
+body.payscale-main-page {
+  --ps-data-bg: #F4F6FA;
+  --ps-data-surface: #FFFFFF;
+  --ps-data-surface-alt: #EEF2F8;
+  --ps-data-border: #D8DFEA;
+  --ps-data-border-strong: #B9C4D6;
+  --ps-data-ink: #0F1B2D;
+  --ps-data-text: #26354A;
+  --ps-data-muted: #56667D;
+  --ps-data-blue: #1D4ED8;
+  --ps-data-blue-hover: #1740B3;
+  --ps-data-blue-soft: #E8EFFD;
+  --ps-data-teal: #0E7C86;
+  --ps-data-teal-soft: #E3F4F5;
+  --ps-data-warn: #8A5A00;
+  --ps-data-warn-bg: #FFF6DD;
+  --ps-data-warn-border: #E6C36A;
+  --ps-data-danger: #A12A1F;
+  --ps-data-danger-bg: #FDECEA;
+  --ps-data-danger-border: #E8A9A2;
+}
+
+/* Neutral content canvas: exclude hero and shared footer. */
+body.payscale-main-page main.shell > :not(.hero):not(footer):not(.rt-shell-footer) {
+  color: var(--ps-data-text);
+}
+body.payscale-main-page main.shell > :is(.release-banner,.about-tool,.provenance-card,.source-summary,.governance-card,.method-card,.scale-section,.retirement-section,.notice.glass-card,.calculator.glass-card,.results,.result-section) {
+  color: var(--ps-data-text) !important;
+}
+body.payscale-main-page :is(.calculator.glass-card,.about-tool,.provenance-card,.source-summary,.governance-card,.method-card,.scale-section,.retirement-section,.notice.glass-card,.release-banner) {
+  background: var(--ps-data-surface) !important;
+  border: 1px solid var(--ps-data-border) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 20px rgba(15,27,45,.045) !important;
+  color: var(--ps-data-text) !important;
+}
+/* Keep the hero and the two prominent navigation choice cards as designed. */
+body.payscale-main-page .hero,
+body.payscale-main-page .choice-card-salary,
+body.payscale-main-page .choice-card-pension,
+body.payscale-main-page .disclaimer,
+body.payscale-main-page .rt-shell-footer,
+body.payscale-main-page .rt-shell-footer * {
+  /* Intentionally untouched by this palette layer. */
+}
+body.payscale-main-page :is(.calculator.glass-card,.about-tool,.provenance-card,.source-summary,.governance-card,.method-card,.scale-section,.retirement-section,.notice.glass-card,.release-banner) :is(h1,h2,h3,h4,p,li,label,strong,b,small,span,summary,caption,td,th) {
+  text-shadow: none !important;
+  opacity: 1;
+}
+body.payscale-main-page :is(.calculator.glass-card,.about-tool,.provenance-card,.source-summary,.governance-card,.method-card,.scale-section,.retirement-section,.notice.glass-card,.release-banner) :is(h2,h3,h4) {
+  color: var(--ps-data-ink) !important;
+}
+body.payscale-main-page :is(.calculator.glass-card,.about-tool,.provenance-card,.source-summary,.governance-card,.method-card,.scale-section,.retirement-section,.notice.glass-card,.release-banner) :is(p,li,label,td,th) {
+  color: var(--ps-data-text) !important;
+}
+body.payscale-main-page :is(.calculator.glass-card,.about-tool,.provenance-card,.source-summary,.governance-card,.method-card,.scale-section,.retirement-section,.notice.glass-card,.release-banner) :is(.field-help,.output-note,.table-note,.gross-footnote,small,figcaption,caption) {
+  color: var(--ps-data-muted) !important;
+}
+body.payscale-main-page main.shell :not(.hero) > a,
+body.payscale-main-page main.shell :not(.hero) a:not(.brand-home-link):not(.rt-shell-footer a) {
+  text-underline-offset: .18em;
+}
+body.payscale-main-page main.shell > :not(.hero):not(footer) a:not(.brand-home-link) {
+  color: var(--ps-data-blue) !important;
+}
+body.payscale-main-page main.shell > :not(.hero):not(footer) a:not(.brand-home-link):hover {
+  color: var(--ps-data-blue-hover) !important;
+}
+body.payscale-main-page main.shell :is(input,select,textarea) {
+  background: #fff !important;
+  color: var(--ps-data-ink) !important;
+  border: 1px solid var(--ps-data-border-strong) !important;
+  border-radius: 8px;
+}
+body.payscale-main-page main.shell :is(input,select,textarea):focus-visible,
+body.payscale-main-page main.shell button:focus-visible {
+  outline: 3px solid rgba(29,78,216,.35) !important;
+  outline-offset: 2px !important;
+}
+body.payscale-main-page main.shell ::placeholder { color: #8493A8 !important; opacity: 1; }
+body.payscale-main-page main.shell button:not(.brand-home-link),
+body.payscale-main-page main.shell .btn,
+body.payscale-main-page main.shell .button {
+  background: var(--ps-data-blue) !important;
+  color: #fff !important;
+  border-color: var(--ps-data-blue) !important;
+}
+body.payscale-main-page main.shell button:not(.brand-home-link):hover,
+body.payscale-main-page main.shell .btn:hover,
+body.payscale-main-page main.shell .button:hover {
+  background: var(--ps-data-blue-hover) !important;
+  border-color: var(--ps-data-blue-hover) !important;
+}
+body.payscale-main-page main.shell :is(table,.gross-table) {
+  width: 100%;
+  background: var(--ps-data-surface) !important;
+  border-collapse: collapse !important;
+  border: 1px solid var(--ps-data-border) !important;
+  color: var(--ps-data-text) !important;
+  font-variant-numeric: tabular-nums;
+}
+body.payscale-main-page main.shell :is(thead th, .gross-table thead th) {
+  background: #E4EAF5 !important;
+  color: var(--ps-data-ink) !important;
+  border-bottom: 2px solid var(--ps-data-border-strong) !important;
+}
+body.payscale-main-page main.shell :is(tbody td,tbody th,.gross-table td,.gross-table th) {
+  color: var(--ps-data-text) !important;
+  border-bottom: 1px solid var(--ps-data-border) !important;
+}
+body.payscale-main-page main.shell :is(tbody tr:nth-child(even),.gross-table tbody tr:nth-child(even)) {
+  background: #F7F9FC !important;
+}
+body.payscale-main-page main.shell :is(tbody tr:hover,.gross-table tbody tr:hover) {
+  background: var(--ps-data-blue-soft) !important;
+}
+body.payscale-main-page main.shell :is(.metric-card,.result-card,.timeline-card,.math-card) {
+  background: var(--ps-data-surface) !important;
+  border: 1px solid var(--ps-data-border) !important;
+  border-radius: 12px !important;
+}
+body.payscale-main-page main.shell :is(.result-value,.figure,output,.timeline-amount strong,.math-line strong) {
+  color: var(--ps-data-teal) !important;
+  font-variant-numeric: tabular-nums;
+}
+body.payscale-main-page main.shell .result-card {
+  background: var(--ps-data-teal-soft) !important;
+  border-color: #B6DEE1 !important;
+}
+body.payscale-main-page main.shell :is(.eyebrow,.kicker,.label,.method-index) {
+  color: var(--ps-data-blue) !important;
+}
+body.payscale-main-page main.shell :is(.notice,.info,.release-banner) {
+  background: var(--ps-data-blue-soft) !important;
+  border-color: #BFD0F7 !important;
+  color: var(--ps-data-text) !important;
+}
+body.payscale-main-page main.shell :is(.warning,.caution,.unofficial) {
+  background: var(--ps-data-warn-bg) !important;
+  border-color: var(--ps-data-warn-border) !important;
+  color: var(--ps-data-warn) !important;
+}
+body.payscale-main-page main.shell :is(.danger,.disclaimer) {
+  /* Disclaimer is intentionally excluded from recolouring to preserve its existing contrast. */
+}
+body.payscale-main-page main.shell hr { border-color: var(--ps-data-border) !important; }
+body.payscale-main-page main.shell :is(.badge,.chip,.tag,.grade-chip) {
+  background: var(--ps-data-blue-soft) !important;
+  color: var(--ps-data-blue-hover) !important;
+  border-color: #BFD0F7 !important;
+}
+@media (max-width: 620px) {
+  body.payscale-main-page main.shell > :not(.hero):not(footer):not(.rt-shell-footer) {
+    min-width: 0;
+    max-width: 100%;
+  }
+  body.payscale-main-page main.shell :is(.table-wrap,.table-responsive) {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  body.payscale-main-page main.shell :is(table,.gross-table) {
+    min-width: 620px;
+  }
+}
