@@ -1086,3 +1086,32 @@ body.payscale-main-page .shell > .hero .brand-home-link:focus-visible {
   background: #F1F6FF !important;
   border-color: #C9D9F2 !important;
 }
+
+
+/* Highest-specificity fix for the two dark panels seen in the user's live screenshots. */
+html body.payscale-main-page main.shell .results .empty-result {
+  background: linear-gradient(120deg, #F0F6FF 0%, #F7F2FF 52%, #EFFAF6 100%) !important;
+  color: #53647A !important;
+  border: 1px solid #DCE6F2 !important;
+  box-shadow: 0 6px 22px rgba(140,164,210,.14), 0 0 22px rgba(199,215,255,.17), 0 0 18px rgba(204,239,228,.12) !important;
+}
+html body.payscale-main-page main.shell .results .empty-result :is(strong,p,b,span) {
+  color: #53647A !important;
+  opacity: 1 !important;
+}
+html body.payscale-main-page main.shell .results .empty-result .empty-result-icon {
+  color: #7999D7 !important;
+  background: #FFFFFF !important;
+  border-color: #DCE6F2 !important;
+}
+html body.payscale-main-page main.shell .disclaimer,
+html body.payscale-main-page main.shell section.disclaimer {
+  background: linear-gradient(115deg, #FFFAEF 0%, #FFF4F8 52%, #F5F2FF 100%) !important;
+  color: #665F68 !important;
+  border: 1px solid #F0E2D5 !important;
+  box-shadow: 0 5px 20px rgba(222,194,156,.13), 0 0 18px rgba(242,211,226,.13) !important;
+}
+html body.payscale-main-page main.shell .disclaimer :is(strong,p,span,small,b) {
+  color: #665F68 !important;
+  opacity: 1 !important;
+}
