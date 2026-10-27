@@ -765,3 +765,136 @@ body.payscale-main-page main.shell hr { border-color: #E5EAF1 !important; }
     border-radius: 12px !important;
   }
 }
+
+
+/* Soft luminous multicolour finish — visual-only override; calculator logic untouched. */
+body.payscale-main-page {
+  background:
+    radial-gradient(ellipse at 8% 10%, rgba(183, 213, 255, .34), transparent 34%),
+    radial-gradient(ellipse at 92% 28%, rgba(220, 199, 255, .26), transparent 32%),
+    radial-gradient(ellipse at 12% 72%, rgba(180, 239, 225, .25), transparent 34%),
+    radial-gradient(ellipse at 88% 88%, rgba(255, 225, 184, .24), transparent 32%),
+    #FBFCFF !important;
+}
+body.payscale-main-page .hero {
+  background: linear-gradient(118deg, #EAF2FF 0%, #F0ECFF 48%, #E6F8F4 100%) !important;
+  color: #344663 !important;
+  border: 1px solid #DCE5F6 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 28px rgba(135, 160, 210, .14), 0 0 22px rgba(194, 210, 255, .20) !important;
+}
+body.payscale-main-page .hero :is(h1,h2,h3,p,.hero-subtitle,.hero-proof span,.eyebrow) {
+  color: #344663 !important;
+}
+body.payscale-main-page .hero .hero-proof span {
+  background: rgba(255,255,255,.78) !important;
+  border-color: #D8E2F3 !important;
+  box-shadow: 0 2px 10px rgba(143, 166, 210, .12) !important;
+}
+body.payscale-main-page .effective-badge,
+body.payscale-main-page .brand-home-link {
+  background: #FFFFFF !important;
+  color: #526A91 !important;
+  border-color: #D5E2F4 !important;
+  box-shadow: 0 2px 12px rgba(155, 178, 222, .14) !important;
+}
+body.payscale-main-page main.shell :is(.calculator.glass-card,.about-tool,.provenance-card,.source-summary,.governance-card,.method-card,.scale-section,.retirement-section,.notice.glass-card,.release-banner,.result-card,.metric-card,.choice-card-salary,.choice-card-pension,.disclaimer) {
+  border: 1px solid #E1E7F2 !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 5px 18px rgba(116, 143, 190, .08),
+    0 0 16px rgba(190, 207, 255, .12),
+    0 0 22px rgba(203, 238, 230, .10) !important;
+}
+body.payscale-main-page main.shell .calculator.glass-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8FBFF 100%) !important;
+  border-top: 3px solid #C5D8FF !important;
+}
+body.payscale-main-page main.shell .scale-section {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F3FBF8 100%) !important;
+  border-top: 3px solid #B7E4D9 !important;
+}
+body.payscale-main-page main.shell .retirement-section {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8F5FF 100%) !important;
+  border-top: 3px solid #D8C9F5 !important;
+}
+body.payscale-main-page main.shell :is(.about-tool,.provenance-card,.source-summary,.governance-card,.method-card) {
+  background: linear-gradient(145deg, #FFFFFF, #FAFBFF) !important;
+}
+body.payscale-main-page main.shell .choice-card-salary {
+  background: linear-gradient(135deg, #E9F3FF, #E4F8F3) !important;
+  color: #35566B !important;
+  border-color: #CFE3F0 !important;
+}
+body.payscale-main-page main.shell .choice-card-pension {
+  background: linear-gradient(135deg, #F1EDFF, #FFF2F7) !important;
+  color: #514B75 !important;
+  border-color: #E1D7F4 !important;
+}
+body.payscale-main-page main.shell :is(.choice-card-salary,.choice-card-pension) :is(h2,h3,p,span,strong,a) {
+  color: inherit !important;
+}
+body.payscale-main-page main.shell .disclaimer {
+  background: linear-gradient(120deg, #F0F5FF, #F7F1FF, #EFFAF6) !important;
+  color: #53627A !important;
+  border-color: #DEE4F1 !important;
+}
+body.payscale-main-page main.shell :is(.result-card,.metric-card) {
+  background: linear-gradient(135deg, #EFF9F5, #F2F8FF) !important;
+  border-color: #D6EAE5 !important;
+  box-shadow: 0 4px 16px rgba(112, 184, 164, .12), 0 0 18px rgba(184, 224, 215, .14) !important;
+}
+body.payscale-main-page main.shell :is(.info,.notice,.release-banner) {
+  background: linear-gradient(120deg, #F0F6FF, #F7F2FF) !important;
+  border-color: #DDE5F5 !important;
+}
+body.payscale-main-page main.shell :is(.warning,.caution,.unofficial) {
+  background: linear-gradient(120deg, #FFFAED, #FFF4F7) !important;
+  border-color: #F0E0B8 !important;
+  color: #78633C !important;
+  box-shadow: 0 4px 16px rgba(220, 188, 116, .12), 0 0 18px rgba(255, 221, 177, .12) !important;
+}
+body.payscale-main-page main.shell :is(input,select,textarea) {
+  border-color: #DCE3F0 !important;
+  box-shadow: 0 1px 8px rgba(160, 179, 216, .08) !important;
+}
+body.payscale-main-page main.shell button:not(.brand-home-link),
+body.payscale-main-page main.shell .btn,
+body.payscale-main-page main.shell .button {
+  background: linear-gradient(110deg, #7298E3, #7EAFAF) !important;
+  border-color: #9AB7E4 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 3px 12px rgba(115, 153, 210, .18) !important;
+}
+body.payscale-main-page main.shell button:not(.brand-home-link):hover,
+body.payscale-main-page main.shell .btn:hover,
+body.payscale-main-page main.shell .button:hover {
+  background: linear-gradient(110deg, #6489D2, #6DA39C) !important;
+}
+body.payscale-main-page main.shell table {
+  border-color: #E0E6F0 !important;
+  box-shadow: 0 3px 14px rgba(130, 151, 192, .08) !important;
+}
+body.payscale-main-page main.shell thead th {
+  background: linear-gradient(110deg, #EFF4FF, #F5F0FF, #EFFAF7) !important;
+  color: #53627A !important;
+}
+body.payscale-main-page .rt-shell-footer {
+  background: linear-gradient(120deg, #F0F5FF, #F5F0FF 52%, #EFF9F6) !important;
+  color: #53627A !important;
+  border-color: #DDE5F1 !important;
+  box-shadow: 0 5px 20px rgba(135, 155, 202, .10), 0 0 20px rgba(196, 213, 255, .14) !important;
+}
+body.payscale-main-page .rt-shell-footer :is(h1,h2,h3,h4,p,span,li,strong,small) {
+  color: #53627A !important;
+}
+body.payscale-main-page .rt-shell-footer a {
+  color: #5879B8 !important;
+}
+@media (max-width: 620px) {
+  body.payscale-main-page .hero { border-radius: 15px !important; }
+  body.payscale-main-page main.shell :is(.calculator.glass-card,.about-tool,.provenance-card,.source-summary,.governance-card,.method-card,.scale-section,.retirement-section,.notice.glass-card,.release-banner,.result-card,.metric-card,.choice-card-salary,.choice-card-pension,.disclaimer) {
+    border-radius: 13px !important;
+    box-shadow: 0 4px 14px rgba(116, 143, 190, .09), 0 0 12px rgba(190, 207, 255, .10) !important;
+  }
+}
