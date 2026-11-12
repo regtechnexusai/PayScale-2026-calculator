@@ -33,8 +33,8 @@ const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const pension = fs.readFileSync(path.join(root, 'pension.html'), 'utf8');
 const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
-assert.match(index, /release-meta\.js\?v=5/);
-assert.match(pension, /release-meta\.js\?v=5/);
+assert.match(index, /release-meta\.js\?v=6/);
+assert.match(pension, /release-meta\.js\?v=6/);
 assert.match(index, /app\.js\?v=35/);
 assert.ok(pension.includes('retirement-data.js?v=5'));
 assert.ok(pension.includes('pension.js?v=13'));
@@ -48,12 +48,12 @@ assert.ok(pension.includes('pension.js?v=13'));
   '<td>২৩ বছর</td><td>৮৩%</td>'
 ].forEach((row) => assert.ok(pension.includes(row), 'Missing Gazette rate row: ' + row));
 assert.ok(!pension.includes('<td>২৩ বছর</td><td>৮১%</td>'), 'Stale 23-year rate remains');
-assert.ok(index.includes('styles.css?v=37'), 'Main calculator must load the refreshed stylesheet');
-assert.ok(pension.includes('styles.css?v=37'), 'Pension page must load the refreshed stylesheet');
+assert.ok(index.includes('styles.css?v=38'), 'Main calculator must load the refreshed stylesheet');
+assert.ok(pension.includes('styles.css?v=38'), 'Pension page must load the refreshed stylesheet');
 assert.match(index, /object-src 'none'/);
 assert.match(index, /সাম্প্রতিক হালনাগাদ/);
 assert.match(index, /সংশোধনী, ব্যাখ্যা বা বাস্তবায়ন নির্দেশ/);
-assert.match(index, /Version 1\.36/);
+assert.match(index, /Version 1\.37/);
 assert.match(pension, /class="pension-page"/);
 assert.ok(fs.existsSync(path.join(root, 'NotoSansBengali.ttf')), 'Missing bundled Bengali font');
 const styles = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
@@ -120,14 +120,14 @@ assert.doesNotMatch(index, /<section class="results"[^>]*aria-live=/);
 
 console.log(`Passed static site smoke test across ${fs.readdirSync(root).filter((file) => file.endsWith('.html')).length} HTML pages.`);
 
-assert.ok(pension.includes('Version 1.36'));
+assert.ok(pension.includes('Version 1.37'));
 assert.ok(pension.includes('pension.js?v=13'));
 assert.match(styles, /details\.retirement-reference\[open\] > \.retirement-reference-grid/);
 assert.match(styles, /body\.pension-page \.rt-back-home/);
 assert.match(pensionJs, /addEventListener\('beforeprint'/);
 
-assert.ok(index.includes('styles.css?v=37'), 'Main calculator must load v1.36 print stylesheet');
-assert.ok(index.includes('app.js?v=35'), 'Main calculator must load v1.36 app script');
+assert.ok(index.includes('styles.css?v=38'), 'Main calculator must load v1.37 print stylesheet');
+assert.ok(index.includes('app.js?v=35'), 'Main calculator must load v1.37 app script');
 assert.match(index, /id="print-report-version"/);
 assert.match(index, /Calculation logic: Version 1\.33/);
 assert.match(index, /id="print-report-generated"/);
@@ -138,9 +138,9 @@ assert.match(styles, /footer\.rt-shell-footer::before/);
 assert.match(styles, /body\.payscale-main-page #gross-form/);
 assert.match(styles, /body\.payscale-main-page \.timeline-card,\s*html body\.payscale-main-page \.math-card/);
 
-assert.ok(index.includes('styles.css?v=37'), 'Main calculator must load v1.36 print stylesheet');
-assert.ok(index.includes('app.js?v=35'), 'Main calculator must load v1.36 app script');
-assert.ok(pension.includes('styles.css?v=37'), 'Pension page must load shared v1.36 stylesheet');
+assert.ok(index.includes('styles.css?v=38'), 'Main calculator must load v1.37 print stylesheet');
+assert.ok(index.includes('app.js?v=35'), 'Main calculator must load v1.37 app script');
+assert.ok(pension.includes('styles.css?v=38'), 'Pension page must load shared v1.37 stylesheet');
 assert.match(index, /id="print-report-grade"/);
 assert.match(index, /id="print-report-current"/);
 assert.match(index, /id="print-report-source"/);
@@ -151,3 +151,7 @@ assert.match(styles, /body\.payscale-main-page \.rt-shell-header/);
 assert.match(styles, /body\.payscale-main-page #salary-audit-summary/);
 assert.match(styles, /body\.payscale-main-page \.retirement-action/);
 assert.match(styles, /body\.payscale-main-page \.gross-form/);
+
+assert.ok(pension.includes('pension-senior-friendly.css?v=3'));
+assert.match(fs.readFileSync(path.join(root, 'pension-senior-friendly.css'), 'utf8'), /PayScale v1\.37 — pension PDF readability only/);
+assert.match(fs.readFileSync(path.join(root, 'pension-senior-friendly.css'), 'utf8'), /table tbody td \{[\s\S]*font-size: 10pt/);
