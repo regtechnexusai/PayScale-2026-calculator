@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026). Version 1.32.
+ * S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026). Version 1.33.
  *
  * Scale steps are kept in scale-data.js as the single source of truth.
  * Update that file and run the regression tests if an official correction
@@ -243,7 +243,7 @@ function grossAssumptionSummary(grade) {
   const mobile = grossInput('mobile-eligible').checked ? (grade <= 5 ? 500 : 150) : 0;
   const fixed = [
     grossInput('tiffin-eligible').checked && grade >= 13 ? 'টিফিন ৳ ৫০০' : '',
-    grossInput('travel-eligible').checked && grade >= 11 && grade <= 13 && station !== 'other' ? 'যাতায়াত ৳ ৬০০' : '',
+    grossInput('travel-eligible').checked && grade >= 11 && grade <= 20 && station !== 'other' ? 'যাতায়াত ৳ ৬০০' : '',
     grossInput('washing-eligible').checked ? 'ধোলাই ৳ ৩০০' : '',
     'মোবাইল ' + money(mobile),
     medical,
@@ -320,7 +320,7 @@ function updateAllowanceAvailability(grade) {
   tiffin.disabled = grade < 13;
   if (tiffin.disabled) tiffin.checked = false;
   const travel = grossInput('travel-eligible');
-  travel.disabled = grade < 11 || grade > 13;
+  travel.disabled = grade < 11 || grade > 20;
   if (travel.disabled) travel.checked = false;
   const training = grossInput('training-eligible');
   training.disabled = grade > 9;
@@ -378,7 +378,7 @@ function renderGrossSalary() {
   const mobile = grossInput('mobile-eligible').checked ? (grade <= 5 ? 500 : 150) : 0;
   const washing = grossInput('washing-eligible').checked ? 300 : 0;
   const station = grossInput('duty-station').value;
-  const travel = grossInput('travel-eligible').checked && grade >= 11 && grade <= 13 && station !== 'other' ? 600 : 0;
+  const travel = grossInput('travel-eligible').checked && grade >= 11 && grade <= 20 && station !== 'other' ? 600 : 0;
   const specialChild = Math.min(2, Number(grossInput('special-child-count').value || 0)) * 3000;
   const otherManual = parseMoney(grossInput('other-allowance').value) || 0;
   const hillMode = grossInput('hill-allowance').value;
