@@ -155,3 +155,11 @@ assert.match(styles, /body\.payscale-main-page \.gross-form/);
 assert.ok(pension.includes('pension-senior-friendly.css?v=3'));
 assert.match(fs.readFileSync(path.join(root, 'pension-senior-friendly.css'), 'utf8'), /PayScale v1\.37 — pension PDF readability only/);
 assert.match(fs.readFileSync(path.join(root, 'pension-senior-friendly.css'), 'utf8'), /table tbody td \{[\s\S]*font-size: 10pt/);
+
+// Brand naming: main calculator and pension surfaces use the complete product name.
+assert.ok(index.includes('PayScale 2026 Calculator'));
+assert.ok(pension.includes('PayScale 2026 Calculator'));
+assert.ok(!index.includes('PayScale 2026 |'));
+assert.ok(!pension.includes('PayScale 2026-'));
+assert.ok(fs.readFileSync(path.join(root, 'pension.js'), 'utf8').includes('PayScale 2026 Calculator'));
+assert.ok(!fs.readFileSync(path.join(root, 'pension.js'), 'utf8').includes('PayScale 2026-এর'));

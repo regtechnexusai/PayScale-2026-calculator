@@ -234,8 +234,8 @@ function prefillFromSalaryPage() {
   retirementBasic.value = numberBn(salaryPhaseBasics[prefilledPhase] || basic);
   updateBasicInputState();
   setText('retirement-basic-note', prefilledPhase === 'phase3'
-    ? 'PayScale 2026-এর গ্রেড ' + toBn(grade || '') + ' result থেকে ১ জুলাই ২০২৭-এর full basic prefill করা হয়েছে; অবসরের সময় অনুযায়ী পর্যায় পরিবর্তন করুন।'
-    : 'PayScale 2026-এর গ্রেড ' + toBn(grade || '') + ' result থেকে basic pay prefill করা হয়েছে; অবসরের পর্যায় নির্বাচন করে প্রয়োজন হলে পরিবর্তন করুন।');
+    ? 'PayScale 2026 Calculator-এর গ্রেড ' + toBn(grade || '') + ' result থেকে ১ জুলাই ২০২৭-এর full basic prefill করা হয়েছে; অবসরের সময় অনুযায়ী পর্যায় পরিবর্তন করুন।'
+    : 'PayScale 2026 Calculator-এর গ্রেড ' + toBn(grade || '') + ' result থেকে basic pay prefill করা হয়েছে; অবসরের পর্যায় নির্বাচন করে প্রয়োজন হলে পরিবর্তন করুন।');
 }
 
 function applyPhaseBasic() {
