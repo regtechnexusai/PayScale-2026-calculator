@@ -129,7 +129,7 @@ assert.match(pensionJs, /addEventListener\('beforeprint'/);
 assert.ok(index.includes('styles.css?v=36'), 'Main calculator must load v1.35 print stylesheet');
 assert.ok(index.includes('app.js?v=34'), 'Main calculator must load v1.35 app script');
 assert.match(index, /id="print-report-version"/);
-assert.match(index, /Calculation logic: Version 1\\.33/);
+assert.match(index, /Calculation logic: Version 1\.33/);
 assert.match(index, /id="print-report-generated"/);
 assert.match(index, /শুধু নির্বাচিত ভাতাসহ/);
 assert.match(app, /setText\('print-report-version'/);
