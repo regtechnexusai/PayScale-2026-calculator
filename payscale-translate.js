@@ -1,51 +1,51 @@
-/* PayScale translation helper. Google Translate Websites requires the user
-   to paste a website URL; never claim that the URL was copied unless confirmed. */
+/* Google Website Translator integration shared by PayScale pages.
+   Mirrors the embedded TranslateElement used by the RegTech Nexus AI FinTech Hub. */
 (function () {
   "use strict";
 
-  function initTranslateControls() {
-    var language = document.getElementById("rt-translate-language");
-    var urlField = document.getElementById("rt-translate-page-url");
-    var copyButton = document.getElementById("rt-translate-copy");
-    var openLink = document.getElementById("rt-translate-open");
-    var status = document.getElementById("rt-translate-status");
-    if (!language || !urlField || !copyButton || !openLink || copyButton.dataset.ready === "true") return;
+  window.googleTranslateElementInit = function () {
+    var host = document.getElementById("google_translate_element");
+    if (!host || !window.google || !window.google.translate) return;
 
-    copyButton.dataset.ready = "true";
-    urlField.value = window.location.href;
+    new window.google.translate.TranslateElement({
+      pageLanguage: "en",
+      includedLanguages: "en,bn,zh-CN,ko,ja,es,fr,ar,hi,pt,id,ur",
+      autoDisplay: false
+    }, "google_translate_element");
+  };
 
-    language.addEventListener("change", function () {
-      var target = language.value;
-      if (!/^[a-z]{2,3}(?:-[A-Z]{2})?$/.test(target)) return;
-      openLink.href = "https://translate.google.com/?sl=auto&tl=" + encodeURIComponent(target);
+  function initLanguagePreferences() {
+    var status = document.getElementById("rt-language-status");
+    var boxes = document.querySelectorAll(".rt-language-options input");
+    if (!status || !boxes.length) return;
+
+    boxes.forEach(function (box) {
+      box.addEventListener("change", function () {
+        var selected = Array.from(document.querySelectorAll(".rt-language-options input:checked"))
+          .map(function (item) { return item.parentElement.textContent.trim(); });
+        status.textContent = selected.length
+          ? "Preferred languages: " + selected.join(", ") + ". Use the translation menu above to switch the page language."
+          : "No preferred languages selected.";
+      });
     });
+  }
 
-    copyButton.addEventListener("click", function () {
-      var pageUrl = window.location.href;
-      urlField.value = pageUrl;
-
-      function showManualCopy() {
-        urlField.focus();
-        urlField.select();
-        urlField.setSelectionRange(0, urlField.value.length);
-        status.textContent = "Automatic copy was blocked. The address is selected above; press Ctrl+C (or Cmd+C on Mac), then paste it into Google Translate → Websites.";
-      }
-
-      if (navigator.clipboard && window.isSecureContext && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(pageUrl).then(function () {
-          status.textContent = "Page address copied successfully. Open Google Translate → Websites, paste the address, choose your language, and select Translate.";
-        }).catch(showManualCopy);
-      } else {
-        showManualCopy();
-      }
-    });
-
-    openLink.href = "https://translate.google.com/?sl=auto&tl=" + encodeURIComponent(language.value);
+  /* Load the same Google Translate Website Element used by the FinTech Hub. */
+  if (!document.querySelector('script[data-regtech-google-translate="true"]')) {
+    var translateScript = document.createElement("script");
+    translateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    translateScript.async = true;
+    translateScript.dataset.regtechGoogleTranslate = "true";
+    translateScript.onerror = function () {
+      var host = document.getElementById("google_translate_element");
+      if (host) host.textContent = "Google Translate could not load. Please check your connection or browser content-blocking settings.";
+    };
+    document.head.appendChild(translateScript);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initTranslateControls, { once: true });
+    document.addEventListener("DOMContentLoaded", initLanguagePreferences, { once: true });
   } else {
-    initTranslateControls();
+    initLanguagePreferences();
   }
 })();
