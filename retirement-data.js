@@ -10,7 +10,7 @@ const RETIREMENT_RULES = Object.freeze({
   sourceUrl: 'https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf',
   effectiveDate: '১ জুলাই ২০২৬',
   rateTableStatus: 'verified-against-rendered-official-gazette',
-  rateTableVerificationNote: '৫–২৪ বছরের প্রতিটি হার এবং ২৫ বছর বা তদূর্ধ্বের ৯০% হার ১৭ সেপ্টেম্বর ২০২৬-এর সরকারি গেজেটের পৃষ্ঠা ২৫৩২৩–২৫৩২৪-এর দৃশ্যমান সারণির সঙ্গে মিলিয়ে যাচাই করা হয়েছে; ব্যক্তিগত যোগ্য চাকরিকাল, অবসর-যোগ্যতা ও অনুমোদিত পেনশন অফিসের নথি আলাদাভাবে যাচাই করতে হবে.',
+  rateTableVerificationNote: '৫–২৪ বছরের প্রতিটি হার এবং ২৫ বছর বা তদূর্ধ্বের ৯০% হার ১৭ সেপ্টেম্বর ২০২৬-এর সরকারি গেজেটের পৃষ্ঠা ২৫৩২৩–২৫৩২৪-এর দৃশ্যমান সারণির সঙ্গে মিলিয়ে যাচাই করা হয়েছে; ব্যক্তিগত যোগ্য চাকরিকাল, অবসর-যোগ্যতা ও অনুমোদিত পেনশন অফিসের নথি আলাদাভাবে যাচাই করতে হবে।',
   maximumLeaveMonths: 18,
   grossPensionRates: Object.freeze({
     5: 21, 6: 24, 7: 27, 8: 30, 9: 33,

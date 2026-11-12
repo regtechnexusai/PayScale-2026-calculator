@@ -1,6 +1,6 @@
 /* Single release metadata source for the static pages. */
 window.PAYSCALE_META = Object.freeze({
-  version: '1.32',
+  version: '1.33',
   lastVerified: '12 November 2026'
 });
 
