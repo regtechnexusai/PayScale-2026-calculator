@@ -396,11 +396,11 @@ function renderGrossSalary() {
   });
 
   phases.forEach((values, index) => setGrossPhase(index + 1, values));
-  setText('gross-phase1-meta', 'মূল বেতন + নির্বাচিত ভাতা');
-  setText('gross-phase2-meta', 'মূল বেতন + নির্বাচিত ভাতা');
-  setText('gross-phase3-meta', 'মূল বেতন + নির্বাচিত ভাতা');
+  setText('gross-phase1-meta', 'মূল বেতন + নির্বাচিত ভাতা; অনির্বাচিত ভাতা বাদ');
+  setText('gross-phase2-meta', 'মূল বেতন + নির্বাচিত ভাতা; অনির্বাচিত ভাতা বাদ');
+  setText('gross-phase3-meta', 'মূল বেতন + নির্বাচিত ভাতা; অনির্বাচিত ভাতা বাদ');
   setText('gross-house-rule', 'বাড়িভাড়া rule: Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ schedule; rate/minimum grade নয়, প্রতিটি phase-এর basic-pay band ও duty station অনুযায়ী। ১ জানুয়ারি ২০২৮-এর নতুন হার এই preview-তে আগাম প্রয়োগ করা হয়নি।');
-  setText('gross-footnote', 'এটি official pay fixation নয়—review-support estimate। সরকারি বাসস্থান থাকলে বাড়িভাড়া বাদ। চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল, ধোলাই এবং শর্তসাপেক্ষ ভাতার checkbox-গুলি বাস্তব eligibility ও authorised record অনুযায়ী ঠিক করুন।');
+  setText('gross-footnote', 'এটি চূড়ান্ত মোট বেতন বা official pay fixation নয়—শুধু মূল বেতন ও নির্বাচিত ভাতার review-support estimate। অনির্বাচিত ভাতা মোট অঙ্কে অন্তর্ভুক্ত নয়। সরকারি বাসস্থান থাকলে বাড়িভাড়া বাদ; চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল, ধোলাই এবং শর্তসাপেক্ষ ভাতার যোগ্যতা অনুমোদিত নথি দিয়ে যাচাই করুন।');
 }
 
 function calculate(showErrors = false) {
