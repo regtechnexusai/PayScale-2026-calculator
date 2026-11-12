@@ -36,8 +36,8 @@ const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
 assert.match(index, /release-meta\.js\?v=1/);
 assert.match(pension, /release-meta\.js\?v=1/);
 assert.match(index, /app\.js\?v=31/);
-assert.ok(pension.includes('retirement-data.js?v=2'));
-assert.ok(pension.includes('pension.js?v=9'));
+assert.ok(pension.includes('retirement-data.js?v=3'));
+assert.ok(pension.includes('pension.js?v=10'));
 [
   '<td>১২ বছর</td><td>৪৩%</td>',
   '<td>১৩ বছর</td><td>৪৭%</td>',
@@ -71,6 +71,10 @@ assert.match(pension, /id="retirement-audit-net"/);
 assert.match(pension, /id="retirement-audit-source"/);
 assert.match(pension, /id="retirement-audit-version"/);
 assert.match(pension, /id="retirement-net-card" hidden/);
+assert.match(pension, /id="retirement-net-uncapped"/);
+assert.match(pension, /id="retirement-net-minimum"/);
+assert.match(pension, /id="retirement-net-maximum"/);
+assert.match(pension, /id="retirement-net-cap-status"/);
 assert.match(pension, /id="retirement-net-placeholder"/);
 assert.match(pension, /id="retirement-commutation"/);
 assert.match(pension, /Manual verification required/);
