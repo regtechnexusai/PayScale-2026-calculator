@@ -301,3 +301,251 @@ body.pension-page :is(a,button,input,select,summary):focus-visible{outline:3px s
   body.pension-page .pension-result-actions,body.pension-page .back-link{display:none!important}
   body.pension-page .retirement-section,body.pension-page .retirement-card{box-shadow:none!important;break-inside:avoid!important}
 }
+
+
+/* PayScale v1.37 — pension PDF readability only.
+   No calculation, validation, source-table or eligibility logic is changed. */
+@media print {
+  @page { size: A4 portrait; margin: 9mm 10mm; }
+
+  html body.pension-page {
+    color: #17324d !important;
+    background: #fff !important;
+    font-size: 10.5pt !important;
+    line-height: 1.48 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body.pension-page .orb,
+  body.pension-page .pension-result-actions,
+  body.pension-page .back-link,
+  body.pension-page .toast,
+  body.pension-page .rt-back-home {
+    display: none !important;
+  }
+  body.pension-page main.pension-shell {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body.pension-page .pension-page-header {
+    gap: 7px !important;
+    padding: 10px 14px !important;
+    margin: 0 0 7px !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+  }
+  body.pension-page .pension-page-header h1 {
+    margin: 2px 0 3px !important;
+    font-size: 19pt !important;
+    line-height: 1.25 !important;
+  }
+  body.pension-page .pension-page-header .eyebrow {
+    font-size: 8.5pt !important;
+  }
+  body.pension-page .pension-page-header .hero-subtitle {
+    font-size: 9.5pt !important;
+    line-height: 1.4 !important;
+  }
+  body.pension-page main.pension-shell > .unofficial-banner,
+  body.pension-page main.pension-shell > .notice.glass-card {
+    margin: 5px 0 !important;
+    padding: 7px 10px !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+  body.pension-page .unofficial-banner p,
+  body.pension-page .notice p {
+    font-size: 9pt !important;
+    line-height: 1.4 !important;
+  }
+  body.pension-page main.pension-shell > .retirement-section.glass-card {
+    margin: 6px 0 0 !important;
+    padding: 10px 12px !important;
+    border-radius: 9px !important;
+    box-shadow: none !important;
+  }
+  body.pension-page .section-heading {
+    gap: 8px !important;
+    margin: 0 0 7px !important;
+    padding: 0 0 6px !important;
+  }
+  body.pension-page .section-heading h2 {
+    margin: 1px 0 3px !important;
+    font-size: 16pt !important;
+    line-height: 1.25 !important;
+  }
+  body.pension-page .section-heading .eyebrow {
+    font-size: 8pt !important;
+  }
+  body.pension-page .section-heading .output-note {
+    font-size: 9pt !important;
+    line-height: 1.4 !important;
+  }
+  body.pension-page .source-chip { min-height: 0 !important; padding: 5px 8px !important; font-size: 8.5pt !important; }
+  body.pension-page .retirement-profile-note,
+  body.pension-page .compliance-note {
+    margin: 6px 0 !important;
+    padding: 7px 9px !important;
+    border-radius: 7px !important;
+    font-size: 9pt !important;
+    line-height: 1.42 !important;
+  }
+  body.pension-page .compliance-note strong { font-size: 9.5pt !important; }
+  body.pension-page .retirement-input-grid { display: none !important; }
+  body.pension-page .retirement-audit-summary {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 4px 8px !important;
+    margin: 6px 0 !important;
+    padding: 7px 9px !important;
+    border-radius: 7px !important;
+    box-shadow: none !important;
+  }
+  body.pension-page .retirement-audit-summary strong {
+    padding: 0 0 4px !important;
+    font-size: 10pt !important;
+  }
+  body.pension-page .retirement-audit-summary span {
+    font-size: 8.5pt !important;
+    line-height: 1.35 !important;
+    overflow-wrap: anywhere !important;
+  }
+  body.pension-page .retirement-summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+    margin: 7px 0 !important;
+  }
+  body.pension-page .retirement-card {
+    padding: 8px 9px !important;
+    border-radius: 8px !important;
+    border-top-width: 3px !important;
+    box-shadow: none !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  body.pension-page .retirement-card :is(span,small,p) {
+    font-size: 8.5pt !important;
+    line-height: 1.3 !important;
+  }
+  body.pension-page .retirement-card strong {
+    font-size: 14pt !important;
+    line-height: 1.25 !important;
+  }
+  body.pension-page .retirement-net-placeholder,
+  body.pension-page .retirement-net-card {
+    margin: 6px 0 !important;
+    padding: 8px 10px !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+  body.pension-page .retirement-net-card h3 { margin: 2px 0 !important; font-size: 12pt !important; }
+  body.pension-page .retirement-net-card .field-help,
+  body.pension-page .retirement-net-placeholder p { font-size: 8.5pt !important; line-height: 1.35 !important; }
+  body.pension-page .retirement-net-values {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 4px 7px !important;
+    margin-top: 5px !important;
+  }
+  body.pension-page .retirement-net-values > span {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: baseline !important;
+    justify-content: space-between !important;
+    gap: 5px !important;
+    padding: 5px 7px !important;
+    border-radius: 5px !important;
+    font-size: 8.5pt !important;
+    line-height: 1.3 !important;
+  }
+  body.pension-page .retirement-net-values strong { font-size: 9.5pt !important; }
+
+  /* Gazette tables start together on page 2, with larger type and repeated headers. */
+  body.pension-page .retirement-reference {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+  body.pension-page .retirement-reference > summary {
+    display: block !important;
+    margin: 0 0 8px !important;
+    padding: 0 0 6px !important;
+    border-bottom: 2px solid #17658f !important;
+    font-size: 13pt !important;
+    line-height: 1.3 !important;
+  }
+  body.pension-page .retirement-reference-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+    margin: 0 !important;
+  }
+  body.pension-page .retirement-reference-grid .retirement-net-table {
+    grid-column: 1 / -1 !important;
+  }
+  body.pension-page .table-wrap {
+    overflow: visible !important;
+    border: 1px solid #aebfce !important;
+    border-radius: 6px !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  body.pension-page table {
+    width: 100% !important;
+    min-width: 0 !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+    font-size: 10pt !important;
+  }
+  body.pension-page table caption {
+    padding: 7px 9px !important;
+    font-size: 10.5pt !important;
+    line-height: 1.3 !important;
+  }
+  body.pension-page table thead { display: table-header-group !important; }
+  body.pension-page table thead th {
+    padding: 6px 8px !important;
+    font-size: 9.5pt !important;
+    line-height: 1.3 !important;
+  }
+  body.pension-page table tbody tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  body.pension-page table tbody td {
+    padding: 5px 8px !important;
+    font-size: 10pt !important;
+    line-height: 1.28 !important;
+    font-weight: 650 !important;
+  }
+  body.pension-page .retirement-footnote {
+    margin: 8px 0 0 !important;
+    padding-top: 6px !important;
+    border-top: 1px solid #cbd9e5 !important;
+    font-size: 8.5pt !important;
+    line-height: 1.4 !important;
+  }
+  body.pension-page footer,
+  body.pension-page footer *,
+  body.pension-page .rt-shell-footer,
+  body.pension-page .rt-shell-footer *,
+  body.pension-page .rt-shell-footer::before,
+  body.pension-page .rt-shell-footer::after,
+  body.pension-page .rt-back-home {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+}
