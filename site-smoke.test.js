@@ -89,8 +89,6 @@ assert.match(pension, /সমর্পণ: ৫০% ধরে/);
 assert.equal((pension.match(/id="print-pension-result"/g) || []).length, 1);
 assert.match(app, /pension\.html\?basic=.*phase1=.*phase2=.*phase3=/);
 assert.match(app, /arrearsBreakdownToDate/);
-assert.match(app, /tiffin\\.disabled = grade < 13/);
-assert.match(app, /travel\\.disabled = grade < 11 \\|\\| grade > 13/);
 assert.match(app, /grade >= 11 && grade <= 13 && station !== 'other'/);
 assert.match(app, /tiffin\.disabled = grade < 13/);
 assert.match(app, /travel\.disabled = grade < 11 \|\| grade > 13/);
