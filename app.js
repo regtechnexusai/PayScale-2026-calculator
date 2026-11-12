@@ -205,8 +205,9 @@ function houseRentBand(basic) {
 }
 
 function houseRentRateMinimum(basic, station) {
-  // Article 15(1) keeps the 2015 house-rent schedule through 31 Dec 2027.
-  // The 2026 schedule starts on 1 Jan 2028, outside these three phases.
+  // S.R.O. 347/2026 Article 15(1) retains the existing 2015 house-rent
+  // schedule through 31 Dec 2027. The revised 2026 schedule starts on
+  // 1 Jan 2028 and must not be applied to the three current phases.
   const stationRates = {
     dhaka: {
       low: [65, 5600], mid: [60, 6400], high: [55, 9600], top: [50, 19500]
