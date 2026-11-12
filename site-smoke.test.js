@@ -48,8 +48,8 @@ assert.ok(pension.includes('pension.js?v=13'));
   '<td>২৩ বছর</td><td>৮৩%</td>'
 ].forEach((row) => assert.ok(pension.includes(row), 'Missing Gazette rate row: ' + row));
 assert.ok(!pension.includes('<td>২৩ বছর</td><td>৮১%</td>'), 'Stale 23-year rate remains');
-assert.ok(index.includes('styles.css?v=36'), 'Main calculator must load the refreshed stylesheet');
-assert.ok(pension.includes('styles.css?v=36'), 'Pension page must load the refreshed stylesheet');
+assert.ok(index.includes('styles.css?v=37'), 'Main calculator must load the refreshed stylesheet');
+assert.ok(pension.includes('styles.css?v=37'), 'Pension page must load the refreshed stylesheet');
 assert.match(index, /object-src 'none'/);
 assert.match(index, /সাম্প্রতিক হালনাগাদ/);
 assert.match(index, /সংশোধনী, ব্যাখ্যা বা বাস্তবায়ন নির্দেশ/);
@@ -120,14 +120,14 @@ assert.doesNotMatch(index, /<section class="results"[^>]*aria-live=/);
 
 console.log(`Passed static site smoke test across ${fs.readdirSync(root).filter((file) => file.endsWith('.html')).length} HTML pages.`);
 
-assert.ok(pension.includes('Version 1.35'));
+assert.ok(pension.includes('Version 1.36'));
 assert.ok(pension.includes('pension.js?v=13'));
 assert.match(styles, /details\.retirement-reference\[open\] > \.retirement-reference-grid/);
 assert.match(styles, /body\.pension-page \.rt-back-home/);
 assert.match(pensionJs, /addEventListener\('beforeprint'/);
 
-assert.ok(index.includes('styles.css?v=36'), 'Main calculator must load v1.35 print stylesheet');
-assert.ok(index.includes('app.js?v=34'), 'Main calculator must load v1.35 app script');
+assert.ok(index.includes('styles.css?v=37'), 'Main calculator must load v1.35 print stylesheet');
+assert.ok(index.includes('app.js?v=35'), 'Main calculator must load v1.35 app script');
 assert.match(index, /id="print-report-version"/);
 assert.match(index, /Calculation logic: Version 1\.33/);
 assert.match(index, /id="print-report-generated"/);
@@ -137,3 +137,17 @@ assert.match(app, /setText\('print-report-generated'/);
 assert.match(styles, /footer\.rt-shell-footer::before/);
 assert.match(styles, /body\.payscale-main-page #gross-form/);
 assert.match(styles, /body\.payscale-main-page \.timeline-card,\s*html body\.payscale-main-page \.math-card/);
+
+assert.ok(index.includes('styles.css?v=37'), 'Main calculator must load v1.36 print stylesheet');
+assert.ok(index.includes('app.js?v=35'), 'Main calculator must load v1.36 app script');
+assert.ok(pension.includes('styles.css?v=37'), 'Pension page must load shared v1.36 stylesheet');
+assert.match(index, /id="print-report-grade"/);
+assert.match(index, /id="print-report-current"/);
+assert.match(index, /id="print-report-source"/);
+assert.match(app, /setText\('print-report-grade'/);
+assert.match(app, /setText\('print-report-current'/);
+assert.match(app, /setText\('print-report-source'/);
+assert.match(styles, /body\.payscale-main-page \.rt-shell-header/);
+assert.match(styles, /body\.payscale-main-page #salary-audit-summary/);
+assert.match(styles, /body\.payscale-main-page \.retirement-action/);
+assert.match(styles, /body\.payscale-main-page \.gross-form/);
