@@ -33,7 +33,7 @@ const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const pension = fs.readFileSync(path.join(root, 'pension.html'), 'utf8');
 const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
-assert.match(index, /release-meta\.js\?v=4/);
+assert.match(index, /release-meta\.js\?v=5/);
 assert.match(pension, /release-meta\.js\?v=4/);
 assert.match(index, /app\.js\?v=33/);
 assert.ok(pension.includes('retirement-data.js?v=5'));
@@ -53,7 +53,7 @@ assert.ok(pension.includes('styles.css?v=35'), 'Pension page must load the refre
 assert.match(index, /object-src 'none'/);
 assert.match(index, /সাম্প্রতিক হালনাগাদ/);
 assert.match(index, /সংশোধনী, ব্যাখ্যা বা বাস্তবায়ন নির্দেশ/);
-assert.match(index, /Version 1\.33/);
+assert.match(index, /Version 1\.34/);
 assert.match(pension, /class="pension-page"/);
 assert.ok(fs.existsSync(path.join(root, 'NotoSansBengali.ttf')), 'Missing bundled Bengali font');
 const styles = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
