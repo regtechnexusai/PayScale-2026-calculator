@@ -9,12 +9,12 @@
 .rt-translate-bar select {
   min-height:42px; max-width:100%; padding:8px 34px 8px 12px;
   border:1px solid #B9CAD8; border-radius:9px; background:#fff; color:#173B56;
-  font:600 14px/1.3 inherit;
+  font-family:inherit; font-size:14px; font-weight:600; line-height:1.3;
 }
 .rt-translate-button {
   min-height:42px; padding:9px 15px; border:1px solid #0956A8; border-radius:9px;
   background:linear-gradient(120deg,#102D4B,#0956A8); color:#fff;
-  font:700 14px/1.3 inherit; cursor:pointer;
+  font-family:inherit; font-size:14px; font-weight:700; line-height:1.3; cursor:pointer;
 }
 .rt-translate-button:hover { background:#0B6D83; border-color:#0B6D83; }
 .rt-translate-button:focus-visible,.rt-translate-bar select:focus-visible {
