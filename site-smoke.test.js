@@ -48,8 +48,8 @@ assert.ok(pension.includes('pension.js?v=13'));
   '<td>২৩ বছর</td><td>৮৩%</td>'
 ].forEach((row) => assert.ok(pension.includes(row), 'Missing Gazette rate row: ' + row));
 assert.ok(!pension.includes('<td>২৩ বছর</td><td>৮১%</td>'), 'Stale 23-year rate remains');
-assert.ok(index.includes('styles.css?v=35'), 'Main calculator must load the refreshed stylesheet');
-assert.ok(pension.includes('styles.css?v=35'), 'Pension page must load the refreshed stylesheet');
+assert.ok(index.includes('styles.css?v=36'), 'Main calculator must load the refreshed stylesheet');
+assert.ok(pension.includes('styles.css?v=36'), 'Pension page must load the refreshed stylesheet');
 assert.match(index, /object-src 'none'/);
 assert.match(index, /সাম্প্রতিক হালনাগাদ/);
 assert.match(index, /সংশোধনী, ব্যাখ্যা বা বাস্তবায়ন নির্দেশ/);
