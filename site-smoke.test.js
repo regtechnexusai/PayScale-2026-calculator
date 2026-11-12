@@ -35,7 +35,7 @@ const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
 assert.match(index, /release-meta\.js\?v=4/);
 assert.match(pension, /release-meta\.js\?v=4/);
-assert.match(index, /app\.js\?v=32/);
+assert.match(index, /app\.js\?v=33/);
 assert.ok(pension.includes('retirement-data.js?v=5'));
 assert.ok(pension.includes('pension.js?v=12'));
 [
