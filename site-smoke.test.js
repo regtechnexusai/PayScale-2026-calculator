@@ -34,7 +34,7 @@ const pension = fs.readFileSync(path.join(root, 'pension.html'), 'utf8');
 const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
 assert.match(index, /release-meta\.js\?v=1/);
-assert.match(pension, /release-meta\.js\?v=1/);
+assert.match(pension, /release-meta\.js\?v=2/);
 assert.match(index, /app\.js\?v=31/);
 assert.ok(pension.includes('retirement-data.js?v=3'));
 assert.ok(pension.includes('pension.js?v=10'));
@@ -52,7 +52,7 @@ assert.ok(index.includes('styles.css?v=32'), 'Main calculator must load the refr
 assert.ok(pension.includes('styles.css?v=32'), 'Pension page must load the refreshed stylesheet');
 assert.match(index, /object-src 'none'/);
 assert.match(index, /Version 1\.30/);
-assert.match(pension, /Version 1\.30/);
+assert.match(pension, /Version 1\.31/);
 assert.ok(fs.existsSync(path.join(root, 'NotoSansBengali.ttf')), 'Missing bundled Bengali font');
 const styles = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
 assert.ok(styles.includes('@media (max-width: 1100px)'), 'Compact viewport layout rules must be present');
