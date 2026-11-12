@@ -36,8 +36,8 @@ const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
 assert.match(index, /release-meta\.js\?v=1/);
 assert.match(pension, /release-meta\.js\?v=2/);
 assert.match(index, /app\.js\?v=31/);
-assert.ok(pension.includes('retirement-data.js?v=3'));
-assert.ok(pension.includes('pension.js?v=10'));
+assert.ok(pension.includes('retirement-data.js?v=4'));
+assert.ok(pension.includes('pension.js?v=11'));
 [
   '<td>১২ বছর</td><td>৪৩%</td>',
   '<td>১৩ বছর</td><td>৪৭%</td>',
@@ -48,8 +48,8 @@ assert.ok(pension.includes('pension.js?v=10'));
   '<td>২৩ বছর</td><td>৮৩%</td>'
 ].forEach((row) => assert.ok(pension.includes(row), 'Missing Gazette rate row: ' + row));
 assert.ok(!pension.includes('<td>২৩ বছর</td><td>৮১%</td>'), 'Stale 23-year rate remains');
-assert.ok(index.includes('styles.css?v=32'), 'Main calculator must load the refreshed stylesheet');
-assert.ok(pension.includes('styles.css?v=32'), 'Pension page must load the refreshed stylesheet');
+assert.ok(index.includes('styles.css?v=33'), 'Main calculator must load the refreshed stylesheet');
+assert.ok(pension.includes('styles.css?v=33'), 'Pension page must load the refreshed stylesheet');
 assert.match(index, /object-src 'none'/);
 assert.match(index, /Version 1\.30/);
 assert.match(pension, /Version 1\.31/);
@@ -78,12 +78,17 @@ assert.match(pension, /id="retirement-net-cap-status"/);
 assert.match(pension, /id="retirement-net-placeholder"/);
 assert.match(pension, /id="retirement-commutation"/);
 assert.match(pension, /Manual verification required/);
+assert.match(pension, /id="retirement-rate-table-note"/);
+assert.match(pension, /<td>২৩ বছর<\\/td><td>৮৩%<\\/td>/);
 assert.match(index, /id="gross-phase3-manual-other"/);
+assert.match(index, /id="gross-selection-note"/);
+assert.match(index, /গ্রেড ১৩–২০; প্রতিষ্ঠান থেকে lunch\\/free meal না পেলে/);
+assert.match(index, /গ্রেড ১১–১৩ এবং সিটি কর্পোরেশন এলাকায় প্রযোজ্য হলে/);
 assert.match(index, /id="gross-house-rule"/);
 assert.match(pension, /সমর্পণ: ৫০% ধরে/);
 assert.equal((pension.match(/id="print-pension-result"/g) || []).length, 1);
 assert.match(app, /pension\.html\?basic=.*phase1=.*phase2=.*phase3=/);
-assert.match(app, /as of ১৭ সেপ্টেম্বর ২০২৬/);
+assert.match(app, /arrearsBreakdownToDate/);
 assert.match(app, /arrearsPeriod\.fullMonths/);
 assert.match(index, /২ পূর্ণ মাস \+ ১৭ দিন/);
 assert.match(index, /id="open-retirement-benefits" class="secondary-button" href="pension\.html">পেনশন হিসাব খুলুন/);
