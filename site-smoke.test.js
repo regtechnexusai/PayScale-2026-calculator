@@ -125,3 +125,14 @@ assert.ok(pension.includes('pension.js?v=13'));
 assert.match(styles, /details\.retirement-reference\[open\] > \.retirement-reference-grid/);
 assert.match(styles, /body\.pension-page \.rt-back-home/);
 assert.match(pensionJs, /addEventListener\('beforeprint'/);
+
+assert.ok(index.includes('styles.css?v=36'), 'Main calculator must load v1.35 print stylesheet');
+assert.ok(index.includes('app.js?v=34'), 'Main calculator must load v1.35 app script');
+assert.match(index, /id="print-report-version"/);
+assert.match(index, /id="print-report-generated"/);
+assert.match(index, /শুধু নির্বাচিত ভাতাসহ/);
+assert.match(app, /setText\('print-report-version'/);
+assert.match(app, /setText\('print-report-generated'/);
+assert.match(styles, /footer\.rt-shell-footer::before/);
+assert.match(styles, /body\.payscale-main-page #gross-form/);
+assert.match(styles, /body\.payscale-main-page \.timeline-card,\s*html body\.payscale-main-page \.math-card/);
