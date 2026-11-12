@@ -30,6 +30,19 @@
     });
   }
 
+  /* Load the same Google Translate Website Element used by the FinTech Hub. */
+  if (!document.querySelector('script[data-regtech-google-translate="true"]')) {
+    var translateScript = document.createElement("script");
+    translateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    translateScript.async = true;
+    translateScript.dataset.regtechGoogleTranslate = "true";
+    translateScript.onerror = function () {
+      var host = document.getElementById("google_translate_element");
+      if (host) host.textContent = "Google Translate could not load. Please check your connection or browser content-blocking settings.";
+    };
+    document.head.appendChild(translateScript);
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initLanguagePreferences, { once: true });
   } else {
