@@ -8,7 +8,7 @@
     if (!host || !window.google || !window.google.translate) return;
 
     new window.google.translate.TranslateElement({
-      pageLanguage: "en",
+      pageLanguage: "bn",
       includedLanguages: "en,bn,zh-CN,ko,ja,es,fr,ar,hi,pt,id,ur",
       autoDisplay: false
     }, "google_translate_element");
