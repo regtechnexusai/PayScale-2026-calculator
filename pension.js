@@ -289,7 +289,7 @@ async function copyPensionResult() {
     'সীমা প্রয়োগের পর আনুমানিক নতুন নিট পেনশন: ' + (document.querySelector('#retirement-net-card')?.hidden ? 'প্রযোজ্য নয় — ইনপুট দেওয়া হয়নি' : document.querySelector('#retirement-net-result').textContent),
     'সমর্পণ: ' + (retirementCommutation?.selectedOptions?.[0]?.textContent || '৫০% সমর্পণ'),
     'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · Official Gazette PDF: ' + (window.RETIREMENT_RULES?.sourceUrl || 'https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf'),
-    'হার-তালিকা: ৫–২৫ বছরের গ্রস পেনশন হার ১৭ সেপ্টেম্বর ২০২৬-এর সরকারি গেজেটের দৃশ্যমান সারণির সঙ্গে মিলিয়ে নেওয়া হয়েছে; ব্যক্তিগত যোগ্য চাকরিকাল ও অবসর-যোগ্যতা অনুমোদিত নথি দিয়ে যাচাই করুন।',
+    'Manual verification required: ' + (window.RETIREMENT_RULES?.rateTableVerificationNote || 'সরকারি গেজেটের হার-তালিকা ও ব্যক্তিগত যোগ্যতা অনুমোদিত নথি দিয়ে যাচাই করুন.'),
     'পূর্ণ টাকায় হিসাব: সমর্পিত পেনশন পূর্ণ টাকায় নির্ধারণ করা হয়; অবশিষ্ট মাসিক পেনশন = গ্রস পেনশন − পূর্ণ টাকায় নির্ধারিত সমর্পিত পেনশন।',
     'Version: ' + (window.PAYSCALE_META?.version || '1.32'),
     document.querySelector('#retirement-audit-generated')?.textContent || ('হিসাবের সময়: ' + auditTimestamp()),
