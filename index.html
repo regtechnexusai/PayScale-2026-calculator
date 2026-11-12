@@ -25,7 +25,7 @@
     <meta name="twitter:title" content="PayScale 2026 Calculator | RegTech Nexus AI" />
     <meta name="twitter:description" content="Gazette-based Bangladesh basic-pay transition and conditional gross-salary review calculator." />
     <meta name="twitter:image" content="https://regtechnexusai.com/payscale-2026/payscale-2026-og.png" />
-    <link rel="stylesheet" href="styles.css?v=32" />
+    <link rel="stylesheet" href="styles.css?v=33" />
     <link rel="stylesheet" href="payscale-premium.css?v=1" />
     <link rel="stylesheet" href="redesign.css?v=15" />
     <link rel="stylesheet" href="/site-wide-shell.css?v=20261017-v2" />
@@ -77,7 +77,7 @@
       <section class="notice glass-card release-banner" role="note" aria-label="সাম্প্রতিক আপডেট" id="release-banner">
         <div class="notice-icon" aria-hidden="true">↗</div>
         <div>
-          <strong>সাম্প্রতিক আপডেট · Version 1.30</strong>
+          <strong>সাম্প্রতিক আপডেট · <span data-app-version>Version 1.32</span></strong>
           <p>পরবর্তী corrigendum, clarification বা implementation order প্রকাশিত হলে সরকারি নথিই অগ্রাধিকার পাবে। এই tool প্রয়োজন অনুযায়ী আপডেট করা হবে। <a href="changelog.html">পরিবর্তনের তালিকা দেখুন</a></p>
         </div>
       </section>
@@ -159,13 +159,13 @@
               <a href="https://www.payfixation.gov.bd/" target="_blank" rel="noopener">Official Pay Fixation portal</a>
               <a href="https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf" target="_blank" rel="noopener">Retirement Benefits Gazette PDF</a>
               <span>শেষ যাচাই: ২৪ সেপ্টেম্বর ২০২৬</span>
-            <span data-app-version>Version 1.30</span>
+            <span data-app-version>Version 1.32</span>
             </div>
         </div>
         <div class="update-note">
           <strong>সংশোধনী ও সংস্করণ</strong>
           <p>সরকারি corrigendum, clarification বা implementation order প্রকাশিত হলে সরকারি নথিই অগ্রাধিকার পাবে।</p>
-          <p class="change-log"><a href="changelog.html">v1.30-এর পরিবর্তনের তালিকা দেখুন</a></p>
+          <p class="change-log"><a href="changelog.html">v1.32-এর পরিবর্তনের তালিকা দেখুন</a></p>
         </div>
       </section>
 
@@ -175,7 +175,7 @@
           <p><strong>কার্যকর তারিখ:</strong> ১ জুলাই ২০২৬। পূর্ণ নতুন মূল বেতন ১ জুলাই ২০২৭ থেকে কার্যকর হওয়ার কথা।</p>
           <p><strong>পর্যায় ১:</strong> ১ জুলাই–৩১ ডিসেম্বর ২০২৬ সময়ে গ্রেড ১–৯-এর জন্য ৪০% এবং গ্রেড ১০–২০-এর জন্য ৫০% পার্থক্য যোগ করা হয়। দেখানো amount হলো বর্তমান মূল বেতনসহ ফলিত payable basic—শুধু increment নয়।</p>
           <p><strong>পর্যায় ২:</strong> ১ জানুয়ারি–৩০ জুন ২০২৭ সময়ে গ্রেড ১–৯-এর জন্য ৭০% এবং গ্রেড ১০–২০-এর জন্য ৭৫% cumulative পার্থক্য যোগ করা হয়। পূর্ণ নতুন basic ১ জুলাই ২০২৭ থেকে।</p>
-          <p><strong>বকেয়া:</strong> ১৭ সেপ্টেম্বর ২০২৬ তারিখে (as of) ১ জুলাই ২০২৬ থেকে basic-pay arrears-এর review estimate দেখানো হয়। এই release-এ ২ পূর্ণ মাস + ১৭ দিন ধরা হয়েছে; অবশিষ্ট ১৭ দিন ৩০ দিনের মাস ধরে prorate করা হয়েছে। এটি official month-wise arrears statement নয়।</p>
+          <p id="arrears-source-summary"><strong>বকেয়া:</strong> হিসাবের তারিখ পর্যন্ত ১ জুলাই ২০২৬ থেকে প্রযোজ্য পর্যায়ভিত্তিক মূল বেতন বৃদ্ধির review estimate দেখানো হয়। প্রতিটি পর্যায়ের পূর্ণ মাস ও অবশিষ্ট দিন ৩০ দিনের মাস ধরে আনুপাতিকভাবে গণনা করা হয়। এটি official month-wise arrears statement নয়।</p>
           <p><strong>নির্ধারিত বেতন:</strong> গ্রেড ১-এর ৳ ১,৫৬,০০০ এবং গেজেটে উল্লেখিত সচিব পর্যায়ের নির্ধারিত পদগুলোতে interim শতাংশ প্রযোজ্য নয়।</p>
           <p><strong>পদ্ধতি:</strong> Article 5 অনুযায়ী বর্তমান বেতন ও পুরোনো প্রারম্ভিক ধাপের পার্থক্য নতুন স্কেলের প্রারম্ভিক ধাপে যোগ করা হয়; ফল ধাপে না মিললে একবার পরবর্তী উচ্চতর ধাপ নেওয়া হয়। এরপর ১ জুলাই ২০২৬-এ Article 9(2)-এর ১টি annual increment এবং ১ জুলাই ২০২৭-এর full-pay stage-এ পরবর্তী annual increment ধরা হয়—এগুলো arbitrary “Step 5/Step 6” নয়। পর্যায় ১/২-এর হার ২০২৬-এর increment-inclusive transition basic-এর পার্থক্যের উপর প্রয়োগ করা হয়।</p>
           <p><strong>পৃথক pay order:</strong> Public Bodies ও রাষ্ট্রায়ত্ত প্রতিষ্ঠান—S.R.O. No. 348-Law/2026; ব্যাংক, বিমা ও আর্থিক প্রতিষ্ঠান—S.R.O. No. 349-Law/2026; বাংলাদেশ পুলিশ—S.R.O. No. 350-Law/2026; BGB—S.R.O. No. 351-Law/2026।</p>
@@ -351,7 +351,7 @@
                 <small id="phase3-increment">বার্ষিক increment প্রযোজ্য হতে পারে</small>
               </div>
             </div>
-            <p class="arrears-note" id="arrears-note">১৭ সেপ্টেম্বর ২০২৬ তারিখে (as of) basic-pay arrears এখানে review-support estimate হিসেবে দেখানো হবে; ২ পূর্ণ মাস + ১৭ দিন, অবশিষ্ট দিন ৩০ দিনের মাস ধরে prorate করা হবে।</p>
+            <p class="arrears-note" id="arrears-note">হিসাবের তারিখ পর্যন্ত ১ জুলাই ২০২৬ থেকে প্রযোজ্য পর্যায়ভিত্তিক মূল বেতন বৃদ্ধির আনুমানিক বকেয়া দেখানো হবে; অবশিষ্ট দিন ৩০ দিনের মাস ধরে আনুপাতিকভাবে গণনা করা হবে।</p>
           </div>
 
           <div class="result-disclaimer result-block" hidden>
@@ -374,7 +374,7 @@
             <span id="salary-audit-grade">গ্রেড: —</span>
             <span id="salary-audit-current">বর্তমান মূল বেতন: —</span>
             <span id="salary-audit-source">সূত্র: S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026) · Bangladesh Gazette, Extra, ১৭ সেপ্টেম্বর ২০২৬</span>
-          <span id="salary-audit-version">Version 1.30</span>
+          <span id="salary-audit-version">Version 1.32</span>
             <span id="salary-audit-generated">হিসাবের সময়: —</span>
           </div>
 
@@ -466,8 +466,8 @@
           <div class="conditional-panel">
             <div class="conditional-heading"><strong>শর্তসাপেক্ষ অন্যান্য ভাতা</strong><span>নিশ্চিত হলে টিক দিন</span></div>
             <div class="conditional-grid">
-              <label class="check-card compact"><input type="checkbox" id="tiffin-eligible" /><span><strong>টিফিন ভাতা · ৳৫০০</strong><small>গ্রেড ১১–২০; প্রতিষ্ঠান থেকে lunch/free meal না পেলে।</small></span></label>
-              <label class="check-card compact"><input type="checkbox" id="travel-eligible" /><span><strong>যাতায়াত ভাতা · ৳৬০০</strong><small>গ্রেড ১১–২০ এবং সিটি কর্পোরেশন এলাকায় প্রযোজ্য হলে।</small></span></label>
+              <label class="check-card compact"><input type="checkbox" id="tiffin-eligible" /><span><strong>টিফিন ভাতা · ৳৫০০</strong><small>গ্রেড ১৩–২০; প্রতিষ্ঠান থেকে lunch/free meal না পেলে।</small></span></label>
+              <label class="check-card compact"><input type="checkbox" id="travel-eligible" /><span><strong>যাতায়াত ভাতা · ৳৬০০</strong><small>গ্রেড ১১–১৩ এবং সিটি কর্পোরেশন এলাকায় প্রযোজ্য হলে।</small></span></label>
               <label class="check-card compact"><input type="checkbox" id="haor-eligible" /><span><strong>হাওড়/দ্বীপচর ভাতা</strong><small>মূল বেতনের ২০%, সর্বোচ্চ ৳৫,০০০; শর্তসাপেক্ষ।</small></span></label>
               <label class="check-card compact"><input type="checkbox" id="training-eligible" /><span><strong>প্রশিক্ষণ প্রতিষ্ঠান ভাতা</strong><small>গ্রেড ১–৯-এর যোগ্য কর্মী প্রশিক্ষণে প্রেষণে থাকলে মূল বেতনের ১০%।</small></span></label>
             </div>
@@ -503,6 +503,8 @@
           </div>
         </form>
 
+        <p class="gross-selection-note" id="gross-selection-note" role="note">অনির্বাচিত শর্তসাপেক্ষ ভাতা এই preview-তে অন্তর্ভুক্ত নয়। তাই মোট অঙ্কটি মূল বেতন + নির্বাচিত ভাতার হিসাব; সব প্রাপ্য ভাতা যাচাই না করে একে পূর্ণ মোট বেতন হিসেবে ধরবেন না।</p>
+
         <div class="gross-summary-grid">
           <article class="gross-total-card phase-one"><span>পর্যায় ১ · জুলাই–ডিসেম্বর ২০২৬</span><strong id="gross-phase1-total">—</strong><small id="gross-phase1-meta">প্রথম অন্তর্বর্তী মূল বেতনসহ</small></article>
           <article class="gross-total-card phase-two"><span>পর্যায় ২ · জানুয়ারি–জুন ২০২৭</span><strong id="gross-phase2-total">—</strong><small id="gross-phase2-meta">দ্বিতীয় অন্তর্বর্তী মূল বেতনসহ</small></article>
@@ -527,12 +529,12 @@
               <tr><td>প্রশিক্ষণ প্রতিষ্ঠান</td><td id="gross-phase1-training">—</td><td id="gross-phase2-training">—</td><td id="gross-phase3-training">—</td></tr>
               <tr><td>বিশেষ-প্রয়োজন child</td><td id="gross-phase1-special-child">—</td><td id="gross-phase2-special-child">—</td><td id="gross-phase3-special-child">—</td></tr>
               <tr><td>অন্যান্য manual</td><td id="gross-phase1-manual-other">—</td><td id="gross-phase2-manual-other">—</td><td id="gross-phase3-manual-other">—</td></tr>
-              <tr class="gross-total-row"><td>আনুমানিক Gross Salary</td><td id="gross-phase1-total-row">—</td><td id="gross-phase2-total-row">—</td><td id="gross-phase3-total-row">—</td></tr>
+              <tr class="gross-total-row"><td>নির্বাচিত ভাতাসহ আনুমানিক মোট</td><td id="gross-phase1-total-row">—</td><td id="gross-phase2-total-row">—</td><td id="gross-phase3-total-row">—</td></tr>
             </tbody>
           </table>
         </div>
         <p class="field-help gross-house-rule" id="gross-house-rule">বাড়িভাড়া rule: ২০১৫ schedule-এর basic-pay band ও duty station অনুযায়ী rate/minimum; ৩১ ডিসেম্বর ২০২৭ পর্যন্ত।</p>
-        <p class="gross-footnote" id="gross-footnote">চূড়ান্ত gross salary নির্ভর করবে আপনার pay order, পদ, কর্মস্থল, সরকারি বাসস্থান, যোগ্যতা ও অফিসের অনুমোদনের উপর।</p>
+        <p class="gross-footnote" id="gross-footnote">চূড়ান্ত মোট বেতন নির্ভর করবে আপনার pay order, পদ, কর্মস্থল, সরকারি বাসস্থান, যোগ্যতা ও অফিসের অনুমোদনের উপর।</p>
       </section>
 
       <section class="scale-section glass-card" aria-labelledby="scale-title">
@@ -632,7 +634,7 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite" hidden>ফলাফল কপি হয়েছে</div>
     <script src="scale-data.js?v=3"></script>
-    <script src="release-meta.js?v=1"></script>
-    <script src="app.js?v=31"></script>
+    <script src="release-meta.js?v=3"></script>
+    <script src="app.js?v=32"></script>
   </body>
 </html>

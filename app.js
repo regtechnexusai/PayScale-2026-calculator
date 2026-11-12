@@ -1,7 +1,7 @@
 /*
  * PayScale 2026 Calculator
  * Source: Bangladesh Gazette, Extra, 17 September 2026, Finance Division,
- * S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026). Version 1.30.
+ * S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026). Version 1.32.
  *
  * Scale steps are kept in scale-data.js as the single source of truth.
  * Update that file and run the regression tests if an official correction
@@ -108,17 +108,46 @@ function phaseRates(grade) {
   return grade <= 9 ? { phase1: 40, phase2: 70 } : { phase1: 50, phase2: 75 };
 }
 
-function arrearsBreakdownToGazetteDate() {
-  const start = Date.UTC(2026, 6, 1);
-  const end = Date.UTC(2026, 8, 17);
-  const totalDays = Math.floor((end - start) / 86400000) + 1;
-  // Publish the convention explicitly: two completed calendar months plus
-  // the 17 September partial month, prorated over a 30-day month. This avoids
-  // presenting all 79 calendar days as 79/30 months.
+function monthDayBreakdown(startUtc, endExclusiveUtc) {
+  if (endExclusiveUtc <= startUtc) return { fullMonths: 0, remainingDays: 0, totalDays: 0 };
+  const dayMs = 86400000;
+  let fullMonths = (new Date(endExclusiveUtc).getUTCFullYear() - new Date(startUtc).getUTCFullYear()) * 12
+    + (new Date(endExclusiveUtc).getUTCMonth() - new Date(startUtc).getUTCMonth());
+  let monthAnchor = Date.UTC(
+    new Date(startUtc).getUTCFullYear(),
+    new Date(startUtc).getUTCMonth() + fullMonths,
+    new Date(startUtc).getUTCDate()
+  );
+  if (monthAnchor > endExclusiveUtc) {
+    fullMonths -= 1;
+    monthAnchor = Date.UTC(
+      new Date(startUtc).getUTCFullYear(),
+      new Date(startUtc).getUTCMonth() + fullMonths,
+      new Date(startUtc).getUTCDate()
+    );
+  }
+  const remainingDays = Math.max(0, Math.round((endExclusiveUtc - monthAnchor) / dayMs));
   return {
-    totalDays,
-    fullMonths: 2,
-    remainingDays: 17,
+    fullMonths,
+    remainingDays,
+    totalDays: Math.max(0, Math.round((endExclusiveUtc - startUtc) / dayMs))
+  };
+}
+
+function arrearsBreakdownToDate() {
+  const now = new Date();
+  const todayUtc = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  const endExclusive = todayUtc + 86400000;
+  const start = Date.UTC(2026, 6, 1);
+  const phase2Start = Date.UTC(2027, 0, 1);
+  const phase1End = Math.min(endExclusive, phase2Start);
+  const phase1 = monthDayBreakdown(start, phase1End);
+  const phase2 = monthDayBreakdown(phase2Start, endExclusive);
+  return {
+    asOfDate: new Date(todayUtc).toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' }),
+    totalDays: Math.max(0, Math.round((endExclusive - start) / 86400000)),
+    phase1,
+    phase2
   };
 }
 
@@ -176,8 +205,9 @@ function houseRentBand(basic) {
 }
 
 function houseRentRateMinimum(basic, station) {
-  // Article 15(1) keeps the 2015 house-rent schedule through 31 Dec 2027.
-  // The 2026 schedule starts on 1 Jan 2028, outside these three phases.
+  // S.R.O. 347/2026 Article 15(1) retains the existing 2015 house-rent
+  // schedule through 31 Dec 2027. The revised 2026 schedule starts on
+  // 1 Jan 2028 and must not be applied to the three current phases.
   const stationRates = {
     dhaka: {
       low: [65, 5600], mid: [60, 6400], high: [55, 9600], top: [50, 19500]
@@ -212,8 +242,8 @@ function grossAssumptionSummary(grade) {
   const education = Math.min(2, Number(grossInput('education-children').value || 0)) * 500;
   const mobile = grossInput('mobile-eligible').checked ? (grade <= 5 ? 500 : 150) : 0;
   const fixed = [
-    grossInput('tiffin-eligible').checked && grade >= 11 ? 'টিফিন ৳ ৫০০' : '',
-    grossInput('travel-eligible').checked && grade >= 11 && station !== 'other' ? 'যাতায়াত ৳ ৬০০' : '',
+    grossInput('tiffin-eligible').checked && grade >= 13 ? 'টিফিন ৳ ৫০০' : '',
+    grossInput('travel-eligible').checked && grade >= 11 && grade <= 13 && station !== 'other' ? 'যাতায়াত ৳ ৬০০' : '',
     grossInput('washing-eligible').checked ? 'ধোলাই ৳ ৩০০' : '',
     'মোবাইল ' + money(mobile),
     medical,
@@ -286,13 +316,12 @@ function clearGrossOutput() {
 }
 
 function updateAllowanceAvailability(grade) {
-  const gradeBased = ['tiffin-eligible', 'travel-eligible'];
-  gradeBased.forEach((id) => {
-    const input = grossInput(id);
-    const eligible = grade >= 11;
-    input.disabled = !eligible;
-    if (!eligible) input.checked = false;
-  });
+  const tiffin = grossInput('tiffin-eligible');
+  tiffin.disabled = grade < 13;
+  if (tiffin.disabled) tiffin.checked = false;
+  const travel = grossInput('travel-eligible');
+  travel.disabled = grade < 11 || grade > 13;
+  if (travel.disabled) travel.checked = false;
   const training = grossInput('training-eligible');
   training.disabled = grade > 9;
   if (grade > 9) training.checked = false;
@@ -345,11 +374,11 @@ function renderGrossSalary() {
   const medicalEligible = grossInput('medical-eligible').checked;
   const medical = medicalEligible ? (grossInput('medical-band').value === 'over50' ? 4000 : 3000) : 0;
   const education = Math.min(2, Number(grossInput('education-children').value || 0)) * 500;
-  const tiffin = grossInput('tiffin-eligible').checked && grade >= 11 ? 500 : 0;
+  const tiffin = grossInput('tiffin-eligible').checked && grade >= 13 ? 500 : 0;
   const mobile = grossInput('mobile-eligible').checked ? (grade <= 5 ? 500 : 150) : 0;
   const washing = grossInput('washing-eligible').checked ? 300 : 0;
   const station = grossInput('duty-station').value;
-  const travel = grossInput('travel-eligible').checked && grade >= 11 && station !== 'other' ? 600 : 0;
+  const travel = grossInput('travel-eligible').checked && grade >= 11 && grade <= 13 && station !== 'other' ? 600 : 0;
   const specialChild = Math.min(2, Number(grossInput('special-child-count').value || 0)) * 3000;
   const otherManual = parseMoney(grossInput('other-allowance').value) || 0;
   const hillMode = grossInput('hill-allowance').value;
@@ -368,11 +397,11 @@ function renderGrossSalary() {
   });
 
   phases.forEach((values, index) => setGrossPhase(index + 1, values));
-  setText('gross-phase1-meta', 'মূল বেতন + নির্বাচিত ভাতা');
-  setText('gross-phase2-meta', 'মূল বেতন + নির্বাচিত ভাতা');
-  setText('gross-phase3-meta', 'মূল বেতন + নির্বাচিত ভাতা');
+  setText('gross-phase1-meta', 'মূল বেতন + নির্বাচিত ভাতা; অনির্বাচিত ভাতা বাদ');
+  setText('gross-phase2-meta', 'মূল বেতন + নির্বাচিত ভাতা; অনির্বাচিত ভাতা বাদ');
+  setText('gross-phase3-meta', 'মূল বেতন + নির্বাচিত ভাতা; অনির্বাচিত ভাতা বাদ');
   setText('gross-house-rule', 'বাড়িভাড়া rule: Article 15(1) অনুযায়ী ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ schedule; rate/minimum grade নয়, প্রতিটি phase-এর basic-pay band ও duty station অনুযায়ী। ১ জানুয়ারি ২০২৮-এর নতুন হার এই preview-তে আগাম প্রয়োগ করা হয়নি।');
-  setText('gross-footnote', 'এটি official pay fixation নয়—review-support estimate। সরকারি বাসস্থান থাকলে বাড়িভাড়া বাদ। চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল, ধোলাই এবং শর্তসাপেক্ষ ভাতার checkbox-গুলি বাস্তব eligibility ও authorised record অনুযায়ী ঠিক করুন।');
+  setText('gross-footnote', 'এটি চূড়ান্ত মোট বেতন বা official pay fixation নয়—শুধু মূল বেতন ও নির্বাচিত ভাতার review-support estimate। অনির্বাচিত ভাতা মোট অঙ্কে অন্তর্ভুক্ত নয়। সরকারি বাসস্থান থাকলে বাড়িভাড়া বাদ; চিকিৎসা, শিক্ষা সহায়তা, টিফিন, মোবাইল, ধোলাই এবং শর্তসাপেক্ষ ভাতার যোগ্যতা অনুমোদিত নথি দিয়ে যাচাই করুন।');
 }
 
 function calculate(showErrors = false) {
@@ -452,11 +481,12 @@ function calculate(showErrors = false) {
   const phase1Increment = isFixed ? null : phase1Pay - current;
   const phase2Increment = isFixed ? null : phase2Pay - current;
   const phase3Pay = fullBasic;
-  const arrearsPeriod = arrearsBreakdownToGazetteDate();
-  const arrearsMonthlyIncrease = isFixed ? totalIncrease : phase1Increment;
+  const arrearsPeriod = arrearsBreakdownToDate();
+  const arrearsPhase1Increase = isFixed ? totalIncrease : phase1Increment;
+  const arrearsPhase2Increase = isFixed ? totalIncrease : phase2Increment;
   const arrearsEstimate = Math.round(
-    arrearsMonthlyIncrease * arrearsPeriod.fullMonths +
-    arrearsMonthlyIncrease * arrearsPeriod.remainingDays / 30
+    arrearsPhase1Increase * (arrearsPeriod.phase1.fullMonths + arrearsPeriod.phase1.remainingDays / 30) +
+    arrearsPhase2Increase * (arrearsPeriod.phase2.fullMonths + arrearsPeriod.phase2.remainingDays / 30)
   );
   const percent = current ? (totalIncrease / current) * 100 : 0;
 
@@ -484,7 +514,7 @@ function calculate(showErrors = false) {
   setText('phase3-monthly', money(phase3Pay));
   setText('phase3-amount-label', isFixed ? 'স্থির নির্ধারিত বেতন' : 'পূর্ণ মূল বেতন');
   setText('phase3-increment', isFixed ? 'অন্তর্বর্তী শতাংশ প্রযোজ্য নয়' : '২০২৬ ও ২০২৭-এর প্রযোজ্য annual increment অন্তর্ভুক্ত');
-  setText('arrears-note', 'আনুমানিক basic-pay arrears (as of ১৭ সেপ্টেম্বর ২০২৬): ' + money(arrearsEstimate) + ' (' + toBn(arrearsPeriod.fullMonths) + ' পূর্ণ মাস + ' + toBn(arrearsPeriod.remainingDays) + ' দিন; অবশিষ্ট দিন ৩০ দিনের মাস ধরে prorate করা হয়েছে)। এটি allowances, কর্তন বা অফিসিয়াল arrears statement নয়।');
+  setText('arrears-note', 'হিসাবের তারিখ ' + arrearsPeriod.asOfDate + ' পর্যন্ত আনুমানিক মূল বেতন বকেয়া: ' + money(arrearsEstimate) + '। ১ জুলাই–৩১ ডিসেম্বর ২০২৬ পর্যায়: ' + toBn(arrearsPeriod.phase1.fullMonths) + ' পূর্ণ মাস + ' + toBn(arrearsPeriod.phase1.remainingDays) + ' দিন; ১ জানুয়ারি ২০২৭ থেকে পরবর্তী পর্যায়: ' + toBn(arrearsPeriod.phase2.fullMonths) + ' পূর্ণ মাস + ' + toBn(arrearsPeriod.phase2.remainingDays) + ' দিন। অবশিষ্ট দিন ৩০ দিনের মাস ধরে আনুপাতিকভাবে গণনা করা হয়েছে। এটি ভাতা, কর্তন বা অফিসিয়াল বকেয়া বিবরণী নয়।');
   setText('old-min-label', isFixed ? 'পুরোনো স্কেলের ধাপ' : 'পুরোনো স্কেলের প্রারম্ভিক ধাপ');
   setText('difference-label', isFixed ? 'স্থির বেতন − বর্তমান মূল বেতন' : 'বর্তমান বেতন − প্রারম্ভিক ধাপ');
   setText('candidate-label', isFixed ? 'স্থির বেতন পদ' : 'নতুন প্রারম্ভিক ধাপ + পার্থক্য');
@@ -499,14 +529,14 @@ function calculate(showErrors = false) {
   setText('salary-audit-grade', isFixed ? 'ধরন: স্থির বেতন' : 'গ্রেড: ' + toBn(grade));
   setText('salary-audit-current', 'বর্তমান মূল বেতন: ' + money(current));
   setText('salary-audit-source', 'সূত্র: S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026) · Bangladesh Gazette, Extra, ১৭ সেপ্টেম্বর ২০২৬');
-  setText('salary-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.30'));
+  setText('salary-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.32'));
   setText('salary-audit-generated', 'হিসাবের সময়: ' + auditTimestamp());
   if (resultLiveSummary) {
     resultLiveSummary.textContent = (isFixed ? 'স্থির নির্ধারিত বেতন ' : 'গ্রেড ' + toBn(grade) + ' এর হিসাব সম্পন্ন। ') +
       '১ জুলাই ২০২৬ থেকে ' + money(phase1Pay) + ', ১ জানুয়ারি ২০২৭ থেকে ' + money(phase2Pay) + ', এবং ১ জুলাই ২০২৭ থেকে ' + money(phase3Pay) + ' প্রাপ্য মূল বেতন।';
   }
 
-  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, payFixationBasic: applied, annualIncrementBasic, fullBasic, annualIncrement: annualIncrementBasic - applied, secondAnnualIncrement: fullBasic - annualIncrementBasic, transitionIncrease, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, arrearsDays: arrearsPeriod.totalDays, arrearsFullMonths: arrearsPeriod.fullMonths, arrearsRemainingDays: arrearsPeriod.remainingDays, arrearsEstimate, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
+  window.lastCalculation = { grade, current, oldMinimum, difference, candidate, applied, payFixationBasic: applied, annualIncrementBasic, fullBasic, annualIncrement: annualIncrementBasic - applied, secondAnnualIncrement: fullBasic - annualIncrementBasic, transitionIncrease, totalIncrease, phase1Pay, phase2Pay, phase3Pay, phase1Increment, phase2Increment, arrearsAsOfDate: arrearsPeriod.asOfDate, arrearsDays: arrearsPeriod.totalDays, arrearsPhase1: arrearsPeriod.phase1, arrearsPhase2: arrearsPeriod.phase2, arrearsEstimate, phase1Rate: rates.phase1, phase2Rate: rates.phase2, fixed: isFixed };
   if (openRetirementBenefits) {
     openRetirementBenefits.href = 'pension.html?basic=' + encodeURIComponent(fullBasic) + '&phase1=' + encodeURIComponent(phase1Pay) + '&phase2=' + encodeURIComponent(phase2Pay) + '&phase3=' + encodeURIComponent(phase3Pay) + '&grade=' + encodeURIComponent(grade);
   }
@@ -592,7 +622,7 @@ document.querySelector('#copy-result').addEventListener('click', async () => {
     '১ জুলাই–৩১ ডিসেম্বর ২০২৬: ' + money(result.phase1Pay),
     '১ জানুয়ারি–৩০ জুন ২০২৭: ' + money(result.phase2Pay),
     '১ জুলাই ২০২৭ থেকে: ' + money(result.phase3Pay),
-    'আনুমানিক Basic-pay arrears (as of ১৭ সেপ্টেম্বর ২০২৬): ' + money(result.arrearsEstimate) + ' · ' + toBn(result.arrearsFullMonths) + ' পূর্ণ মাস + ' + toBn(result.arrearsRemainingDays) + ' দিন; অবশিষ্ট দিন ৩০ দিনের মাস ধরে prorate',
+    'হিসাবের তারিখ ' + result.arrearsAsOfDate + ' পর্যন্ত আনুমানিক মূল বেতন বকেয়া: ' + money(result.arrearsEstimate) + ' · পর্যায় ১: ' + toBn(result.arrearsPhase1.fullMonths) + ' মাস + ' + toBn(result.arrearsPhase1.remainingDays) + ' দিন; পর্যায় ২: ' + toBn(result.arrearsPhase2.fullMonths) + ' মাস + ' + toBn(result.arrearsPhase2.remainingDays) + ' দিন; অবশিষ্ট দিন ৩০ দিনের মাস ধরে prorate',
     'Gross profile: ' + profile.sro,
     'আনুমানিক Gross Salary (পর্যায় ৩): ' + (grossAutomatic ? grossTotal : 'স্বয়ংক্রিয়ভাবে গণনা করা হয়নি'),
     grossAutomatic ? 'Gross assumptions: ' + grossAssumptionSummary(result.grade) : 'Gross note: সংশ্লিষ্ট pay order/স্থির পদের ভাতা আলাদা করে যাচাই করতে হবে।',

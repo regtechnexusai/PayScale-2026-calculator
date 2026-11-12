@@ -20,11 +20,11 @@
     <meta name="twitter:image" content="https://regtechnexusai.com/payscale-2026/payscale-2026-og.png" />
     <title>পেনশন ও অবসর সুবিধার হিসাব | RegTech Nexus AI</title>
     <link rel="icon" href="regtech-nexus-ai-logo.png" type="image/png" />
-    <link rel="stylesheet" href="styles.css?v=32" />
+    <link rel="stylesheet" href="styles.css?v=33" />
     <link rel="stylesheet" href="/site-wide-shell.css?v=20261017-v2" />
     <script src="/site-wide-shell.js?v=20261017-v2" defer></script>
   </head>
-  <body>
+  <body class="pension-page">
     <div class="orb orb-one" aria-hidden="true"></div>
     <div class="orb orb-two" aria-hidden="true"></div>
 
@@ -67,7 +67,7 @@
 
         <div class="compliance-note" role="note">
           <strong>Manual verification required</strong>
-          <p>৫–২৫ বছরের gross-pension rate table সরকারি গেজেটের rendered table-এর সঙ্গে মিলিয়ে হালনাগাদ করা হয়েছে। তবে individual qualifying service, retirement eligibility ও authorised pension office record দিয়ে যাচাই করতে হবে।</p>
+          <p id="retirement-rate-table-note">৫–২৪ বছরের প্রতিটি হার এবং ২৫ বছর বা তদূর্ধ্বের ৯০% হার ১৭ সেপ্টেম্বর ২০২৬-এর সরকারি গেজেটের পৃষ্ঠা ২৫৩২৩–২৫৩২৪-এর দৃশ্যমান সারণির সঙ্গে মিলিয়ে যাচাই করা হয়েছে; ব্যক্তিগত যোগ্য চাকরিকাল, অবসর-যোগ্যতা ও অনুমোদিত পেনশন অফিসের নথি আলাদাভাবে যাচাই করতে হবে।</p>
           <p>সমর্পিত pension whole taka-য় round করা হয়; অবশিষ্ট মাসিক pension = gross pension − rounded surrendered pension। তাই অর্ধেকের exact decimal থাকলে দুইটি displayed whole-taka amount-এর যোগফলে rounding-এর প্রভাব থাকতে পারে।</p>
         </div>
 
@@ -152,7 +152,7 @@
           <span id="retirement-audit-net">বর্তমান net pension: দেওয়া হয়নি</span>
           <span id="retirement-audit-commutation">সমর্পণ: ৫০% ধরে</span>
           <span id="retirement-audit-source">সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · official PDF</span>
-          <span id="retirement-audit-version">Version 1.31</span>
+          <span id="retirement-audit-version">Version 1.32</span>
           <span id="retirement-audit-generated">হিসাবের সময়: —</span>
         </div>
 
@@ -228,8 +228,8 @@
     </main>
 
     <div class="toast" id="pension-toast" role="status" aria-live="polite" hidden>পেনশন ফলাফল কপি হয়েছে</div>
-    <script src="retirement-data.js?v=3"></script>
-    <script src="release-meta.js?v=2"></script>
-    <script src="pension.js?v=10"></script>
+    <script src="retirement-data.js?v=4"></script>
+    <script src="release-meta.js?v=3"></script>
+    <script src="pension.js?v=11"></script>
   </body>
 </html>
