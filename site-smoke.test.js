@@ -36,8 +36,8 @@ const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
 assert.match(index, /release-meta\.js\?v=3/);
 assert.match(pension, /release-meta\.js\?v=3/);
 assert.match(index, /app\.js\?v=32/);
-assert.ok(pension.includes('retirement-data.js?v=4'));
-assert.ok(pension.includes('pension.js?v=11'));
+assert.ok(pension.includes('retirement-data.js?v=5'));
+assert.ok(pension.includes('pension.js?v=12'));
 [
   '<td>১২ বছর</td><td>৪৩%</td>',
   '<td>১৩ বছর</td><td>৪৭%</td>',
@@ -48,8 +48,8 @@ assert.ok(pension.includes('pension.js?v=11'));
   '<td>২৩ বছর</td><td>৮৩%</td>'
 ].forEach((row) => assert.ok(pension.includes(row), 'Missing Gazette rate row: ' + row));
 assert.ok(!pension.includes('<td>২৩ বছর</td><td>৮১%</td>'), 'Stale 23-year rate remains');
-assert.ok(index.includes('styles.css?v=33'), 'Main calculator must load the refreshed stylesheet');
-assert.ok(pension.includes('styles.css?v=33'), 'Pension page must load the refreshed stylesheet');
+assert.ok(index.includes('styles.css?v=34'), 'Main calculator must load the refreshed stylesheet');
+assert.ok(pension.includes('styles.css?v=34'), 'Pension page must load the refreshed stylesheet');
 assert.match(index, /object-src 'none'/);
 assert.match(index, /সাম্প্রতিক হালনাগাদ/);
 assert.match(index, /সংশোধনী, ব্যাখ্যা বা বাস্তবায়ন নির্দেশ/);
@@ -81,20 +81,23 @@ assert.match(pension, /id="retirement-net-placeholder"/);
 assert.match(pension, /id="retirement-commutation"/);
 assert.match(pension, /Manual verification required/);
 assert.match(pension, /id="retirement-rate-table-note"/);
+assert.match(pension, /retirement-reference-grid/);
+assert.match(styles, /html body\.pension-page footer\.rt-shell-footer/);
+assert.doesNotMatch(styles, /#retirement-form, \.retirement-reference,/);
 assert.ok(pension.includes('<td>২৩ বছর</td><td>৮৩%</td>'));
 assert.match(index, /id="gross-phase3-manual-other"/);
 assert.match(index, /id="gross-selection-note"/);
 assert.ok(index.includes('গ্রেড ১৩–২০; প্রতিষ্ঠান থেকে lunch/free meal না পেলে।'));
-assert.match(index, /গ্রেড ১১–১৩ এবং সিটি কর্পোরেশন এলাকায় প্রযোজ্য হলে/);
+assert.match(index, /গ্রেড ১১–২০; সিটি কর্পোরেশন এলাকায় কর্মস্থল হলে/);
 assert.match(index, /id="gross-house-rule"/);
 assert.match(pension, /সমর্পণ: ৫০% ধরে/);
 assert.equal((pension.match(/id="print-pension-result"/g) || []).length, 1);
 assert.match(app, /pension\.html\?basic=.*phase1=.*phase2=.*phase3=/);
 assert.match(app, /arrearsBreakdownToDate/);
-assert.match(app, /grade >= 11 && grade <= 13 && station !== 'other'/);
+assert.match(app, /grade >= 11 && grade <= 20 && station !== 'other'/);
 assert.match(app, /tiffin\.disabled = grade < 13/);
 assert.match(app, /travel\.disabled = grade < 11 \|\| grade > 13/);
-assert.match(app, /grade >= 11 && grade <= 13 && station !== 'other'/);
+assert.match(app, /grade >= 11 && grade <= 20 && station !== 'other'/);
 assert.match(app, /arrearsPeriod\.phase1\.fullMonths/);
 assert.ok(!index.includes('২ পূর্ণ মাস + ১৭ দিন'));
 assert.match(index, /id="open-retirement-benefits" class="secondary-button" href="pension\.html">পেনশন হিসাব খুলুন/);
