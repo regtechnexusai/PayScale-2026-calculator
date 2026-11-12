@@ -35,7 +35,7 @@ const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
 assert.match(index, /release-meta\.js\?v=5/);
 assert.match(pension, /release-meta\.js\?v=5/);
-assert.match(index, /app\.js\?v=33/);
+assert.match(index, /app\.js\?v=34/);
 assert.ok(pension.includes('retirement-data.js?v=5'));
 assert.ok(pension.includes('pension.js?v=13'));
 [
@@ -53,7 +53,7 @@ assert.ok(pension.includes('styles.css?v=36'), 'Pension page must load the refre
 assert.match(index, /object-src 'none'/);
 assert.match(index, /সাম্প্রতিক হালনাগাদ/);
 assert.match(index, /সংশোধনী, ব্যাখ্যা বা বাস্তবায়ন নির্দেশ/);
-assert.match(index, /Version 1\.34/);
+assert.match(index, /Version 1\.35/);
 assert.match(pension, /class="pension-page"/);
 assert.ok(fs.existsSync(path.join(root, 'NotoSansBengali.ttf')), 'Missing bundled Bengali font');
 const styles = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
@@ -120,7 +120,7 @@ assert.doesNotMatch(index, /<section class="results"[^>]*aria-live=/);
 
 console.log(`Passed static site smoke test across ${fs.readdirSync(root).filter((file) => file.endsWith('.html')).length} HTML pages.`);
 
-assert.ok(pension.includes('Version 1.34'));
+assert.ok(pension.includes('Version 1.35'));
 assert.ok(pension.includes('pension.js?v=13'));
 assert.match(styles, /details\.retirement-reference\[open\] > \.retirement-reference-grid/);
 assert.match(styles, /body\.pension-page \.rt-back-home/);
@@ -129,6 +129,7 @@ assert.match(pensionJs, /addEventListener\('beforeprint'/);
 assert.ok(index.includes('styles.css?v=36'), 'Main calculator must load v1.35 print stylesheet');
 assert.ok(index.includes('app.js?v=34'), 'Main calculator must load v1.35 app script');
 assert.match(index, /id="print-report-version"/);
+assert.match(index, /Calculation logic: Version 1\\.33/);
 assert.match(index, /id="print-report-generated"/);
 assert.match(index, /শুধু নির্বাচিত ভাতাসহ/);
 assert.match(app, /setText\('print-report-version'/);
