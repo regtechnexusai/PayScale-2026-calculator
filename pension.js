@@ -57,7 +57,7 @@ function updateAuditSummary(basic, serviceYears, leaveMonths, phaseValue = '', c
     : 'বর্তমান net pension: দেওয়া হয়নি');
   setText('retirement-audit-commutation', 'সমর্পণ: ' + toBn(commutationPercent) + '% ধরে');
   setText('retirement-audit-source', 'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · official PDF');
-  setText('retirement-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.35'));
+  setText('retirement-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.36'));
   setText('retirement-audit-generated', generated ? 'হিসাবের সময়: ' + auditTimestamp() : 'হিসাবের সময়: —');
 }
 
