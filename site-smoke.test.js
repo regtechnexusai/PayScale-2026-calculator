@@ -163,3 +163,6 @@ assert.ok(!index.includes('PayScale 2026 |'));
 assert.ok(!pension.includes('PayScale 2026-'));
 assert.ok(fs.readFileSync(path.join(root, 'pension.js'), 'utf8').includes('PayScale 2026 Calculator'));
 assert.ok(!fs.readFileSync(path.join(root, 'pension.js'), 'utf8').includes('PayScale 2026-এর'));
+
+assert.ok(!index.includes('PayScale 2026 Calculator Calculator'));
+assert.ok(!pension.includes('PayScale 2026 Calculator Calculator'));
