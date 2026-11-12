@@ -1,5 +1,5 @@
 /*
- * Standalone pension and retirement-benefits review page. Version 1.31.
+ * Standalone pension and retirement-benefits review page. Version 1.32.
  * The salary calculator links here but does not combine salary and pension
  * results. Retirement rules live in retirement-data.js as the single source.
  */
@@ -285,13 +285,13 @@ async function copyPensionResult() {
     'আনুতোষিক + ছুটি নগদায়ন: ' + document.querySelector('#retirement-total-lump-sum').textContent,
     'সীমা প্রয়োগের আগে নিট পেনশন: ' + (document.querySelector('#retirement-net-card')?.hidden ? 'প্রযোজ্য নয়' : document.querySelector('#retirement-net-uncapped').textContent),
     'ব্যান্ডের সর্বনিম্ন/সর্বোচ্চ সীমা: ' + (document.querySelector('#retirement-net-card')?.hidden ? 'প্রযোজ্য নয়' : document.querySelector('#retirement-net-minimum').textContent + ' / ' + document.querySelector('#retirement-net-maximum').textContent),
-    'সীমা প্রয়োগের অবস্থা: ' + (document.querySelector('#retirement-net-card')?.hidden ? 'প্রযোজ্য নয়' : document.querySelector('#retirement-net-cap-status').textContent.replace(/^সীমা প্রয়োগের অবস্থা:\\s*/, '')), 
+    'সীমা প্রয়োগের অবস্থা: ' + (document.querySelector('#retirement-net-card')?.hidden ? 'প্রযোজ্য নয়' : document.querySelector('#retirement-net-cap-status').textContent.replace(/^সীমা প্রয়োগের অবস্থা:\s*/, '')), 
     'সীমা প্রয়োগের পর আনুমানিক নতুন নিট পেনশন: ' + (document.querySelector('#retirement-net-card')?.hidden ? 'প্রযোজ্য নয় — ইনপুট দেওয়া হয়নি' : document.querySelector('#retirement-net-result').textContent),
     'সমর্পণ: ' + (retirementCommutation?.selectedOptions?.[0]?.textContent || '৫০% সমর্পণ'),
     'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · Official Gazette PDF: ' + (window.RETIREMENT_RULES?.sourceUrl || 'https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf'),
     'হার-তালিকা: ৫–২৫ বছরের গ্রস পেনশন হার ১৭ সেপ্টেম্বর ২০২৬-এর সরকারি গেজেটের দৃশ্যমান সারণির সঙ্গে মিলিয়ে নেওয়া হয়েছে; ব্যক্তিগত যোগ্য চাকরিকাল ও অবসর-যোগ্যতা অনুমোদিত নথি দিয়ে যাচাই করুন।',
     'পূর্ণ টাকায় হিসাব: সমর্পিত পেনশন পূর্ণ টাকায় নির্ধারণ করা হয়; অবশিষ্ট মাসিক পেনশন = গ্রস পেনশন − পূর্ণ টাকায় নির্ধারিত সমর্পিত পেনশন।',
-    'Version: ' + (window.PAYSCALE_META?.version || '1.31'),
+    'Version: ' + (window.PAYSCALE_META?.version || '1.32'),
     document.querySelector('#retirement-audit-generated')?.textContent || ('হিসাবের সময়: ' + auditTimestamp()),
     'এটি review-support estimate; official pension sanction/PPO নয়।'
   ].join('\n');
