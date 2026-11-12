@@ -32,3 +32,7 @@
   .rt-translate-bar select { flex:1 1 145px; min-width:0; }
   .rt-translate-button { flex:1 1 145px; }
 }
+
+.rt-translate-status {
+  flex-basis:100%; color:#124E3B; font-size:13px; font-weight:650; line-height:1.55;
+}
