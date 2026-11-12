@@ -1,0 +1,37 @@
+name: PayScale regression checks
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: JavaScript syntax checks
+        run: |
+          node --check app.js
+          node --check pension.js
+          node --check scale-data.js
+          node --check retirement-data.js
+
+      - name: Basic-pay regression tests
+        run: node basic-pay.test.js
+
+      - name: Retirement-benefits regression tests
+        run: node retirement-benefits.test.js
+
+      - name: Static site and translation smoke tests
+        run: node site-smoke.test.js
