@@ -9,14 +9,14 @@ const RETIREMENT_RULES = Object.freeze({
   sourceTitle: 'সরকারি কর্মচারীগণের অবসরকালীন সুবিধাদি/প্রাপ্যতা নির্ধারণ/পুনর্নির্ধারণ',
   sourceUrl: 'https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf',
   effectiveDate: '১ জুলাই ২০২৬',
-  rateTableStatus: 'transcribed-review-required',
-  rateTableVerificationNote: '৫–২৫ বছরের intermediate gross-pension rates, including ২৩ বছর = ৮১%, are transcribed for review support and must be checked against the rendered official Gazette table and the authorised pension office record before reliance.',
+  rateTableStatus: 'verified-against-rendered-official-gazette',
+  rateTableVerificationNote: '৫–২৫ বছরের gross-pension rates rendered from the official Gazette dated 17 September 2026; individual qualifying service, retirement eligibility and authorised pension-office records must still be verified.',
   maximumLeaveMonths: 18,
   grossPensionRates: Object.freeze({
     5: 21, 6: 24, 7: 27, 8: 30, 9: 33,
-    10: 36, 11: 39, 12: 42, 13: 45, 14: 51,
-    15: 54, 16: 57, 17: 60, 18: 63, 19: 66,
-    20: 72, 21: 75, 22: 78, 23: 81, 24: 87, 25: 90
+    10: 36, 11: 39, 12: 43, 13: 47, 14: 51,
+    15: 54, 16: 57, 17: 63, 18: 65, 19: 69,
+    20: 72, 21: 75, 22: 79, 23: 83, 24: 87, 25: 90
   }),
   gratuityBands: Object.freeze([
     Object.freeze({ min: 5, max: 9, rate: 265, label: '৫–৯ বছর' }),
