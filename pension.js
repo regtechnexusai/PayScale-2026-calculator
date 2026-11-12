@@ -274,7 +274,7 @@ async function copyPensionResult() {
     'আনুমানিক নতুন net pension: ' + (document.querySelector('#retirement-net-card')?.hidden ? 'প্রযোজ্য নয় — input দেওয়া হয়নি' : document.querySelector('#retirement-net-result').textContent),
     'সমর্পণ: ' + (retirementCommutation?.selectedOptions?.[0]?.textContent || '৫০% সমর্পণ'),
     'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · Official Gazette PDF: ' + (window.RETIREMENT_RULES?.sourceUrl || 'https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf'),
-    'Rate-table note: ২৩ বছর/৮১%সহ intermediate rates are transcribed review-support figures; authorised record দিয়ে verify করুন।',
+    'Rate-table note: ৫–২৫ বছরের gross-pension rates rendered from the official Gazette dated ১৭ সেপ্টেম্বর ২০২৬; qualifying service ও retirement eligibility authorised record দিয়ে verify করুন।',
     'Rounding note: সমর্পিত pension whole taka-য় round; অবশিষ্ট = gross pension − rounded surrendered pension।',
     'Version: ' + (window.PAYSCALE_META?.version || '1.30'),
     document.querySelector('#retirement-audit-generated')?.textContent || ('হিসাবের সময়: ' + auditTimestamp()),
