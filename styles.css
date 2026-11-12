@@ -885,3 +885,53 @@ body.payscale-main-page .footer-links a:focus-visible { color: #8cecff; }
   body.payscale-main-page .choice-card p { color: #e5efff !important; font-size: 14px !important; line-height: 1.6 !important; opacity: 1 !important; }
   body.payscale-main-page .choice-arrow { color: #fff !important; }
 }
+
+
+/* Pension module v1.31: visible cap mechanics, contrast and compact printing. */
+body.pension-page .retirement-net-values { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+body.pension-page .retirement-net-values > span { min-height: 64px; }
+body.pension-page #retirement-net-cap-status {
+  display: inline-block; margin: 12px 0 0; padding: 7px 11px;
+  color: #7a2e08 !important; background: #fff1df;
+  border: 1px solid #f0c48e; border-radius: 8px; font-weight: 800;
+}
+body.pension-page .pension-result-actions .pension-back-button,
+body.pension-page .pension-result-actions .pension-back-button:visited {
+  color: #fff !important; background: #0b3159 !important;
+  border: 1px solid #0b3159 !important; text-decoration: none !important;
+}
+body.pension-page .pension-result-actions .pension-back-button:hover,
+body.pension-page .pension-result-actions .pension-back-button:focus-visible {
+  color: #fff !important; background: #145b91 !important;
+}
+@media (max-width: 760px) {
+  body.pension-page .retirement-net-values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media print {
+  @page { margin: 9mm; }
+  body.pension-page, body.pension-page main.pension-shell {
+    min-width: 0 !important; width: 100% !important; max-width: none !important;
+    margin: 0 !important; padding: 0 !important; background: #fff !important;
+  }
+  body.pension-page .rt-shell-footer,
+  body.pension-page .rt-shell-footer *,
+  body.pension-page .pension-page-header,
+  body.pension-page .pension-brand-row,
+  body.pension-page .back-link,
+  body.pension-page nav,
+  body.pension-page .pension-result-actions,
+  body.pension-page .orb { display: none !important; }
+  body.pension-page #retirement-benefits-module {
+    margin: 0 !important; padding: 0 !important; border: 0 !important;
+    box-shadow: none !important; break-inside: auto !important; page-break-inside: auto !important;
+  }
+  body.pension-page .retirement-audit-summary,
+  body.pension-page .retirement-summary-grid,
+  body.pension-page .retirement-net-card,
+  body.pension-page .retirement-footnote {
+    break-inside: avoid !important; page-break-inside: avoid !important;
+  }
+  body.pension-page .retirement-net-values { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  body.pension-page .retirement-net-values > span,
+  body.pension-page .retirement-net-values strong { color: #222 !important; }
+}

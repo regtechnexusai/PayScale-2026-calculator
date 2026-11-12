@@ -152,7 +152,7 @@
           <span id="retirement-audit-net">বর্তমান net pension: দেওয়া হয়নি</span>
           <span id="retirement-audit-commutation">সমর্পণ: ৫০% ধরে</span>
           <span id="retirement-audit-source">সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · official PDF</span>
-          <span id="retirement-audit-version">Version 1.30</span>
+          <span id="retirement-audit-version">Version 1.31</span>
           <span id="retirement-audit-generated">হিসাবের সময়: —</span>
         </div>
 
@@ -177,17 +177,21 @@
           <div>
             <p class="eyebrow">NET PENSION BAND</p>
             <h3>নিট পেনশন পুনর্নির্ধারণ</h3>
-            <p class="field-help">বর্তমান net pension দিলে গেজেটের band, বৃদ্ধির হার এবং minimum/maximum সীমা ধরে estimate দেখানো হবে।</p>
+            <p class="field-help">বর্তমান নিট পেনশন দিলে প্রযোজ্য ব্যান্ড, বৃদ্ধির হার, সীমার আগে হিসাব, সর্বনিম্ন ও সর্বোচ্চ সীমা এবং সীমা প্রয়োগের পরের আনুমানিক ফলাফল দেখানো হয়।</p>
           </div>
           <div class="retirement-net-values">
-            <span>প্রযোজ্য band <strong id="retirement-net-band">—</strong></span>
+            <span>প্রযোজ্য ব্যান্ড <strong id="retirement-net-band">—</strong></span>
             <span>বৃদ্ধির হার <strong id="retirement-net-rate">—</strong></span>
-            <span>আনুমানিক নতুন net pension <strong id="retirement-net-result">—</strong></span>
+            <span>সীমা প্রয়োগের আগে হিসাব <strong id="retirement-net-uncapped">—</strong></span>
+            <span>ব্যান্ডের সর্বনিম্ন সীমা <strong id="retirement-net-minimum">—</strong></span>
+            <span>ব্যান্ডের সর্বোচ্চ সীমা <strong id="retirement-net-maximum">—</strong></span>
+            <span>সীমা প্রয়োগের পর আনুমানিক নিট পেনশন <strong id="retirement-net-result">—</strong></span>
           </div>
-          <p class="field-help" role="note"><strong>আলাদা হিসাব ও সীমা:</strong> এই অংশটি আগে থেকে পাওয়া net pension-এর band-ভিত্তিক পুনর্নির্ধারণের estimate। উপরের মাসিক pension হলো নির্বাচিত মূল বেতন, চাকরিকাল ও commutation assumption-ভিত্তিক পৃথক হিসাব; দুটি ফল যোগ করবেন না। উদাহরণস্বরূপ, ৳৪০,০০০-এর ৬০% বৃদ্ধি গাণিতিকভাবে ৳৬৪,০০০ হলেও এই band-এর সর্বোচ্চ সীমা ৳৬২,০০০ হওয়ায় estimate ৳৬২,০০০-এ সীমাবদ্ধ হয়। গেজেটের প্রযোজ্যতা ও সীমা সরকারি নথির সঙ্গে যাচাই করুন।</p>
+          <p class="field-help" id="retirement-net-cap-status" role="status">সীমা প্রয়োগের অবস্থা: —</p>
+          <p class="field-help" role="note"><strong>আলাদা হিসাব ও সীমা:</strong> এই অংশটি আগে থেকে পাওয়া net pension-এর band-ভিত্তিক পুনর্নির্ধারণের estimate। উপরের মাসিক pension হলো নির্বাচিত মূল বেতন, চাকরিকাল ও commutation assumption-ভিত্তিক পৃথক হিসাব; দুটি ফল যোগ করবেন না। উদাহরণ: ৳৬৪,০০০-এর ৫৫% বৃদ্ধি যোগ করলে সীমার আগে হিসাব হয় ৳৯৯,২০০। কিন্তু ৳৪০,০০১ ও তদূর্ধ্ব ব্যান্ডের সর্বোচ্চ সীমা ৳৭০,২০০; তাই চূড়ান্ত আনুমানিক ফল ৳৭০,২০০ এবং ফলটি “সর্বোচ্চ সীমা প্রয়োগ হয়েছে” হিসেবে চিহ্নিত হয়। গেজেটের প্রযোজ্যতা ও সীমা সরকারি নথির সঙ্গে যাচাই করুন।</p>
         </div>
 
-        <details class="retirement-reference">
+        <details class="retirement-reference" open>
           <summary>অবসর সুবিধার গেজেট table দেখুন</summary>
           <div class="retirement-reference-grid">
             <div class="table-wrap"><table><caption>গ্রস pension নির্ধারণের হার</caption><thead><tr><th scope="col">পেনশনযোগ্য চাকরিকাল</th><th scope="col">হার</th></tr></thead><tbody id="retirement-service-table-body">
@@ -224,8 +228,8 @@
     </main>
 
     <div class="toast" id="pension-toast" role="status" aria-live="polite" hidden>পেনশন ফলাফল কপি হয়েছে</div>
-    <script src="retirement-data.js?v=2"></script>
-    <script src="release-meta.js?v=1"></script>
-    <script src="pension.js?v=9"></script>
+    <script src="retirement-data.js?v=3"></script>
+    <script src="release-meta.js?v=2"></script>
+    <script src="pension.js?v=10"></script>
   </body>
 </html>
