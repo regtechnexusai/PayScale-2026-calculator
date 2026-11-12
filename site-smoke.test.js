@@ -36,16 +36,18 @@ const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
 assert.match(index, /release-meta\.js\?v=1/);
 assert.match(pension, /release-meta\.js\?v=1/);
 assert.match(index, /app\.js\?v=31/);
-assert.match(pension, /retirement-data\.js\?v=2/);
-assert.match(pension, /pension\.js\?v=9/);
-assert.match(pension, /১২ বছর<\/td><td>৪৩%/);
-assert.match(pension, /১৩ বছর<\/td><td>৪৭%/);
-assert.match(pension, /১৭ বছর<\/td><td>৬৩%/);
-assert.match(pension, /১৮ বছর<\/td><td>৬৫%/);
-assert.match(pension, /১৯ বছর<\/td><td>৬৯%/);
-assert.match(pension, /২২ বছর<\/td><td>৭৯%/);
-assert.match(pension, /২৩ বছর<\/td><td>৮৩%/);
-assert.doesNotMatch(pension, /২৩ বছর<\/td><td>৮১%/);
+assert.match(pension, /retirement-data\\.js\\?v=2/);
+assert.match(pension, /pension\\.js\\?v=9/);
+[
+  '<td>১২ বছর</td><td>৪৩%</td>',
+  '<td>১৩ বছর</td><td>৪৭%</td>',
+  '<td>১৭ বছর</td><td>৬৩%</td>',
+  '<td>১৮ বছর</td><td>৬৫%</td>',
+  '<td>১৯ বছর</td><td>৬৯%</td>',
+  '<td>২২ বছর</td><td>৭৯%</td>',
+  '<td>২৩ বছর</td><td>৮৩%</td>'
+].forEach((row) => assert.ok(pension.includes(row), 'Missing Gazette rate row: ' + row));
+assert.ok(!pension.includes('<td>২৩ বছর</td><td>৮১%</td>'), 'Stale 23-year rate remains');
 assert.ok(index.includes('styles.css?v=32'), 'Main calculator must load the refreshed stylesheet');
 assert.ok(pension.includes('styles.css?v=32'), 'Pension page must load the refreshed stylesheet');
 assert.match(index, /object-src 'none'/);
