@@ -67,6 +67,8 @@ assert.deepEqual(calculate(50000, 25, 18), {
 });
 assert.equal(calculate(50000, 25, 18, 20000).adjustedNet, 35000);
 assert.equal(calculate(50000, 25, 18, 30000).adjustedNet, 49000);
+assert.equal(Math.round(64000 * (1 + 55 / 100)), 99200, '৳64,000 at 55% before the cap');
+assert.equal(Math.min(70200, Math.max(62001, Math.round(64000 * (1 + 55 / 100)))), 70200, '৳70,200 upper band cap applies');
 assert.equal(calculate(50000, 25, 24).leaveEncashment, 900000);
 assert.equal(calculate(143800, 25, 18).grossPension, 129420);
 assert.equal(calculate(143800, 25, 18).surrenderedPension, 64710);
