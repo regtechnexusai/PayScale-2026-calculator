@@ -1,7 +1,7 @@
 /* Single release metadata source for the static pages. */
 window.PAYSCALE_META = Object.freeze({
-  version: '1.30',
-  lastVerified: '24 September 2026'
+  version: '1.31',
+  lastVerified: '12 November 2026'
 });
 
 document.querySelectorAll('[data-app-version]').forEach((element) => {
