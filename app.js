@@ -531,7 +531,7 @@ function calculate(showErrors = false) {
   setText('salary-audit-source', 'সূত্র: S.R.O. No. 347-Ain/2026 (English reference: 347-Law/2026) · Bangladesh Gazette, Extra, ১৭ সেপ্টেম্বর ২০২৬');
   setText('salary-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.35'));
   setText('salary-audit-generated', 'হিসাবের সময়: ' + auditTimestamp());
-  setText('print-report-version', 'Version ' + (window.PAYSCALE_META?.version || '1.35'));
+  setText('print-report-version', 'Calculation logic: Version 1.33 · Maintenance release: Version ' + (window.PAYSCALE_META?.version || '1.35'));
   setText('print-report-generated', document.getElementById('salary-audit-generated').textContent);
   if (resultLiveSummary) {
     resultLiveSummary.textContent = (isFixed ? 'স্থির নির্ধারিত বেতন ' : 'গ্রেড ' + toBn(grade) + ' এর হিসাব সম্পন্ন। ') +
