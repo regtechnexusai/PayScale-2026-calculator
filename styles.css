@@ -935,3 +935,41 @@ body.pension-page .pension-result-actions .pension-back-button:focus-visible {
   body.pension-page .retirement-net-values > span,
   body.pension-page .retirement-net-values strong { color: #222 !important; }
 }
+
+
+/* PayScale v1.32 quality and print fixes. */
+.gross-selection-note {
+  margin: 10px 0 14px;
+  padding: 11px 13px;
+  border: 1px solid rgba(106, 213, 255, .35);
+  border-left: 4px solid #42a8ca;
+  border-radius: 10px;
+  color: #dceaf7;
+  background: rgba(18, 55, 84, .35);
+  font-size: 12px;
+  line-height: 1.6;
+}
+@media print {
+  .rt-shell-footer,
+  .rt-shell-footer *,
+  .site-header,
+  .top-nav,
+  nav,
+  .menu-toggle {
+    display: none !important;
+  }
+  .results,
+  .gross-section,
+  .timeline-card,
+  .math-card,
+  .salary-audit-summary {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+  .gross-selection-note {
+    color: #222 !important;
+    background: #fff !important;
+    border-color: #aaa !important;
+  }
+  .gross-section { margin-top: 8px !important; }
+}
