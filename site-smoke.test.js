@@ -120,14 +120,14 @@ assert.doesNotMatch(index, /<section class="results"[^>]*aria-live=/);
 
 console.log(`Passed static site smoke test across ${fs.readdirSync(root).filter((file) => file.endsWith('.html')).length} HTML pages.`);
 
-assert.ok(pension.includes('Version 1.36'));
+assert.ok(pension.includes('Version 1.37'));
 assert.ok(pension.includes('pension.js?v=13'));
 assert.match(styles, /details\.retirement-reference\[open\] > \.retirement-reference-grid/);
 assert.match(styles, /body\.pension-page \.rt-back-home/);
 assert.match(pensionJs, /addEventListener\('beforeprint'/);
 
-assert.ok(index.includes('styles.css?v=38'), 'Main calculator must load v1.36 print stylesheet');
-assert.ok(index.includes('app.js?v=35'), 'Main calculator must load v1.36 app script');
+assert.ok(index.includes('styles.css?v=38'), 'Main calculator must load v1.37 print stylesheet');
+assert.ok(index.includes('app.js?v=35'), 'Main calculator must load v1.37 app script');
 assert.match(index, /id="print-report-version"/);
 assert.match(index, /Calculation logic: Version 1\.33/);
 assert.match(index, /id="print-report-generated"/);
@@ -138,9 +138,9 @@ assert.match(styles, /footer\.rt-shell-footer::before/);
 assert.match(styles, /body\.payscale-main-page #gross-form/);
 assert.match(styles, /body\.payscale-main-page \.timeline-card,\s*html body\.payscale-main-page \.math-card/);
 
-assert.ok(index.includes('styles.css?v=38'), 'Main calculator must load v1.36 print stylesheet');
-assert.ok(index.includes('app.js?v=35'), 'Main calculator must load v1.36 app script');
-assert.ok(pension.includes('styles.css?v=38'), 'Pension page must load shared v1.36 stylesheet');
+assert.ok(index.includes('styles.css?v=38'), 'Main calculator must load v1.37 print stylesheet');
+assert.ok(index.includes('app.js?v=35'), 'Main calculator must load v1.37 app script');
+assert.ok(pension.includes('styles.css?v=38'), 'Pension page must load shared v1.37 stylesheet');
 assert.match(index, /id="print-report-grade"/);
 assert.match(index, /id="print-report-current"/);
 assert.match(index, /id="print-report-source"/);
