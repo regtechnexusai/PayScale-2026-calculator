@@ -57,7 +57,7 @@ function updateAuditSummary(basic, serviceYears, leaveMonths, phaseValue = '', c
     : 'বর্তমান net pension: দেওয়া হয়নি');
   setText('retirement-audit-commutation', 'সমর্পণ: ' + toBn(commutationPercent) + '% ধরে');
   setText('retirement-audit-source', 'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · official PDF');
-  setText('retirement-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.33'));
+  setText('retirement-audit-version', 'Version ' + (window.PAYSCALE_META?.version || '1.34'));
   setText('retirement-audit-generated', generated ? 'হিসাবের সময়: ' + auditTimestamp() : 'হিসাবের সময়: —');
 }
 
@@ -290,8 +290,8 @@ async function copyPensionResult() {
     'সমর্পণ: ' + (retirementCommutation?.selectedOptions?.[0]?.textContent || '৫০% সমর্পণ'),
     'সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · Official Gazette PDF: ' + (window.RETIREMENT_RULES?.sourceUrl || 'https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf'),
     'Manual verification required: ' + (window.RETIREMENT_RULES?.rateTableVerificationNote || 'সরকারি গেজেটের হার-তালিকা ও ব্যক্তিগত যোগ্যতা অনুমোদিত নথি দিয়ে যাচাই করুন.'),
-    'পূর্ণ টাকায় হিসাব: সমর্পিত পেনশন পূর্ণ টাকায় নির্ধারণ করা হয়; অবশিষ্ট মাসিক পেনশন = গ্রস পেনশন − পূর্ণ টাকায় নির্ধারিত সমর্পিত পেনশন।',
-    'Version: ' + (window.PAYSCALE_META?.version || '1.32'),
+    'পূর্ণ টাকায় হিসাব: সমর্পিত পেনশন নিকটতম পূর্ণ টাকায় নির্ধারণ করা হয়; অবশিষ্ট মাসিক পেনশন = মোট পেনশন − পূর্ণ টাকায় নির্ধারিত সমর্পিত পেনশন।',
+    'Version: ' + (window.PAYSCALE_META?.version || '1.34'),
     document.querySelector('#retirement-audit-generated')?.textContent || ('হিসাবের সময়: ' + auditTimestamp()),
     'এটি review-support estimate; official pension sanction/PPO নয়।'
   ].join('\n');
@@ -341,4 +341,20 @@ document.querySelector('#print-pension-result')?.addEventListener('click', async
   }
   if (document.fonts?.ready) await document.fonts.ready;
   window.print();
+});
+
+
+// Keep the Gazette reference tables visible in browser print/PDF output.
+let pensionReferencePrintState = null;
+window.addEventListener('beforeprint', () => {
+  const reference = document.querySelector('details.retirement-reference');
+  if (!reference) return;
+  pensionReferencePrintState = reference.open;
+  reference.open = true;
+});
+window.addEventListener('afterprint', () => {
+  const reference = document.querySelector('details.retirement-reference');
+  if (!reference || pensionReferencePrintState === null) return;
+  reference.open = pensionReferencePrintState;
+  pensionReferencePrintState = null;
 });

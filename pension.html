@@ -11,7 +11,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="bn_BD" />
     <meta property="og:title" content="পেনশন ও অবসর সুবিধার হিসাব | RegTech Nexus AI" />
-    <meta property="og:description" content="গ্রস pension, আনুতোষিক, ছুটি নগদায়ন ও net-pension band-এর আলাদা review-support estimate।" />
+    <meta property="og:description" content="মোট পেনশন, আনুতোষিক, ছুটি নগদায়ন ও নিট পেনশনের সীমা-এর আলাদা review-support estimate।" />
     <meta property="og:url" content="https://regtechnexusai.com/payscale-2026/pension.html" />
     <meta property="og:image" content="https://regtechnexusai.com/payscale-2026/payscale-2026-og.png" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://regtechnexusai.com/payscale-2026/payscale-2026-og.png" />
     <title>পেনশন ও অবসর সুবিধার হিসাব | RegTech Nexus AI</title>
     <link rel="icon" href="regtech-nexus-ai-logo.png" type="image/png" />
-    <link rel="stylesheet" href="styles.css?v=34" />
+    <link rel="stylesheet" href="styles.css?v=35" />
     <link rel="stylesheet" href="/site-wide-shell.css?v=20261017-v2" />
     <script src="/site-wide-shell.js?v=20261017-v2" defer></script>
   </head>
@@ -56,9 +56,9 @@
       <section class="retirement-section glass-card" id="retirement-benefits-module" aria-labelledby="retirement-title">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">PENSION CALCULATOR · GAZETTE-BASED REVIEW</p>
+            <p class="eyebrow">পেনশন ক্যালকুলেটর · সরকারি গেজেটভিত্তিক পর্যালোচনা</p>
             <h2 id="retirement-title">অবসরকালীন সুবিধার প্রাথমিক হিসাব</h2>
-            <p class="output-note">১৭ সেপ্টেম্বর ২০২৬-এর অবসরকালীন সুবিধা সংক্রান্ত সরকারি প্রজ্ঞাপনের table ধরে gross pension, আনুতোষিক, ছুটি নগদায়ন এবং net-pension band-এর estimate।</p>
+            <p class="output-note">১৭ সেপ্টেম্বর ২০২৬-এর অবসরকালীন সুবিধা সংক্রান্ত সরকারি প্রজ্ঞাপনের সারণি অনুসারে মোট পেনশন, আনুতোষিক, ছুটি নগদায়ন এবং নিট পেনশনের সীমাভিত্তিক আনুমানিক হিসাব।</p>
           </div>
           <a class="grade-chip source-chip" href="https://www.dpp.gov.bd/upload_file/gazettes/62983_75061.pdf" target="_blank" rel="noopener">Official Gazette PDF</a>
         </div>
@@ -68,7 +68,7 @@
         <div class="compliance-note" role="note">
           <strong>Manual verification required</strong>
           <p id="retirement-rate-table-note">৫–২৪ বছরের প্রতিটি হার এবং ২৫ বছর বা তদূর্ধ্বের ৯০% হার ১৭ সেপ্টেম্বর ২০২৬-এর সরকারি গেজেটের পৃষ্ঠা ২৫৩২৩–২৫৩২৪-এর দৃশ্যমান সারণির সঙ্গে মিলিয়ে যাচাই করা হয়েছে; ব্যক্তিগত যোগ্য চাকরিকাল, অবসর-যোগ্যতা ও অনুমোদিত পেনশন অফিসের নথি আলাদাভাবে যাচাই করতে হবে।</p>
-          <p>সমর্পিত pension whole taka-য় round করা হয়; অবশিষ্ট মাসিক pension = gross pension − rounded surrendered pension। তাই অর্ধেকের exact decimal থাকলে দুইটি displayed whole-taka amount-এর যোগফলে rounding-এর প্রভাব থাকতে পারে।</p>
+          <p>সমর্পিত পেনশন নিকটতম পূর্ণ টাকায় নির্ধারণ করা হয়; অবশিষ্ট মাসিক পেনশন = মোট পেনশন − পূর্ণ টাকায় নির্ধারিত সমর্পিত পেনশন। অর্ধেকের হিসাবে দশমিক থাকলে প্রদর্শিত দুইটি পূর্ণ টাকার অঙ্কের যোগফলে রাউন্ডিংয়ের সামান্য পার্থক্য হতে পারে।</p>
         </div>
 
         <form id="retirement-form" class="retirement-form" novalidate>
@@ -121,7 +121,7 @@
               <p class="field-help">ছুটি নগদায়নের সর্বোচ্চ সীমা ১৮ মাস। ১৮ মাস নির্বাচন করলে পূর্ণ ১৮ মাসের অনুমোদিত leave balance আছে ধরে review estimate হবে।</p>
             </div>
             <div>
-              <label class="field-label" for="retirement-net-pension">৩০ জুন ২০২৬-এর বর্তমান net pension · ঐচ্ছিক</label>
+              <label class="field-label" for="retirement-net-pension">৩০ জুন ২০২৬-এর বর্তমান নিট পেনশন · ঐচ্ছিক</label>
               <div class="money-input">
                 <span>৳</span>
                 <input id="retirement-net-pension" name="retirement-net-pension" inputmode="numeric" autocomplete="off" placeholder="যেমন: ২০,০০০" aria-describedby="retirement-net-note" />
@@ -152,7 +152,7 @@
           <span id="retirement-audit-net">বর্তমান net pension: দেওয়া হয়নি</span>
           <span id="retirement-audit-commutation">সমর্পণ: ৫০% ধরে</span>
           <span id="retirement-audit-source">সূত্র: Finance Division retirement-benefit Gazette · ১৭ সেপ্টেম্বর ২০২৬ · official PDF</span>
-          <span id="retirement-audit-version">Version 1.33</span>
+          <span id="retirement-audit-version">Version 1.34</span>
           <span id="retirement-audit-generated">হিসাবের সময়: —</span>
         </div>
 
@@ -160,9 +160,9 @@
         <p id="retirement-live-summary" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
 
         <div class="retirement-summary-grid">
-          <article class="retirement-card"><span>গ্রস pension rate</span><strong id="retirement-rate">—</strong><small>চাকরিকাল অনুযায়ী</small></article>
+          <article class="retirement-card"><span>মোট পেনশনের হার</span><strong id="retirement-rate">—</strong><small>চাকরিকাল অনুযায়ী</small></article>
           <article class="retirement-card"><span>গ্রস pension</span><strong id="retirement-gross-pension">—</strong><small>মূল বেতন × rate</small></article>
-          <article class="retirement-card"><span>সমর্পণের পর মাসিক pension</span><strong id="retirement-pensionable">—</strong><small id="retirement-pensionable-note">৫০% সমর্পণ ধরে অবশিষ্ট</small></article>
+          <article class="retirement-card"><span>সমর্পণের পর মাসিক পেনশন</span><strong id="retirement-pensionable">—</strong><small id="retirement-pensionable-note">৫০% সমর্পণ ধরে অবশিষ্ট</small></article>
           <article class="retirement-card"><span>আনুতোষিক</span><strong id="retirement-gratuity">—</strong><small id="retirement-gratuity-rate">হার: —</small></article>
           <article class="retirement-card"><span>ছুটি নগদায়ন</span><strong id="retirement-leave-encashment">—</strong><small>নির্বাচিত মাস × basic pay</small></article>
           <article class="retirement-card retirement-card-emphasis"><span>আনুতোষিক + ছুটি নগদায়ন</span><strong id="retirement-total-lump-sum">—</strong><small>এককালীন review estimate</small></article>
@@ -175,7 +175,7 @@
 
         <div class="retirement-net-card" id="retirement-net-card" hidden>
           <div>
-            <p class="eyebrow">NET PENSION BAND</p>
+            <p class="eyebrow">নিট পেনশনের সীমা</p>
             <h3>নিট পেনশন পুনর্নির্ধারণ</h3>
             <p class="field-help">বর্তমান নিট পেনশন দিলে প্রযোজ্য ব্যান্ড, বৃদ্ধির হার, সীমার আগে হিসাব, সর্বনিম্ন ও সর্বোচ্চ সীমা এবং সীমা প্রয়োগের পরের আনুমানিক ফলাফল দেখানো হয়।</p>
           </div>
@@ -212,7 +212,7 @@
           <button type="button" id="copy-pension-result" class="secondary-button print-hide">পেনশন ফলাফল কপি করুন <span aria-hidden="true">⧉</span></button>
           <a class="ghost-button pension-back-button" href="index.html">মূল বেতন হিসাবের পেজে ফিরুন</a>
         </div>
-        <p class="retirement-footnote">এটি official pension sanction, PPO বা gratuity order নয়। Pensionable service, qualifying service, retirement reason, leave record, medical allowance, family pension, deductions এবং সংশ্লিষ্ট হিসাবরক্ষণ অফিসের সিদ্ধান্ত চূড়ান্ত।</p>
+        <p class="retirement-footnote">এটি সরকারি পেনশন মঞ্জুরি, পেনশন পরিশোধ আদেশ (PPO) বা আনুতোষিক মঞ্জুরিপত্র নয়। পেনশনযোগ্য ও যোগ্য চাকরিকাল, অবসরের কারণ, ছুটির হিসাব, চিকিৎসা ভাতা, পারিবারিক পেনশন, কর্তন এবং সংশ্লিষ্ট হিসাবরক্ষণ অফিসের সিদ্ধান্তই চূড়ান্ত।</p>
       </section>
 
       <footer class="rt-shell-footer" aria-label="RegTech Nexus AI site footer">
@@ -229,7 +229,7 @@
 
     <div class="toast" id="pension-toast" role="status" aria-live="polite" hidden>পেনশন ফলাফল কপি হয়েছে</div>
     <script src="retirement-data.js?v=5"></script>
-    <script src="release-meta.js?v=4"></script>
-    <script src="pension.js?v=12"></script>
+    <script src="release-meta.js?v=5"></script>
+    <script src="pension.js?v=13"></script>
   </body>
 </html>
