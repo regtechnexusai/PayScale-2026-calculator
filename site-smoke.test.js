@@ -36,8 +36,8 @@ const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
 assert.match(index, /release-meta\.js\?v=1/);
 assert.match(pension, /release-meta\.js\?v=1/);
 assert.match(index, /app\.js\?v=31/);
-assert.match(pension, /retirement-data\\.js\\?v=2/);
-assert.match(pension, /pension\\.js\\?v=9/);
+assert.ok(pension.includes('retirement-data.js?v=2'));
+assert.ok(pension.includes('pension.js?v=9'));
 [
   '<td>১২ বছর</td><td>৪৩%</td>',
   '<td>১৩ বছর</td><td>৪৭%</td>',
