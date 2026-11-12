@@ -51,6 +51,8 @@ assert.ok(!pension.includes('<td>২৩ বছর</td><td>৮১%</td>'), 'Stale
 assert.ok(index.includes('styles.css?v=33'), 'Main calculator must load the refreshed stylesheet');
 assert.ok(pension.includes('styles.css?v=33'), 'Pension page must load the refreshed stylesheet');
 assert.match(index, /object-src 'none'/);
+assert.match(index, /সাম্প্রতিক হালনাগাদ/);
+assert.match(index, /সংশোধনী, ব্যাখ্যা বা বাস্তবায়ন নির্দেশ/);
 assert.match(index, /Version 1\.32/);
 assert.match(pension, /class="pension-page"/);
 assert.ok(fs.existsSync(path.join(root, 'NotoSansBengali.ttf')), 'Missing bundled Bengali font');

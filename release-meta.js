@@ -7,3 +7,7 @@ window.PAYSCALE_META = Object.freeze({
 document.querySelectorAll('[data-app-version]').forEach((element) => {
   element.textContent = 'Version ' + window.PAYSCALE_META.version;
 });
+
+document.querySelectorAll('[data-app-version-number]').forEach((element) => {
+  element.textContent = window.PAYSCALE_META.version;
+});
