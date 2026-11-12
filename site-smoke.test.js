@@ -50,7 +50,20 @@ assert.ok(pension.includes('pension.js?v=13'));
 assert.ok(!pension.includes('<td>২৩ বছর</td><td>৮১%</td>'), 'Stale 23-year rate remains');
 assert.ok(index.includes('styles.css?v=38'), 'Main calculator must load the refreshed stylesheet');
 assert.ok(pension.includes('styles.css?v=38'), 'Pension page must load the refreshed stylesheet');
-assert.match(index, /object-src 'none'/);
+// Google Translate is loaded from translate.google.com; a restrictive page-level CSP
+// would block the approved Hub-style integration. Verify one callback/loader per page.
+assert.doesNotMatch(index, /<meta[^>]+http-equiv=["']Content-Security-Policy/i);
+assert.doesNotMatch(pension, /<meta[^>]+http-equiv=["']Content-Security-Policy/i);
+for (const page of [index, pension]) {
+  assert.equal((page.match(/id="google_translate_element"/g) || []).length, 1);
+  assert.equal((page.match(/function googleTranslateElementInit/g) || []).length, 1);
+  assert.equal((page.match(/https:\/\/translate\.google\.com\/translate_a\/element\.js/g) || []).length, 1);
+  assert.match(page, /pageLanguage:\s*['"]bn['"]/);
+  assert.match(page, /includedLanguages:\s*['"]en,bn,zh-CN,ko,ja,es,fr,ar,hi,pt,id,ur['"]/);
+  assert.ok(page.indexOf('function googleTranslateElementInit') < page.indexOf('https://translate.google.com/translate_a/element.js'));
+}
+assert.match(index, /Choose preferred languages below; use the translation menu to view this page in one language at a time/);
+assert.match(pension, /Choose preferred languages below; use the translation menu to view this page in one language at a time/);
 assert.match(index, /সাম্প্রতিক হালনাগাদ/);
 assert.match(index, /সংশোধনী, ব্যাখ্যা বা বাস্তবায়ন নির্দেশ/);
 assert.match(index, /Version 1\.37/);
