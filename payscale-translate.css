@@ -11,3 +11,12 @@ body.payscale-main-page .fih-language-options label,body.pension-page .fih-langu
 body.payscale-main-page .fih-language-options input,body.pension-page .fih-language-options input{width:16px;height:16px;min-height:16px;margin:0;accent-color:#087f83}
 body.payscale-main-page #fih-language-status,body.pension-page #fih-language-status{margin:6px 0 0;color:#155b50;font-size:13px;font-weight:650}
 @media(max-width:780px){body.payscale-main-page .fih-language-tools,body.pension-page .fih-language-tools{align-items:flex-start;padding:12px 18px}body.payscale-main-page #google_translate_element,body.pension-page #google_translate_element{width:100%;justify-content:flex-start}}
+
+
+/* Reduce excess top whitespace below the shared site header on both PayScale pages. */
+body.payscale-main-page main.shell,
+body.pension-page main.shell{padding-top:10px!important}
+@media(max-width:780px){
+  body.payscale-main-page main.shell,
+  body.pension-page main.shell{padding-top:6px!important}
+}
