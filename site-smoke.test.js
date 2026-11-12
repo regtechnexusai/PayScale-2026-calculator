@@ -53,7 +53,7 @@ assert.ok(pension.includes('styles.css?v=34'), 'Pension page must load the refre
 assert.match(index, /object-src 'none'/);
 assert.match(index, /সাম্প্রতিক হালনাগাদ/);
 assert.match(index, /সংশোধনী, ব্যাখ্যা বা বাস্তবায়ন নির্দেশ/);
-assert.match(index, /Version 1\.32/);
+assert.match(index, /Version 1\.33/);
 assert.match(pension, /class="pension-page"/);
 assert.ok(fs.existsSync(path.join(root, 'NotoSansBengali.ttf')), 'Missing bundled Bengali font');
 const styles = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
@@ -96,7 +96,7 @@ assert.match(app, /pension\.html\?basic=.*phase1=.*phase2=.*phase3=/);
 assert.match(app, /arrearsBreakdownToDate/);
 assert.match(app, /grade >= 11 && grade <= 20 && station !== 'other'/);
 assert.match(app, /tiffin\.disabled = grade < 13/);
-assert.match(app, /travel\.disabled = grade < 11 \|\| grade > 13/);
+assert.match(app, /travel\.disabled = grade < 11 \|\| grade > 20/);
 assert.match(app, /grade >= 11 && grade <= 20 && station !== 'other'/);
 assert.match(app, /arrearsPeriod\.phase1\.fullMonths/);
 assert.ok(!index.includes('২ পূর্ণ মাস + ১৭ দিন'));
