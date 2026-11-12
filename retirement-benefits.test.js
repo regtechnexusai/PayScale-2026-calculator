@@ -25,6 +25,12 @@ function calculate(basic, serviceYears, leaveMonths, currentNet = null, commutat
   return { grossPension, surrenderedPension, pensionablePortion, gratuity, leaveEncashment, adjustedNet };
 }
 
+assert.deepEqual(RULES.grossPensionRates, {
+  5: 21, 6: 24, 7: 27, 8: 30, 9: 33,
+  10: 36, 11: 39, 12: 43, 13: 47, 14: 51,
+  15: 54, 16: 57, 17: 63, 18: 65, 19: 69,
+  20: 72, 21: 75, 22: 79, 23: 83, 24: 87, 25: 90
+});
 assert.equal(RULES.grossPensionRates[5], 21);
 assert.equal(RULES.grossPensionRates[25], 90);
 assert.equal(RULES.grossPensionRates[30], undefined);
@@ -77,50 +83,50 @@ assert.equal(calculate(50000, 25, 18, 100000).adjustedNet, 70200);
 assert.equal(calculate(50000, 25, 18, 0).adjustedNet, null);
 
 assert.deepEqual(calculate(100000, 12, 18, null, 40), {
-  grossPension: 42000,
-  surrenderedPension: 16800,
-  pensionablePortion: 25200,
-  gratuity: 4368000,
+  grossPension: 43000,
+  surrenderedPension: 17200,
+  pensionablePortion: 25800,
+  gratuity: 4472000,
   leaveEncashment: 1800000,
   adjustedNet: null
 });
 assert.deepEqual(calculate(100000, 12, 18, null, 60), {
-  grossPension: 42000,
-  surrenderedPension: 25200,
-  pensionablePortion: 16800,
-  gratuity: 6552000,
+  grossPension: 43000,
+  surrenderedPension: 25800,
+  pensionablePortion: 17200,
+  gratuity: 6708000,
   leaveEncashment: 1800000,
   adjustedNet: null
 });
 assert.deepEqual(calculate(100000, 17, 18, null, 40), {
-  grossPension: 60000,
-  surrenderedPension: 24000,
-  pensionablePortion: 36000,
-  gratuity: 5880000,
+  grossPension: 63000,
+  surrenderedPension: 25200,
+  pensionablePortion: 37800,
+  gratuity: 6174000,
   leaveEncashment: 1800000,
   adjustedNet: null
 });
 assert.deepEqual(calculate(100000, 17, 18, null, 60), {
-  grossPension: 60000,
-  surrenderedPension: 36000,
-  pensionablePortion: 24000,
-  gratuity: 8820000,
+  grossPension: 63000,
+  surrenderedPension: 37800,
+  pensionablePortion: 25200,
+  gratuity: 9261000,
   leaveEncashment: 1800000,
   adjustedNet: null
 });
 assert.deepEqual(calculate(100000, 22, 18, null, 40), {
-  grossPension: 78000,
-  surrenderedPension: 31200,
-  pensionablePortion: 46800,
-  gratuity: 7176000,
+  grossPension: 79000,
+  surrenderedPension: 31600,
+  pensionablePortion: 47400,
+  gratuity: 7268000,
   leaveEncashment: 1800000,
   adjustedNet: null
 });
 assert.deepEqual(calculate(100000, 22, 18, null, 60), {
-  grossPension: 78000,
-  surrenderedPension: 46800,
-  pensionablePortion: 31200,
-  gratuity: 10764000,
+  grossPension: 79000,
+  surrenderedPension: 47400,
+  pensionablePortion: 31600,
+  gratuity: 10902000,
   leaveEncashment: 1800000,
   adjustedNet: null
 });
