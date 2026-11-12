@@ -37,7 +37,7 @@ assert.match(index, /release-meta\.js\?v=4/);
 assert.match(pension, /release-meta\.js\?v=4/);
 assert.match(index, /app\.js\?v=33/);
 assert.ok(pension.includes('retirement-data.js?v=5'));
-assert.ok(pension.includes('pension.js?v=12'));
+assert.ok(pension.includes('pension.js?v=13'));
 [
   '<td>১২ বছর</td><td>৪৩%</td>',
   '<td>১৩ বছর</td><td>৪৭%</td>',
@@ -119,3 +119,9 @@ assert.match(index, /href="\/student\//);
 assert.doesNotMatch(index, /<section class="results"[^>]*aria-live=/);
 
 console.log(`Passed static site smoke test across ${fs.readdirSync(root).filter((file) => file.endsWith('.html')).length} HTML pages.`);
+
+assert.ok(pension.includes('Version 1.34'));
+assert.ok(pension.includes('pension.js?v=13'));
+assert.match(styles, /details\.retirement-reference\[open\] > \.retirement-reference-grid/);
+assert.match(styles, /body\.pension-page \.rt-back-home/);
+assert.match(pensionJs, /addEventListener\('beforeprint'/);
