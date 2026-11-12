@@ -22,7 +22,7 @@
     <link rel="icon" href="regtech-nexus-ai-logo.png" type="image/png" />
     <link rel="stylesheet" href="styles.css?v=38" />
     <link rel="stylesheet" href="pension-senior-friendly.css?v=4" />
-    <link rel="stylesheet" href="payscale-translate.css?v=2" />
+    <link rel="stylesheet" href="payscale-translate.css?v=3" />
     <link rel="stylesheet" href="/site-wide-shell.css?v=20261017-v2" />
     <script src="/site-wide-shell.js?v=20261017-v2" defer></script>
   </head>
@@ -31,29 +31,37 @@
     <div class="orb orb-two" aria-hidden="true"></div>
 
     <main class="shell pension-shell">
-      <div class="rt-translate-bar" role="group" aria-label="Page translation">
-        <span class="rt-translate-label" id="rt-translate-label">🌐 Translate this page</span>
-        <label class="rt-translate-sr-only" for="rt-translate-language">Choose language</label>
-        <select id="rt-translate-language" aria-labelledby="rt-translate-label">
-          <option value="en" selected>English</option>
-          <option value="ar">العربية — Arabic</option>
-          <option value="zh-CN">简体中文 — Chinese</option>
-          <option value="fr">Français — French</option>
-          <option value="de">Deutsch — German</option>
-          <option value="hi">हिन्दी — Hindi</option>
-          <option value="id">Bahasa Indonesia</option>
-          <option value="ja">日本語 — Japanese</option>
-          <option value="ms">Bahasa Melayu</option>
-          <option value="pt">Português — Portuguese</option>
-          <option value="ru">Русский — Russian</option>
-          <option value="es">Español — Spanish</option>
-          <option value="th">ไทย — Thai</option>
-          <option value="ur">اردو — Urdu</option>
-        </select>
-        <button class="rt-translate-button" type="button" id="rt-translate-open">Open Google Translate</button>
-        <span class="rt-translate-note">Copies this page address and opens Google Translate. In its Websites tab, paste the address and select Translate.</span>
-        <span class="rt-translate-status" id="rt-translate-status" role="status" aria-live="polite"></span>
-      </div>
+      <section class="rt-translate-bar" aria-labelledby="rt-translate-heading">
+        <div class="rt-translate-heading-row">
+          <span class="rt-translate-globe" aria-hidden="true">🌐</span>
+          <h2 id="rt-translate-heading">Translate this page</h2>
+          <label for="rt-translate-language">Translate into</label>
+          <select id="rt-translate-language" aria-label="Choose translation language">
+            <option value="en" selected>English</option>
+            <option value="ar">العربية — Arabic</option>
+            <option value="zh-CN">简体中文 — Chinese</option>
+            <option value="fr">Français — French</option>
+            <option value="de">Deutsch — German</option>
+            <option value="hi">हिन्दी — Hindi</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="ja">日本語 — Japanese</option>
+            <option value="ms">Bahasa Melayu</option>
+            <option value="pt">Português — Portuguese</option>
+            <option value="ru">Русский — Russian</option>
+            <option value="es">Español — Spanish</option>
+            <option value="th">ไทย — Thai</option>
+            <option value="ur">اردو — Urdu</option>
+          </select>
+        </div>
+        <div class="rt-translate-url-row">
+          <label for="rt-translate-page-url">Page address to translate</label>
+          <input id="rt-translate-page-url" type="text" readonly value="" aria-describedby="rt-translate-note rt-translate-status">
+          <button class="rt-translate-button rt-translate-copy" type="button" id="rt-translate-copy">Copy page address</button>
+          <a class="rt-translate-button rt-translate-open" id="rt-translate-open" href="https://translate.google.com/" target="_blank" rel="noopener noreferrer">Open Google Translate</a>
+        </div>
+        <p class="rt-translate-note" id="rt-translate-note">1. Copy the page address. 2. Open Google Translate and choose <strong>Websites</strong>. 3. Paste the address, then select the language and translate.</p>
+        <p class="rt-translate-status" id="rt-translate-status" role="status" aria-live="polite">Choose a language, copy the address, then paste it into Google Translate → Websites.</p>
+      </section>
       <section class="pension-page-header">
         <div class="pension-brand-row">
           <a class="back-link" href="index.html" aria-label="PayScale 2026 Calculator-এ ফিরে যান">← PayScale 2026 Calculator</a>
@@ -256,6 +264,6 @@
     <script src="retirement-data.js?v=5"></script>
     <script src="release-meta.js?v=7"></script>
     <script src="pension.js?v=13"></script>
-    <script src="payscale-translate.js?v=2" defer></script>
+    <script src="payscale-translate.js?v=3" defer></script>
   </body>
 </html>
