@@ -549,3 +549,121 @@ body.pension-page :is(a,button,input,select,summary):focus-visible{outline:3px s
     border: 0 !important;
   }
 }
+
+
+/* PayScale v1.38 — pension PDF print contrast and page-space refinement.
+   Presentation-only: all pension calculations, rules, inputs and source tables remain unchanged. */
+@media print {
+  @page { size: A4 portrait; margin: 8mm 10mm; }
+
+  /* Keep audit assumptions legible even when the browser does not print background graphics. */
+  body.pension-page .retirement-audit-summary {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px 9px !important;
+    margin: 6px 0 !important;
+    padding: 8px 10px !important;
+    color: #17324d !important;
+    background: #fff !important;
+    border: 1px solid #9aabba !important;
+    border-radius: 7px !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  body.pension-page .retirement-audit-summary strong {
+    color: #102f50 !important;
+    padding-bottom: 4px !important;
+    border-bottom: 1px solid #c7d3dd !important;
+    font-size: 10pt !important;
+  }
+  body.pension-page .retirement-audit-summary span {
+    color: #243f58 !important;
+    font-size: 8.5pt !important;
+    line-height: 1.35 !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+  }
+
+  /* Explicit text/background pairs remain readable in monochrome or background-free printing. */
+  body.pension-page .retirement-profile-note,
+  body.pension-page .compliance-note,
+  body.pension-page .retirement-net-placeholder,
+  body.pension-page .retirement-net-card {
+    color: #243f58 !important;
+    background: #fff !important;
+    border-color: #aebfce !important;
+    box-shadow: none !important;
+  }
+  body.pension-page .retirement-profile-note,
+  body.pension-page .compliance-note,
+  body.pension-page .compliance-note :is(strong,p),
+  body.pension-page .retirement-net-placeholder :is(strong,p),
+  body.pension-page .retirement-net-card :is(h3,p,span,strong) {
+    color: #243f58 !important;
+    opacity: 1 !important;
+  }
+  body.pension-page .retirement-net-values > span {
+    color: #243f58 !important;
+    background: #fff !important;
+    border-color: #aebfce !important;
+  }
+  body.pension-page .retirement-net-values strong {
+    color: #102f50 !important;
+  }
+
+  /* Let the reference schedule use the available lower portion of page 1.
+     Tables and rows may flow naturally onto page 2 instead of forcing a large blank area. */
+  body.pension-page .retirement-reference {
+    break-before: auto !important;
+    page-break-before: auto !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+    margin: 7px 0 0 !important;
+    padding: 0 !important;
+  }
+  body.pension-page .retirement-reference > summary {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+  body.pension-page .retirement-reference-grid {
+    display: block !important;
+    margin: 0 !important;
+  }
+  body.pension-page .retirement-reference-grid .table-wrap {
+    display: block !important;
+    margin: 0 0 8px !important;
+    overflow: visible !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+  body.pension-page .retirement-reference-grid .retirement-net-table {
+    grid-column: auto !important;
+  }
+  body.pension-page .retirement-reference-grid table {
+    width: 100% !important;
+    color: #17324d !important;
+    background: #fff !important;
+  }
+  body.pension-page .retirement-reference-grid table caption,
+  body.pension-page .retirement-reference-grid table thead th {
+    color: #fff !important;
+    background: #164b70 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body.pension-page .retirement-reference-grid table tbody td {
+    color: #17324d !important;
+    background: #fff !important;
+    border-color: #c4d0da !important;
+  }
+  body.pension-page .retirement-reference-grid table tbody tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  body.pension-page .retirement-footnote {
+    color: #243f58 !important;
+    opacity: 1 !important;
+  }
+}

@@ -34,7 +34,7 @@ const pension = fs.readFileSync(path.join(root, 'pension.html'), 'utf8');
 const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
 assert.match(index, /release-meta\.js\?v=6/);
-assert.match(pension, /release-meta\.js\?v=6/);
+assert.match(pension, /release-meta\.js\?v=7/);
 assert.match(index, /app\.js\?v=35/);
 assert.ok(pension.includes('retirement-data.js?v=5'));
 assert.ok(pension.includes('pension.js?v=13'));
@@ -152,8 +152,8 @@ assert.match(styles, /body\.payscale-main-page #salary-audit-summary/);
 assert.match(styles, /body\.payscale-main-page \.retirement-action/);
 assert.match(styles, /body\.payscale-main-page \.gross-form/);
 
-assert.ok(pension.includes('pension-senior-friendly.css?v=3'));
-assert.match(fs.readFileSync(path.join(root, 'pension-senior-friendly.css'), 'utf8'), /PayScale v1\.37 — pension PDF readability only/);
+assert.ok(pension.includes('pension-senior-friendly.css?v=4'));
+assert.match(fs.readFileSync(path.join(root, 'pension-senior-friendly.css'), 'utf8'), /PayScale v1.38 — pension PDF print contrast and page-space refinement/);
 assert.match(fs.readFileSync(path.join(root, 'pension-senior-friendly.css'), 'utf8'), /table tbody td \{[\s\S]*font-size: 10pt/);
 
 // Brand naming: main calculator and pension surfaces use the complete product name.
@@ -166,3 +166,13 @@ assert.ok(!fs.readFileSync(path.join(root, 'pension.js'), 'utf8').includes('PayS
 
 assert.ok(!index.includes('PayScale 2026 Calculator Calculator'));
 assert.ok(!pension.includes('PayScale 2026 Calculator Calculator'));
+
+
+// v1.38 pension PDF presentation regression checks (no calculation changes).
+const pensionPrintCss = fs.readFileSync(path.join(root, 'pension-senior-friendly.css'), 'utf8');
+assert.match(pension, /pension-senior-friendly\.css\?v=4/);
+assert.match(pension, /release-meta\.js\?v=7/);
+assert.match(pensionPrintCss, /PayScale v1\.38 — pension PDF print contrast and page-space refinement/);
+assert.match(pensionPrintCss, /retirement-audit-summary[\s\S]*background: #fff !important/);
+assert.match(pensionPrintCss, /retirement-reference[\s\S]*break-before: auto !important/);
+assert.match(pensionPrintCss, /retirement-reference-grid[\s\S]*display: block !important/);
