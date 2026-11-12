@@ -958,11 +958,10 @@ body.pension-page .pension-result-actions .pension-back-button:focus-visible {
   .menu-toggle {
     display: none !important;
   }
-  .results,
-  .gross-section,
   .timeline-card,
   .math-card,
-  .salary-audit-summary {
+  .salary-audit-summary,
+  .gross-total-card {
     break-inside: avoid-page;
     page-break-inside: avoid;
   }
