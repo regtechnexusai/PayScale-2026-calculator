@@ -1,128 +1,103 @@
-/* Senior-friendly, responsive translation panel for both PayScale pages.
-   Scoped selectors and !important protect it from legacy page button/input rules. */
+/* Embedded Google Translate panel — styled to match the FinTech Intelligence Hub.
+   The Google widget performs the translation in place; no URL copy/paste workflow. */
 html body.payscale-main-page .rt-translate-bar,
 html body.pension-page .rt-translate-bar {
   box-sizing:border-box!important;
-  display:block!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(180px,auto)!important;
+  align-items:center!important;
+  gap:12px 22px!important;
   width:min(1180px,calc(100% - 40px))!important;
   margin:18px auto 22px!important;
   padding:20px 22px!important;
-  border:1px solid #cbdce9!important;
-  border-radius:18px!important;
-  background:#f4f8fc!important;
+  border:1px solid #d5e2ec!important;
+  border-radius:16px!important;
+  background:#f3f7fb!important;
   color:#173b59!important;
-  box-shadow:0 5px 18px rgba(16,45,75,.07)!important;
+  box-shadow:0 4px 16px rgba(16,45,75,.055)!important;
   font-family:inherit!important;
-  font-size:16px!important;
-  line-height:1.6!important;
+  line-height:1.55!important;
 }
-html body.payscale-main-page .rt-translate-heading-row,
-html body.pension-page .rt-translate-heading-row {
-  display:flex!important;align-items:center!important;flex-wrap:wrap!important;
-  gap:12px!important;margin:0 0 16px!important;
+html body.payscale-main-page .rt-translate-intro,
+html body.pension-page .rt-translate-intro {
+  display:flex!important;flex-direction:column!important;gap:4px!important;
+  min-width:0!important;
 }
-html body.payscale-main-page .rt-translate-heading-row h2,
-html body.pension-page .rt-translate-heading-row h2 {
-  margin:0 auto 0 0!important;padding:0!important;
-  color:#173b59!important;font-size:19px!important;font-weight:800!important;
-  line-height:1.35!important;letter-spacing:0!important;
+html body.payscale-main-page .rt-translate-intro strong,
+html body.pension-page .rt-translate-intro strong {
+  color:#173b59!important;font-size:18px!important;font-weight:800!important;
 }
-html body.payscale-main-page .rt-translate-globe,
-html body.pension-page .rt-translate-globe {font-size:22px!important;line-height:1!important}
-html body.payscale-main-page .rt-translate-heading-row label,
-html body.pension-page .rt-translate-heading-row label,
-html body.payscale-main-page .rt-translate-url-row label,
-html body.pension-page .rt-translate-url-row label {
-  color:#294b68!important;font-size:15px!important;font-weight:750!important;
+html body.payscale-main-page .rt-translate-intro span,
+html body.pension-page .rt-translate-intro span {
+  color:#536d83!important;font-size:14px!important;line-height:1.55!important;
 }
-html body.payscale-main-page #rt-translate-language,
-html body.pension-page #rt-translate-language {
+html body.payscale-main-page #google_translate_element,
+html body.pension-page #google_translate_element {
+  display:flex!important;align-items:center!important;justify-content:flex-end!important;
+  min-height:44px!important;min-width:0!important;
+}
+html body.payscale-main-page #google_translate_element .goog-te-gadget,
+html body.pension-page #google_translate_element .goog-te-gadget {
+  color:#536d83!important;font-family:inherit!important;font-size:12px!important;
+}
+html body.payscale-main-page #google_translate_element .goog-te-gadget span,
+html body.pension-page #google_translate_element .goog-te-gadget span {
+  color:#536d83!important;
+}
+html body.payscale-main-page #google_translate_element select.goog-te-combo,
+html body.pension-page #google_translate_element select.goog-te-combo {
   box-sizing:border-box!important;display:block!important;
-  flex:0 1 245px!important;width:245px!important;min-width:190px!important;
-  min-height:48px!important;height:48px!important;max-width:100%!important;
-  margin:0!important;padding:8px 42px 8px 13px!important;
+  width:min(270px,100%)!important;min-width:190px!important;max-width:100%!important;
+  height:44px!important;min-height:44px!important;margin:0!important;padding:7px 36px 7px 12px!important;
   border:1.5px solid #a9c1d4!important;border-radius:10px!important;
-  background-color:#fff!important;color:#173b59!important;
-  font-family:inherit!important;font-size:16px!important;font-weight:650!important;
-  line-height:1.3!important;box-shadow:none!important;appearance:auto!important;
+  background:#fff!important;color:#173b59!important;
+  font-family:inherit!important;font-size:15px!important;font-weight:650!important;
+  line-height:1.3!important;box-shadow:none!important;
 }
-html body.payscale-main-page .rt-translate-url-row,
-html body.pension-page .rt-translate-url-row {
-  display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;
-  align-items:end!important;gap:10px!important;
+html body.payscale-main-page .rt-language-preferences,
+html body.pension-page .rt-language-preferences {
+  grid-column:1/-1!important;
+  margin:0!important;padding-top:10px!important;
+  border-top:1px solid #dce6ee!important;
 }
-html body.payscale-main-page .rt-translate-url-row label,
-html body.pension-page .rt-translate-url-row label {grid-column:1/-1!important;margin:0!important}
-html body.payscale-main-page #rt-translate-page-url,
-html body.pension-page #rt-translate-page-url {
-  box-sizing:border-box!important;display:block!important;width:100%!important;
-  min-width:0!important;min-height:48px!important;height:48px!important;
-  margin:0!important;padding:10px 13px!important;
-  border:1.5px solid #b7cad9!important;border-radius:10px!important;
-  background:#fff!important;color:#294b68!important;
-  font-family:inherit!important;font-size:14px!important;font-weight:500!important;
-  line-height:1.4!important;box-shadow:none!important;
+html body.payscale-main-page .rt-language-preferences summary,
+html body.pension-page .rt-language-preferences summary {
+  color:#17445f!important;font-size:15px!important;font-weight:750!important;
+  cursor:pointer!important;line-height:1.5!important;
 }
-html body.payscale-main-page .rt-translate-bar .rt-translate-button,
-html body.pension-page .rt-translate-bar .rt-translate-button {
-  box-sizing:border-box!important;display:inline-flex!important;
-  align-items:center!important;justify-content:center!important;
-  min-height:48px!important;height:auto!important;max-width:100%!important;
-  margin:0!important;padding:10px 17px!important;
-  border:1px solid #0d6682!important;border-radius:11px!important;
-  background:linear-gradient(120deg,#123d63,#087f83)!important;
-  color:#fff!important;-webkit-text-fill-color:#fff!important;
-  font-family:inherit!important;font-size:15px!important;font-weight:800!important;
-  line-height:1.35!important;text-align:center!important;text-decoration:none!important;
-  white-space:nowrap!important;cursor:pointer!important;
-  box-shadow:0 3px 0 #0a526b,0 5px 12px rgba(16,45,75,.10)!important;
-  opacity:1!important;visibility:visible!important;
+html body.payscale-main-page .rt-language-options,
+html body.pension-page .rt-language-options {
+  display:flex!important;flex-wrap:wrap!important;gap:9px 16px!important;
+  margin:13px 0 8px!important;
 }
-html body.payscale-main-page .rt-translate-bar .rt-translate-button:hover,
-html body.pension-page .rt-translate-bar .rt-translate-button:hover {
-  background:linear-gradient(120deg,#0c3153,#066d70)!important;
-  color:#fff!important;-webkit-text-fill-color:#fff!important;
+html body.payscale-main-page .rt-language-options label,
+html body.pension-page .rt-language-options label {
+  display:inline-flex!important;align-items:center!important;gap:6px!important;
+  color:#294b68!important;font-size:14px!important;font-weight:600!important;
 }
-html body.payscale-main-page .rt-translate-bar .rt-translate-button:focus-visible,
-html body.pension-page .rt-translate-bar .rt-translate-button:focus-visible,
-html body.payscale-main-page #rt-translate-language:focus-visible,
-html body.pension-page #rt-translate-language:focus-visible,
-html body.payscale-main-page #rt-translate-page-url:focus-visible,
-html body.pension-page #rt-translate-page-url:focus-visible {
-  outline:3px solid #168b91!important;outline-offset:3px!important;
+html body.payscale-main-page .rt-language-options input,
+html body.pension-page .rt-language-options input {
+  width:16px!important;height:16px!important;min-height:16px!important;
+  margin:0!important;accent-color:#087f83!important;
 }
-html body.payscale-main-page .rt-translate-note,
-html body.pension-page .rt-translate-note {
-  margin:13px 0 0!important;padding:0!important;
-  color:#435f77!important;font-size:14px!important;line-height:1.6!important;
-}
-html body.payscale-main-page .rt-translate-status,
-html body.pension-page .rt-translate-status {
-  margin:7px 0 0!important;padding:0!important;
-  color:#155b50!important;font-size:14px!important;font-weight:700!important;line-height:1.6!important;
+html body.payscale-main-page #rt-language-status,
+html body.pension-page #rt-language-status {
+  margin:6px 0 0!important;padding:0!important;
+  color:#155b50!important;font-size:13px!important;font-weight:650!important;
 }
 @media(max-width:700px) {
   html body.payscale-main-page .rt-translate-bar,
   html body.pension-page .rt-translate-bar {
+    grid-template-columns:1fr!important;
     width:calc(100% - 24px)!important;margin:12px auto 16px!important;padding:15px!important;
+    gap:10px!important;
   }
-  html body.payscale-main-page .rt-translate-heading-row,
-  html body.pension-page .rt-translate-heading-row {gap:9px!important}
-  html body.payscale-main-page #rt-translate-language,
-  html body.pension-page #rt-translate-language {flex:1 1 100%!important;width:100%!important}
-  html body.payscale-main-page .rt-translate-url-row,
-  html body.pension-page .rt-translate-url-row {grid-template-columns:1fr 1fr!important}
-  html body.payscale-main-page .rt-translate-url-row label,
-  html body.pension-page .rt-translate-url-row label,
-  html body.payscale-main-page #rt-translate-page-url,
-  html body.pension-page #rt-translate-page-url {grid-column:1/-1!important}
-  html body.payscale-main-page .rt-translate-bar .rt-translate-button,
-  html body.pension-page .rt-translate-bar .rt-translate-button {
-    width:100%!important;min-width:0!important;padding:10px 8px!important;
-    white-space:normal!important;font-size:14px!important;
+  html body.payscale-main-page #google_translate_element,
+  html body.pension-page #google_translate_element {justify-content:flex-start!important}
+  html body.payscale-main-page #google_translate_element select.goog-te-combo,
+  html body.pension-page #google_translate_element select.goog-te-combo {
+    width:min(100%,320px)!important;min-width:0!important;
   }
-}
-@media(prefers-reduced-motion:reduce) {
-  html body.payscale-main-page .rt-translate-bar *,
-  html body.pension-page .rt-translate-bar * {transition:none!important}
+  html body.payscale-main-page .rt-language-preferences,
+  html body.pension-page .rt-language-preferences {grid-column:1!important}
 }
