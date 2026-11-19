@@ -34,6 +34,13 @@ const pension = fs.readFileSync(path.join(root, 'pension.html'), 'utf8');
 const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 const pensionJs = fs.readFileSync(path.join(root, 'pension.js'), 'utf8');
 assert.match(index, /release-meta\.js\?v=6/);
+
+// Both calculator pages use the deployment-generated WebP logo with PNG fallback.
+for (const page of [index, pension]) {
+  assert.equal((page.match(/srcset="\/regtech-nexus-ai-logo-2026\.webp"/g) || []).length, 1);
+  assert.equal((page.match(/src="\/regtech-nexus-ai-logo-2026\.png"/g) || []).length, 1);
+}
+
 assert.match(pension, /release-meta\.js\?v=7/);
 assert.match(index, /app\.js\?v=35/);
 assert.ok(pension.includes('retirement-data.js?v=5'));
