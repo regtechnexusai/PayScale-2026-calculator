@@ -131,6 +131,7 @@ assert.match(index, /href="\/contact\.html"/);
 assert.match(index, /href="\/student\//);
 assert.doesNotMatch(index, /<section class="results"[^>]*aria-live=/);
 
+\n// The three local calculator scripts remain ordered and defer execution until HTML parsing is complete.\nfor (const tag of [\n  '<script src="scale-data.js?v=3" defer></script>',\n  '<script src="release-meta.js?v=6" defer></script>',\n  '<script src="app.js?v=35" defer></script>'\n]) {\n  assert.ok(index.includes(tag), 'Calculator script must remain deferred: ' + tag);\n}\nassert.ok(index.indexOf('scale-data.js?v=3') < index.indexOf('release-meta.js?v=6'));\nassert.ok(index.indexOf('release-meta.js?v=6') < index.indexOf('app.js?v=35'));\n
 console.log(`Passed static site smoke test across ${fs.readdirSync(root).filter((file) => file.endsWith('.html')).length} HTML pages.`);
 
 assert.ok(pension.includes('Version 1.37'));
